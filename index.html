@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SF Ride Price Compare · Uber · Lyft · Waymo</title>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --panel-2: #1f242e;
+    --border: #2a303c;
+    --text: #e8ebf0;
+    --muted: #9aa3b2;
+    --accent: #5b8cff;
+    --uber: #ffffff;
+    --uber-bg: #000000;
+    --lyft: #ff00bf;
+    --waymo: #00c389;
+    --good: #2ecc71;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(1200px 600px at 80% -10%, #1b2230 0%, var(--bg) 60%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+  header.app { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+  header.app h1 { font-size: 22px; margin: 0; letter-spacing: -0.2px; }
+  header.app .badge {
+    font-size: 11px; color: var(--muted); border: 1px solid var(--border);
+    padding: 3px 8px; border-radius: 999px;
+  }
+  .sub { color: var(--muted); font-size: 13px; margin: 0 0 22px; }
+  .grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 20px; }
+  @media (max-width: 880px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+  }
+  .card h2 { font-size: 14px; margin: 0 0 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+
+  label { display: block; font-size: 12px; color: var(--muted); margin: 12px 0 6px; }
+  select, input[type="number"] {
+    width: 100%; background: var(--panel-2); color: var(--text);
+    border: 1px solid var(--border); border-radius: 10px; padding: 11px 12px; font-size: 14px;
+    outline: none;
+  }
+  select:focus, input:focus { border-color: var(--accent); }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .pill {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    border-radius: 999px; padding: 7px 12px; font-size: 12px; cursor: pointer; user-select: none;
+  }
+  .pill.active { border-color: var(--accent); background: #20304f; color: #cdd9ff; }
+
+  .toggle-line { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+  .switch { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text); }
+  input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); }
+
+  button.go {
+    width: 100%; margin-top: 18px; background: var(--accent); color: #fff; border: none;
+    padding: 13px; font-size: 15px; font-weight: 600; border-radius: 11px; cursor: pointer;
+    transition: filter .15s ease;
+  }
+  button.go:hover { filter: brightness(1.08); }
+
+  #map { height: 340px; width: 100%; border-radius: 12px; border: 1px solid var(--border); }
+  .map-hint { font-size: 12px; color: var(--muted); margin: 8px 2px 0; }
+
+  .trip-meta { display: flex; gap: 18px; margin: 4px 0 16px; flex-wrap: wrap; }
+  .trip-meta div { font-size: 13px; color: var(--muted); }
+  .trip-meta b { color: var(--text); font-size: 15px; display: block; }
+
+  .results { display: flex; flex-direction: column; gap: 12px; }
+  .quote {
+    display: grid; grid-template-columns: 46px 1fr auto; gap: 14px; align-items: center;
+    background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;
+    position: relative; overflow: hidden;
+  }
+  .quote.best { border-color: var(--good); box-shadow: 0 0 0 1px var(--good) inset; }
+  .quote .best-tag {
+    position: absolute; top: 10px; right: 14px; font-size: 10px; font-weight: 700;
+    color: var(--good); letter-spacing: 0.8px;
+  }
+  .logo {
+    width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 18px;
+  }
+  .logo.uber { background: var(--uber-bg); color: var(--uber); }
+  .logo.lyft { background: #11000c; color: var(--lyft); }
+  .logo.waymo { background: #052b22; color: var(--waymo); }
+  .quote .name { font-weight: 700; font-size: 15px; }
+  .quote .tier { font-size: 12px; color: var(--muted); }
+  .quote .eta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .quote .price { text-align: right; }
+  .quote .price .amt { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .quote .price .range { font-size: 11px; color: var(--muted); }
+
+  .empty { color: var(--muted); font-size: 14px; text-align: center; padding: 40px 10px; }
+
+  details.disclaimer { margin-top: 22px; }
+  details.disclaimer summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+  details.disclaimer p, details.disclaimer li { color: var(--muted); font-size: 12px; line-height: 1.6; }
+  a { color: var(--accent); }
+  .footer { margin-top: 26px; color: var(--muted); font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="app">
+    <h1>🚗 SF Ride Price Compare</h1>
+    <span class="badge">Uber · Lyft · Waymo</span>
+  </header>
+  <p class="sub">Compare estimated fares for a ride in San Francisco. Pick your pickup &amp; drop-off, choose conditions, and see who's cheapest.</p>
+
+  <div class="grid">
+    <!-- LEFT: inputs -->
+    <div class="card">
+      <h2>Plan your ride</h2>
+
+      <label for="pickup">Pickup</label>
+      <select id="pickup"></select>
+
+      <label for="dropoff">Drop-off</label>
+      <select id="dropoff"></select>
+
+      <div class="map-hint">Tip: click the map to set <b>pickup</b> (first click) then <b>drop-off</b> (second click). Click again to reset.</div>
+      <div id="map" style="margin-top:10px;"></div>
+
+      <div class="row" style="margin-top:6px;">
+        <div>
+          <label for="riders">Riders</label>
+          <input type="number" id="riders" min="1" max="6" value="1" />
+        </div>
+        <div>
+          <label for="surge">Demand / surge ×</label>
+          <select id="surge">
+            <option value="1.0">Normal (1.0×)</option>
+            <option value="1.3">Busy (1.3×)</option>
+            <option value="1.7">High (1.7×)</option>
+            <option value="2.2">Peak (2.2×)</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Time of day</label>
+      <div class="pill-row" id="timePills">
+        <span class="pill active" data-mult="1.0">Off-peak</span>
+        <span class="pill" data-mult="1.15">Daytime</span>
+        <span class="pill" data-mult="1.35">Rush hour</span>
+        <span class="pill" data-mult="1.5">Late night</span>
+      </div>
+
+      <div class="toggle-line">
+        <span class="switch"><input type="checkbox" id="incShared" /> Include shared / pool tiers</span>
+        <span class="switch"><input type="checkbox" id="incPremium" /> Include premium tiers</span>
+      </div>
+
+      <button class="go" id="compareBtn">Compare prices</button>
+    </div>
+
+    <!-- RIGHT: results -->
+    <div class="card">
+      <h2>Estimated fares</h2>
+      <div class="trip-meta" id="tripMeta" style="display:none;">
+        <div>Distance<b id="mDist">–</b></div>
+        <div>Est. time<b id="mTime">–</b></div>
+        <div>Conditions<b id="mCond">–</b></div>
+      </div>
+      <div class="results" id="results">
+        <div class="empty">Set your pickup and drop-off, then hit <b>Compare prices</b>.</div>
+      </div>
+
+      <details class="disclaimer">
+        <summary>How these estimates work &amp; data sources</summary>
+        <p><b>These are estimates, not live quotes.</b> Uber, Lyft, and Waymo do not
+        offer a free public price API, so this app models each service's published
+        San Francisco pricing structure (base fare, booking/service fee, per-mile and
+        per-minute rates, minimum fare) and applies your selected surge and time-of-day
+        multipliers.</p>
+        <ul>
+          <li>Distance is computed from the two map points (haversine) with a road-winding factor.</li>
+          <li>Trip time assumes ~18 mph average SF city speed.</li>
+          <li>Actual prices vary with real-time demand, traffic, promotions, and tolls.</li>
+        </ul>
+        <p>To wire in <b>live</b> prices, replace <code>estimateFare()</code> in the
+        code with calls to each provider's authenticated pricing endpoint (requires a
+        partner API key).</p>
+      </details>
+    </div>
+  </div>
+
+  <p class="footer">Built for quick comparison · Estimates only · Always confirm the final price in each app before booking.</p>
+</div>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  crossorigin=""
+></script>
+<script>
+/* ------------------------------------------------------------------ *
+ * SF Ride Price Compare
+ * Estimates Uber / Lyft / Waymo fares from published SF pricing models.
+ * ------------------------------------------------------------------ */
+
+// Popular SF locations (lat, lng) for the dropdowns.
+const PLACES = [
+  { name: "Ferry Building", lat: 37.7955, lng: -122.3937 },
+  { name: "Union Square", lat: 37.7880, lng: -122.4074 },
+  { name: "Fisherman's Wharf", lat: 37.8080, lng: -122.4177 },
+  { name: "Golden Gate Bridge (Welcome Center)", lat: 37.8078, lng: -122.4750 },
+  { name: "Golden Gate Park (de Young)", lat: 37.7715, lng: -122.4686 },
+  { name: "Oracle Park", lat: 37.7786, lng: -122.3893 },
+  { name: "Chase Center", lat: 37.7680, lng: -122.3877 },
+  { name: "Mission Dolores Park", lat: 37.7596, lng: -122.4269 },
+  { name: "Castro District", lat: 37.7609, lng: -122.4350 },
+  { name: "Haight-Ashbury", lat: 37.7700, lng: -122.4469 },
+  { name: "Chinatown (Dragon Gate)", lat: 37.7908, lng: -122.4056 },
+  { name: "Coit Tower", lat: 37.8024, lng: -122.4058 },
+  { name: "Palace of Fine Arts", lat: 37.8029, lng: -122.4484 },
+  { name: "Twin Peaks", lat: 37.7544, lng: -122.4477 },
+  { name: "SFO Airport", lat: 37.6213, lng: -122.3790 },
+  { name: "Salesforce Tower", lat: 37.7897, lng: -122.3972 },
+  { name: "Lombard Street (crooked)", lat: 37.8021, lng: -122.4187 },
+  { name: "The Painted Ladies (Alamo Sq)", lat: 37.7762, lng: -122.4329 },
+];
+
+// Pricing models — published SF-area structures (USD). Estimates only.
+// fees include booking/service fee; min is the trip minimum.
+const SERVICES = {
+  uber: {
+    label: "Uber", logo: "uber",
+    tiers: [
+      { id: "uberx",   name: "UberX",        kind: "standard", base: 2.55, perMile: 1.75, perMin: 0.45, fee: 2.95, min: 9.50 },
+      { id: "comfort", name: "Comfort",      kind: "premium",  base: 3.55, perMile: 2.25, perMin: 0.55, fee: 2.95, min: 12.50 },
+      { id: "black",   name: "Uber Black",   kind: "premium",  base: 8.00, perMile: 3.75, perMin: 0.85, fee: 3.50, min: 26.00 },
+      { id: "pool",    name: "UberX Share",  kind: "shared",   base: 2.00, perMile: 1.30, perMin: 0.32, fee: 2.50, min: 7.50 },
+    ],
+  },
+  lyft: {
+    label: "Lyft", logo: "lyft",
+    tiers: [
+      { id: "lyft",    name: "Lyft",         kind: "standard", base: 2.40, perMile: 1.80, perMin: 0.42, fee: 3.05, min: 9.25 },
+      { id: "xl",      name: "Lyft XL",      kind: "premium",  base: 3.40, perMile: 2.60, perMin: 0.55, fee: 3.05, min: 13.00 },
+      { id: "lux",     name: "Lux",          kind: "premium",  base: 7.50, perMile: 3.60, perMin: 0.80, fee: 3.50, min: 24.00 },
+      { id: "shared",  name: "Lyft Shared",  kind: "shared",   base: 1.90, perMile: 1.35, perMin: 0.30, fee: 2.60, min: 7.25 },
+    ],
+  },
+  waymo: {
+    label: "Waymo One", logo: "waymo",
+    // Fully autonomous; no driver, no tip. Slightly higher per-mile, no surge premium tiers.
+    tiers: [
+      { id: "waymo",   name: "Waymo One",    kind: "standard", base: 3.20, perMile: 1.95, perMin: 0.48, fee: 2.50, min: 10.50 },
+    ],
+  },
+};
+
+const $ = (id) => document.getElementById(id);
+
+// Populate dropdowns
+function fillSelect(sel, defaultIdx) {
+  PLACES.forEach((p, i) => {
+    const o = document.createElement("option");
+    o.value = i; o.textContent = p.name;
+    if (i === defaultIdx) o.selected = true;
+    sel.appendChild(o);
+  });
+}
+fillSelect($("pickup"), 1);   // Union Square
+fillSelect($("dropoff"), 14); // SFO Airport
+
+// --- Map ---
+let map, pickupMarker, dropMarker, routeLine, clickStage = 0;
+function initMap() {
+  map = L.map("map").setView([37.7793, -122.4193], 12);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19, attribution: "© OpenStreetMap",
+  }).addTo(map);
+  drawFromSelects();
+  map.on("click", (e) => {
+    if (clickStage === 0) {
+      setPickup(e.latlng.lat, e.latlng.lng, "Custom pickup");
+      clickStage = 1;
+    } else if (clickStage === 1) {
+      setDrop(e.latlng.lat, e.latlng.lng, "Custom drop-off");
+      clickStage = 2;
+    } else {
+      // reset cycle
+      setPickup(e.latlng.lat, e.latlng.lng, "Custom pickup");
+      if (dropMarker) { map.removeLayer(dropMarker); dropMarker = null; }
+      if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+      clickStage = 1;
+    }
+  });
+}
+
+function curPickup() {
+  if (pickupMarker) { const ll = pickupMarker.getLatLng(); return { lat: ll.lat, lng: ll.lng, name: pickupMarker._label }; }
+  return null;
+}
+function curDrop() {
+  if (dropMarker) { const ll = dropMarker.getLatLng(); return { lat: ll.lat, lng: ll.lng, name: dropMarker._label }; }
+  return null;
+}
+
+function setPickup(lat, lng, label) {
+  if (pickupMarker) map.removeLayer(pickupMarker);
+  pickupMarker = L.marker([lat, lng]).addTo(map).bindTooltip("Pickup: " + label);
+  pickupMarker._label = label;
+  drawRoute();
+}
+function setDrop(lat, lng, label) {
+  if (dropMarker) map.removeLayer(dropMarker);
+  dropMarker = L.marker([lat, lng]).addTo(map).bindTooltip("Drop-off: " + label);
+  dropMarker._label = label;
+  drawRoute();
+}
+function drawRoute() {
+  const a = curPickup(), b = curDrop();
+  if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+  if (a && b) {
+    routeLine = L.polyline([[a.lat, a.lng], [b.lat, b.lng]], { color: "#5b8cff", weight: 3, dashArray: "6 6" }).addTo(map);
+    map.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
+  }
+}
+function drawFromSelects() {
+  const p = PLACES[+$("pickup").value], d = PLACES[+$("dropoff").value];
+  setPickup(p.lat, p.lng, p.name);
+  setDrop(d.lat, d.lng, d.name);
+  clickStage = 2;
+}
+$("pickup").addEventListener("change", () => { const p = PLACES[+$("pickup").value]; setPickup(p.lat, p.lng, p.name); clickStage = 2; });
+$("dropoff").addEventListener("change", () => { const d = PLACES[+$("dropoff").value]; setDrop(d.lat, d.lng, d.name); clickStage = 2; });
+
+// --- Geometry ---
+function haversineMiles(a, b) {
+  const R = 3958.8, toRad = (x) => (x * Math.PI) / 180;
+  const dLat = toRad(b.lat - a.lat), dLng = toRad(b.lng - a.lng);
+  const s = Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+}
+
+// --- Time-of-day pills ---
+let timeMult = 1.0;
+$("timePills").addEventListener("click", (e) => {
+  if (!e.target.classList.contains("pill")) return;
+  [...$("timePills").children].forEach((p) => p.classList.remove("active"));
+  e.target.classList.add("active");
+  timeMult = parseFloat(e.target.dataset.mult);
+});
+
+// --- Fare estimate ---
+function estimateFare(tier, miles, minutes, mult) {
+  let fare = tier.base + tier.perMile * miles + tier.perMin * minutes;
+  fare *= mult;            // surge × time-of-day
+  fare += tier.fee;        // booking/service fee not multiplied
+  fare = Math.max(fare, tier.min);
+  return fare;
+}
+
+function condLabel(surge) {
+  const t = [...$("timePills").children].find((p) => p.classList.contains("active")).textContent;
+  return `${t} · ${surge}× demand`;
+}
+
+// --- Compare ---
+$("compareBtn").addEventListener("click", () => {
+  const a = curPickup(), b = curDrop();
+  const results = $("results");
+  if (!a || !b) {
+    results.innerHTML = '<div class="empty">Please set both a pickup and a drop-off.</div>';
+    return;
+  }
+
+  const straight = haversineMiles(a, b);
+  const miles = Math.max(0.5, straight * 1.35); // road winding factor
+  const minutes = Math.max(3, (miles / 18) * 60); // ~18 mph SF avg
+  const surge = parseFloat($("surge").value);
+  const riders = Math.max(1, Math.min(6, parseInt($("riders").value || "1", 10)));
+  const mult = surge * timeMult;
+  const incShared = $("incShared").checked;
+  const incPremium = $("incPremium").checked;
+
+  // Trip meta
+  $("tripMeta").style.display = "flex";
+  $("mDist").textContent = miles.toFixed(1) + " mi";
+  $("mTime").textContent = Math.round(minutes) + " min";
+  $("mCond").textContent = condLabel(surge);
+
+  // Build quote list
+  const quotes = [];
+  Object.values(SERVICES).forEach((svc) => {
+    svc.tiers.forEach((tier) => {
+      if (tier.kind === "shared" && !incShared) return;
+      if (tier.kind === "premium" && !incPremium) return;
+      // XL/premium needed if riders > 4
+      if (riders > 4 && tier.kind === "standard" && !/XL|Black|Comfort/i.test(tier.name)) {
+        if (!incPremium) return; // standard can't fit, skip unless premium shown
+      }
+      const fare = estimateFare(tier, miles, minutes, mult);
+      const eta = Math.round(2 + Math.random() * 6 + (surge - 1) * 4); // pickup ETA mins
+      quotes.push({
+        svc: svc.label, logo: svc.logo, tier: tier.name, kind: tier.kind,
+        fare, eta,
+      });
+    });
+  });
+
+  quotes.sort((x, y) => x.fare - y.fare);
+  const best = quotes.length ? quotes[0].fare : null;
+
+  results.innerHTML = quotes.map((q) => {
+    const lo = (q.fare * 0.92).toFixed(2), hi = (q.fare * 1.12).toFixed(2);
+    const isBest = q.fare === best;
+    const initials = q.logo === "uber" ? "U" : q.logo === "lyft" ? "L" : "W";
+    return `
+      <div class="quote ${isBest ? "best" : ""}">
+        ${isBest ? '<span class="best-tag">CHEAPEST</span>' : ""}
+        <div class="logo ${q.logo}">${initials}</div>
+        <div>
+          <div class="name">${q.svc}</div>
+          <div class="tier">${q.tier}${q.kind === "shared" ? " · shared" : q.kind === "premium" ? " · premium" : ""}</div>
+          <div class="eta">~${q.eta} min to pickup</div>
+        </div>
+        <div class="price">
+          <div class="amt">$${q.fare.toFixed(2)}</div>
+          <div class="range">$${lo}–$${hi}</div>
+        </div>
+      </div>`;
+  }).join("");
+});
+
+// Boot
+window.addEventListener("load", initMap);
+</script>
+</body>
+</html>
