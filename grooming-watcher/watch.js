@@ -230,7 +230,7 @@ ${list}
 
 Book here: ${cfg.bookingUrl}
 
-${cfg.autoBook ? 'The watcher is now auto-advancing the earliest open day to the payment screen — watch for a "TAP PAY NOW" email to finish with one tap.' : 'Auto-booking is OFF — book it yourself using the link above.'}`,
+${cfg.autoBook ? 'The watcher is now confirming the slot is bookable — watch for a "BOOK NOW" email with the exact date, then book it yourself (sign in → d4 → George → date → pay the $20 deposit).' : 'Book it yourself using the link above.'}`,
           attachments: fs.existsSync(path.join(ARTIFACTS, `2-${MONTHS[monthIndex]}-${year}.png`))
             ? [{ filename: 'calendar.png', path: path.join(ARTIFACTS, `2-${MONTHS[monthIndex]}-${year}.png`) }]
             : [],
@@ -259,16 +259,20 @@ ${cfg.autoBook ? 'The watcher is now auto-advancing the earliest open day to the
           state.awaitingPaymentDate = target.iso;
           saveState(state);
           await sendEmail({
-            subject: `⏳ TAP PAY NOW — George's groom ${target.iso} is held (open + pay the $20 deposit)`,
+            subject: `🐶 BOOK NOW — grooming slot OPEN for George on ${target.iso}`,
             text:
-`A slot opened and the watcher walked it all the way to checkout:
+`A grooming slot just opened for the week you're watching, and the watcher
+confirmed it's actually bookable (logged in and walked it to the payment step):
 
-  Service: d4) Doodle/Curly Large Breed Full Groom ($125, $20 deposit now)
+  Service: d4) Doodle/Curly Large Breed Full Groom ($125, $20 deposit)
   Pet: George   Date: ${target.iso}
 
-👉 Open ${cfg.bookingUrl} on your phone and tap Pay (Google Pay) to confirm.
-The slot is only held briefly — do this ASAP. The deposit can't be paid
-automatically (Google Pay needs your approval), so this last tap is yours.
+👉 Book it NOW before someone else grabs it — open ${cfg.bookingUrl} and:
+   sign in → pick the d4 service → George → choose ${target.iso} → pay the
+   $20 deposit (Google Pay).
+
+Cancellations get taken fast, so don't wait. The watcher can't complete the
+payment for you (Google Pay needs your tap), so the final booking is yours.
 
 Flow log:
 ${result.detail}`,
