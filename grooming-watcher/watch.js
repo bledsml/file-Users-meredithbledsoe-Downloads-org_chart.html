@@ -16,7 +16,7 @@ const { chromium } = require('playwright');
 
 const { sendEmail } = require('./lib/notify');
 const {
-  MONTHS, wait, tryClick, gotoMonth, isDayAvailable, clickDay,
+  MONTHS, wait, tryClick, login, acceptWaivers, gotoMonth, isDayAvailable, clickDay,
 } = require('./lib/booking');
 
 const ROOT = __dirname;
@@ -80,23 +80,20 @@ async function dumpHtml(page, name) {
  */
 async function attemptBooking(page, frame, dateInfo, cfg) {
   const sel = cfg.selectors || {};
-  const b = cfg.booking || {};
   const log = [];
+  const nextSel = sel.nextButton || 'text=/next|continue/i';
 
+  // 1) Pick the open day.
   const clickedDay = await clickDay(frame, dateInfo.day, sel.dayCell);
   log.push(`select day ${dateInfo.iso}: ${clickedDay ? 'ok' : 'FAILED'}`);
   if (!clickedDay) return { booked: false, detail: log.join('\n') + '\n(could not click the open day)' };
-  await wait(1200);
+  await wait(1500);
   await shot(page, `book-1-day-${dateInfo.iso}`);
 
-  // Advance to time selection.
-  if (await tryClick(frame, sel.nextButton || 'text=/next|continue/i')) { log.push('clicked Next'); await wait(1200); }
-  await shot(page, `book-2-times-${dateInfo.iso}`);
-
-  // Pick the first enabled time slot.
+  // 2) Pick the first enabled time slot (times appear after choosing the day).
   const pickedTime = await frame.evaluate((configuredTimeSel) => {
     const isTime = (t) => /^\d{1,2}(:\d{2})?\s*(am|pm)?$/i.test(t.trim()) || /\d{1,2}:\d{2}/.test(t);
-    let els = configuredTimeSel
+    const els = configuredTimeSel
       ? [...document.querySelectorAll(configuredTimeSel)]
       : [...document.querySelectorAll('button, [role=button], a, li')].filter((e) => isTime((e.textContent || '').trim()));
     const ok = els.find((el) => {
@@ -114,55 +111,36 @@ async function attemptBooking(page, frame, dateInfo, cfg) {
     return label;
   }, sel.timeSlot || '');
   log.push(`pick time: ${pickedTime || 'none found'}`);
-  await wait(1000);
-  await shot(page, `book-3-picked-${dateInfo.iso}`);
+  await wait(1200);
+  await shot(page, `book-2-time-${dateInfo.iso}`);
 
-  // Move to the details form.
-  if (await tryClick(frame, sel.nextButton || 'text=/next|continue/i')) { log.push('clicked Next -> form'); await wait(1200); }
+  // 3) Advance to Waivers.
+  if (await tryClick(page, nextSel, 6000)) { log.push('Next -> waivers'); await wait(1500); }
+  await shot(page, `book-3-waivers-${dateInfo.iso}`);
 
-  // Fill any contact/pet fields we can identify by label/placeholder/name.
-  const filled = await frame.evaluate((info) => {
-    const set = (el, val) => { if (!el || !val) return false; el.focus(); el.value = val; el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); return true; };
-    const match = (el, words) => {
-      const hay = [el.name, el.id, el.placeholder, el.getAttribute('aria-label'),
-        (el.labels && el.labels[0] && el.labels[0].textContent) || ''].join(' ').toLowerCase();
-      return words.some((w) => hay.includes(w));
-    };
-    const inputs = [...document.querySelectorAll('input, textarea')];
-    const done = [];
-    for (const el of inputs) {
-      if (el.type === 'hidden' || el.disabled || el.value) continue;
-      if (el.type === 'email' || match(el, ['email'])) { if (set(el, info.customerEmail)) done.push('email'); }
-      else if (el.type === 'tel' || match(el, ['phone', 'mobile', 'tel'])) { if (set(el, info.customerPhone)) done.push('phone'); }
-      else if (match(el, ['pet name', 'dog name', 'pet'])) { if (set(el, info.petName)) done.push('pet'); }
-      else if (match(el, ['first name', 'firstname'])) { if (set(el, (info.customerName || '').split(' ')[0])) done.push('first'); }
-      else if (match(el, ['last name', 'lastname', 'surname'])) { if (set(el, (info.customerName || '').split(' ').slice(1).join(' '))) done.push('last'); }
-      else if (match(el, ['name'])) { if (set(el, info.customerName)) done.push('name'); }
-      else if (match(el, ['note', 'comment', 'message'])) { if (set(el, info.notes || '')) done.push('notes'); }
-    }
-    return done;
-  }, {
-    customerName: b.customerName, customerEmail: b.customerEmail,
-    customerPhone: b.customerPhone, petName: b.petName, notes: b.notes,
-  });
-  log.push(`filled fields: ${filled.join(', ') || 'none'}`);
-  await shot(page, `book-4-form-${dateInfo.iso}`);
+  // 4) Accept the grooming waiver, then advance to Payment.
+  log.push(`waivers: ${await acceptWaivers(page)}`);
+  await wait(800);
+  if (await tryClick(page, nextSel, 6000)) { log.push('Next -> payment'); await wait(2000); }
+  await shot(page, `book-4-payment-${dateInfo.iso}`);
 
-  // Final confirm.
-  const confirmed = await tryClick(frame, sel.confirmButton || 'text=/confirm|book now|complete|submit|finish/i', 6000);
-  log.push(`confirm: ${confirmed ? 'clicked' : 'NOT clicked'}`);
-  await wait(2500);
-  await shot(page, `book-5-result-${dateInfo.iso}`);
-  await dumpHtml(page, `book-5-result-${dateInfo.iso}`);
-
-  // Heuristic success check.
-  const success = await page.evaluate(() =>
-    /confirmed|booked|see you|thank you|appointment.*(set|scheduled)|booking.*(complete|confirmed)/i
+  // 5) Payment. The deposit is taken via Google Pay (account-authenticated
+  //    popup) or manual card entry — neither can be safely automated. So we do
+  //    NOT attempt to pay; we confirm we've reached the payment screen with the
+  //    slot in checkout, then signal the caller to alert the user to tap Pay.
+  await dumpHtml(page, `book-5-payment-${dateInfo.iso}`);
+  const atPayment = await page.evaluate(() =>
+    /payment information|deposit|google pay|place a deposit|pay franpos/i
       .test(document.body.innerText || '')).catch(() => false);
 
+  log.push(`reached payment screen: ${atPayment}`);
   return {
-    booked: confirmed && success,
-    detail: log.join('\n') + `\nfinal page signals success: ${success}`,
+    booked: false,
+    paymentReady: atPayment,
+    detail: log.join('\n')
+      + (atPayment
+        ? '\nSlot is in checkout — user must tap Pay ($20 deposit) to confirm.'
+        : '\nDid not reach the payment screen; see screenshots.'),
   };
 }
 
@@ -202,6 +180,15 @@ async function main() {
     await wait(2500);
     await tryClick(page, (cfg.selectors && cfg.selectors.cookieAccept) || '', 2500);
     await shot(page, '0-landing');
+
+    // Sign in (required to select the pet and reach the calendar).
+    if (cfg.login && cfg.login.enabled) {
+      const lr = await login(page, cfg);
+      console.log(`[watch] login: ok=${lr.ok} (${lr.detail})`);
+      await page.goto(cfg.bookingUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+      await wait(2500);
+      await shot(page, '0b-after-login');
+    }
 
     // Optional pre-steps to reach the calendar (service/stylist selection, etc.)
     for (const step of cfg.preSteps || []) {
@@ -243,7 +230,7 @@ ${list}
 
 Book here: ${cfg.bookingUrl}
 
-${cfg.autoBook ? 'Auto-booking is enabled — attempting to reserve the earliest open day now. You\'ll get a follow-up email with the result.' : 'Auto-booking is OFF — book it yourself using the link above.'}`,
+${cfg.autoBook ? 'The watcher is now auto-advancing the earliest open day to the payment screen — watch for a "TAP PAY NOW" email to finish with one tap.' : 'Auto-booking is OFF — book it yourself using the link above.'}`,
           attachments: fs.existsSync(path.join(ARTIFACTS, `2-${MONTHS[monthIndex]}-${year}.png`))
             ? [{ filename: 'calendar.png', path: path.join(ARTIFACTS, `2-${MONTHS[monthIndex]}-${year}.png`) }]
             : [],
@@ -254,36 +241,52 @@ ${cfg.autoBook ? 'Auto-booking is enabled — attempting to reserve the earliest
         console.log('[watch] Availability already notified previously — not re-sending the "open" email.');
       }
 
-      // 2) Auto-book the earliest open day.
-      if (cfg.autoBook) {
+      // 2) Auto-advance the earliest open day to the one-tap payment screen.
+      //    Throttle so we don't repeatedly drive a slot into checkout every run.
+      const recentlyAdvanced = state.awaitingPaymentUntil && Date.now() < state.awaitingPaymentUntil;
+      if (cfg.autoBook && !recentlyAdvanced) {
         const target = available[0];
-        console.log(`[watch] Attempting to auto-book ${target.iso}...`);
-        // Re-resolve the calendar frame (page state may have changed during checks).
+        console.log(`[watch] Auto-advancing ${target.iso} to payment...`);
         let frame;
         try { frame = await gotoMonth(page, year, monthIndex, cfg); } catch (e) { frame = null; errors.push(`re-nav: ${e.message}`); }
         const result = frame
           ? await attemptBooking(page, frame, target, cfg)
           : { booked: false, detail: 'Could not re-open the calendar to book.' };
 
-        if (result.booked) {
-          state.booked = true;
-          state.bookedDate = target.iso;
+        if (result.paymentReady) {
+          // Slot is in checkout. Alert the user to tap Pay; cool down for 40 min.
+          state.awaitingPaymentUntil = Date.now() + 40 * 60 * 1000;
+          state.awaitingPaymentDate = target.iso;
           saveState(state);
-        }
-        await sendEmail({
-          subject: result.booked
-            ? `✅ BOOKED grooming for ${target.iso}`
-            : `⚠️ Could NOT auto-book ${target.iso} — book it manually ASAP`,
-          text:
-`${result.booked
-  ? `Your grooming appointment for ${target.iso} appears to be BOOKED. Please double-check your email/account for a confirmation from Pet Wants.`
-  : `A slot is open for ${target.iso} but the automated booking did not complete. Grab it manually now: ${cfg.bookingUrl}`}
+          await sendEmail({
+            subject: `⏳ TAP PAY NOW — George's groom ${target.iso} is held (open + pay the $20 deposit)`,
+            text:
+`A slot opened and the watcher walked it all the way to checkout:
+
+  Service: d4) Doodle/Curly Large Breed Full Groom ($125, $20 deposit now)
+  Pet: George   Date: ${target.iso}
+
+👉 Open ${cfg.bookingUrl} on your phone and tap Pay (Google Pay) to confirm.
+The slot is only held briefly — do this ASAP. The deposit can't be paid
+automatically (Google Pay needs your approval), so this last tap is yours.
+
+Flow log:
+${result.detail}`,
+          });
+        } else {
+          await sendEmail({
+            subject: `⚠️ Slot open ${target.iso} but auto-advance stalled — book it manually NOW`,
+            text:
+`A slot is open for ${target.iso} but the watcher couldn't reach the payment screen on its own. Grab it manually now: ${cfg.bookingUrl}
 
 Flow log:
 ${result.detail}
 
-Screenshots are attached to the GitHub Actions run.`,
-        });
+Screenshots are in the GitHub Actions artifacts.`,
+          });
+        }
+      } else if (recentlyAdvanced) {
+        console.log(`[watch] Already advanced ${state.awaitingPaymentDate} to payment recently — awaiting your tap, not re-advancing.`);
       }
     } else if (errors.length) {
       // Only email errors if SMTP is set; harmless no-op otherwise.

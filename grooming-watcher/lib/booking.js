@@ -245,10 +245,107 @@ async function clickDay(frame, day, configuredDaySelector) {
   return clicked;
 }
 
+/** Fill the first matching field across a list of selectors. */
+async function fillFirst(scope, selectors, value, timeout = 3000) {
+  for (const sel of selectors) {
+    if (!sel) continue;
+    try {
+      const loc = scope.locator(sel).first();
+      await loc.waitFor({ state: 'visible', timeout });
+      await loc.fill(value, { timeout });
+      return true;
+    } catch { /* try next */ }
+  }
+  return false;
+}
+
+/**
+ * Sign in to the booking account (required to reach the pet/calendar).
+ * Generic + best-effort: tries an optional login URL, otherwise finds a
+ * password field (clicking an account/sign-in link first if needed).
+ * Returns { ok, detail }.
+ */
+async function login(page, cfg) {
+  const email = process.env.BOOKING_EMAIL;
+  const pass = process.env.BOOKING_PASSWORD;
+  const lg = (cfg && cfg.login) || {};
+  if (!lg.enabled || !email || !pass) return { ok: false, detail: 'login disabled or no credentials' };
+
+  if (lg.loginUrl) {
+    try { await page.goto(lg.loginUrl, { waitUntil: 'domcontentloaded', timeout: 45000 }); } catch { /* ignore */ }
+    await wait(2500);
+  }
+
+  const passwordFrame = async () => {
+    for (const f of page.frames()) {
+      try {
+        if (await f.locator('input[type=password]').first().isVisible({ timeout: 400 })) return f;
+      } catch { /* next frame */ }
+    }
+    return null;
+  };
+
+  let frame = await passwordFrame();
+  if (!frame) {
+    await tryClick(page, lg.signInSelector || 'text=/sign ?in|log ?in|account/i', 5000);
+    await wait(2500);
+    frame = await passwordFrame();
+  }
+  if (!frame) return { ok: false, detail: 'no login form found' };
+
+  const e = await fillFirst(frame,
+    [lg.emailSelector, 'input[type=email]', 'input[name*="email" i]', 'input[name*="user" i]', 'input[placeholder*="email" i]'], email);
+  const p = await fillFirst(frame, [lg.passwordSelector, 'input[type=password]'], pass);
+
+  let submitted = await tryClick(frame, lg.submitSelector || 'button:has-text("Log in"), button:has-text("Sign in"), button[type=submit]', 3000);
+  if (!submitted) {
+    submitted = await frame.evaluate(() => {
+      const btn = [...document.querySelectorAll('button, input[type=submit]')]
+        .find((x) => /log ?in|sign ?in|continue|submit/i.test((x.textContent || x.value || '')));
+      if (btn) { btn.click(); return true; }
+      return false;
+    });
+  }
+  await wait(4000);
+  return { ok: e && p, detail: `email:${e} pass:${p} submit:${submitted}` };
+}
+
+/**
+ * Complete the "Complete waivers" step: open the waiver, click AGREE in the
+ * modal, and tick any agreement checkboxes. Best-effort; returns a log string.
+ */
+async function acceptWaivers(page) {
+  const log = [];
+  // Open the waiver document if it's a link, then agree inside the modal.
+  if (await tryClick(page, 'text=/grooming waiver|view waiver|read waiver/i', 1500)) {
+    await wait(1200);
+    if (await tryClick(page, 'text=/^\\s*agree\\s*$/i', 4000)) log.push('clicked AGREE in waiver modal');
+    await wait(1000);
+  }
+  // Tick any remaining unchecked agreement checkboxes.
+  for (const f of page.frames()) {
+    try {
+      const boxes = f.locator('input[type=checkbox]');
+      const n = await boxes.count();
+      for (let i = 0; i < n; i++) {
+        const b = boxes.nth(i);
+        if (await b.isVisible().catch(() => false) && !(await b.isChecked().catch(() => false))) {
+          await b.check({ timeout: 2000 }).catch(async () => { await b.click({ timeout: 2000 }).catch(() => {}); });
+          log.push('ticked a waiver checkbox');
+        }
+      }
+    } catch { /* next frame */ }
+  }
+  return log.join('; ') || 'no waiver controls found';
+}
+
 module.exports = {
   MONTHS,
   wait,
   tryClick,
+  fillFirst,
+  login,
+  acceptWaivers,
   findCalendarFrame,
   readMonthLabel,
   gotoMonth,
