@@ -180,7 +180,12 @@ async function main() {
   const targets = cfg.targetDates.map(parseDate);
   const { year, monthIndex } = targets[0]; // all in the same target month
 
-  const browser = await chromium.launch({ headless: true });
+  const launchOpts = { headless: true };
+  // In the Claude Code web container, Chromium is pre-installed and the download
+  // CDN is blocked; the session hook exports this path. Unset on GitHub Actions,
+  // where the matching browser is installed normally.
+  if (process.env.PLAYWRIGHT_EXECUTABLE_PATH) launchOpts.executablePath = process.env.PLAYWRIGHT_EXECUTABLE_PATH;
+  const browser = await chromium.launch(launchOpts);
   const context = await browser.newContext({
     locale: 'en-US',
     timezoneId: cfg.timezone || 'America/New_York',
