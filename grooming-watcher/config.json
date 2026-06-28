@@ -16,8 +16,10 @@
   "//autoBook": "true = actually reserve the slot. false = notify only. Controlled per-run by the AUTO_BOOK secret/var; this is the fallback.",
   "autoBook": true,
 
-  "//preSteps": "Ordered clicks needed to reach the calendar (service, stylist, etc.). Each step is a Playwright selector or 'text=...'. Leave empty if the calendar shows immediately. Tune after the first run using the uploaded screenshots.",
-  "preSteps": [],
+  "//preSteps": "Ordered clicks needed to reach the calendar (service, stylist, etc.). Each step is a Playwright selector or 'text=...'. Best-effort: a step that isn't found is skipped, not fatal. Tune from the first dry-run's screenshots/logs.",
+  "preSteps": [
+    "text=Doodle/Curly Large Breed Full Groom"
+  ],
 
   "//selectors": "Optional overrides. Empty string = use the built-in generic heuristic. Fill these in only if the first run's screenshots show the heuristic missed something.",
   "selectors": {
@@ -32,7 +34,7 @@
 
   "//booking": "Used to fill the booking form. Non-secret fields here; secret/PII fields come from env (CUSTOMER_NAME, CUSTOMER_PHONE, PET_NAME, NOTIFY_TO).",
   "booking": {
-    "service": "",
+    "service": "d4) Doodle/Curly Large Breed Full Groom 41-70 lbs",
     "stylist": "",
     "notes": "Booked automatically by grooming-watcher."
   }
