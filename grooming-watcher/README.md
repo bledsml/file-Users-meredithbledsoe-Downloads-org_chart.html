@@ -45,17 +45,30 @@ All of this lives in your repo's **Settings → Secrets and variables → Action
 
 ---
 
-## How to turn it on
-1. Push this repo to GitHub (the watcher branch already has everything).
-2. Add the secrets/variables above.
-3. Go to the **Actions** tab → enable workflows if prompted.
-4. Run **"Grooming availability watcher" → Run workflow** once with
-   **dry_run = true**. This does a check + notify with **no booking**, and
-   uploads screenshots so you can confirm it reads the calendar correctly.
-5. Open the run's **Artifacts** and check `2-July-2026.png` — you should see the
-   July calendar. If the calendar didn't load, see *Tuning* below.
-6. Once the dry run looks right, let the 15‑minute schedule take over. It will
-   notify + auto‑book automatically when July 6–11 opens up.
+## How to turn it on — all doable from your phone (GitHub app or github.com)
+
+> ⚠️ **The 15‑minute schedule only starts once this workflow file is on the
+> repo's _default branch_.** GitHub never runs `schedule:` (or shows the
+> "Run workflow" button) for a file that only lives on a side branch. So step 4
+> below — merging the PR — is the real "go live" switch.
+
+1. **Add the secrets & variables** from the tables above:
+   repo → **Settings → Secrets and variables → Actions**. (The `+` buttons work
+   fine on mobile.) Minimum to start: `SMTP_USER`, `SMTP_PASS`, `NOTIFY_TO`,
+   `CUSTOMER_NAME`, `CUSTOMER_PHONE`, `PET_NAME`.
+2. **Enable Actions** if prompted on the **Actions** tab.
+3. **Merge PR #2** into the default branch (`claude/ride-price-comparison-agy6z5`).
+   This is what activates the cron. (Tell me and I'll merge it, or tap **Merge**
+   yourself once the secrets are in.)
+4. **Smoke‑test:** Actions → **"Grooming availability watcher" → Run workflow** →
+   set **dry_run = true**. This checks + emails with **no booking**, and uploads
+   screenshots. Open the run's **Artifacts** → `2-July-2026.png` and confirm you
+   see the July calendar. If it didn't load, see *Tuning* below.
+5. Once the dry run looks right, the 15‑minute schedule takes over and will
+   notify + auto‑book automatically the moment July 6–11 opens up.
+
+You only need a **computer** if you want to debug selectors locally (next
+section) — none of the steps above require one.
 
 ## Test / run locally
 ```bash
