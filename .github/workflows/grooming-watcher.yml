@@ -4,9 +4,21 @@ name: Grooming availability watcher
 # July 6, 2026, and notifies + (optionally) auto-books. Runs every 15 minutes.
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'   # every 15 minutes (UTC)
-  workflow_dispatch:          # lets you run it on demand from the Actions tab
+  # NOTE: The cloud schedule is DISABLED — the booking site blocks automated
+  # logins with reCAPTCHA v3, so this can't run hands-off from GitHub. Use the
+  # local watcher instead (see grooming-watcher/LOCAL.md). Left as manual-only.
+  # schedule:
+  #   - cron: '*/15 * * * *'
+  workflow_dispatch:          # manual only
+    inputs:
+      dry_run:
+        description: 'Check + notify only, do NOT auto-book'
+        type: boolean
+        default: false
+      target_dates:
+        description: 'Override target dates (comma-separated YYYY-MM-DD), e.g. 2026-09-18 for a far-out test'
+        type: string
+        default: ''
     inputs:
       dry_run:
         description: 'Check + notify only, do NOT auto-book'
