@@ -9,6 +9,7 @@
     "watch:dry": "DRY_RUN=1 node watch.js"
   },
   "dependencies": {
+    "imapflow": "^1.0.171",
     "nodemailer": "^6.9.14",
     "playwright": "^1.48.0"
   }

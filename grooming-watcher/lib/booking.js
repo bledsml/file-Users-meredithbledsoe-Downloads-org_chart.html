@@ -1,5 +1,7 @@
 'use strict';
 
+const { fetchAuthCode } = require('./mailcode');
+
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
@@ -293,39 +295,74 @@ async function login(page, cfg) {
     modal = await emailVisible();
   }
 
-  // Step 1 — "Please enter your email": fill email, click CONTINUE.
+  const loginStart = Date.now();
+
+  const visibleOf = async (selectors) => {
+    for (const s of selectors) {
+      if (!s) continue;
+      try { const loc = page.locator(s).first(); if (await loc.isVisible({ timeout: 400 })) return loc; } catch { /* next */ }
+    }
+    return null;
+  };
+
+  // Step 1 — "Please enter your email": fill email, submit (CONTINUE / Enter).
   const emailOk = await fillFirst(page, emailSelectors, email);
+  await page.keyboard.press('Enter').catch(() => {});
   const continued = await tryClick(page, 'text=/^\\s*continue\\s*$/i', 5000);
 
-  // Step 2 — "Returning customer, sign in". The password step renders only after
-  // the server validates the email, so poll for the field (can take seconds).
+  // Step 2 — password and/or an emailed 2FA code. Poll for whichever appears.
   const passSelectors = [lg.passwordSelector, 'input[type=password]', 'input[placeholder*="password" i]'].filter(Boolean);
+  const codeSelectors = [
+    'input[autocomplete="one-time-code"]', 'input[placeholder*="code" i]',
+    'input[name*="code" i]', 'input[aria-label*="code" i]',
+    'input[placeholder*="authorization" i]', 'input[inputmode="numeric"]',
+  ];
   let passField = null;
-  for (let i = 0; i < 10 && !passField; i++) {
+  let codeField = null;
+  for (let i = 0; i < 10 && !passField && !codeField; i++) {
     await wait(1500);
-    for (const s of passSelectors) {
-      try {
-        const loc = page.locator(s).first();
-        if (await loc.isVisible({ timeout: 400 })) { passField = loc; break; }
-      } catch { /* next selector */ }
-    }
+    passField = await visibleOf(passSelectors);
+    if (!passField) codeField = await visibleOf(codeSelectors);
   }
+
   let passOk = false;
+  let submitted = false;
   if (passField) {
     try { await passField.fill(pass, { timeout: 4000 }); passOk = true; } catch { /* leave false */ }
+    await page.keyboard.press('Enter').catch(() => {});
+    submitted = await tryClick(page, lg.submitSelector || 'text=/^\\s*login\\s*$/i', 6000);
+    if (!submitted) submitted = await tryClick(page, 'button[type=submit]', 3000);
+    // A 2FA code step may now appear.
+    for (let i = 0; i < 12 && !codeField; i++) { await wait(1500); codeField = await visibleOf(codeSelectors); }
   }
 
-  let submitted = await tryClick(page, lg.submitSelector || 'text=/^\\s*login\\s*$/i', 6000);
-  if (!submitted) submitted = await tryClick(page, 'button[type=submit]', 3000);
-  await wait(5000);
+  // Step 3 — emailed authorization code (2FA), read from Gmail.
+  let code = null;
+  let codeEntered = false;
+  if (codeField) {
+    try {
+      code = await fetchAuthCode({
+        user: process.env.SMTP_USER, pass: process.env.SMTP_PASS,
+        sinceMs: loginStart, timeoutMs: 120000,
+      });
+    } catch { code = null; }
+    if (code) {
+      try { await codeField.fill(code, { timeout: 4000 }); codeEntered = true; } catch { /* leave false */ }
+      await page.keyboard.press('Enter').catch(() => {});
+      const verified = await tryClick(page, 'text=/verify|continue|submit|confirm|^\\s*login\\s*$/i', 6000);
+      if (!verified) await tryClick(page, 'button[type=submit]', 3000);
+      await wait(4000);
+    }
+  }
 
-  // Heuristic: header switches to "Hi, <name>" / shows a logout control.
+  await wait(3000);
   const loggedIn = await page.evaluate(() =>
     /hi,\s|my account|log\s?out|sign\s?out/i.test(document.body.innerText || '')).catch(() => null);
 
   return {
-    ok: Boolean(emailOk && passOk && submitted),
-    detail: `modal:${modal} email:${emailOk} continue:${continued} password:${passOk} login:${submitted} loggedIn:${loggedIn}`,
+    ok: Boolean(loggedIn) || Boolean(passOk && (codeField ? codeEntered : submitted)),
+    detail: `modal:${Boolean(modal)} email:${emailOk} continue:${continued} password:${passOk} `
+      + `codeField:${Boolean(codeField)} code:${code ? 'got' : 'none'} codeEntered:${codeEntered} loggedIn:${loggedIn}`,
   };
 }
 
