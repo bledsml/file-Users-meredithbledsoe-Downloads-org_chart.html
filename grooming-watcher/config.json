@@ -1,7 +1,7 @@
 {
   "bookingUrl": "https://www.petwantsatlmetrosouth.com/booking",
 
-  "//targetDates": "The week of July 6, 2026 (Mon-Sat). Any of these opening up triggers notify + auto-book. Add 2026-07-12 if you also want Sunday.",
+  "//targetDates": "The week of July 6, 2026 (Mon-Sat). Any of these opening up triggers auto-book. Override per-run with the TARGET_DATES var/input for the far-out test booking.",
   "targetDates": [
     "2026-07-06",
     "2026-07-07",
@@ -12,16 +12,28 @@
   ],
 
   "timezone": "America/New_York",
-
-  "//autoBook": "true = actually reserve the slot. false = notify only. Controlled per-run by the AUTO_BOOK secret/var; this is the fallback.",
   "autoBook": true,
 
-  "//preSteps": "Ordered clicks needed to reach the calendar (service, stylist, etc.). Each step is a Playwright selector or 'text=...'. Best-effort: a step that isn't found is skipped, not fatal. Tune from the first dry-run's screenshots/logs.",
+  "//login": "The booking wizard requires being signed in (to select the pet). Credentials come from the BOOKING_EMAIL / BOOKING_PASSWORD secrets; this section only holds non-secret selectors. Empty = use the built-in generic login detection.",
+  "login": {
+    "enabled": true,
+    "loginUrl": "",
+    "signInSelector": "text=/sign ?in|log ?in|account/i",
+    "emailSelector": "",
+    "passwordSelector": "",
+    "submitSelector": ""
+  },
+
+  "//preSteps": "Ordered clicks that walk the wizard from the landing page to the calendar. Best-effort: a step that isn't found is skipped, not fatal. Derived from the real booking screenshots.",
   "preSteps": [
-    "text=Doodle/Curly Large Breed Full Groom"
+    "text=NEXT",
+    "text=Doodle/Curly Large Breed Full Groom",
+    "text=CLOSE",
+    "text=NEXT",
+    "text=NEXT"
   ],
 
-  "//selectors": "Optional overrides. Empty string = use the built-in generic heuristic. Fill these in only if the first run's screenshots show the heuristic missed something.",
+  "//selectors": "Optional overrides for calendar/time/waiver/payment controls. Empty = built-in heuristic.",
   "selectors": {
     "cookieAccept": "text=/accept|agree|got it/i",
     "nextMonth": "",
@@ -29,12 +41,14 @@
     "dayCell": "",
     "timeSlot": "",
     "nextButton": "text=/next|continue/i",
-    "confirmButton": "text=/confirm|book now|complete|submit|finish/i"
+    "waiverAgree": "text=/i agree|agree|accept/i",
+    "payButton": "text=/place order|pay now|pay|book now|complete|confirm|submit|finish/i"
   },
 
-  "//booking": "Used to fill the booking form. Non-secret fields here; secret/PII fields come from env (CUSTOMER_NAME, CUSTOMER_PHONE, PET_NAME, NOTIFY_TO).",
+  "//booking": "Service to pick + form fields. PII (CUSTOMER_NAME, CUSTOMER_PHONE, PET_NAME) comes from env/secrets.",
   "booking": {
     "service": "d4) Doodle/Curly Large Breed Full Groom 41-70 lbs",
+    "petName": "George",
     "stylist": "",
     "notes": "Booked automatically by grooming-watcher."
   }

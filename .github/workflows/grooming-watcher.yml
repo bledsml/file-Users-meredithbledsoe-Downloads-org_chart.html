@@ -12,6 +12,10 @@ on:
         description: 'Check + notify only, do NOT auto-book'
         type: boolean
         default: false
+      target_dates:
+        description: 'Override target dates (comma-separated YYYY-MM-DD), e.g. 2026-09-18 for a far-out test'
+        type: string
+        default: ''
 
 concurrency:
   group: grooming-watcher
@@ -64,7 +68,7 @@ jobs:
           # --- Behavior ---
           AUTO_BOOK: ${{ vars.AUTO_BOOK || 'true' }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
-          TARGET_DATES: ${{ vars.TARGET_DATES }}
+          TARGET_DATES: ${{ inputs.target_dates != '' && inputs.target_dates || vars.TARGET_DATES }}
           STATE_FILE: ${{ github.workspace }}/grooming-watcher/.state/state.json
         run: node watch.js
 
