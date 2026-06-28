@@ -183,7 +183,7 @@ async function main() {
 
     // Sign in (required to select the pet and reach the calendar).
     if (cfg.login && cfg.login.enabled) {
-      const lr = await login(page, cfg);
+      const lr = await login(page, cfg, (name) => shot(page, name));
       console.log(`[watch] login: ok=${lr.ok} (${lr.detail})`);
       await page.goto(cfg.bookingUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
       await wait(2500);
