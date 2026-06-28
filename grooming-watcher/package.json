@@ -1,0 +1,15 @@
+{
+  "name": "grooming-watcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Watches Pet Wants ATL Metro South for dog grooming availability and notifies / auto-books a target week.",
+  "main": "watch.js",
+  "scripts": {
+    "watch": "node watch.js",
+    "watch:dry": "DRY_RUN=1 node watch.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.14",
+    "playwright": "^1.48.0"
+  }
+}
