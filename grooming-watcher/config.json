@@ -18,7 +18,7 @@
   "login": {
     "enabled": true,
     "loginUrl": "",
-    "signInSelector": "text=/sign ?in|log ?in|account/i",
+    "signInSelector": "text=Sign in",
     "emailSelector": "",
     "passwordSelector": "",
     "submitSelector": ""

@@ -271,43 +271,33 @@ async function login(page, cfg) {
   const lg = (cfg && cfg.login) || {};
   if (!lg.enabled || !email || !pass) return { ok: false, detail: 'login disabled or no credentials' };
 
-  if (lg.loginUrl) {
-    try { await page.goto(lg.loginUrl, { waitUntil: 'domcontentloaded', timeout: 45000 }); } catch { /* ignore */ }
-    await wait(2500);
-  }
+  // Open the sign-in modal from the site header.
+  const opened = await tryClick(page, lg.signInSelector || 'text=/^\\s*sign in\\s*$/i', 6000);
+  await wait(1500);
 
-  const passwordFrame = async () => {
-    for (const f of page.frames()) {
-      try {
-        if (await f.locator('input[type=password]').first().isVisible({ timeout: 400 })) return f;
-      } catch { /* next frame */ }
-    }
-    return null;
+  // Step 1 — "Please enter your email": fill email, click CONTINUE.
+  const emailOk = await fillFirst(page,
+    [lg.emailSelector, 'input[type=email]', 'input[placeholder*="email" i]', 'input[name*="email" i]'], email);
+  const continued = await tryClick(page, 'text=/^\\s*continue\\s*$/i', 5000);
+  await wait(2500);
+
+  // Step 2 — "Returning customer, sign in": fill password, click LOGIN.
+  const passOk = await fillFirst(page,
+    [lg.passwordSelector, 'input[type=password]', 'input[placeholder*="password" i]'], pass);
+  let submitted = await tryClick(page, lg.submitSelector || 'text=/^\\s*login\\s*$/i', 6000);
+  if (!submitted) submitted = await tryClick(page, 'button[type=submit]', 3000);
+  await wait(4500);
+
+  // Heuristic: header switches from "Sign in" to "Hi, <name>" / "account".
+  const loggedIn = await page.evaluate(() => {
+    const t = document.body.innerText || '';
+    return /hi,\s|my account|log\s?out|sign\s?out/i.test(t) || !/sign in/i.test(t);
+  }).catch(() => null);
+
+  return {
+    ok: Boolean(emailOk && passOk && submitted && loggedIn !== false),
+    detail: `signInOpened:${opened} email:${emailOk} continue:${continued} password:${passOk} login:${submitted} loggedIn:${loggedIn}`,
   };
-
-  let frame = await passwordFrame();
-  if (!frame) {
-    await tryClick(page, lg.signInSelector || 'text=/sign ?in|log ?in|account/i', 5000);
-    await wait(2500);
-    frame = await passwordFrame();
-  }
-  if (!frame) return { ok: false, detail: 'no login form found' };
-
-  const e = await fillFirst(frame,
-    [lg.emailSelector, 'input[type=email]', 'input[name*="email" i]', 'input[name*="user" i]', 'input[placeholder*="email" i]'], email);
-  const p = await fillFirst(frame, [lg.passwordSelector, 'input[type=password]'], pass);
-
-  let submitted = await tryClick(frame, lg.submitSelector || 'button:has-text("Log in"), button:has-text("Sign in"), button[type=submit]', 3000);
-  if (!submitted) {
-    submitted = await frame.evaluate(() => {
-      const btn = [...document.querySelectorAll('button, input[type=submit]')]
-        .find((x) => /log ?in|sign ?in|continue|submit/i.test((x.textContent || x.value || '')));
-      if (btn) { btn.click(); return true; }
-      return false;
-    });
-  }
-  await wait(4000);
-  return { ok: e && p, detail: `email:${e} pass:${p} submit:${submitted}` };
 }
 
 /**
