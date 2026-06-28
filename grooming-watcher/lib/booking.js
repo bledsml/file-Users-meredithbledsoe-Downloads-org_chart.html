@@ -296,14 +296,28 @@ async function login(page, cfg) {
   // Step 1 — "Please enter your email": fill email, click CONTINUE.
   const emailOk = await fillFirst(page, emailSelectors, email);
   const continued = await tryClick(page, 'text=/^\\s*continue\\s*$/i', 5000);
-  await wait(2500);
 
-  // Step 2 — "Returning customer, sign in": fill password, click LOGIN.
-  const passOk = await fillFirst(page,
-    [lg.passwordSelector, 'input[type=password]', 'input[placeholder*="password" i]'].filter(Boolean), pass);
+  // Step 2 — "Returning customer, sign in". The password step renders only after
+  // the server validates the email, so poll for the field (can take seconds).
+  const passSelectors = [lg.passwordSelector, 'input[type=password]', 'input[placeholder*="password" i]'].filter(Boolean);
+  let passField = null;
+  for (let i = 0; i < 10 && !passField; i++) {
+    await wait(1500);
+    for (const s of passSelectors) {
+      try {
+        const loc = page.locator(s).first();
+        if (await loc.isVisible({ timeout: 400 })) { passField = loc; break; }
+      } catch { /* next selector */ }
+    }
+  }
+  let passOk = false;
+  if (passField) {
+    try { await passField.fill(pass, { timeout: 4000 }); passOk = true; } catch { /* leave false */ }
+  }
+
   let submitted = await tryClick(page, lg.submitSelector || 'text=/^\\s*login\\s*$/i', 6000);
   if (!submitted) submitted = await tryClick(page, 'button[type=submit]', 3000);
-  await wait(4500);
+  await wait(5000);
 
   // Heuristic: header switches to "Hi, <name>" / shows a logout control.
   const loggedIn = await page.evaluate(() =>
