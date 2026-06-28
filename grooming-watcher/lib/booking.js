@@ -267,17 +267,18 @@ async function fillFirst(scope, selectors, value, timeout = 3000) {
  * password field (clicking an account/sign-in link first if needed).
  * Returns { ok, detail }.
  */
-async function login(page, cfg) {
+async function login(page, cfg, shot = async () => {}) {
   const email = process.env.BOOKING_EMAIL;
   const pass = process.env.BOOKING_PASSWORD;
   const lg = (cfg && cfg.login) || {};
   if (!lg.enabled || !email || !pass) return { ok: false, detail: 'login disabled or no credentials' };
 
-  // Log in from the homepage, where the email→password modal lives.
+  // Log in from the homepage, where the Sign in modal lives.
   if (lg.loginUrl) {
     try { await page.goto(lg.loginUrl, { waitUntil: 'domcontentloaded', timeout: 60000 }); } catch { /* ignore */ }
     await wait(3500);
   }
+  await shot('login-1-home');
 
   const emailSelectors = [lg.emailSelector, 'input[type=email]', 'input[placeholder*="email" i]', 'input[name*="email" i]'].filter(Boolean);
   const emailVisible = async () => {
@@ -287,11 +288,19 @@ async function login(page, cfg) {
     return false;
   };
 
-  // The modal may auto-open; if not, click the header "Sign in".
+  // A marketing "enter your email" popup can auto-open and look like login —
+  // dismiss it, then explicitly open the real Sign in modal from the header.
+  await page.keyboard.press('Escape').catch(() => {});
+  await tryClick(page, 'button[aria-label*="close" i], [aria-label="Close"], .close, [class*="modal" i] [class*="close" i]', 1500);
+  await wait(700);
+  await tryClick(page, lg.signInSelector || 'text=Sign in', 8000);
+  await wait(2000);
+  await shot('login-2-modal');
   let modal = await emailVisible();
   if (!modal) {
-    await tryClick(page, lg.signInSelector || 'text=Sign in', 6000);
-    await wait(2000);
+    await page.keyboard.press('Escape').catch(() => {});
+    await tryClick(page, lg.signInSelector || 'text=Sign in', 4000);
+    await wait(1500);
     modal = await emailVisible();
   }
 
@@ -309,6 +318,8 @@ async function login(page, cfg) {
   const emailOk = await fillFirst(page, emailSelectors, email);
   await page.keyboard.press('Enter').catch(() => {});
   const continued = await tryClick(page, 'text=/^\\s*continue\\s*$/i', 5000);
+  await wait(2500);
+  await shot('login-3-after-continue');
 
   // Step 2 — password and/or an emailed 2FA code. Poll for whichever appears.
   const passSelectors = [lg.passwordSelector, 'input[type=password]', 'input[placeholder*="password" i]'].filter(Boolean);
@@ -335,6 +346,7 @@ async function login(page, cfg) {
     // A 2FA code step may now appear.
     for (let i = 0; i < 12 && !codeField; i++) { await wait(1500); codeField = await visibleOf(codeSelectors); }
   }
+  await shot('login-4-after-password');
 
   // Step 3 — emailed authorization code (2FA), read from Gmail.
   let code = null;
@@ -356,6 +368,7 @@ async function login(page, cfg) {
   }
 
   await wait(3000);
+  await shot('login-5-final');
   const loggedIn = await page.evaluate(() =>
     /hi,\s|my account|log\s?out|sign\s?out/i.test(document.body.innerText || '')).catch(() => null);
 
