@@ -1,0 +1,85 @@
+name: Grooming availability watcher
+
+# Watches Pet Wants ATL Metro South for dog grooming availability the week of
+# July 6, 2026, and notifies + (optionally) auto-books. Runs every 15 minutes.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 minutes (UTC)
+  workflow_dispatch:          # lets you run it on demand from the Actions tab
+    inputs:
+      dry_run:
+        description: 'Check + notify only, do NOT auto-book'
+        type: boolean
+        default: false
+
+concurrency:
+  group: grooming-watcher
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: grooming-watcher
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Persist "already booked / already notified" state across runs.
+      - name: Restore state
+        uses: actions/cache/restore@v4
+        with:
+          path: grooming-watcher/.state
+          key: grooming-state-${{ github.run_id }}
+          restore-keys: |
+            grooming-state-
+
+      - name: Run watcher
+        env:
+          # --- Notifications (Gmail SMTP) ---
+          SMTP_USER: ${{ secrets.SMTP_USER }}        # your gmail address
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}        # a Gmail "App Password" (not your login password)
+          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}        # where alerts go (e.g. bledsml@gmail.com)
+          NOTIFY_FROM: ${{ secrets.SMTP_USER }}
+          # --- Booking details (used to auto-fill the form) ---
+          CUSTOMER_NAME: ${{ secrets.CUSTOMER_NAME }}
+          CUSTOMER_PHONE: ${{ secrets.CUSTOMER_PHONE }}
+          PET_NAME: ${{ secrets.PET_NAME }}
+          BOOKING_EMAIL: ${{ secrets.BOOKING_EMAIL }}
+          BOOKING_PASSWORD: ${{ secrets.BOOKING_PASSWORD }}
+          BOOKING_SERVICE: ${{ vars.BOOKING_SERVICE }}
+          BOOKING_STYLIST: ${{ vars.BOOKING_STYLIST }}
+          # --- Behavior ---
+          AUTO_BOOK: ${{ vars.AUTO_BOOK || 'true' }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+          TARGET_DATES: ${{ vars.TARGET_DATES }}
+          STATE_FILE: ${{ github.workspace }}/grooming-watcher/.state/state.json
+        run: node watch.js
+
+      - name: Save state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: grooming-watcher/.state
+          key: grooming-state-${{ github.run_id }}
+
+      - name: Upload screenshots / page dumps
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grooming-artifacts-${{ github.run_id }}
+          path: grooming-watcher/artifacts/
+          if-no-files-found: ignore
+          retention-days: 7

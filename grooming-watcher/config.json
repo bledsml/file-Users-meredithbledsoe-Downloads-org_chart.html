@@ -1,0 +1,39 @@
+{
+  "bookingUrl": "https://www.petwantsatlmetrosouth.com/booking",
+
+  "//targetDates": "The week of July 6, 2026 (Mon-Sat). Any of these opening up triggers notify + auto-book. Add 2026-07-12 if you also want Sunday.",
+  "targetDates": [
+    "2026-07-06",
+    "2026-07-07",
+    "2026-07-08",
+    "2026-07-09",
+    "2026-07-10",
+    "2026-07-11"
+  ],
+
+  "timezone": "America/New_York",
+
+  "//autoBook": "true = actually reserve the slot. false = notify only. Controlled per-run by the AUTO_BOOK secret/var; this is the fallback.",
+  "autoBook": true,
+
+  "//preSteps": "Ordered clicks needed to reach the calendar (service, stylist, etc.). Each step is a Playwright selector or 'text=...'. Leave empty if the calendar shows immediately. Tune after the first run using the uploaded screenshots.",
+  "preSteps": [],
+
+  "//selectors": "Optional overrides. Empty string = use the built-in generic heuristic. Fill these in only if the first run's screenshots show the heuristic missed something.",
+  "selectors": {
+    "cookieAccept": "text=/accept|agree|got it/i",
+    "nextMonth": "",
+    "prevMonth": "",
+    "dayCell": "",
+    "timeSlot": "",
+    "nextButton": "text=/next|continue/i",
+    "confirmButton": "text=/confirm|book now|complete|submit|finish/i"
+  },
+
+  "//booking": "Used to fill the booking form. Non-secret fields here; secret/PII fields come from env (CUSTOMER_NAME, CUSTOMER_PHONE, PET_NAME, NOTIFY_TO).",
+  "booking": {
+    "service": "",
+    "stylist": "",
+    "notes": "Booked automatically by grooming-watcher."
+  }
+}
