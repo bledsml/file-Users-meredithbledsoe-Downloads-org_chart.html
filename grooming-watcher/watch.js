@@ -28,7 +28,7 @@ function loadConfig() {
 
   // Env overrides (set as GitHub Actions secrets/vars).
   if (process.env.BOOKING_URL) cfg.bookingUrl = process.env.BOOKING_URL;
-  if (process.env.TARGET_DATES) cfg.targetDates = process.env.TARGET_DATES.split(',').map((s) => s.trim());
+  if (process.env.TARGET_DATES) cfg.targetDates = process.env.TARGET_DATES.split(',').map((s) => s.trim()).filter(Boolean);
   if (process.env.AUTO_BOOK) cfg.autoBook = process.env.AUTO_BOOK === 'true';
   if (process.env.DRY_RUN === '1') cfg.autoBook = false;
 

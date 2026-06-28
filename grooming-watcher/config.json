@@ -17,7 +17,7 @@
   "//login": "The booking wizard requires being signed in (to select the pet). Credentials come from the BOOKING_EMAIL / BOOKING_PASSWORD secrets; this section only holds non-secret selectors. Empty = use the built-in generic login detection.",
   "login": {
     "enabled": true,
-    "loginUrl": "",
+    "loginUrl": "https://www.petwantsatlmetrosouth.com/",
     "signInSelector": "text=Sign in",
     "emailSelector": "",
     "passwordSelector": "",
