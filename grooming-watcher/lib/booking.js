@@ -271,32 +271,47 @@ async function login(page, cfg) {
   const lg = (cfg && cfg.login) || {};
   if (!lg.enabled || !email || !pass) return { ok: false, detail: 'login disabled or no credentials' };
 
-  // Open the sign-in modal from the site header.
-  const opened = await tryClick(page, lg.signInSelector || 'text=/^\\s*sign in\\s*$/i', 6000);
-  await wait(1500);
+  // Log in from the homepage, where the email→password modal lives.
+  if (lg.loginUrl) {
+    try { await page.goto(lg.loginUrl, { waitUntil: 'domcontentloaded', timeout: 60000 }); } catch { /* ignore */ }
+    await wait(3500);
+  }
+
+  const emailSelectors = [lg.emailSelector, 'input[type=email]', 'input[placeholder*="email" i]', 'input[name*="email" i]'].filter(Boolean);
+  const emailVisible = async () => {
+    for (const s of emailSelectors) {
+      try { if (await page.locator(s).first().isVisible({ timeout: 500 })) return true; } catch { /* next */ }
+    }
+    return false;
+  };
+
+  // The modal may auto-open; if not, click the header "Sign in".
+  let modal = await emailVisible();
+  if (!modal) {
+    await tryClick(page, lg.signInSelector || 'text=Sign in', 6000);
+    await wait(2000);
+    modal = await emailVisible();
+  }
 
   // Step 1 — "Please enter your email": fill email, click CONTINUE.
-  const emailOk = await fillFirst(page,
-    [lg.emailSelector, 'input[type=email]', 'input[placeholder*="email" i]', 'input[name*="email" i]'], email);
+  const emailOk = await fillFirst(page, emailSelectors, email);
   const continued = await tryClick(page, 'text=/^\\s*continue\\s*$/i', 5000);
   await wait(2500);
 
   // Step 2 — "Returning customer, sign in": fill password, click LOGIN.
   const passOk = await fillFirst(page,
-    [lg.passwordSelector, 'input[type=password]', 'input[placeholder*="password" i]'], pass);
+    [lg.passwordSelector, 'input[type=password]', 'input[placeholder*="password" i]'].filter(Boolean), pass);
   let submitted = await tryClick(page, lg.submitSelector || 'text=/^\\s*login\\s*$/i', 6000);
   if (!submitted) submitted = await tryClick(page, 'button[type=submit]', 3000);
   await wait(4500);
 
-  // Heuristic: header switches from "Sign in" to "Hi, <name>" / "account".
-  const loggedIn = await page.evaluate(() => {
-    const t = document.body.innerText || '';
-    return /hi,\s|my account|log\s?out|sign\s?out/i.test(t) || !/sign in/i.test(t);
-  }).catch(() => null);
+  // Heuristic: header switches to "Hi, <name>" / shows a logout control.
+  const loggedIn = await page.evaluate(() =>
+    /hi,\s|my account|log\s?out|sign\s?out/i.test(document.body.innerText || '')).catch(() => null);
 
   return {
-    ok: Boolean(emailOk && passOk && submitted && loggedIn !== false),
-    detail: `signInOpened:${opened} email:${emailOk} continue:${continued} password:${passOk} login:${submitted} loggedIn:${loggedIn}`,
+    ok: Boolean(emailOk && passOk && submitted),
+    detail: `modal:${modal} email:${emailOk} continue:${continued} password:${passOk} login:${submitted} loggedIn:${loggedIn}`,
   };
 }
 
