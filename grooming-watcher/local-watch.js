@@ -114,11 +114,17 @@ async function checkOnce() {
     await wait(1000);
     await dshot('3-after-service');
 
-    // 3) Advance (Service -> Pet -> Date) until the calendar appears.
+    // 3) Advance (Service -> Pet -> Date) until the calendar appears. The
+    //    "add-ons" popup appears after NEXT and blocks it, so close it each loop.
     let frame = null;
-    for (let s = 0; s < 6 && !frame; s++) {
-      try { frame = await gotoMonth(page, year, monthIndex, cfg); }
-      catch { console.log(`[local] reaching calendar (try ${s + 1})`); await clickNext(); await wait(2800); await dshot(`4-advance${s}`); }
+    for (let s = 0; s < 8 && !frame; s++) {
+      await tryClick(page, 'text=/^\\s*close\\s*$/i', 1500); // dismiss add-ons popup if shown
+      await wait(400);
+      try { frame = await gotoMonth(page, year, monthIndex, cfg); break; } catch { /* not on the calendar yet */ }
+      console.log(`[local] reaching calendar (try ${s + 1})`);
+      await clickNext();
+      await wait(2800);
+      await dshot(`4-advance${s}`);
     }
     if (!frame) throw new Error('Could not locate a month calendar on the page.');
     const available = [];
