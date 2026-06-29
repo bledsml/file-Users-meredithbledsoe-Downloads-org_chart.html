@@ -30,6 +30,7 @@ const AUTH_FILE = process.env.AUTH_FILE || path.join(ROOT, '.auth.json');
 
 const argv = process.argv.slice(2);
 const LOGIN_MODE = argv.includes('--login');
+const TEST_EMAIL = argv.includes('--test-email');
 const HEADED = argv.includes('--headed');
 const loopAt = argv.indexOf('--loop');
 const LOOP_MIN = loopAt >= 0 ? Number(argv[loopAt + 1] || 15) : 0;
@@ -186,6 +187,16 @@ async function alert(available) {
 }
 
 (async () => {
+  if (TEST_EMAIL) {
+    const ok = await sendEmail({
+      subject: '✅ Grooming watcher — test email',
+      text: 'If you can read this, email alerts are working. When a July 6-11 grooming slot opens for George, the watcher will email you here so you can grab it.',
+    });
+    console.log(ok
+      ? '[local] Test email sent — check your inbox (and Spam/Promotions).'
+      : '[local] Email NOT configured. Set SMTP_USER, SMTP_PASS, and NOTIFY_TO (see below).');
+    return;
+  }
   if (LOGIN_MODE) { await doLogin(); return; }
   const seen = new Set();
   do {
