@@ -26,7 +26,7 @@ const { wait, tryClick, gotoMonth, isDayAvailable } = require('./lib/booking');
 
 const ROOT = __dirname;
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
-const PROFILE_DIR = process.env.PROFILE_DIR || path.join(ROOT, '.profile');
+const AUTH_FILE = process.env.AUTH_FILE || path.join(ROOT, '.auth.json');
 
 const argv = process.argv.slice(2);
 const LOGIN_MODE = argv.includes('--login');
@@ -44,18 +44,13 @@ async function isLoggedIn(page) {
     /hi,\s|my account|log\s?out|sign\s?out/i.test(document.body.innerText || '')).catch(() => false);
 }
 
-async function openContext(headless) {
-  return chromium.launchPersistentContext(PROFILE_DIR, {
-    headless,
-    viewport: { width: 1366, height: 900 },
-    args: ['--disable-blink-features=AutomationControlled'],
-  });
-}
+const LAUNCH_ARGS = ['--disable-blink-features=AutomationControlled'];
 
-/** Headed one-time login: you sign in by hand; the session is saved. */
+/** Headed one-time login: you sign in by hand; the session is saved to a file. */
 async function doLogin() {
-  const ctx = await openContext(false);
-  const page = ctx.pages()[0] || (await ctx.newPage());
+  const browser = await chromium.launch({ headless: false, args: LAUNCH_ARGS });
+  const ctx = await browser.newContext({ viewport: { width: 1366, height: 900 } });
+  const page = await ctx.newPage();
   await page.goto(cfg.login.loginUrl || cfg.bookingUrl, { waitUntil: 'domcontentloaded' });
   console.log('\n================ LOG IN ================');
   console.log('A browser window opened. Please sign in:');
@@ -63,18 +58,27 @@ async function doLogin() {
   console.log('Waiting until you are signed in (up to 5 minutes)...');
   let ok = false;
   for (let i = 0; i < 150 && !ok; i++) { await wait(2000); ok = await isLoggedIn(page); }
-  if (ok) console.log('\n✓ Signed in — session saved. You can close the window.\n   Now run:  node local-watch.js --loop 15');
-  else console.log('\n⚠️  Did not detect a signed-in state. Re-run "node local-watch.js --login" and finish signing in.');
-  await wait(2500);
-  await ctx.close();
+  if (ok) {
+    await ctx.storageState({ path: AUTH_FILE });
+    console.log(`\n✓ Signed in — session saved. You can close the window.\n   Now run:  node local-watch.js --loop 15`);
+  } else {
+    console.log('\n⚠️  Did not detect a signed-in state. Re-run "node local-watch.js --login" and finish signing in.');
+  }
+  await wait(2000);
+  await browser.close();
 }
 
 /** One availability check using the saved session. */
 async function checkOnce() {
   const targets = cfg.targetDates.map(parseDate);
   const { year, monthIndex } = targets[0];
-  const ctx = await openContext(!HEADED);
-  const page = ctx.pages()[0] || (await ctx.newPage());
+  if (!fs.existsSync(AUTH_FILE)) {
+    console.log('[local] No saved login yet. Run:  node local-watch.js --login');
+    return { error: 'no-auth' };
+  }
+  const browser = await chromium.launch({ headless: !HEADED, args: LAUNCH_ARGS });
+  const ctx = await browser.newContext({ storageState: AUTH_FILE, viewport: { width: 1366, height: 900 } });
+  const page = await ctx.newPage();
   try {
     await page.goto(cfg.bookingUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await wait(2500);
@@ -95,7 +99,7 @@ async function checkOnce() {
     console.error('[local] check error:', e.message);
     return { error: e.message };
   } finally {
-    await ctx.close().catch(() => {});
+    await browser.close().catch(() => {});
   }
 }
 
@@ -106,8 +110,9 @@ async function alert(available) {
   console.log(`\n🐶🔔 SLOT OPEN for George: ${list}\n   Book now: ${cfg.bookingUrl}\n   (sign in → d4 → George → pick the date → pay the $20 deposit)\n`);
   // Pop the booking page open so you can grab it immediately.
   try {
-    const ctx = await openContext(false);
-    const page = ctx.pages()[0] || (await ctx.newPage());
+    const browser = await chromium.launch({ headless: false, args: LAUNCH_ARGS });
+    const ctx = await browser.newContext(fs.existsSync(AUTH_FILE) ? { storageState: AUTH_FILE } : {});
+    const page = await ctx.newPage();
     await page.goto(cfg.bookingUrl).catch(() => {});
     // leave it open; don't close
   } catch { /* ignore */ }
