@@ -128,6 +128,28 @@ async function checkOnce() {
       await dshot(`4-advance${s}`);
     }
     if (!frame) throw new Error('Could not locate a month calendar on the page.');
+
+    // DIAGNOSTIC: dump how a target day cell is styled so detection can be exact.
+    try {
+      const diag = await frame.evaluate((day) => {
+        const out = [];
+        const els = [...document.querySelectorAll('[role=gridcell], td, button, a, div, span, li')]
+          .filter((el) => (el.textContent || '').trim() === String(day));
+        for (const el of els.slice(0, 4)) {
+          const s = getComputedStyle(el);
+          out.push({
+            tag: el.tagName, cls: String(el.className || ''),
+            disabled: el.hasAttribute('disabled'), aria: el.getAttribute('aria-disabled'),
+            color: s.color, opacity: s.opacity,
+            deco: s.textDecorationLine || s.textDecoration, cursor: s.cursor, pe: s.pointerEvents,
+            html: el.outerHTML.slice(0, 180),
+          });
+        }
+        return out;
+      }, targets[0].day);
+      console.log('[diag] day ' + targets[0].day + ': ' + JSON.stringify(diag));
+    } catch { /* ignore */ }
+
     const available = [];
     for (const t of targets) {
       const r = await isDayAvailable(frame, t.day, cfg.selectors && cfg.selectors.dayCell);
