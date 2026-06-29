@@ -408,8 +408,42 @@ async function acceptWaivers(page) {
   return log.join('; ') || 'no waiver controls found';
 }
 
+/**
+ * Availability for a specific ISO date (YYYY-MM-DD) on the react-day-picker
+ * calendar. Unavailable days are struck-through + light-grey; available days
+ * are not. Keyed off the cell's `data-day` when present, else the day number.
+ * Returns { available, found }.
+ */
+async function isDateAvailable(frame, iso) {
+  return frame.evaluate((isoDate) => {
+    const dayNum = String(Number(isoDate.slice(8, 10)));
+    let td = document.querySelector(`[data-day="${isoDate}"]`);
+    if (td && td.tagName !== 'TD') td = td.closest('td') || td;
+    if (!td) {
+      const cells = [...document.querySelectorAll('td[role=gridcell], [role=gridcell], td')];
+      td = cells.find((c) => (c.textContent || '').trim() === dayNum) || null;
+    }
+    if (!td) return { available: false, found: false };
+
+    const btn = td.querySelector('button') || td;
+    const sTd = getComputedStyle(td);
+    const sBtn = getComputedStyle(btn);
+    const strike = (sTd.textDecorationLine || sTd.textDecoration || '').includes('line-through')
+      || (sBtn.textDecorationLine || sBtn.textDecoration || '').includes('line-through');
+    const disabled = btn.hasAttribute('disabled') || btn.getAttribute('aria-disabled') === 'true';
+    const cls = ((td.className || '') + ' ' + (btn.className || '')).toLowerCase();
+    const clsDisabled = /disabled|unavail|blocked|booked/.test(cls);
+    // Light-grey text = unavailable (e.g. rgb(220,224,224)); open days are darker.
+    const m = (sBtn.color || sTd.color || '').match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    const lightGrey = m ? (Number(m[1]) > 180 && Number(m[2]) > 180 && Number(m[3]) > 180) : false;
+
+    return { available: !(strike || disabled || clsDisabled || lightGrey), found: true };
+  }, iso);
+}
+
 module.exports = {
   MONTHS,
+  isDateAvailable,
   wait,
   tryClick,
   fillFirst,

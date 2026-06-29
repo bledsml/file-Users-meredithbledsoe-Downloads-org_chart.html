@@ -22,7 +22,7 @@ const path = require('path');
 const fs = require('fs');
 const { chromium } = require('playwright');
 const { sendEmail } = require('./lib/notify');
-const { wait, tryClick, gotoMonth, isDayAvailable } = require('./lib/booking');
+const { wait, tryClick, gotoMonth, isDateAvailable } = require('./lib/booking');
 
 const ROOT = __dirname;
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
@@ -152,7 +152,7 @@ async function checkOnce() {
 
     const available = [];
     for (const t of targets) {
-      const r = await isDayAvailable(frame, t.day, cfg.selectors && cfg.selectors.dayCell);
+      const r = await isDateAvailable(frame, t.iso);
       console.log(`[local] ${t.iso}: ${r.available ? 'AVAILABLE ✅' : 'unavailable'}`);
       if (r.available) available.push(t);
     }
@@ -172,13 +172,11 @@ async function alert(available) {
   // Loud terminal alert (with a bell).
   process.stdout.write('\x07');
   console.log(`\n🐶🔔 SLOT OPEN for George: ${list}\n   Book now: ${cfg.bookingUrl}\n   (sign in → d4 → George → pick the date → pay the $20 deposit)\n`);
-  // Pop the booking page open so you can grab it immediately.
+  // Open the booking page in your DEFAULT browser (where you're already signed
+  // in). Uses the OS opener so it never leaves a Playwright window hanging.
   try {
-    const browser = await chromium.launch({ headless: false, args: LAUNCH_ARGS });
-    const ctx = await browser.newContext(fs.existsSync(AUTH_FILE) ? { storageState: AUTH_FILE } : {});
-    const page = await ctx.newPage();
-    await page.goto(cfg.bookingUrl).catch(() => {});
-    // leave it open; don't close
+    const opener = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
+    require('child_process').exec(`${opener} "${cfg.bookingUrl}"`);
   } catch { /* ignore */ }
   // Email too, if configured.
   await sendEmail({
