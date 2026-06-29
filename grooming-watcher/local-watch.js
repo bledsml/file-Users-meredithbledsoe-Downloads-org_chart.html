@@ -85,20 +85,42 @@ async function checkOnce() {
   };
   try {
     await page.goto(cfg.bookingUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
-    await wait(2500);
+    try { await page.waitForLoadState('networkidle', { timeout: 15000 }); } catch { /* ignore */ }
+    await wait(4000);
     await dshot('1-booking');
     if (!(await isLoggedIn(page))) {
       console.log('[local] Not signed in (session expired). Run:  node local-watch.js --login');
       return { error: 'not-logged-in' };
     }
-    let i = 0;
-    for (const step of cfg.preSteps || []) {
-      const ok = await tryClick(page, step, 8000);
-      console.log(`[local] step "${step}": ${ok ? 'clicked' : 'not found'}`);
-      await wait(1200);
-      await dshot(`2-step${++i}`);
+
+    const clickNext = async () =>
+      (await tryClick(page, 'button:has-text("NEXT")', 3000)) || (await tryClick(page, 'text=/^\\s*next\\s*$/i', 3000));
+
+    // 1) Leave the Booking instructions step (retry NEXT until it actually moves).
+    for (let s = 0; s < 5; s++) {
+      const onInstructions = await page.getByText(/we look forward to pampering/i).first().isVisible().catch(() => false);
+      if (!onInstructions) break;
+      console.log(`[local] advancing past booking instructions (try ${s + 1})`);
+      await clickNext();
+      await wait(2800);
     }
-    const frame = await gotoMonth(page, year, monthIndex, cfg);
+    await dshot('2-after-instructions');
+
+    // 2) Select the service (avoid the "/" in the text selector — match after it).
+    const svc = await tryClick(page, 'text=Curly Large Breed Full Groom', 8000);
+    console.log(`[local] select service: ${svc ? 'clicked' : 'NOT FOUND'}`);
+    await wait(1500);
+    await tryClick(page, 'text=CLOSE', 2500); // dismiss the add-ons popup if it appears
+    await wait(1000);
+    await dshot('3-after-service');
+
+    // 3) Advance (Service -> Pet -> Date) until the calendar appears.
+    let frame = null;
+    for (let s = 0; s < 6 && !frame; s++) {
+      try { frame = await gotoMonth(page, year, monthIndex, cfg); }
+      catch { console.log(`[local] reaching calendar (try ${s + 1})`); await clickNext(); await wait(2800); await dshot(`4-advance${s}`); }
+    }
+    if (!frame) throw new Error('Could not locate a month calendar on the page.');
     const available = [];
     for (const t of targets) {
       const r = await isDayAvailable(frame, t.day, cfg.selectors && cfg.selectors.dayCell);
