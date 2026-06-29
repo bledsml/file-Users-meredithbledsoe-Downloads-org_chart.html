@@ -79,14 +79,25 @@ async function checkOnce() {
   const browser = await chromium.launch({ headless: !HEADED, args: LAUNCH_ARGS });
   const ctx = await browser.newContext({ storageState: AUTH_FILE, viewport: { width: 1366, height: 900 } });
   const page = await ctx.newPage();
+  const DEBUG_DIR = path.join(ROOT, 'debug');
+  const dshot = async (name) => {
+    try { fs.mkdirSync(DEBUG_DIR, { recursive: true }); await page.screenshot({ path: path.join(DEBUG_DIR, `${name}.png`), fullPage: true }); } catch { /* ignore */ }
+  };
   try {
     await page.goto(cfg.bookingUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
     await wait(2500);
+    await dshot('1-booking');
     if (!(await isLoggedIn(page))) {
       console.log('[local] Not signed in (session expired). Run:  node local-watch.js --login');
       return { error: 'not-logged-in' };
     }
-    for (const step of cfg.preSteps || []) { await tryClick(page, step, 8000); await wait(1200); }
+    let i = 0;
+    for (const step of cfg.preSteps || []) {
+      const ok = await tryClick(page, step, 8000);
+      console.log(`[local] step "${step}": ${ok ? 'clicked' : 'not found'}`);
+      await wait(1200);
+      await dshot(`2-step${++i}`);
+    }
     const frame = await gotoMonth(page, year, monthIndex, cfg);
     const available = [];
     for (const t of targets) {
@@ -97,6 +108,8 @@ async function checkOnce() {
     return { available };
   } catch (e) {
     console.error('[local] check error:', e.message);
+    await dshot('9-error');
+    console.log(`[local] debug screenshots saved in: ${DEBUG_DIR}  (run "open debug" to view)`);
     return { error: e.message };
   } finally {
     await browser.close().catch(() => {});
