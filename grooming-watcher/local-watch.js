@@ -118,7 +118,8 @@ async function checkOnce() {
     //    "add-ons" popup appears after NEXT and blocks it, so close it each loop.
     let frame = null;
     for (let s = 0; s < 8 && !frame; s++) {
-      await tryClick(page, 'text=/^\\s*close\\s*$/i', 1500); // dismiss add-ons popup if shown
+      await tryClick(page, 'text=/^\\s*close\\s*$/i', 1500);   // dismiss add-ons popup if shown
+      await tryClick(page, 'text=/^\\s*select\\s*$/i', 1500);  // select the pet (George) on the Pet step
       await wait(400);
       try { frame = await gotoMonth(page, year, monthIndex, cfg); break; } catch { /* not on the calendar yet */ }
       console.log(`[local] reaching calendar (try ${s + 1})`);
