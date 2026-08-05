@@ -4,7 +4,11 @@ Small single-file web apps — open the `.html` file in any browser, no build st
 
 ## ⏱ Studio Hours (`time-tracker.html`)
 
-Client time & budget guard for designers. Track how much time each client
+Client time & budget guard for service pros. Pick your profession from the
+dropdown in the header — interior designer, attorney, wedding/event planner,
+coach/consultant, accountant, or freelancer — and the wording, communication
+labels, courtesy-email template, and demo data all switch to match, so the
+same file demos to any of those audiences. Track how much time each client
 project eats (calls, texts, email, meetings), see every project against its
 contracted hours, and when a project crosses its alert threshold (default 80%),
 the app flags it and drafts a friendly courtesy email to the client explaining

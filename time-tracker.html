@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio Hours — client time &amp; budget guard for designers</title>
+<title>Studio Hours — client time &amp; budget guard</title>
 <style>
   :root {
     color-scheme: light;
@@ -98,6 +98,10 @@
   #themeToggle {
     border: 1px solid var(--grid); background: var(--surface); color: var(--ink-2);
     font: inherit; padding: 7px 11px; border-radius: 8px; cursor: pointer;
+  }
+  #nicheSelect {
+    width: auto; font-size: 13px; color: var(--ink-2);
+    padding: 7px 8px; border-radius: 8px;
   }
 
   main { max-width: 1060px; margin: 0 auto; padding: 20px; }
@@ -231,13 +235,14 @@
 
 <header>
   <div class="logo">Studio Hours
-    <small>client time &amp; budget guard for designers</small>
+    <small id="tagline">client time &amp; budget guard for designers</small>
   </div>
   <nav>
     <button data-view="dashboard" class="active">Dashboard</button>
     <button data-view="log">Log time</button>
     <button data-view="projects">Projects</button>
   </nav>
+  <select id="nicheSelect" title="Who is this for?"></select>
   <button id="themeToggle" title="Toggle light/dark">◐</button>
 </header>
 
@@ -422,9 +427,139 @@ const TYPES = [
 ];
 const QUICK_MINUTES = [5, 10, 15, 30, 60];
 
+/* ---------- niches: wording, email template, and demo data per profession ---------- */
+const NICHES = {
+  designer: {
+    notePh: 'e.g. tile selections call',
+    label: 'Interior designer', plural: 'designers',
+    serviceTerm: 'design time', consultWord: 'consultation',
+    intro: name => `I've loved working on ${name} with you!`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / site visit' },
+    demo: {
+      p1: { name: 'Hartwell New Construction', client: 'Anna Hartwell', email: 'anna@example.com', budgetHours: 120, rate: 175,
+        notes: ['kickoff walkthrough', 'builder + architect meeting', 'finish schedule v1', 'lighting plan review',
+          'window + door schedule', 'showroom day — plumbing fixtures', 'tile + counter quotes', 'HVAC vent placement',
+          'change order: kitchen island', 'site visit — framing walk', 'FF&E budget rev 2', 'cabinet install walkthrough',
+          'weekly builder sync', 'paint color confirmations', 'lighting order confirmations'] },
+      p2: { name: 'Maple St. Refresh', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 150,
+        notes: ['initial consult', '"quick question" about sofas', 'rug links back-and-forth', 'second-guessing paint',
+          'mood board round 2', 'call about neighbor’s remodel', 'endless pillow options',
+          'hour-plus chat, 10 min decisions', 'more rug links', 'revisiting the sofa… again'] },
+      p3: { name: 'Kitchen Consult — Nguyen', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 150,
+        notes: ['kitchen measure + consult', 'layout options', 'appliance questions', 'backsplash pick'] },
+    },
+  },
+  attorney: {
+    notePh: 'e.g. discovery call',
+    label: 'Attorney', plural: 'attorneys',
+    serviceTerm: 'legal services', consultWord: 'work',
+    intro: name => `Thank you for trusting me with ${name}.`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / hearing' },
+    demo: {
+      p1: { name: 'Meridian Ridge LLC — Acquisition', client: 'Meridian Ridge LLC', email: 'ops@example.com', budgetHours: 120, rate: 350,
+        notes: ['kickoff — deal review', 'due diligence session', 'revised LOI', 'title question call',
+          'escrow instructions', 'document review day', 'purchase agreement redlines', 'lender counsel call',
+          'zoning question', 'negotiation session', 'closing checklist', 'closing prep meeting',
+          'weekly status call', 'signature logistics', 'filing confirmations'] },
+      p2: { name: 'Calloway Estate Plan', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 300,
+        notes: ['initial consult', '"quick question" about the will', 'texts about beneficiaries', 'second-guessing the trust',
+          'draft revisions round 2', 'call about a neighbor’s estate', 'endless what-if questions',
+          'hour-plus call, few decisions', 'more questions by text', 'revisiting the trust… again'] },
+      p3: { name: 'Nguyen LLC Formation', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 300,
+        notes: ['formation consult', 'operating agreement draft', 'EIN questions', 'registered agent pick'] },
+    },
+  },
+  planner: {
+    notePh: 'e.g. florist call',
+    label: 'Wedding / event planner', plural: 'planners',
+    serviceTerm: 'planning time', consultWord: 'planning support',
+    intro: name => `I'm so excited about ${name}!`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / venue visit' },
+    demo: {
+      p1: { name: 'Hartwell–Reyes Wedding', client: 'Anna Hartwell', email: 'anna@example.com', budgetHours: 120, rate: 125,
+        notes: ['venue walkthrough', 'vendor summit', 'budget v1', 'floral call',
+          'rental quotes', 'tasting day', 'timeline draft', 'band call',
+          'seating logic', 'venue site visit', 'budget rev 2', 'décor mockup walkthrough',
+          'weekly vendor sync', 'color confirmations', 'invitation confirmations'] },
+      p2: { name: 'Calloway 40th Birthday Bash', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 100,
+        notes: ['initial consult', '"quick question" about themes', 'Pinterest links back-and-forth', 'second-guessing the venue',
+          'mood board round 2', 'call about a cousin’s party', 'endless balloon options',
+          'hour-plus chat, 10 min decisions', 'more Pinterest links', 'revisiting the theme… again'] },
+      p3: { name: 'Nguyen Baby Shower', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 100,
+        notes: ['venue consult', 'layout options', 'catering questions', 'cake pick'] },
+    },
+  },
+  coach: {
+    notePh: 'e.g. session recap',
+    label: 'Coach / consultant', plural: 'coaches',
+    serviceTerm: 'coaching time', consultWord: 'sessions',
+    intro: name => `I've really enjoyed our work on ${name}.`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Session / workshop' },
+    demo: {
+      p1: { name: 'Hartwell Co. Leadership Program', client: 'Hartwell Co.', email: 'hr@example.com', budgetHours: 120, rate: 200,
+        notes: ['kickoff workshop', 'exec team offsite', 'program plan v1', '1:1 with COO',
+          'survey design', 'workshop day — managers', 'progress report', 'CEO check-in',
+          'mediation prep', 'on-site team sessions', 'plan rev 2', 'quarterly review workshop',
+          'weekly sponsor sync', 'scheduling confirmations', 'session recaps'] },
+      p2: { name: 'Calloway Career Coaching', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 150,
+        notes: ['intake session', '"quick question" about the résumé', 'texts about a job post', 'second-guessing the offer',
+          'LinkedIn rewrite round 2', 'call about coworker drama', 'endless title options',
+          'hour-plus vent, 10 min coaching', 'more job links', 'revisiting the offer… again'] },
+      p3: { name: 'Nguyen Interview Prep', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 150,
+        notes: ['goals consult', 'prep plan', 'mock interview debrief', 'thank-you note review'] },
+    },
+  },
+  accountant: {
+    notePh: 'e.g. deduction question',
+    label: 'Accountant / bookkeeper', plural: 'accountants',
+    serviceTerm: 'advisory time', consultWord: 'advisory work',
+    intro: name => `Thanks for having me on ${name}.`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / fieldwork' },
+    demo: {
+      p1: { name: 'Hartwell Construction — Year-End', client: 'Hartwell Construction', email: 'cfo@example.com', budgetHours: 120, rate: 175,
+        notes: ['kickoff — books review', 'audit planning meeting', 'trial balance cleanup', 'depreciation call',
+          'AR reconciliation', 'fieldwork day', 'adjusting entries', 'bank covenant call',
+          'inventory question', 'on-site fieldwork', 'draft financials rev 2', 'audit wrap meeting',
+          'weekly controller sync', 'confirmation follow-ups', 'filing confirmations'] },
+      p2: { name: 'Calloway Personal Taxes', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 150,
+        notes: ['initial consult', '"quick question" about deductions', 'receipt photos back-and-forth', 'second-guessing filing status',
+          'document checklist round 2', 'call about a neighbor’s refund', 'endless crypto questions',
+          'hour-plus chat, 10 min decisions', 'more receipt photos', 'revisiting deductions… again'] },
+      p3: { name: 'Nguyen LLC Bookkeeping Setup', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 150,
+        notes: ['setup consult', 'chart of accounts', 'software questions', 'payroll pick'] },
+    },
+  },
+  freelancer: {
+    notePh: 'e.g. revision call',
+    label: 'Freelancer / creative', plural: 'freelancers',
+    serviceTerm: 'project time', consultWord: 'work',
+    intro: name => `I've loved working on ${name} with you!`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / workshop' },
+    demo: {
+      p1: { name: 'Hartwell Co. Website Rebuild', client: 'Hartwell Co.', email: 'marketing@example.com', budgetHours: 120, rate: 110,
+        notes: ['kickoff workshop', 'stakeholder interviews', 'sitemap v1', 'branding call',
+          'wireframe notes', 'design sprint day', 'homepage comps', 'dev handoff call',
+          'copy question', 'usability test day', 'design rev 2', 'launch-prep walkthrough',
+          'weekly client sync', 'asset confirmations', 'launch checklist'] },
+      p2: { name: 'Calloway Logo Refresh', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 95,
+        notes: ['initial consult', '"quick question" about fonts', 'inspo links back-and-forth', 'second-guessing the colors',
+          'concept round 2', 'call about a competitor’s logo', 'endless tweak requests',
+          'hour-plus chat, 10 min decisions', 'more inspo links', 'revisiting concept one… again'] },
+      p3: { name: 'Nguyen Business Cards', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 95,
+        notes: ['brief consult', 'layout options', 'print questions', 'paper pick'] },
+    },
+  },
+};
+
+function currentNiche() {
+  return NICHES[state?.settings?.niche] || NICHES.designer;
+}
+function typeLabel(id) {
+  return currentNiche().typeLabels[id] || id;
+}
+
 /* ---------- state ---------- */
 let state = load();
-if (!state) { state = seedDemo(); save(); }
 
 function load() {
   try { return JSON.parse(localStorage.getItem(STORE_KEY)); }
@@ -439,55 +574,38 @@ function daysAgo(n) {
   return d.toISOString().slice(0, 10);
 }
 
-function seedDemo() {
-  const p1 = { id: uid(), name: 'Hartwell New Construction', client: 'Anna Hartwell',
-    email: 'anna@example.com', budgetHours: 120, rate: 175, threshold: 80, alertSentAt: null };
-  const p2 = { id: uid(), name: 'Maple St. Refresh', client: 'Dee Calloway',
-    email: 'dee@example.com', budgetHours: 12, rate: 150, threshold: 80, alertSentAt: null };
-  const p3 = { id: uid(), name: 'Kitchen Consult — Nguyen', client: 'Minh Nguyen',
-    email: 'minh@example.com', budgetHours: 8, rate: 150, threshold: 80, alertSentAt: null };
+/* One shared demo shape — [type, minutes, days-ago] — so every niche tells the
+   same story: p1 = big project pacing fine, p2 = small budget + chatty client
+   at ~85% (triggers the alert), p3 = small job on track. Niche-specific names
+   and notes come from NICHES[..].demo. */
+const DEMO_PATTERN = {
+  p1: [['meeting', 300, 38], ['meeting', 330, 31], ['email', 45, 29], ['call', 40, 26],
+       ['email', 55, 24], ['meeting', 390, 22], ['email', 60, 19], ['call', 45, 18],
+       ['call', 35, 15], ['meeting', 330, 11], ['email', 50, 8], ['meeting', 360, 7],
+       ['call', 30, 4], ['text', 25, 2], ['email', 40, 1]],
+  p2: [['meeting', 120, 24], ['call', 60, 21], ['text', 35, 19], ['call', 75, 16],
+       ['email', 45, 14], ['call', 60, 12], ['text', 50, 9], ['call', 70, 6],
+       ['text', 40, 3], ['call', 55, 1]],
+  p3: [['meeting', 120, 13], ['email', 45, 10], ['call', 25, 5], ['text', 15, 2]],
+};
 
-  const entries = [];
-  const add = (p, type, minutes, ago, note) =>
-    entries.push({ id: uid(), projectId: p.id, type, minutes, date: daysAgo(ago), note: note || '' });
-
-  // Big project: long working sessions, big absolute hours — but a healthy pace.
-  add(p1, 'meeting', 300, 38, 'kickoff walkthrough');
-  add(p1, 'meeting', 330, 31, 'builder + architect meeting');
-  add(p1, 'email',    45, 29, 'finish schedule v1');
-  add(p1, 'call',     40, 26, 'lighting plan review');
-  add(p1, 'email',    55, 24, 'window + door schedule');
-  add(p1, 'meeting', 390, 22, 'showroom day — plumbing fixtures');
-  add(p1, 'email',    60, 19, 'tile + counter quotes');
-  add(p1, 'call',     45, 18, 'HVAC vent placement');
-  add(p1, 'call',     35, 15, 'change order: kitchen island');
-  add(p1, 'meeting', 330, 11, 'site visit — framing walk');
-  add(p1, 'email',    50,  8, 'FF&E budget rev 2');
-  add(p1, 'meeting', 360,  7, 'cabinet install walkthrough');
-  add(p1, 'call',     30,  4, 'weekly builder sync');
-  add(p1, 'text',     25,  2, 'paint color confirmations');
-  add(p1, 'email',    40,  1, 'lighting order confirmations');
-
-  // Small project, chatty client: constant calls/texts — burning the budget.
-  add(p2, 'meeting', 120, 24, 'initial consult');
-  add(p2, 'call',     60, 21, '"quick question" about sofas');
-  add(p2, 'text',     35, 19, 'rug links back-and-forth');
-  add(p2, 'call',     75, 16, 'second-guessing paint');
-  add(p2, 'email',    45, 14, 'mood board round 2');
-  add(p2, 'call',     60, 12, 'call about neighbor’s remodel');
-  add(p2, 'text',     50,  9, 'endless pillow options');
-  add(p2, 'call',     70,  6, 'hour-plus chat, 10 min decisions');
-  add(p2, 'text',     40,  3, 'more rug links');
-  add(p2, 'call',     55,  1, 'revisiting the sofa… again');
-
-  // Small consult: on track.
-  add(p3, 'meeting', 120, 13, 'kitchen measure + consult');
-  add(p3, 'email',    45, 10, 'layout options');
-  add(p3, 'call',     25,  5, 'appliance questions');
-  add(p3, 'text',     15,  2, 'backsplash pick');
-
-  return { projects: [p1, p2, p3], entries, settings: { yourName: 'Meredith' } };
+function seedDemo(nicheId) {
+  const n = NICHES[nicheId] || NICHES.designer;
+  const projects = [], entries = [];
+  ['p1', 'p2', 'p3'].forEach(key => {
+    const d = n.demo[key];
+    const p = { id: uid(), name: d.name, client: d.client, email: d.email,
+      budgetHours: d.budgetHours, rate: d.rate, threshold: 80, alertSentAt: null };
+    projects.push(p);
+    DEMO_PATTERN[key].forEach(([type, minutes, ago], i) =>
+      entries.push({ id: uid(), projectId: p.id, type, minutes, date: daysAgo(ago), note: d.notes[i] || '' }));
+  });
+  return { projects, entries,
+    settings: { yourName: state?.settings?.yourName || 'Meredith', niche: nicheId } };
 }
+
+if (!state) { state = seedDemo('designer'); save(); }
+if (!state.settings.niche) { state.settings.niche = 'designer'; save(); }
 
 /* ---------- derived ---------- */
 function projectMinutes(p) {
@@ -525,15 +643,16 @@ function draftEmail(p) {
   const left = Math.max(0, p.budgetHours - used);
   const first = (p.client || '').split(' ')[0] || 'there';
   const rate = p.rate ? `$${p.rate}/hour` : 'my standard hourly rate';
-  const subject = `${p.name} — a quick note on our design hours`;
+  const n = currentNiche();
+  const subject = `${p.name} — a quick note on our hours`;
   const body =
 `Hi ${first},
 
-I've loved working on ${p.name} with you! A quick heads-up on where we stand:
+${n.intro(p.name)} A quick heads-up on where we stand:
 
-Your agreement includes ${p.budgetHours} hours of design time, and we've now used about ${used.toFixed(1)} hours (${pct}%). That leaves roughly ${left.toFixed(1)} hours remaining.
+Your agreement includes ${p.budgetHours} hours of ${n.serviceTerm}, and we've now used about ${used.toFixed(1)} hours (${pct}%). That leaves roughly ${left.toFixed(1)} hours remaining.
 
-If we end up needing more time beyond the included hours, additional consultation is billed at ${rate}. I wanted to flag this early so there are no surprises, and so we can decide together how to make the most of the time that's left.
+If we end up needing more time beyond the included hours, additional ${n.consultWord} is billed at ${rate}. I wanted to flag this early so there are no surprises, and so we can decide together how to make the most of the time that's left.
 
 Happy to hop on a quick call to review — just let me know!
 
@@ -546,6 +665,7 @@ ${state.settings.yourName || ''}`;
 const $ = sel => document.querySelector(sel);
 
 function render() {
+  renderHeader();
   renderBanners();
   renderTiles();
   renderChannelChart();
@@ -553,6 +673,16 @@ function render() {
   renderLogForm();
   renderEntries();
   renderProjectsTable();
+}
+
+function renderHeader() {
+  $('#tagline').textContent = `client time & budget guard for ${currentNiche().plural}`;
+  const sel = $('#nicheSelect');
+  if (!sel.childElementCount) {
+    sel.innerHTML = Object.entries(NICHES)
+      .map(([id, n]) => `<option value="${id}">${n.label}</option>`).join('');
+  }
+  sel.value = state.settings.niche || 'designer';
 }
 
 function renderBanners() {
@@ -613,11 +743,11 @@ function renderChannelChart() {
   const max = Math.max(1, ...Object.values(totals));
 
   $('#channelLegend').innerHTML = TYPES.map(t =>
-    `<span class="key"><span class="swatch" style="background:${t.color}"></span>${t.label}</span>`).join('');
+    `<span class="key"><span class="swatch" style="background:${t.color}"></span>${typeLabel(t.id)}</span>`).join('');
 
   $('#channelBars').innerHTML = TYPES.map(t => `
-    <div class="bar-row" title="${t.label}: ${fmtH(totals[t.id])} in the last 30 days">
-      <span class="name">${t.label}</span>
+    <div class="bar-row" title="${typeLabel(t.id)}: ${fmtH(totals[t.id])} in the last 30 days">
+      <span class="name">${typeLabel(t.id)}</span>
       <span class="track"><span class="bar" style="width:${totals[t.id] / max * 100}%; background:${t.color}"></span></span>
       <span class="val">${fmtH(totals[t.id])}</span>
     </div>`).join('');
@@ -649,8 +779,8 @@ function renderProjectCards() {
       </div>
       <div class="meter-note">${fmtH(used)} of ${p.budgetHours} h budget · alert at ${p.threshold}%${
         p.alertSentAt ? ` · <span style="color:var(--good-text)">✓ client notified ${p.alertSentAt.slice(0,10)}</span>` : ''}</div>
-      <div class="mini-stack" title="${TYPES.map(t => `${t.label}: ${fmtH(byType[t.id])}`).join(' · ')}">
-        ${TYPES.map(t => byType[t.id] ? `<span style="width:${byType[t.id] / totalTyped * 100}%; background:${t.color}" title="${t.label}: ${fmtH(byType[t.id])}"></span>` : '').join('')}
+      <div class="mini-stack" title="${TYPES.map(t => `${typeLabel(t.id)}: ${fmtH(byType[t.id])}`).join(' · ')}">
+        ${TYPES.map(t => byType[t.id] ? `<span style="width:${byType[t.id] / totalTyped * 100}%; background:${t.color}" title="${typeLabel(t.id)}: ${fmtH(byType[t.id])}"></span>` : '').join('')}
       </div>`;
     const actions = document.createElement('div');
     actions.style.marginTop = '12px';
@@ -679,7 +809,7 @@ function renderLogForm() {
       b.type = 'button';
       b.className = 'chip' + (i === 0 ? ' active' : '');
       b.dataset.type = t.id;
-      b.textContent = t.label;
+      b.textContent = typeLabel(t.id);
       b.onclick = () => {
         typeChips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
         b.classList.add('active');
@@ -703,6 +833,7 @@ function renderLogForm() {
       durChips.appendChild(b);
     });
   }
+  $('#logNote').placeholder = currentNiche().notePh;
   if (!$('#logDate').value) $('#logDate').value = daysAgo(0);
 }
 
@@ -718,7 +849,7 @@ function renderEntries() {
     tr.innerHTML = `
       <td>${e.date}</td>
       <td>${p ? esc(p.name) : '—'}</td>
-      <td><span class="type-dot" style="background:${t ? t.color : 'var(--muted)'}"></span>${t ? t.label : e.type}</td>
+      <td><span class="type-dot" style="background:${t ? t.color : 'var(--muted)'}"></span>${t ? typeLabel(t.id) : e.type}</td>
       <td class="num">${e.minutes}</td>
       <td class="muted">${esc(e.note || '')}</td>`;
     const td = document.createElement('td');
@@ -822,6 +953,17 @@ document.querySelectorAll('nav button').forEach(b => {
   };
 });
 
+$('#nicheSelect').onchange = () => {
+  const id = $('#nicheSelect').value;
+  state.settings.niche = id;
+  if (confirm(`Switch to ${NICHES[id].label} and load matching demo data?\n\nOK = load ${NICHES[id].label} demo data (replaces current projects & entries).\nCancel = keep your data, just switch the wording.`)) {
+    state = seedDemo(id);
+  }
+  save();
+  $('#logTypeChips').innerHTML = '';   // rebuild chips with the new labels
+  render();
+};
+
 $('#themeToggle').onclick = () => {
   const root = document.documentElement;
   const dark = getComputedStyle(root).colorScheme.includes('dark');
@@ -899,11 +1041,11 @@ $('#projectForm').onsubmit = e => {
 
 $('#resetDemo').onclick = () => {
   if (!confirm('Replace current data with the demo data?')) return;
-  state = seedDemo(); save(); render();
+  state = seedDemo(state.settings.niche || 'designer'); save(); render();
 };
 $('#clearAll').onclick = () => {
   if (!confirm('Delete everything and start blank?')) return;
-  state = { projects: [], entries: [], settings: { yourName: '' } };
+  state = { projects: [], entries: [], settings: { yourName: '', niche: state.settings.niche || 'designer' } };
   save(); render();
 };
 
