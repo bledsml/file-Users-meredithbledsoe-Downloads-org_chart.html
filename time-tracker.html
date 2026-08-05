@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Hours — client time &amp; budget guard</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page:        #f9f9f7;
+    --surface:     #fcfcfb;
+    --ink:         #0b0b0b;
+    --ink-2:       #52514e;
+    --muted:       #898781;
+    --grid:        #e1e0d9;
+    --baseline:    #c3c2b7;
+    --border:      rgba(11,11,11,0.10);
+    --accent:      #2a78d6;
+    --accent-soft: #cde2fb;
+    --track:       #cde2fb;
+    --ch-call:     #2a78d6;
+    --ch-text:     #eb6834;
+    --ch-email:    #1baf7a;
+    --ch-meeting:  #eda100;
+    --good:        #0ca30c;
+    --warning:     #fab219;
+    --serious:     #ec835a;
+    --critical:    #d03b3b;
+    --good-text:   #006300;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page:        #0d0d0d;
+      --surface:     #1a1a19;
+      --ink:         #ffffff;
+      --ink-2:       #c3c2b7;
+      --muted:       #898781;
+      --grid:        #2c2c2a;
+      --baseline:    #383835;
+      --border:      rgba(255,255,255,0.10);
+      --accent:      #3987e5;
+      --accent-soft: #1c3253;
+      --track:       #1c3253;
+      --ch-call:     #3987e5;
+      --ch-text:     #d95926;
+      --ch-email:    #199e70;
+      --ch-meeting:  #c98500;
+      --good-text:   #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page:        #0d0d0d;
+    --surface:     #1a1a19;
+    --ink:         #ffffff;
+    --ink-2:       #c3c2b7;
+    --muted:       #898781;
+    --grid:        #2c2c2a;
+    --baseline:    #383835;
+    --border:      rgba(255,255,255,0.10);
+    --accent:      #3987e5;
+    --accent-soft: #1c3253;
+    --track:       #1c3253;
+    --ch-call:     #3987e5;
+    --ch-text:     #d95926;
+    --ch-email:    #199e70;
+    --ch-meeting:  #c98500;
+    --good-text:   #0ca30c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  a { color: var(--accent); }
+
+  header {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 14px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--grid);
+    position: sticky; top: 0; z-index: 5;
+  }
+  .logo { font-weight: 700; font-size: 18px; }
+  .logo small { font-weight: 400; color: var(--ink-2); font-size: 13px; display: block; }
+  nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
+  nav button {
+    border: 1px solid transparent; background: none; color: var(--ink-2);
+    font: inherit; padding: 7px 14px; border-radius: 8px; cursor: pointer;
+  }
+  nav button:hover { background: var(--page); }
+  nav button.active { background: var(--accent); color: #fff; }
+  #themeToggle {
+    border: 1px solid var(--grid); background: var(--surface); color: var(--ink-2);
+    font: inherit; padding: 7px 11px; border-radius: 8px; cursor: pointer;
+  }
+  #nicheSelect {
+    width: auto; font-size: 13px; color: var(--ink-2);
+    padding: 7px 8px; border-radius: 8px;
+  }
+
+  main { max-width: 1060px; margin: 0 auto; padding: 20px; }
+  section.view { display: none; }
+  section.view.active { display: block; }
+
+  .banner {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 4px solid var(--serious);
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 18px;
+  }
+  .banner strong { font-weight: 600; }
+  .banner .spacer { flex: 1; }
+
+  .grid-tiles {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px; margin-bottom: 20px;
+  }
+  .tile {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .tile .label { color: var(--ink-2); font-size: 13px; }
+  .tile .value { font-size: 26px; font-weight: 600; margin-top: 2px; }
+  .tile.hero .value { font-size: 48px; line-height: 1.1; }
+  .tile .sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px; margin-bottom: 14px;
+  }
+  .card h3 { margin: 0 0 4px; font-size: 16px; }
+  .card .client { color: var(--ink-2); font-size: 13px; margin-bottom: 10px; }
+
+  .meter-row { display: flex; align-items: center; gap: 10px; margin: 8px 0 4px; }
+  .meter {
+    flex: 1; height: 12px; border-radius: 6px; background: var(--track);
+    overflow: hidden;
+  }
+  .meter .fill {
+    height: 100%; border-radius: 0 4px 4px 0;
+    background: var(--accent); min-width: 2px;
+    transition: width .3s ease;
+  }
+  .meter-pct { font-weight: 600; font-size: 14px; min-width: 44px; text-align: right; }
+  .meter-note { font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
+
+  .mini-stack {
+    display: flex; gap: 2px; height: 10px; border-radius: 5px; overflow: hidden;
+    margin-top: 10px; background: var(--page);
+  }
+  .mini-stack span { display: block; height: 100%; min-width: 3px; }
+
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 8px 0 2px; font-size: 12px; color: var(--ink-2); }
+  .legend .key { display: inline-flex; align-items: center; gap: 5px; }
+  .legend .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+  .bar-list { margin-top: 10px; }
+  .bar-row {
+    display: grid; grid-template-columns: 130px 1fr 70px;
+    align-items: center; gap: 10px; padding: 5px 0; font-size: 13px;
+  }
+  .bar-row .track { display: block; height: 16px; border-radius: 0 4px 4px 0; background: none; position: relative; }
+  .bar-row .bar {
+    display: block; height: 16px; border-radius: 0 4px 4px 0; min-width: 2px;
+  }
+  .bar-row .val { color: var(--ink-2); text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-row .name { color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .btn {
+    border: 1px solid var(--grid); background: var(--surface); color: var(--ink);
+    font: inherit; font-size: 14px; padding: 8px 14px; border-radius: 8px; cursor: pointer;
+  }
+  .btn:hover { background: var(--page); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { filter: brightness(1.07); }
+  .btn.small { padding: 5px 10px; font-size: 13px; }
+  .btn.danger { color: var(--critical); }
+
+  form .field { margin-bottom: 12px; }
+  form label { display: block; font-size: 13px; color: var(--ink-2); margin-bottom: 4px; }
+  input, select, textarea {
+    width: 100%; font: inherit; padding: 8px 10px;
+    border: 1px solid var(--grid); border-radius: 8px;
+    background: var(--surface); color: var(--ink);
+  }
+  textarea { resize: vertical; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--grid); background: var(--surface); color: var(--ink-2);
+    font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  }
+  .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--grid); }
+  th { color: var(--ink-2); font-weight: 500; font-size: 13px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .type-dot { width: 9px; height: 9px; border-radius: 3px; display: inline-block; margin-right: 6px; }
+
+  .status-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+
+  dialog {
+    border: 1px solid var(--border); border-radius: 14px;
+    background: var(--surface); color: var(--ink);
+    max-width: 560px; width: 92vw; padding: 20px;
+  }
+  dialog::backdrop { background: rgba(0,0,0,.45); }
+  dialog h3 { margin-top: 0; }
+  .dialog-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; flex-wrap: wrap; }
+
+  .note {
+    background: var(--surface); border: 1px dashed var(--baseline);
+    border-radius: 12px; padding: 14px 16px; color: var(--ink-2); font-size: 14px;
+    margin-top: 18px;
+  }
+  .note h4 { margin: 0 0 6px; color: var(--ink); font-size: 14px; }
+
+  .muted { color: var(--muted); font-size: 13px; }
+  .flex-between { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  h2 { font-size: 20px; margin: 4px 0 14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Studio Hours
+    <small id="tagline">client time &amp; budget guard for designers</small>
+  </div>
+  <nav>
+    <button data-view="dashboard" class="active">Dashboard</button>
+    <button data-view="log">Log time</button>
+    <button data-view="projects">Projects</button>
+  </nav>
+  <select id="nicheSelect" title="Who is this for?"></select>
+  <button id="themeToggle" title="Toggle light/dark">◐</button>
+</header>
+
+<main>
+  <div id="banners"></div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <section class="view active" id="view-dashboard">
+    <div class="grid-tiles" id="tiles"></div>
+
+    <div class="card">
+      <div class="flex-between">
+        <h3>Where the time goes</h3>
+        <span class="muted" id="channelPeriod">last 30 days</span>
+      </div>
+      <div class="legend" id="channelLegend"></div>
+      <div class="bar-list" id="channelBars"></div>
+    </div>
+
+    <h2>Projects</h2>
+    <div id="projectCards"></div>
+
+    <div class="note">
+      <h4>About automatic capture</h4>
+      Apple and Google don't let apps read your personal texts or call history, so
+      fully automatic tracking works through a <strong>business phone number</strong>
+      (OpenPhone, RingCentral, Twilio — their APIs report every call's duration and
+      every text thread) and a <strong>connected email account</strong> (Gmail /
+      Outlook APIs). Calls and emails matched to a client then log themselves. This
+      prototype uses one-tap quick logging so the workflow is real today; the
+      integrations bolt onto the same data model later.
+    </div>
+  </section>
+
+  <!-- ============ LOG TIME ============ -->
+  <section class="view" id="view-log">
+    <div class="card">
+      <h3>Quick log</h3>
+      <p class="muted" style="margin-top:0">Just hung up? Two taps and it's tracked.</p>
+      <form id="logForm">
+        <div class="field">
+          <label>Project</label>
+          <select id="logProject" required></select>
+        </div>
+        <div class="field">
+          <label>What was it?</label>
+          <div class="chips" id="logTypeChips"></div>
+        </div>
+        <div class="field">
+          <label>How long?</label>
+          <div class="chips" id="logDurChips"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Custom minutes</label>
+            <input type="number" id="logMinutes" min="1" step="1" placeholder="e.g. 45">
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input type="date" id="logDate">
+          </div>
+        </div>
+        <div class="field">
+          <label>Note (optional)</label>
+          <input type="text" id="logNote" placeholder="e.g. tile selections call">
+        </div>
+        <button class="btn primary" type="submit">Log it</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="flex-between">
+        <h3>Recent entries</h3>
+        <span class="muted" id="entryCount"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table id="entriesTable">
+          <thead>
+            <tr><th>Date</th><th>Project</th><th>Type</th><th class="num" style="text-align:right">Minutes</th><th>Note</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="view" id="view-projects">
+    <div class="card">
+      <h3 id="projFormTitle">New project</h3>
+      <form id="projectForm">
+        <input type="hidden" id="pId">
+        <div class="field-row">
+          <div class="field">
+            <label>Project name</label>
+            <input type="text" id="pName" required placeholder="e.g. Hartwell New Construction">
+          </div>
+          <div class="field">
+            <label>Client name</label>
+            <input type="text" id="pClient" required placeholder="e.g. Anna Hartwell">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Client email</label>
+            <input type="email" id="pEmail" placeholder="client@example.com">
+          </div>
+          <div class="field">
+            <label>Hours included in contract</label>
+            <input type="number" id="pBudget" min="1" step="0.5" required placeholder="e.g. 20">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Overage rate ($/hr)</label>
+            <input type="number" id="pRate" min="0" step="5" placeholder="e.g. 150">
+          </div>
+          <div class="field">
+            <label>Alert at (% of budget)</label>
+            <input type="number" id="pThreshold" min="10" max="100" step="5" value="80">
+          </div>
+        </div>
+        <div style="display:flex; gap:8px">
+          <button class="btn primary" type="submit" id="projSaveBtn">Add project</button>
+          <button class="btn" type="button" id="projCancelBtn" style="display:none">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>All projects</h3>
+      <div style="overflow-x:auto">
+        <table id="projectsTable">
+          <thead>
+            <tr><th>Project</th><th>Client</th><th class="num" style="text-align:right">Used / budget</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-bottom:0">Data lives in this browser (localStorage).
+        <button class="btn small" id="resetDemo">Reset demo data</button>
+        <button class="btn small danger" id="clearAll">Start blank</button>
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ EMAIL DIALOG ============ -->
+<dialog id="emailDialog">
+  <h3>Courtesy email to client</h3>
+  <p class="muted" style="margin-top:-6px">Review and tweak before sending — it's your voice, not a robot's.</p>
+  <div class="field">
+    <label>To</label>
+    <input type="text" id="emTo" readonly>
+  </div>
+  <div class="field">
+    <label>Subject</label>
+    <input type="text" id="emSubject">
+  </div>
+  <div class="field">
+    <label>Message</label>
+    <textarea id="emBody" rows="12"></textarea>
+  </div>
+  <div class="dialog-actions">
+    <button class="btn" id="emClose">Close</button>
+    <button class="btn" id="emCopy">Copy text</button>
+    <a class="btn" id="emMailto" href="#" target="_blank">Open in Mail</a>
+    <button class="btn primary" id="emMarkSent">Mark as sent</button>
+  </div>
+</dialog>
+
+<script>
+'use strict';
+
+/* ---------- constants ---------- */
+const STORE_KEY = 'studioHours.v1';
+const TYPES = [
+  { id: 'call',    label: 'Phone call', color: 'var(--ch-call)' },
+  { id: 'text',    label: 'Texts',      color: 'var(--ch-text)' },
+  { id: 'email',   label: 'Email',      color: 'var(--ch-email)' },
+  { id: 'meeting', label: 'Meeting / site visit', color: 'var(--ch-meeting)' },
+];
+const QUICK_MINUTES = [5, 10, 15, 30, 60];
+
+/* ---------- niches: wording, email template, and demo data per profession ---------- */
+const NICHES = {
+  designer: {
+    notePh: 'e.g. tile selections call',
+    label: 'Interior designer', plural: 'designers',
+    serviceTerm: 'design time', consultWord: 'consultation',
+    intro: name => `I've loved working on ${name} with you!`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / site visit' },
+    demo: {
+      p1: { name: 'Hartwell New Construction', client: 'Anna Hartwell', email: 'anna@example.com', budgetHours: 120, rate: 175,
+        notes: ['kickoff walkthrough', 'builder + architect meeting', 'finish schedule v1', 'lighting plan review',
+          'window + door schedule', 'showroom day — plumbing fixtures', 'tile + counter quotes', 'HVAC vent placement',
+          'change order: kitchen island', 'site visit — framing walk', 'FF&E budget rev 2', 'cabinet install walkthrough',
+          'weekly builder sync', 'paint color confirmations', 'lighting order confirmations'] },
+      p2: { name: 'Maple St. Refresh', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 150,
+        notes: ['initial consult', '"quick question" about sofas', 'rug links back-and-forth', 'second-guessing paint',
+          'mood board round 2', 'call about neighbor’s remodel', 'endless pillow options',
+          'hour-plus chat, 10 min decisions', 'more rug links', 'revisiting the sofa… again'] },
+      p3: { name: 'Kitchen Consult — Nguyen', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 150,
+        notes: ['kitchen measure + consult', 'layout options', 'appliance questions', 'backsplash pick'] },
+    },
+  },
+  attorney: {
+    notePh: 'e.g. discovery call',
+    label: 'Attorney', plural: 'attorneys',
+    serviceTerm: 'legal services', consultWord: 'work',
+    intro: name => `Thank you for trusting me with ${name}.`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / hearing' },
+    demo: {
+      p1: { name: 'Meridian Ridge LLC — Acquisition', client: 'Meridian Ridge LLC', email: 'ops@example.com', budgetHours: 120, rate: 350,
+        notes: ['kickoff — deal review', 'due diligence session', 'revised LOI', 'title question call',
+          'escrow instructions', 'document review day', 'purchase agreement redlines', 'lender counsel call',
+          'zoning question', 'negotiation session', 'closing checklist', 'closing prep meeting',
+          'weekly status call', 'signature logistics', 'filing confirmations'] },
+      p2: { name: 'Calloway Estate Plan', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 300,
+        notes: ['initial consult', '"quick question" about the will', 'texts about beneficiaries', 'second-guessing the trust',
+          'draft revisions round 2', 'call about a neighbor’s estate', 'endless what-if questions',
+          'hour-plus call, few decisions', 'more questions by text', 'revisiting the trust… again'] },
+      p3: { name: 'Nguyen LLC Formation', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 300,
+        notes: ['formation consult', 'operating agreement draft', 'EIN questions', 'registered agent pick'] },
+    },
+  },
+  planner: {
+    notePh: 'e.g. florist call',
+    label: 'Wedding / event planner', plural: 'planners',
+    serviceTerm: 'planning time', consultWord: 'planning support',
+    intro: name => `I'm so excited about ${name}!`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / venue visit' },
+    demo: {
+      p1: { name: 'Hartwell–Reyes Wedding', client: 'Anna Hartwell', email: 'anna@example.com', budgetHours: 120, rate: 125,
+        notes: ['venue walkthrough', 'vendor summit', 'budget v1', 'floral call',
+          'rental quotes', 'tasting day', 'timeline draft', 'band call',
+          'seating logic', 'venue site visit', 'budget rev 2', 'décor mockup walkthrough',
+          'weekly vendor sync', 'color confirmations', 'invitation confirmations'] },
+      p2: { name: 'Calloway 40th Birthday Bash', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 100,
+        notes: ['initial consult', '"quick question" about themes', 'Pinterest links back-and-forth', 'second-guessing the venue',
+          'mood board round 2', 'call about a cousin’s party', 'endless balloon options',
+          'hour-plus chat, 10 min decisions', 'more Pinterest links', 'revisiting the theme… again'] },
+      p3: { name: 'Nguyen Baby Shower', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 100,
+        notes: ['venue consult', 'layout options', 'catering questions', 'cake pick'] },
+    },
+  },
+  coach: {
+    notePh: 'e.g. session recap',
+    label: 'Coach / consultant', plural: 'coaches',
+    serviceTerm: 'coaching time', consultWord: 'sessions',
+    intro: name => `I've really enjoyed our work on ${name}.`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Session / workshop' },
+    demo: {
+      p1: { name: 'Hartwell Co. Leadership Program', client: 'Hartwell Co.', email: 'hr@example.com', budgetHours: 120, rate: 200,
+        notes: ['kickoff workshop', 'exec team offsite', 'program plan v1', '1:1 with COO',
+          'survey design', 'workshop day — managers', 'progress report', 'CEO check-in',
+          'mediation prep', 'on-site team sessions', 'plan rev 2', 'quarterly review workshop',
+          'weekly sponsor sync', 'scheduling confirmations', 'session recaps'] },
+      p2: { name: 'Calloway Career Coaching', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 150,
+        notes: ['intake session', '"quick question" about the résumé', 'texts about a job post', 'second-guessing the offer',
+          'LinkedIn rewrite round 2', 'call about coworker drama', 'endless title options',
+          'hour-plus vent, 10 min coaching', 'more job links', 'revisiting the offer… again'] },
+      p3: { name: 'Nguyen Interview Prep', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 150,
+        notes: ['goals consult', 'prep plan', 'mock interview debrief', 'thank-you note review'] },
+    },
+  },
+  accountant: {
+    notePh: 'e.g. deduction question',
+    label: 'Accountant / bookkeeper', plural: 'accountants',
+    serviceTerm: 'advisory time', consultWord: 'advisory work',
+    intro: name => `Thanks for having me on ${name}.`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / fieldwork' },
+    demo: {
+      p1: { name: 'Hartwell Construction — Year-End', client: 'Hartwell Construction', email: 'cfo@example.com', budgetHours: 120, rate: 175,
+        notes: ['kickoff — books review', 'audit planning meeting', 'trial balance cleanup', 'depreciation call',
+          'AR reconciliation', 'fieldwork day', 'adjusting entries', 'bank covenant call',
+          'inventory question', 'on-site fieldwork', 'draft financials rev 2', 'audit wrap meeting',
+          'weekly controller sync', 'confirmation follow-ups', 'filing confirmations'] },
+      p2: { name: 'Calloway Personal Taxes', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 150,
+        notes: ['initial consult', '"quick question" about deductions', 'receipt photos back-and-forth', 'second-guessing filing status',
+          'document checklist round 2', 'call about a neighbor’s refund', 'endless crypto questions',
+          'hour-plus chat, 10 min decisions', 'more receipt photos', 'revisiting deductions… again'] },
+      p3: { name: 'Nguyen LLC Bookkeeping Setup', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 150,
+        notes: ['setup consult', 'chart of accounts', 'software questions', 'payroll pick'] },
+    },
+  },
+  freelancer: {
+    notePh: 'e.g. revision call',
+    label: 'Freelancer / creative', plural: 'freelancers',
+    serviceTerm: 'project time', consultWord: 'work',
+    intro: name => `I've loved working on ${name} with you!`,
+    typeLabels: { call: 'Phone call', text: 'Texts', email: 'Email', meeting: 'Meeting / workshop' },
+    demo: {
+      p1: { name: 'Hartwell Co. Website Rebuild', client: 'Hartwell Co.', email: 'marketing@example.com', budgetHours: 120, rate: 110,
+        notes: ['kickoff workshop', 'stakeholder interviews', 'sitemap v1', 'branding call',
+          'wireframe notes', 'design sprint day', 'homepage comps', 'dev handoff call',
+          'copy question', 'usability test day', 'design rev 2', 'launch-prep walkthrough',
+          'weekly client sync', 'asset confirmations', 'launch checklist'] },
+      p2: { name: 'Calloway Logo Refresh', client: 'Dee Calloway', email: 'dee@example.com', budgetHours: 12, rate: 95,
+        notes: ['initial consult', '"quick question" about fonts', 'inspo links back-and-forth', 'second-guessing the colors',
+          'concept round 2', 'call about a competitor’s logo', 'endless tweak requests',
+          'hour-plus chat, 10 min decisions', 'more inspo links', 'revisiting concept one… again'] },
+      p3: { name: 'Nguyen Business Cards', client: 'Minh Nguyen', email: 'minh@example.com', budgetHours: 8, rate: 95,
+        notes: ['brief consult', 'layout options', 'print questions', 'paper pick'] },
+    },
+  },
+};
+
+function currentNiche() {
+  return NICHES[state?.settings?.niche] || NICHES.designer;
+}
+function typeLabel(id) {
+  return currentNiche().typeLabels[id] || id;
+}
+
+/* ---------- state ---------- */
+let state = load();
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)); }
+  catch { return null; }
+}
+function save() { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function uid() { return Math.random().toString(36).slice(2, 10); }
+
+function daysAgo(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString().slice(0, 10);
+}
+
+/* One shared demo shape — [type, minutes, days-ago] — so every niche tells the
+   same story: p1 = big project pacing fine, p2 = small budget + chatty client
+   at ~85% (triggers the alert), p3 = small job on track. Niche-specific names
+   and notes come from NICHES[..].demo. */
+const DEMO_PATTERN = {
+  p1: [['meeting', 300, 38], ['meeting', 330, 31], ['email', 45, 29], ['call', 40, 26],
+       ['email', 55, 24], ['meeting', 390, 22], ['email', 60, 19], ['call', 45, 18],
+       ['call', 35, 15], ['meeting', 330, 11], ['email', 50, 8], ['meeting', 360, 7],
+       ['call', 30, 4], ['text', 25, 2], ['email', 40, 1]],
+  p2: [['meeting', 120, 24], ['call', 60, 21], ['text', 35, 19], ['call', 75, 16],
+       ['email', 45, 14], ['call', 60, 12], ['text', 50, 9], ['call', 70, 6],
+       ['text', 40, 3], ['call', 55, 1]],
+  p3: [['meeting', 120, 13], ['email', 45, 10], ['call', 25, 5], ['text', 15, 2]],
+};
+
+function seedDemo(nicheId) {
+  const n = NICHES[nicheId] || NICHES.designer;
+  const projects = [], entries = [];
+  ['p1', 'p2', 'p3'].forEach(key => {
+    const d = n.demo[key];
+    const p = { id: uid(), name: d.name, client: d.client, email: d.email,
+      budgetHours: d.budgetHours, rate: d.rate, threshold: 80, alertSentAt: null };
+    projects.push(p);
+    DEMO_PATTERN[key].forEach(([type, minutes, ago], i) =>
+      entries.push({ id: uid(), projectId: p.id, type, minutes, date: daysAgo(ago), note: d.notes[i] || '' }));
+  });
+  return { projects, entries,
+    settings: { yourName: state?.settings?.yourName || 'Meredith', niche: nicheId } };
+}
+
+if (!state) { state = seedDemo('designer'); save(); }
+if (!state.settings.niche) { state.settings.niche = 'designer'; save(); }
+
+/* ---------- derived ---------- */
+function projectMinutes(p) {
+  return state.entries.filter(e => e.projectId === p.id)
+    .reduce((s, e) => s + e.minutes, 0);
+}
+function projectByType(p) {
+  const m = {};
+  TYPES.forEach(t => m[t.id] = 0);
+  state.entries.filter(e => e.projectId === p.id).forEach(e => m[e.type] += e.minutes);
+  return m;
+}
+function pctUsed(p) {
+  return projectMinutes(p) / 60 / p.budgetHours * 100;
+}
+function fmtH(min) {
+  const h = min / 60;
+  return (h >= 10 ? Math.round(h) : Math.round(h * 10) / 10) + ' h';
+}
+function projectStatus(p) {
+  const pct = pctUsed(p);
+  if (pct >= 100)        return { label: 'Over budget',    color: 'var(--critical)', icon: '⛔' };
+  if (pct >= p.threshold) return { label: 'Nearing budget', color: 'var(--serious)',  icon: '⚠️' };
+  if (pct >= 60)          return { label: 'Watch',          color: 'var(--warning)',  icon: '👀' };
+  return                       { label: 'On track',       color: 'var(--good)',     icon: '✓' };
+}
+function needsAlert(p) {
+  return pctUsed(p) >= p.threshold && !p.alertSentAt;
+}
+
+/* ---------- email draft ---------- */
+function draftEmail(p) {
+  const used = projectMinutes(p) / 60;
+  const pct = Math.round(pctUsed(p));
+  const left = Math.max(0, p.budgetHours - used);
+  const first = (p.client || '').split(' ')[0] || 'there';
+  const rate = p.rate ? `$${p.rate}/hour` : 'my standard hourly rate';
+  const n = currentNiche();
+  const subject = `${p.name} — a quick note on our hours`;
+  const body =
+`Hi ${first},
+
+${n.intro(p.name)} A quick heads-up on where we stand:
+
+Your agreement includes ${p.budgetHours} hours of ${n.serviceTerm}, and we've now used about ${used.toFixed(1)} hours (${pct}%). That leaves roughly ${left.toFixed(1)} hours remaining.
+
+If we end up needing more time beyond the included hours, additional ${n.consultWord} is billed at ${rate}. I wanted to flag this early so there are no surprises, and so we can decide together how to make the most of the time that's left.
+
+Happy to hop on a quick call to review — just let me know!
+
+Warmly,
+${state.settings.yourName || ''}`;
+  return { subject, body };
+}
+
+/* ---------- rendering ---------- */
+const $ = sel => document.querySelector(sel);
+
+function render() {
+  renderHeader();
+  renderBanners();
+  renderTiles();
+  renderChannelChart();
+  renderProjectCards();
+  renderLogForm();
+  renderEntries();
+  renderProjectsTable();
+}
+
+function renderHeader() {
+  $('#tagline').textContent = `client time & budget guard for ${currentNiche().plural}`;
+  const sel = $('#nicheSelect');
+  if (!sel.childElementCount) {
+    sel.innerHTML = Object.entries(NICHES)
+      .map(([id, n]) => `<option value="${id}">${n.label}</option>`).join('');
+  }
+  sel.value = state.settings.niche || 'designer';
+}
+
+function renderBanners() {
+  const el = $('#banners');
+  el.innerHTML = '';
+  state.projects.filter(needsAlert).forEach(p => {
+    const pct = Math.round(pctUsed(p));
+    const div = document.createElement('div');
+    div.className = 'banner';
+    div.innerHTML = `<span>⚠️</span>
+      <span><strong>${esc(p.name)}</strong> has used <strong>${pct}%</strong> of its ${p.budgetHours}-hour budget.</span>
+      <span class="spacer"></span>`;
+    const btn = document.createElement('button');
+    btn.className = 'btn primary small';
+    btn.textContent = 'Draft courtesy email';
+    btn.onclick = () => openEmail(p.id);
+    div.appendChild(btn);
+    el.appendChild(div);
+  });
+}
+
+function renderTiles() {
+  const totalMin = state.entries.reduce((s, e) => s + e.minutes, 0);
+  const cutoff = daysAgo(30);
+  const monthMin = state.entries.filter(e => e.date >= cutoff).reduce((s, e) => s + e.minutes, 0);
+  const nearing = state.projects.filter(p => pctUsed(p) >= p.threshold).length;
+  const overageRevenue = state.projects.reduce((s, p) => {
+    const over = projectMinutes(p) / 60 - p.budgetHours;
+    return s + (over > 0 && p.rate ? over * p.rate : 0);
+  }, 0);
+  $('#tiles').innerHTML = `
+    <div class="tile hero">
+      <div class="label">Hours logged, last 30 days</div>
+      <div class="value">${(monthMin / 60).toFixed(1)}</div>
+      <div class="sub">${fmtH(totalMin)} all-time across ${state.projects.length} projects</div>
+    </div>
+    <div class="tile">
+      <div class="label">Active projects</div>
+      <div class="value">${state.projects.length}</div>
+    </div>
+    <div class="tile">
+      <div class="label">At or past alert threshold</div>
+      <div class="value">${nearing}</div>
+      <div class="sub">${nearing ? 'action needed below' : 'all clear'}</div>
+    </div>
+    <div class="tile">
+      <div class="label">Billable overage so far</div>
+      <div class="value">$${Math.round(overageRevenue).toLocaleString()}</div>
+      <div class="sub">hours past contract × overage rate</div>
+    </div>`;
+}
+
+function renderChannelChart() {
+  const cutoff = daysAgo(30);
+  const totals = {};
+  TYPES.forEach(t => totals[t.id] = 0);
+  state.entries.filter(e => e.date >= cutoff).forEach(e => totals[e.type] += e.minutes);
+  const max = Math.max(1, ...Object.values(totals));
+
+  $('#channelLegend').innerHTML = TYPES.map(t =>
+    `<span class="key"><span class="swatch" style="background:${t.color}"></span>${typeLabel(t.id)}</span>`).join('');
+
+  $('#channelBars').innerHTML = TYPES.map(t => `
+    <div class="bar-row" title="${typeLabel(t.id)}: ${fmtH(totals[t.id])} in the last 30 days">
+      <span class="name">${typeLabel(t.id)}</span>
+      <span class="track"><span class="bar" style="width:${totals[t.id] / max * 100}%; background:${t.color}"></span></span>
+      <span class="val">${fmtH(totals[t.id])}</span>
+    </div>`).join('');
+}
+
+function renderProjectCards() {
+  const el = $('#projectCards');
+  el.innerHTML = '';
+  const sorted = [...state.projects].sort((a, b) => pctUsed(b) - pctUsed(a));
+  sorted.forEach(p => {
+    const used = projectMinutes(p);
+    const pct = pctUsed(p);
+    const st = projectStatus(p);
+    const byType = projectByType(p);
+    const totalTyped = Math.max(1, Object.values(byType).reduce((a, b) => a + b, 0));
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="flex-between">
+        <div>
+          <h3>${esc(p.name)}</h3>
+          <div class="client">${esc(p.client)}${p.email ? ' · ' + esc(p.email) : ''}</div>
+        </div>
+        <span class="status-chip" style="color:${st.color}">${st.icon} ${st.label}</span>
+      </div>
+      <div class="meter-row">
+        <div class="meter"><div class="fill" style="width:${Math.min(100, pct)}%; background:${st.color}"></div></div>
+        <span class="meter-pct">${Math.round(pct)}%</span>
+      </div>
+      <div class="meter-note">${fmtH(used)} of ${p.budgetHours} h budget · alert at ${p.threshold}%${
+        p.alertSentAt ? ` · <span style="color:var(--good-text)">✓ client notified ${p.alertSentAt.slice(0,10)}</span>` : ''}</div>
+      <div class="mini-stack" title="${TYPES.map(t => `${typeLabel(t.id)}: ${fmtH(byType[t.id])}`).join(' · ')}">
+        ${TYPES.map(t => byType[t.id] ? `<span style="width:${byType[t.id] / totalTyped * 100}%; background:${t.color}" title="${typeLabel(t.id)}: ${fmtH(byType[t.id])}"></span>` : '').join('')}
+      </div>`;
+    const actions = document.createElement('div');
+    actions.style.marginTop = '12px';
+    actions.style.display = 'flex';
+    actions.style.gap = '8px';
+    const emailBtn = document.createElement('button');
+    emailBtn.className = 'btn small' + (needsAlert(p) ? ' primary' : '');
+    emailBtn.textContent = needsAlert(p) ? '✉ Draft courtesy email' : '✉ Draft hours update';
+    emailBtn.onclick = () => openEmail(p.id);
+    actions.appendChild(emailBtn);
+    card.appendChild(actions);
+    el.appendChild(card);
+  });
+}
+
+function renderLogForm() {
+  const sel = $('#logProject');
+  const cur = sel.value;
+  sel.innerHTML = state.projects.map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join('');
+  if (cur) sel.value = cur;
+
+  const typeChips = $('#logTypeChips');
+  if (!typeChips.childElementCount) {
+    TYPES.forEach((t, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip' + (i === 0 ? ' active' : '');
+      b.dataset.type = t.id;
+      b.textContent = typeLabel(t.id);
+      b.onclick = () => {
+        typeChips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        b.classList.add('active');
+      };
+      typeChips.appendChild(b);
+    });
+  }
+  const durChips = $('#logDurChips');
+  if (!durChips.childElementCount) {
+    QUICK_MINUTES.forEach((m, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip' + (i === 2 ? ' active' : '');
+      b.dataset.minutes = m;
+      b.textContent = m + ' min';
+      b.onclick = () => {
+        durChips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        b.classList.add('active');
+        $('#logMinutes').value = '';
+      };
+      durChips.appendChild(b);
+    });
+  }
+  $('#logNote').placeholder = currentNiche().notePh;
+  if (!$('#logDate').value) $('#logDate').value = daysAgo(0);
+}
+
+function renderEntries() {
+  const tbody = $('#entriesTable tbody');
+  const sorted = [...state.entries].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 40);
+  $('#entryCount').textContent = `${state.entries.length} total, showing ${sorted.length}`;
+  tbody.innerHTML = '';
+  sorted.forEach(e => {
+    const p = state.projects.find(p => p.id === e.projectId);
+    const t = TYPES.find(t => t.id === e.type);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${e.date}</td>
+      <td>${p ? esc(p.name) : '—'}</td>
+      <td><span class="type-dot" style="background:${t ? t.color : 'var(--muted)'}"></span>${t ? typeLabel(t.id) : e.type}</td>
+      <td class="num">${e.minutes}</td>
+      <td class="muted">${esc(e.note || '')}</td>`;
+    const td = document.createElement('td');
+    const del = document.createElement('button');
+    del.className = 'btn small danger';
+    del.textContent = '✕';
+    del.title = 'Delete entry';
+    del.onclick = () => { state.entries = state.entries.filter(x => x.id !== e.id); save(); render(); };
+    td.appendChild(del);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  });
+}
+
+function renderProjectsTable() {
+  const tbody = $('#projectsTable tbody');
+  tbody.innerHTML = '';
+  state.projects.forEach(p => {
+    const st = projectStatus(p);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${esc(p.name)}</td>
+      <td>${esc(p.client)}</td>
+      <td class="num">${fmtH(projectMinutes(p))} / ${p.budgetHours} h</td>
+      <td><span class="status-chip" style="color:${st.color}">${st.icon} ${st.label}</span></td>`;
+    const td = document.createElement('td');
+    td.style.whiteSpace = 'nowrap';
+    const edit = document.createElement('button');
+    edit.className = 'btn small';
+    edit.textContent = 'Edit';
+    edit.onclick = () => startEdit(p);
+    const del = document.createElement('button');
+    del.className = 'btn small danger';
+    del.textContent = '✕';
+    del.title = 'Delete project and its entries';
+    del.style.marginLeft = '6px';
+    del.onclick = () => {
+      if (!confirm(`Delete "${p.name}" and all its logged time?`)) return;
+      state.projects = state.projects.filter(x => x.id !== p.id);
+      state.entries = state.entries.filter(x => x.projectId !== p.id);
+      save(); render();
+    };
+    td.append(edit, del);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  });
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/* ---------- email dialog ---------- */
+let emailProjectId = null;
+function openEmail(projectId) {
+  const p = state.projects.find(x => x.id === projectId);
+  if (!p) return;
+  emailProjectId = projectId;
+  const { subject, body } = draftEmail(p);
+  $('#emTo').value = p.email || '(no email on file — add one under Projects)';
+  $('#emSubject').value = subject;
+  $('#emBody').value = body;
+  updateMailto(p);
+  $('#emailDialog').showModal();
+}
+function updateMailto(p) {
+  const href = `mailto:${encodeURIComponent(p.email || '')}` +
+    `?subject=${encodeURIComponent($('#emSubject').value)}` +
+    `&body=${encodeURIComponent($('#emBody').value)}`;
+  $('#emMailto').href = href;
+}
+$('#emSubject').addEventListener('input', () => {
+  const p = state.projects.find(x => x.id === emailProjectId);
+  if (p) updateMailto(p);
+});
+$('#emBody').addEventListener('input', () => {
+  const p = state.projects.find(x => x.id === emailProjectId);
+  if (p) updateMailto(p);
+});
+$('#emClose').onclick = () => $('#emailDialog').close();
+$('#emCopy').onclick = async () => {
+  await navigator.clipboard.writeText(`Subject: ${$('#emSubject').value}\n\n${$('#emBody').value}`);
+  $('#emCopy').textContent = 'Copied ✓';
+  setTimeout(() => $('#emCopy').textContent = 'Copy text', 1500);
+};
+$('#emMarkSent').onclick = () => {
+  const p = state.projects.find(x => x.id === emailProjectId);
+  if (p) { p.alertSentAt = new Date().toISOString(); save(); }
+  $('#emailDialog').close();
+  render();
+};
+
+/* ---------- forms & actions ---------- */
+document.querySelectorAll('nav button').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('nav button').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('section.view').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    $('#view-' + b.dataset.view).classList.add('active');
+  };
+});
+
+$('#nicheSelect').onchange = () => {
+  const id = $('#nicheSelect').value;
+  state.settings.niche = id;
+  if (confirm(`Switch to ${NICHES[id].label} and load matching demo data?\n\nOK = load ${NICHES[id].label} demo data (replaces current projects & entries).\nCancel = keep your data, just switch the wording.`)) {
+    state = seedDemo(id);
+  }
+  save();
+  $('#logTypeChips').innerHTML = '';   // rebuild chips with the new labels
+  render();
+};
+
+$('#themeToggle').onclick = () => {
+  const root = document.documentElement;
+  const dark = getComputedStyle(root).colorScheme.includes('dark');
+  root.dataset.theme = dark ? 'light' : 'dark';
+};
+
+$('#logForm').onsubmit = e => {
+  e.preventDefault();
+  const projectId = $('#logProject').value;
+  if (!projectId) return;
+  const type = $('#logTypeChips .chip.active')?.dataset.type || 'call';
+  const custom = parseInt($('#logMinutes').value, 10);
+  const chipMin = parseInt($('#logDurChips .chip.active')?.dataset.minutes || '15', 10);
+  const minutes = custom > 0 ? custom : chipMin;
+  const date = $('#logDate').value || daysAgo(0);
+  state.entries.push({ id: uid(), projectId, type, minutes, date, note: $('#logNote').value.trim() });
+  save();
+  $('#logMinutes').value = '';
+  $('#logNote').value = '';
+  render();
+  // If this entry pushed a project over its threshold, take them to the alert.
+  const p = state.projects.find(x => x.id === projectId);
+  if (p && needsAlert(p)) {
+    document.querySelector('nav button[data-view="dashboard"]').click();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+};
+
+function startEdit(p) {
+  $('#projFormTitle').textContent = 'Edit project';
+  $('#projSaveBtn').textContent = 'Save changes';
+  $('#projCancelBtn').style.display = '';
+  $('#pId').value = p.id;
+  $('#pName').value = p.name;
+  $('#pClient').value = p.client;
+  $('#pEmail').value = p.email || '';
+  $('#pBudget').value = p.budgetHours;
+  $('#pRate').value = p.rate || '';
+  $('#pThreshold').value = p.threshold;
+  $('#pName').focus();
+}
+function resetProjectForm() {
+  $('#projFormTitle').textContent = 'New project';
+  $('#projSaveBtn').textContent = 'Add project';
+  $('#projCancelBtn').style.display = 'none';
+  $('#projectForm').reset();
+  $('#pId').value = '';
+  $('#pThreshold').value = 80;
+}
+$('#projCancelBtn').onclick = resetProjectForm;
+
+$('#projectForm').onsubmit = e => {
+  e.preventDefault();
+  const id = $('#pId').value;
+  const data = {
+    name: $('#pName').value.trim(),
+    client: $('#pClient').value.trim(),
+    email: $('#pEmail').value.trim(),
+    budgetHours: parseFloat($('#pBudget').value),
+    rate: parseFloat($('#pRate').value) || 0,
+    threshold: parseFloat($('#pThreshold').value) || 80,
+  };
+  if (id) {
+    const p = state.projects.find(x => x.id === id);
+    Object.assign(p, data);
+    // Budget changed? Re-arm the alert if they're now back under threshold.
+    if (pctUsed(p) < p.threshold) p.alertSentAt = null;
+  } else {
+    state.projects.push({ id: uid(), alertSentAt: null, ...data });
+  }
+  save();
+  resetProjectForm();
+  render();
+};
+
+$('#resetDemo').onclick = () => {
+  if (!confirm('Replace current data with the demo data?')) return;
+  state = seedDemo(state.settings.niche || 'designer'); save(); render();
+};
+$('#clearAll').onclick = () => {
+  if (!confirm('Delete everything and start blank?')) return;
+  state = { projects: [], entries: [], settings: { yourName: '', niche: state.settings.niche || 'designer' } };
+  save(); render();
+};
+
+render();
+</script>
+</body>
+</html>

@@ -1,4 +1,28 @@
-# 🚗 SF Ride Price Compare
+# This repo
+
+Small single-file web apps — open the `.html` file in any browser, no build step.
+
+## ⏱ Studio Hours (`time-tracker.html`)
+
+Client time & budget guard for service pros. Pick your profession from the
+dropdown in the header — interior designer, attorney, wedding/event planner,
+coach/consultant, accountant, or freelancer — and the wording, communication
+labels, courtesy-email template, and demo data all switch to match, so the
+same file demos to any of those audiences. Track how much time each client
+project eats (calls, texts, email, meetings), see every project against its
+contracted hours, and when a project crosses its alert threshold (default 80%),
+the app flags it and drafts a friendly courtesy email to the client explaining
+that further consultation will be billed hourly. Comes seeded with demo data —
+a big new-construction project pacing fine next to a small project with a
+chatty client burning its budget. Data is stored in your browser
+(localStorage); use **Projects → Start blank** for real use.
+
+Automatic capture note: phones don't let apps read personal texts/call logs, so
+the real-product path to auto-tracking is a business phone line (OpenPhone /
+RingCentral / Twilio APIs) plus a connected email account (Gmail / Outlook
+APIs). The prototype's one-tap quick log covers the workflow today.
+
+## 🚗 SF Ride Price Compare (`index.html`)
 
 A single-page web app to compare estimated fares for **Uber**, **Lyft**, and
 **Waymo One** for a ride in San Francisco — so you can see who's cheapest before
