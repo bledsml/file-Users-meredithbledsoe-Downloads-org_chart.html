@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Haven · Pitch Deck</title>
+<style>
+  :root {
+    --ink: #20312e;
+    --ink-soft: #4d5f5b;
+    --cream: #f6f1e7;
+    --cream-2: #efe7d6;
+    --sage: #7ba893;
+    --sage-deep: #3f6b5a;
+    --gold: #c8a26b;
+    --gold-deep: #a9803f;
+    --rose: #d98b7a;
+    --white: #fffdf8;
+    --shadow: 0 24px 60px rgba(32, 49, 46, 0.18);
+    --radius: 26px;
+    --font: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    background:
+      radial-gradient(1200px 700px at 12% -10%, #e7ddc8 0%, rgba(231,221,200,0) 55%),
+      radial-gradient(1000px 800px at 110% 120%, #d8e4dc 0%, rgba(216,228,220,0) 55%),
+      var(--cream);
+    color: var(--ink);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  /* ---------- Deck shell ---------- */
+  .deck { position: relative; width: 100vw; height: 100vh; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; justify-content: center;
+    padding: clamp(28px, 6vw, 96px);
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .45s ease, transform .45s ease;
+  }
+  .slide.active { display: flex; opacity: 1; transform: translateY(0); }
+  .inner { width: 100%; max-width: 1000px; margin: 0 auto; }
+
+  /* ---------- Type ---------- */
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .32em;
+    font-size: clamp(11px, 1.2vw, 14px); font-weight: 700;
+    color: var(--gold-deep); margin: 0 0 18px;
+  }
+  h1 { font-size: clamp(40px, 8vw, 104px); line-height: .98; margin: 0; letter-spacing: -.02em; font-weight: 800; }
+  h2 { font-size: clamp(28px, 4.4vw, 58px); line-height: 1.04; margin: 0 0 18px; letter-spacing: -.015em; font-weight: 800; }
+  p.lede { font-size: clamp(17px, 2.2vw, 26px); line-height: 1.45; color: var(--ink-soft); margin: 0; max-width: 38ch; }
+  .accent { color: var(--sage-deep); }
+  .gold { color: var(--gold-deep); }
+
+  /* ---------- Title slide ---------- */
+  .brandmark {
+    display: inline-flex; align-items: center; gap: 16px; margin-bottom: 26px;
+  }
+  .logo {
+    width: 62px; height: 62px; border-radius: 18px;
+    background: linear-gradient(150deg, var(--sage) 0%, var(--sage-deep) 100%);
+    display: grid; place-items: center; box-shadow: var(--shadow);
+  }
+  .logo svg { width: 34px; height: 34px; }
+  .wordmark { font-size: clamp(34px, 5vw, 60px); font-weight: 800; letter-spacing: -.02em; }
+  .tagline { font-size: clamp(18px, 2.6vw, 30px); color: var(--ink-soft); margin: 22px 0 0; font-weight: 500; }
+  .title-foot { margin-top: 40px; font-size: 14px; color: var(--ink-soft); letter-spacing: .04em; }
+
+  /* ---------- Persona ---------- */
+  .persona-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+  .quote {
+    font-size: clamp(22px, 3.4vw, 40px); line-height: 1.22; font-weight: 700;
+    letter-spacing: -.01em; margin: 0;
+  }
+  .quote .accent { font-style: italic; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .chip {
+    background: var(--white); border: 1px solid var(--cream-2);
+    padding: 12px 18px; border-radius: 999px; font-weight: 600; font-size: clamp(14px,1.6vw,18px);
+    box-shadow: 0 6px 18px rgba(32,49,46,.06); display: flex; align-items: center; gap: 9px;
+  }
+  .chip .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--rose); }
+
+  /* ---------- Stats ---------- */
+  .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 14px; }
+  @media (min-width: 900px){ .stat-grid.three { grid-template-columns: repeat(3, 1fr); } }
+  .stat {
+    background: var(--white); border-radius: var(--radius); padding: 28px 26px;
+    border: 1px solid var(--cream-2); box-shadow: 0 10px 30px rgba(32,49,46,.07);
+  }
+  .stat .num { font-size: clamp(34px, 5.4vw, 62px); font-weight: 800; line-height: 1; letter-spacing: -.03em; color: var(--sage-deep); }
+  .stat .num.gold { color: var(--gold-deep); }
+  .stat .num.rose { color: var(--rose); }
+  .stat .lbl { margin-top: 12px; font-size: clamp(14px, 1.6vw, 18px); color: var(--ink-soft); line-height: 1.35; font-weight: 500; }
+  .src { margin-top: 26px; font-size: 12px; color: #9aa49f; letter-spacing: .02em; }
+
+  /* ---------- Steps ---------- */
+  .step-row { display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: start; }
+  .step-num {
+    width: clamp(56px, 7vw, 88px); height: clamp(56px, 7vw, 88px); border-radius: 22px;
+    background: linear-gradient(150deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color: var(--white); display: grid; place-items: center;
+    font-size: clamp(26px, 4vw, 44px); font-weight: 800; box-shadow: var(--shadow);
+  }
+  .feature-list { margin: 22px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .feature-list li { display: flex; gap: 14px; align-items: flex-start; font-size: clamp(15px, 1.9vw, 21px); line-height: 1.4; }
+  .feature-list .tick {
+    flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--sage); color: #fff; display: grid; place-items: center; font-size: 15px; margin-top: 2px;
+  }
+
+  /* ---------- Phone mock (Step 2) ---------- */
+  .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: 46px; align-items: center; }
+  .phone {
+    width: min(300px, 80%); margin: 0 auto; aspect-ratio: 9/18.6;
+    background: var(--ink); border-radius: 38px; padding: 12px;
+    box-shadow: var(--shadow); position: relative;
+  }
+  .phone .screen {
+    background: linear-gradient(180deg, #f3ede0 0%, #ffffff 38%); height: 100%; width: 100%;
+    border-radius: 28px; padding: 22px 18px; overflow: hidden;
+  }
+  .phone .notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px; background: var(--ink); border-radius: 0 0 16px 16px; z-index: 2; }
+  .pay-head { font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+  .pay-amt { font-size: 34px; font-weight: 800; letter-spacing: -.02em; margin: 2px 0 16px; }
+  .alloc { display: grid; gap: 10px; }
+  .alloc-row { display: grid; grid-template-columns: 1fr auto; gap: 6px; font-size: 13px; font-weight: 600; }
+  .bar { grid-column: 1 / -1; height: 9px; border-radius: 6px; background: var(--cream-2); overflow: hidden; }
+  .bar > span { display: block; height: 100%; border-radius: 6px; }
+  .pill-note { margin-top: 16px; background: var(--cream); border-radius: 14px; padding: 12px 14px; font-size: 12px; color: var(--ink-soft); line-height: 1.35; }
+
+  /* ---------- Network logos ---------- */
+  .net-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; margin-top: 10px; }
+  @media (min-width: 900px){ .net-grid { grid-template-columns: repeat(4,1fr); } }
+  .net-card {
+    background: var(--white); border: 1px solid var(--cream-2); border-radius: 20px;
+    padding: 22px 18px; text-align: center; box-shadow: 0 8px 22px rgba(32,49,46,.06);
+  }
+  .net-card .ic { font-size: 30px; }
+  .net-card .t { font-weight: 700; margin-top: 10px; font-size: clamp(14px,1.7vw,18px); }
+  .net-card .d { color: var(--ink-soft); font-size: 13px; margin-top: 5px; line-height: 1.3; }
+
+  /* ---------- Close ---------- */
+  .close-line { font-size: clamp(26px, 4vw, 52px); font-weight: 800; line-height: 1.08; letter-spacing: -.015em; }
+  .cta {
+    display: inline-block; margin-top: 32px; background: var(--sage-deep); color: var(--white);
+    padding: 16px 30px; border-radius: 999px; font-weight: 700; font-size: clamp(15px,1.8vw,19px);
+    box-shadow: var(--shadow); letter-spacing: .01em;
+  }
+
+  /* ---------- Chrome: progress, dots, nav, timer ---------- */
+  .progress { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--sage-deep)); width: 0; transition: width .4s ease; z-index: 50; }
+  .dots { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 50; }
+  .dots button { width: 9px; height: 9px; border-radius: 50%; border: none; background: #cbc3b2; cursor: pointer; padding: 0; transition: transform .2s, background .2s; }
+  .dots button.on { background: var(--sage-deep); transform: scale(1.35); }
+  .nav { position: fixed; bottom: 18px; right: 22px; display: flex; gap: 10px; z-index: 50; }
+  .nav button, .timer-btn {
+    background: var(--white); border: 1px solid var(--cream-2); color: var(--ink);
+    width: 44px; height: 44px; border-radius: 14px; cursor: pointer; font-size: 18px;
+    box-shadow: 0 6px 16px rgba(32,49,46,.08); display: grid; place-items: center;
+  }
+  .nav button:hover, .timer-btn:hover { background: var(--cream); }
+  .counter { position: fixed; bottom: 30px; left: 24px; font-size: 13px; color: var(--ink-soft); z-index: 50; font-weight: 600; letter-spacing: .03em; }
+  .timer { position: fixed; top: 18px; right: 22px; display: flex; align-items: center; gap: 10px; z-index: 50; }
+  .timer .clock {
+    background: var(--ink); color: #fff; font-variant-numeric: tabular-nums;
+    padding: 8px 14px; border-radius: 12px; font-weight: 700; font-size: 15px; letter-spacing: .04em;
+    box-shadow: 0 6px 16px rgba(32,49,46,.12);
+  }
+  .timer .clock.over { background: var(--rose); }
+  .hint { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(40px); }
+
+  @media (max-width: 760px){
+    .persona-grid, .split { grid-template-columns: 1fr; gap: 26px; }
+    .stat-grid, .stat-grid.three { grid-template-columns: 1fr 1fr; }
+    .timer { top: 12px; right: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="timer">
+  <span class="clock" id="clock">0:00</span>
+  <button class="timer-btn" id="timerBtn" title="Start / pause 3-min timer">▶</button>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="slide active">
+    <div class="inner">
+      <div class="brandmark">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10.5V20h12v-9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 20v-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        <span class="wordmark">Haven</span>
+      </div>
+      <h1>Her money,<br><span class="accent">finally hers</span>.</h1>
+      <p class="tagline">The financial co-pilot for the woman whose life just changed.</p>
+      <div class="title-foot">Pitch deck · 3-minute read · Press → to begin</div>
+    </div>
+  </section>
+
+  <!-- 2 · THE MOMENT (persona/problem) -->
+  <section class="slide">
+    <div class="inner persona-grid">
+      <div>
+        <p class="eyebrow">The moment everything changes</p>
+        <p class="quote">“I never handled the money.<br><span class="accent">Now it’s all on me —</span><br>and I don’t know where to start.”</p>
+      </div>
+      <div>
+        <p class="lede">A divorce. Becoming a single mom. Retiring on an income that’s different every month. Overnight, she’s the CFO of her own life — with no playbook.</p>
+        <div class="chips">
+          <span class="chip"><span class="dot"></span> Newly divorced</span>
+          <span class="chip"><span class="dot"></span> Suddenly single mom</span>
+          <span class="chip"><span class="dot"></span> Newly retired</span>
+          <span class="chip"><span class="dot"></span> Recently widowed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · THE WAVE (data) -->
+  <section class="slide">
+    <div class="inner">
+      <p class="eyebrow">This isn’t a niche — it’s a wave</p>
+      <h2>Trillions are moving to women.<br><span class="gold">Most have never been in the driver’s seat.</span></h2>
+      <div class="stat-grid three">
+        <div class="stat"><div class="num gold">$30T</div><div class="lbl">in U.S. financial assets expected to be controlled by women by 2030 — a near-tripling this decade.</div></div>
+        <div class="stat"><div class="num">90%</div><div class="lbl">of women will be solely responsible for their finances at some point in their lives.</div></div>
+        <div class="stat"><div class="num rose">~673K</div><div class="lbl">U.S. divorces a year — and “gray divorce” among adults 50+ has roughly doubled since 1990.</div></div>
+      </div>
+      <p class="src">Sources: McKinsey (women &amp; wealth, 2020); UBS Own Your Worth; CDC/NCHS; Pew Research Center.</p>
+    </div>
+  </section>
+
+  <!-- 4 · THE GAP (problem) -->
+  <section class="slide">
+    <div class="inner">
+      <p class="eyebrow">The problem</p>
+      <h2>She doesn’t need a lecture.<br>She needs a <span class="accent">first step</span>.</h2>
+      <p class="lede" style="max-width:46ch; font-size:clamp(18px,2.3vw,26px);">Spreadsheets assume you already know your numbers. Advisors cost money she’s afraid to spend. Generic budget apps don’t know she just lost half her income — and gained all the decisions.</p>
+      <div class="chips" style="margin-top:30px;">
+        <span class="chip"><span class="dot"></span> Which documents do I even need?</span>
+        <span class="chip"><span class="dot"></span> What do I do with this paycheck?</span>
+        <span class="chip"><span class="dot"></span> Who do I trust to ask?</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · MEET HAVEN -->
+  <section class="slide">
+    <div class="inner">
+      <p class="eyebrow">Meet Haven</p>
+      <h2>A calm, guided path from<br><span class="accent">overwhelmed → in control</span>.</h2>
+      <p class="lede" style="max-width:48ch;">Haven walks her through it one step at a time — gathering the facts, putting every dollar to work, keeping her on track, and surrounding her with the right experts.</p>
+      <div class="stat-grid three" style="margin-top:34px;">
+        <div class="stat"><div class="num">1</div><div class="lbl"><strong>Get organized.</strong> Find the documents, answer the questions.</div></div>
+        <div class="stat"><div class="num">2</div><div class="lbl"><strong>Every dollar a job.</strong> A living, automated budget.</div></div>
+        <div class="stat"><div class="num">3</div><div class="lbl"><strong>Protect &amp; plan.</strong> The right experts, right on time.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · STEP 1 -->
+  <section class="slide">
+    <div class="inner step-row">
+      <div class="step-num">1</div>
+      <div>
+        <p class="eyebrow">Get organized</p>
+        <h2>Know what you have —<br>before you decide anything.</h2>
+        <ul class="feature-list">
+          <li><span class="tick">✓</span> A guided checklist of exactly which documents to find — accounts, statements, policies, the divorce decree, the will.</li>
+          <li><span class="tick">✓</span> Plain-language questions that turn scattered paperwork into a clear picture of income, assets, and obligations.</li>
+          <li><span class="tick">✓</span> A private, secure vault so it’s all in one place when she — or her attorney — needs it.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · STEP 2 (interactive paycheck) -->
+  <section class="slide">
+    <div class="inner split">
+      <div>
+        <p class="eyebrow">Step 2 · Every dollar a job</p>
+        <h2>Paycheck hits.<br>Haven tells her <span class="accent">what to do with each dollar</span>.</h2>
+        <ul class="feature-list">
+          <li><span class="tick">✓</span> Turns her real numbers into a living budget — not a static spreadsheet.</li>
+          <li><span class="tick">✓</span> Connects to her bank, cards, and accounts to move and track money automatically.</li>
+          <li><span class="tick">✓</span> Built for irregular income — every paycheck is re-allocated to the plan.</li>
+        </ul>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="pay-head">Paycheck received · today</div>
+          <div class="pay-amt">+ $2,840</div>
+          <div class="alloc">
+            <div class="alloc-row"><span>Essentials</span><span>$1,420</span><div class="bar"><span style="width:50%;background:var(--sage-deep)"></span></div></div>
+            <div class="alloc-row"><span>Kids &amp; childcare</span><span>$540</span><div class="bar"><span style="width:19%;background:var(--gold-deep)"></span></div></div>
+            <div class="alloc-row"><span>Emergency fund</span><span>$430</span><div class="bar"><span style="width:15%;background:var(--sage)"></span></div></div>
+            <div class="alloc-row"><span>Debt payoff</span><span>$280</span><div class="bar"><span style="width:10%;background:var(--rose)"></span></div></div>
+            <div class="alloc-row"><span>You — guilt-free</span><span>$170</span><div class="bar"><span style="width:6%;background:var(--gold)"></span></div></div>
+          </div>
+          <div class="pill-note">✓ Every dollar assigned. Moved automatically across your linked accounts.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · STAY ON TRACK -->
+  <section class="slide">
+    <div class="inner">
+      <p class="eyebrow">Stay on track</p>
+      <h2>When she drifts, Haven<br><span class="accent">reminds her why she started</span>.</h2>
+      <p class="lede" style="max-width:46ch;">Try to spend off-plan and Haven gently steps in — not to scold, but to reconnect the choice to her goals.</p>
+      <div class="phone" style="width:min(330px,90%); aspect-ratio:auto; margin-top:30px;">
+        <div class="screen" style="border-radius:24px; padding:24px;">
+          <div class="pay-head">Heads up 💛</div>
+          <p style="font-size:18px; font-weight:700; line-height:1.3; margin:8px 0 12px;">This $260 is headed out of your “Emergency fund.”</p>
+          <p style="font-size:14px; color:var(--ink-soft); margin:0 0 16px;">That fund is your 3-month safety net for you and the kids. Want to pull from “guilt-free” instead?</p>
+          <div style="display:flex; gap:10px;">
+            <span style="background:var(--sage-deep); color:#fff; padding:10px 16px; border-radius:999px; font-weight:700; font-size:14px;">Keep my goal</span>
+            <span style="background:var(--cream-2); padding:10px 16px; border-radius:999px; font-weight:700; font-size:14px;">Spend anyway</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · STEP 3 NETWORK -->
+  <section class="slide">
+    <div class="inner step-row">
+      <div class="step-num">3</div>
+      <div>
+        <p class="eyebrow">Protect &amp; plan</p>
+        <h2>The right expert, exactly when she needs one.</h2>
+        <div class="net-grid">
+          <div class="net-card"><div class="ic">⚖️</div><div class="t">Divorce attorneys</div><div class="d">Vetted help through the transition.</div></div>
+          <div class="net-card"><div class="ic">📜</div><div class="t">Probate &amp; estate</div><div class="d">Wills, trusts, and what comes next.</div></div>
+          <div class="net-card"><div class="ic">🛡️</div><div class="t">Insurance brokers</div><div class="d">Coverage gaps, closed.</div></div>
+          <div class="net-card"><div class="ic">📈</div><div class="t">Financial planners</div><div class="d">For when she’s ready to grow it.</div></div>
+        </div>
+        <p class="src">Haven introduces the right professionals at the right moment — a curated, trusted referral network.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · CLOSE -->
+  <section class="slide">
+    <div class="inner" style="text-align:center;">
+      <div class="brandmark" style="justify-content:center;">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 4l8 7.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10.5V20h12v-9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 20v-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        <span class="wordmark">Haven</span>
+      </div>
+      <p class="close-line">Millions of women are about to control trillions of dollars —<br><span class="accent">for the first time, alone.</span></p>
+      <p class="lede" style="margin:22px auto 0;">Haven is the safe place they’ll start. Organize. Automate. Protect.</p>
+      <span class="cta">Let’s give her a Haven →</span>
+      <p class="title-foot" style="margin-top:30px;">bledsml@gmail.com</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="counter"><span id="cur">1</span> / <span id="total">10</span></div>
+<div class="dots" id="dots"></div>
+<div class="nav">
+  <button id="prev" title="Previous (←)">‹</button>
+  <button id="next" title="Next (→)">›</button>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsWrap = document.getElementById('dots');
+  const progress = document.getElementById('progress');
+  const curEl = document.getElementById('cur');
+  let i = 0;
+
+  document.getElementById('total').textContent = slides.length;
+  slides.forEach((_, n) => {
+    const b = document.createElement('button');
+    b.addEventListener('click', () => go(n));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+    progress.style.width = ((i) / (slides.length - 1) * 100) + '%';
+    curEl.textContent = i + 1;
+  }
+  function next(){ go(i + 1); }
+  function prev(){ go(i - 1); }
+
+  document.getElementById('next').addEventListener('click', next);
+  document.getElementById('prev').addEventListener('click', prev);
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(slides.length - 1);
+  });
+  // swipe
+  let sx = null;
+  document.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  document.addEventListener('touchend', e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+    sx = null;
+  }, {passive:true});
+
+  // 3-minute presentation timer
+  const clock = document.getElementById('clock');
+  const timerBtn = document.getElementById('timerBtn');
+  let t = 0, running = false, iv = null;
+  const TARGET = 180;
+  function fmt(s){ return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+  timerBtn.addEventListener('click', () => {
+    running = !running;
+    timerBtn.textContent = running ? '⏸' : '▶';
+    if (running) iv = setInterval(() => {
+      t++; clock.textContent = fmt(t);
+      clock.classList.toggle('over', t > TARGET);
+    }, 1000);
+    else clearInterval(iv);
+  });
+
+  go(0);
+</script>
+</body>
+</html>
