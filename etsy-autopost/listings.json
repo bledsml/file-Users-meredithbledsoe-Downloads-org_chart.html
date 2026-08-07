@@ -1,0 +1,203 @@
+{
+  "shopName": "Confetti & Co.",
+  "packs": [
+    {
+      "key": "birthday",
+      "occasion": "Birthday",
+      "title": "Editable Birthday Invitation Pack, 5 Elegant Designs (Instant Download)",
+      "price": 9.0,
+      "singlePrice": 4.5,
+      "cover": "Cover_BirthdayPack",
+      "filePrefix": "BirthdayInvite",
+      "packPdf": "BirthdayInvitationPack_AllDesigns",
+      "designs": [
+        { "name": "Cozy", "base": "BirthdayInvite_Cozy" },
+        { "name": "Warm Classic", "base": "BirthdayInvite_WarmClassic" },
+        { "name": "Playful", "base": "BirthdayInvite_Playful" },
+        { "name": "Milestone", "base": "BirthdayInvite_Milestone" },
+        { "name": "Elegant", "base": "BirthdayInvite_Elegant" }
+      ],
+      "tags": [
+        "birthday invitation",
+        "editable invitation",
+        "digital invite",
+        "printable birthday",
+        "party invitation",
+        "instant download",
+        "birthday printable",
+        "custom birthday",
+        "last minute invite",
+        "kids birthday invite",
+        "birthday template",
+        "watercolor invite",
+        "5x7 invitation"
+      ],
+      "description": "For the busy ones who still want it beautiful.\n\nFive gorgeous, editable templates you can personalize in minutes, made for people on the go. No designer, no software to learn, no two-hour project. Just open, add your details, and send.\n\nWhether it's a milestone birthday, a kids' party, or a cozy dinner, there's a design that fits the moment. Add your name, date, and details and you're done.\n\nWHY YOU'LL LOVE IT\n- Five gorgeous, editable templates\n- Personalize in minutes, made for people on the go\n- Instant download you can send out instantly\n- Send digitally or print it, works for both\n- No design skills required\n\nWHAT'S INCLUDED\n- 5 birthday invitation designs: Cozy, Warm Classic, Playful, Milestone, Elegant\n- High-resolution 5x7 print-ready PDFs\n- Editable placeholders like [Name] and [Date]\n\nHOW IT WORKS\n1. Buy and download instantly.\n2. Add your party details.\n3. Print at home or send digitally.\n\nDELIVERY\nThis is a digital product. You'll receive your download files instantly after purchase. Nothing will be shipped.\n\nDesigns are original artwork by Confetti & Co., created with the assistance of AI design tools.\n\nFor personal use only. Templates may not be resold, redistributed, or shared. All designs remain the property of Confetti & Co."
+    },
+    {
+      "key": "wedding",
+      "occasion": "Wedding",
+      "title": "Editable Wedding Invitation Suite, 5 Elegant Designs (Instant Download)",
+      "price": 15.0,
+      "singlePrice": 6.0,
+      "cover": "Cover_WeddingSuite",
+      "filePrefix": "WeddingInvite",
+      "packPdf": "WeddingInvitationSuite_AllDesigns",
+      "designs": [
+        { "name": "Timeless", "base": "WeddingInvite_Timeless" },
+        { "name": "Romantic", "base": "WeddingInvite_Romantic" },
+        { "name": "Modern", "base": "WeddingInvite_Modern" },
+        { "name": "Intimate", "base": "WeddingInvite_Intimate" },
+        { "name": "Elegant", "base": "WeddingInvite_Elegant" }
+      ],
+      "tags": [
+        "wedding invitation",
+        "editable wedding",
+        "printable wedding",
+        "digital wedding",
+        "wedding template",
+        "elegant wedding",
+        "wedding suite",
+        "instant download",
+        "modern wedding",
+        "minimalist wedding",
+        "romantic invitation",
+        "watercolor wedding",
+        "wedding printable"
+      ],
+      "description": "For the couple who wants beautiful without the fuss.\n\nFive elegant, fully editable wedding invitation designs, from timeless and formal to soft and romantic. Add your names, date, and venue, then download and share. No designer, no stress.\n\nWHY YOU'LL LOVE IT\n- Five gorgeous editable designs\n- Personalize names, date, and venue in minutes\n- Instant download to print or send\n- Elegant script-and-serif styling that looks custom\n- No design skills required\n\nWHAT'S INCLUDED\n- 5 wedding invitation designs: Timeless, Romantic, Modern, Intimate, Elegant\n- High-resolution 5x7 print-ready PDFs\n- Editable placeholders like [Names], [Date], and [Venue]\n\nHOW IT WORKS\n1. Buy and download instantly.\n2. Add your wedding details.\n3. Print at home or send digitally.\n\nDELIVERY\nThis is a digital product. You'll receive your download files instantly after purchase. Nothing will be shipped.\n\nDesigns are original artwork by Confetti & Co., created with the assistance of AI design tools.\n\nFor personal use only. Templates may not be resold, redistributed, or shared. All designs remain the property of Confetti & Co."
+    },
+    {
+      "key": "baby-shower",
+      "occasion": "Baby Shower",
+      "title": "Editable Baby Shower Invitation Pack, 5 Sweet Designs (Instant Download)",
+      "price": 9.0,
+      "singlePrice": 4.5,
+      "cover": "Cover_BabyShowerPack",
+      "filePrefix": "BabyShowerInvite",
+      "packPdf": "BabyShowerInvitationPack_AllDesigns",
+      "designs": [
+        { "name": "Twinkle", "base": "BabyShowerInvite_Twinkle" },
+        { "name": "Sweet Classic", "base": "BabyShowerInvite_SweetClassic" },
+        { "name": "Playful", "base": "BabyShowerInvite_Playful" },
+        { "name": "Gentle", "base": "BabyShowerInvite_Gentle" },
+        { "name": "Elegant", "base": "BabyShowerInvite_Elegant" }
+      ],
+      "tags": [
+        "baby shower invite",
+        "editable baby shower",
+        "printable shower",
+        "digital invitation",
+        "gender neutral",
+        "baby shower template",
+        "floral baby shower",
+        "instant download",
+        "sprinkle invitation",
+        "baby shower print",
+        "watercolor shower",
+        "sip and see invite",
+        "baby sprinkle"
+      ],
+      "description": "Sweet, soft, and ready in minutes.\n\nFive editable baby shower designs, from classic to playful, in a soft floral style that suits any theme. Add the parent's name, date, and details, then download and send.\n\nWHY YOU'LL LOVE IT\n- Five gorgeous editable designs\n- Soft gender-neutral floral styling\n- Personalize in minutes\n- Instant download to print or text\n- Works for showers, sprinkles, and sip-and-sees\n\nWHAT'S INCLUDED\n- 5 baby shower invitation designs: Twinkle, Sweet Classic, Playful, Gentle, Elegant\n- High-resolution 5x7 print-ready PDFs\n- Editable placeholders like [Name] and [Date]\n\nHOW IT WORKS\n1. Buy and download instantly.\n2. Add your shower details.\n3. Print at home or send digitally.\n\nDELIVERY\nThis is a digital product. You'll receive your download files instantly after purchase. Nothing will be shipped.\n\nDesigns are original artwork by Confetti & Co., created with the assistance of AI design tools.\n\nFor personal use only. Templates may not be resold, redistributed, or shared. All designs remain the property of Confetti & Co."
+    },
+    {
+      "key": "graduation",
+      "occasion": "Graduation",
+      "title": "Editable Graduation Party Invitation Pack, 5 Designs (Instant Download)",
+      "price": 9.0,
+      "singlePrice": 4.5,
+      "cover": "Cover_GraduationPack",
+      "filePrefix": "GradInvite",
+      "packPdf": "GraduationInvitationPack_AllDesigns",
+      "designs": [
+        { "name": "Proud", "base": "GradInvite_Proud" },
+        { "name": "Party", "base": "GradInvite_Party" },
+        { "name": "Modern", "base": "GradInvite_Modern" },
+        { "name": "Elegant", "base": "GradInvite_Elegant" },
+        { "name": "Classic", "base": "GradInvite_Classic" }
+      ],
+      "tags": [
+        "graduation invite",
+        "editable graduation",
+        "printable grad party",
+        "class of 2026 invite",
+        "digital graduation",
+        "grad party template",
+        "grad party printable",
+        "instant download",
+        "college graduation",
+        "high school grad",
+        "graduation party",
+        "grad announcement",
+        "watercolor invite"
+      ],
+      "description": "Celebrate the grad without the group-chat scramble.\n\nFive editable graduation party invitations, from proud and classic to fun and modern. Add the grad's name, year, and party details, then download and send.\n\nWHY YOU'LL LOVE IT\n- Five gorgeous editable designs\n- Works for high school, college, and every Class of [Year]\n- Personalize in minutes\n- Instant download to print or text\n- Elegant enough for the party, easy enough for tonight\n\nWHAT'S INCLUDED\n- 5 graduation invitation designs: Proud, Party, Modern, Elegant, Classic\n- High-resolution 5x7 print-ready PDFs\n- Editable placeholders like [Name] and [Year]\n\nHOW IT WORKS\n1. Buy and download instantly.\n2. Add your party details.\n3. Print at home or send digitally.\n\nDELIVERY\nThis is a digital product. You'll receive your download files instantly after purchase. Nothing will be shipped.\n\nDesigns are original artwork by Confetti & Co., created with the assistance of AI design tools.\n\nFor personal use only. Templates may not be resold, redistributed, or shared. All designs remain the property of Confetti & Co."
+    },
+    {
+      "key": "holiday",
+      "occasion": "Holiday",
+      "title": "Editable Holiday Party Invitation Pack, 5 Designs (Instant Download)",
+      "price": 9.0,
+      "singlePrice": 4.5,
+      "cover": "Cover_HolidayPack",
+      "filePrefix": "HolidayInvite",
+      "packPdf": "HolidayInvitationPack_AllDesigns",
+      "designs": [
+        { "name": "Christmas", "base": "HolidayInvite_Christmas" },
+        { "name": "Open House", "base": "HolidayInvite_OpenHouse" },
+        { "name": "Soiree", "base": "HolidayInvite_Soiree" },
+        { "name": "New Year", "base": "HolidayInvite_NewYear" },
+        { "name": "Classic", "base": "HolidayInvite_Classic" }
+      ],
+      "tags": [
+        "holiday party invite",
+        "editable christmas",
+        "printable holiday",
+        "christmas template",
+        "digital holiday",
+        "new years eve invite",
+        "holiday open house",
+        "instant download",
+        "festive invitation",
+        "elegant christmas",
+        "christmas party",
+        "holiday printable",
+        "watercolor holiday"
+      ],
+      "description": "For the host who wants festive and effortless.\n\nFive editable holiday invitations, from a cozy open house to an elegant soiree and New Year's Eve. Add your date and details, then download and send.\n\nWHY YOU'LL LOVE IT\n- Five gorgeous editable designs (Christmas party, open house, soiree, New Year's)\n- Elegant festive styling that isn't cheesy\n- Personalize in minutes\n- Instant download to print or text\n- Perfect for the whole season\n\nWHAT'S INCLUDED\n- 5 holiday invitation designs: Christmas, Open House, Soiree, New Year, Classic\n- High-resolution 5x7 print-ready PDFs\n- Editable placeholders like [Name] and [Date]\n\nHOW IT WORKS\n1. Buy and download instantly.\n2. Add your party details.\n3. Print at home or send digitally.\n\nDELIVERY\nThis is a digital product. You'll receive your download files instantly after purchase. Nothing will be shipped.\n\nDesigns are original artwork by Confetti & Co., created with the assistance of AI design tools.\n\nFor personal use only. Templates may not be resold, redistributed, or shared. All designs remain the property of Confetti & Co."
+    },
+    {
+      "key": "gender-reveal",
+      "occasion": "Gender Reveal",
+      "title": "Editable Gender Reveal Invitation Pack, 5 Designs (Instant Download)",
+      "price": 9.0,
+      "singlePrice": 4.5,
+      "cover": "Cover_GenderRevealPack",
+      "filePrefix": "GenderRevealInvite",
+      "packPdf": "GenderRevealInvitationPack_AllDesigns",
+      "designs": [
+        { "name": "Sweet", "base": "GenderRevealInvite_Sweet" },
+        { "name": "Elegant", "base": "GenderRevealInvite_Elegant" },
+        { "name": "Pink or Blue", "base": "GenderRevealInvite_PinkOrBlue" },
+        { "name": "Playful", "base": "GenderRevealInvite_Playful" },
+        { "name": "Classic", "base": "GenderRevealInvite_Classic" }
+      ],
+      "tags": [
+        "gender reveal invite",
+        "editable invitation",
+        "printable reveal",
+        "digital invitation",
+        "gender reveal party",
+        "reveal template",
+        "pink or blue",
+        "instant download",
+        "baby reveal invite",
+        "he or she invite",
+        "gender reveal print",
+        "boy or girl",
+        "watercolor invite"
+      ],
+      "description": "He or she? Either way, the invite is adorable.\n\nFive editable gender reveal invitations, from sweet and soft to playful pink-or-blue. Add your names, date, and details, then download and send.\n\nWHY YOU'LL LOVE IT\n- Five gorgeous editable designs\n- Sweet watercolor styling that works for any reveal\n- Personalize in minutes\n- Instant download to print or text\n- No design skills required\n\nWHAT'S INCLUDED\n- 5 gender reveal invitation designs: Sweet, Elegant, Pink or Blue, Playful, Classic\n- High-resolution 5x7 print-ready PDFs\n- Editable placeholders like [Name] and [Date]\n\nHOW IT WORKS\n1. Buy and download instantly.\n2. Add your party details.\n3. Print at home or send digitally.\n\nDELIVERY\nThis is a digital product. You'll receive your download files instantly after purchase. Nothing will be shipped.\n\nDesigns are original artwork by Confetti & Co., created with the assistance of AI design tools.\n\nFor personal use only. Templates may not be resold, redistributed, or shared. All designs remain the property of Confetti & Co."
+    }
+  ]
+}
