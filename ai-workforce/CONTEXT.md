@@ -38,9 +38,18 @@ Chief-of-staff routes six departments. Full detail in `org-chart.html`.
 | Ventures | listing-poster (built), confetti-studio, becky-ops, skill-forge, market-researcher, pitch-builder |
 | Home & Admin | grooming-watcher (built), appointment-scheduler, subscription-manager, calendar-auditor, inbox-triager, deal-hunter |
 
-**Status:** proposal. Nothing scheduled yet except the pre-existing grooming
-watcher. Rollout plan: Week 1 = chief-of-staff morning brief + inbox/calendar/
-subscription watchers; Week 2–3 = protein-tracker, goal-watcher, refi-watcher,
+**Status:** chief of staff is HIRED and named **Jamal** (Meredith's choice,
+Aug 12 2026). Routine `trig_01GiRiodoPt2ExUdXLcFEFh2`, weekdays 12:00 UTC
+(7am Nashville during CDT; shifts to 6am when CST returns — ask Meredith if
+she wants it moved to `0 13 * * 1-5` in November). It fires into session
+"AI workforce setup proposal" (session_01TwEy1519jPm3u89hDAJmoe), which holds
+the Gmail + Google Calendar connectors; the brief folds in inbox-triager,
+calendar-auditor, and a Monday subscription-manager pass. If a fired run finds
+Gmail tools unavailable, tell Meredith to recreate the routine from the
+claude.ai Routines UI with connectors attached (org blocks storing connectors
+on triggers created in-session).
+
+Next hires: protein-tracker + goal-watcher (Week 2–3), then refi-watcher and
 job-scout; ventures run as scoped projects.
 
 ## Subscription audit (Gmail, ~6 months, run Aug 12 2026)
@@ -82,6 +91,10 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 - Artifacts: org chart (link above), Haven deck + prototype.
 
 ## Changelog
+
+- **2026-08-12 (v3):** Meredith hired the chief of staff and named him
+  **Jamal**. Weekday 7am CT morning-brief routine created (self-bound to the
+  workforce session for connector access). Org chart updated to v3.
 
 - **2026-08-12 (v2):** Added Health dept, subscription-manager + first Gmail
   audit, appointment-scheduler, goal-watcher, confetti-studio, becky-ops,
