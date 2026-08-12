@@ -19,11 +19,13 @@
   this repo). Chewy Autoship for his supplies.
 - **Health goals:** daily protein target with effortless logging; wants Oura ring
   + Apple Watch data incorporated; supplements/skincare on an intentional schedule.
-- **Ventures:** confetti products for Etsy; Etsy invite auto-poster (built, PR #22);
-  "Becky's workstream" (build a mini-workforce for Becky's business — scope TBD);
-  sellable Claude skills; Haven (pitch deck + app prototype exist as artifacts);
-  Penny finance-app name was checked and is taken; shoe-sanitizer patent scan done;
-  time-tracking app with profession dropdown (PR #21).
+- **Ventures:** full portfolio in `ventures/README.md` — **Confetti Confessions**
+  (the confetti brand for Etsy); **Haven** (pitch deck + app prototype artifacts
+  built); Becky's workstream (mini-workforce for her business, unscoped);
+  **skills to sell to companies** (brainstorm in `ventures/skill-ideas.md`);
+  Etsy invite auto-poster (built, PR #22); Penny name retired (taken; the name
+  conversation resurfaced when naming the CoS — Jamal won); shoe-sanitizer patent
+  scan done; time-tracking app (PR #21).
 
 ## The workforce (v2, Aug 12 2026)
 
@@ -92,6 +94,10 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-12 (v3.1):** Added `ventures/` folder: README.md portfolio naming
+  **Confetti Confessions** and **Haven** explicitly, plus `skill-ideas.md` — a
+  brainstorm area for skills to sell to companies, seeded with 8 ideas traced
+  to things already built.
 - **2026-08-12 (v3):** Meredith hired the chief of staff and named him
   **Jamal**. Weekday 7am CT morning-brief routine created (self-bound to the
   workforce session for connector access). Org chart updated to v3.
