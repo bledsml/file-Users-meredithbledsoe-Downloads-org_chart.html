@@ -60,6 +60,8 @@ Active: Chewy Autoship (monthly, George), Dermstore EltaMD SPF + cleanser (new
 Aug 6), LMNT (~bimonthly), Apple News+ ($12.99/mo), Bloomberg, Marina Run Club
 ($20/mo), Ring Protect (trial started Jul 22 → converts ~Aug 21), Amazon
 Unlimited Grocery Delivery, Hospitable, Bumble Premium (on sf@ address).
+New Aug 12: **ChatGPT Plus** ($20/mo, subscribed overnight — flagged in the
+Aug 12 brief to confirm intentional).
 Canceled/ending: Sephora Same-Day Unlimited (Feb), Tractive (cancel requested
 June — confirm it ended).
 
@@ -91,6 +93,16 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 - Branches carry past outputs: Etsy auto-poster (PR #22), time tracker (PR #21),
   Haven deck, cabin checklist, etc.
 - Artifacts: org chart (link above), Haven deck + prototype.
+
+## Notes from Jamal's runs
+
+- **Meredith is San Francisco-based** (calendar TZ America/Los_Angeles; Olympic
+  Club, Marina Run Club). The TN cabin is named **Firefly Cottage** (Elite Cabin
+  Care cleans it; Plumber In A Box services it; guest turnovers appear as
+  "Departure Clean" calendar events). Brief currently fires 12:00 UTC = 5am PT —
+  offered to move to 7am PT (`0 14 * * 1-5`); awaiting her word.
+- GitHub "Run failed: grooming-watcher.yml — No jobs were run" emails on branch
+  pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
 
