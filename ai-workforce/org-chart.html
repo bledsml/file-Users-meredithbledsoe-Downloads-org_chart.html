@@ -13,6 +13,8 @@
     --accent-soft: #F7E9C4;
     --live: #4A7A4E;
     --live-soft: #E2EEDF;
+    --alert: #A9431E;
+    --alert-soft: #F6E3DA;
     --shadow: 0 1px 2px rgba(35, 36, 29, 0.06), 0 8px 24px rgba(35, 36, 29, 0.07);
   }
   @media (prefers-color-scheme: dark) {
@@ -28,6 +30,8 @@
       --accent-soft: #3A331D;
       --live: #8FBE8F;
       --live-soft: #26331F;
+      --alert: #E58A64;
+      --alert-soft: #3B241A;
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
     }
   }
@@ -43,6 +47,8 @@
     --accent-soft: #3A331D;
     --live: #8FBE8F;
     --live-soft: #26331F;
+    --alert: #E58A64;
+    --alert-soft: #3B241A;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 
@@ -101,21 +107,21 @@
   .cos-card p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
 
   .depts {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
     margin-top: 0; position: relative; padding-top: 26px;
   }
   .depts::before {
     content: ""; position: absolute; top: 0; height: 2px; background: var(--line);
-    left: 10%; right: 10%;
+    left: 16%; right: 16%;
   }
   .dept { position: relative; }
-  .dept::before {
+  .dept:nth-child(-n+3)::before {
     content: ""; position: absolute; top: -26px; left: 50%; width: 2px; height: 26px;
     background: var(--line);
   }
   @media (max-width: 900px) {
     .depts { grid-template-columns: 1fr 1fr; }
-    .depts::before, .dept::before { display: none; }
+    .depts::before, .dept:nth-child(-n+3)::before { display: none; }
     .depts { padding-top: 8px; }
   }
   @media (max-width: 560px) { .depts { grid-template-columns: 1fr; } }
@@ -157,6 +163,31 @@
   }
   section.block > .sub { color: var(--muted); font-size: 14px; margin: 0 0 22px; max-width: 66ch; }
 
+  /* subscription audit */
+  .subs-flags { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+  @media (max-width: 720px) { .subs-flags { grid-template-columns: 1fr; } }
+  .flag {
+    border: 1px solid var(--alert); background: var(--alert-soft); border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .flag .tag {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--alert);
+  }
+  .flag h3 { margin: 4px 0 4px; font-size: 15px; }
+  .flag p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  .subs-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); box-shadow: var(--shadow); }
+  table.subs { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 13px; }
+  table.subs th {
+    text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); padding: 12px 14px; border-bottom: 1px solid var(--line);
+  }
+  table.subs td { padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.subs tr:last-child td { border-bottom: none; }
+  table.subs .cat { color: var(--muted); white-space: nowrap; }
+  .note { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
   .phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   @media (max-width: 900px) { .phases { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .phases { grid-template-columns: 1fr; } }
@@ -189,19 +220,20 @@
 
 <div class="wrap">
   <header>
-    <p class="eyebrow display">Proposal · drawn from 20 of our past sessions · Aug 2026</p>
+    <p class="eyebrow display">Proposal v2 · sessions + Gmail audit · Aug 2026</p>
     <h1 class="display">Your AI workforce, <em>already half-hired</em></h1>
     <p class="lede">
-      One chief of staff routing five departments — Properties, Finance, Career, Ventures, and
-      Home &amp; Admin — each staffed with agents scoped to work you've actually brought to me:
-      the Tennessee cabin refinance, the Kentucky house, depreciation strategy, Google
-      compensation, Haven and the Etsy business, and George's grooming appointments.
+      One chief of staff routing six departments — Properties, Finance, Career, Health,
+      Ventures, and Home &amp; Admin — staffed from work you've actually brought to me and,
+      new in v2, a real audit of the subscriptions landing in your Gmail. Health is now a
+      first-class department, and Ventures covers confetti, Becky's workstream, and
+      sellable skills.
     </p>
     <div class="stats">
-      <div class="stat"><div class="n">5</div><div class="l">Departments</div></div>
-      <div class="stat"><div class="n">16</div><div class="l">Agents</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Departments</div></div>
+      <div class="stat"><div class="n">25</div><div class="l">Agents</div></div>
       <div class="stat"><div class="n">2</div><div class="l">Already built</div></div>
-      <div class="stat"><div class="n">3</div><div class="l">Connectors wired</div></div>
+      <div class="stat"><div class="n">11</div><div class="l">Subscriptions found</div></div>
     </div>
   </header>
 
@@ -235,7 +267,7 @@
             </li>
             <li class="agent">
               <div class="agent-top"><span class="agent-name">guest-prep</span><span class="cadence">per stay</span></div>
-              <p>Arrival checklists and owner's-closet inventory, like the cabin list we built for your mom.</p>
+              <p>Arrival checklists and owner's-closet inventory, like the cabin list we built for your mom. Pairs with your Hospitable account.</p>
             </li>
           </ul>
         </div>
@@ -245,12 +277,16 @@
         <div class="dept-card">
           <div class="dept-head">
             <h2 class="display">Finance</h2>
-            <p class="scope">Property books · taxes · receipts</p>
+            <p class="scope">Goals · property books · taxes</p>
           </div>
           <ul class="agents">
             <li class="agent">
+              <div class="agent-top"><span class="agent-name">goal-watcher</span><span class="cadence">monthly</span></div>
+              <p>Holds your finance goals — savings, payoff, investing targets — and reports drift before it compounds.</p>
+            </li>
+            <li class="agent">
               <div class="agent-top"><span class="agent-name">expense-tracker</span><span class="cadence">weekly</span></div>
-              <p>Pulls receipts from Gmail, tags them by property, keeps a running ledger in Drive.</p>
+              <p>Pulls receipts from Gmail, tags them by property and category, keeps a running ledger in Drive.</p>
             </li>
             <li class="agent">
               <div class="agent-top"><span class="agent-name">tax-strategist</span><span class="cadence">quarterly</span></div>
@@ -290,21 +326,52 @@
       <div class="dept">
         <div class="dept-card">
           <div class="dept-head">
+            <h2 class="display">Health</h2>
+            <p class="scope">Protein · Oura + Apple Watch · supplements</p>
+          </div>
+          <ul class="agents">
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">protein-tracker</span><span class="cadence">daily</span></div>
+              <p>The easiest possible log — text me what you ate, I do the math and keep a daily protein total against your target.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">wearable-sync</span><span class="cadence">weekly</span></div>
+              <p>Pulls Oura (via its API) and Apple Watch health exports into one weekly readout: sleep, readiness, activity, trends.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">supplement-planner</span><span class="cadence">monthly</span></div>
+              <p>Keeps supplements and skincare (EltaMD, LMNT) on an intentional schedule — right quantities, right cadence, no surprise boxes.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dept">
+        <div class="dept-card">
+          <div class="dept-head">
             <h2 class="display">Ventures</h2>
-            <p class="scope">Haven · Penny · Etsy · side bets</p>
+            <p class="scope">Confetti · Becky's stream · skills · Haven</p>
           </div>
           <ul class="agents">
             <li class="agent is-live">
               <div class="agent-top"><span class="agent-name">listing-poster</span><span class="badge-live">● built</span></div>
-              <p>The Etsy invite auto-poster — built, in review as PR #22.</p>
+              <p>The Etsy invite auto-poster — built, in review as PR #22. Template for every future Etsy product.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">confetti-studio</span><span class="cadence">weekly</span></div>
+              <p>Runs the confetti line: Etsy market and pricing research, seasonal listing calendar, feeds finished listings to listing-poster.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">becky-ops</span><span class="cadence">project</span></div>
+              <p>Builds Becky's workstream as its own mini-workforce — scope her recurring tasks, then clone this playbook for her.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">skill-forge</span><span class="cadence">project</span></div>
+              <p>Packages what we build into sellable Claude skills — productize the grooming watcher, the subscription auditor, the protein tracker.</p>
             </li>
             <li class="agent">
               <div class="agent-top"><span class="agent-name">market-researcher</span><span class="cadence">on-demand</span></div>
-              <p>Patent and competitor scans, like the shoe-sanitizer search; validates before you build.</p>
-            </li>
-            <li class="agent">
-              <div class="agent-top"><span class="agent-name">name-checker</span><span class="cadence">on-demand</span></div>
-              <p>Trademark and name clearance — caught the Penny Finance conflict before it cost you.</p>
+              <p>Patent, competitor, and name/trademark scans — the shoe-sanitizer search, and the Penny conflict it caught.</p>
             </li>
             <li class="agent">
               <div class="agent-top"><span class="agent-name">pitch-builder</span><span class="cadence">on-demand</span></div>
@@ -318,7 +385,7 @@
         <div class="dept-card">
           <div class="dept-head">
             <h2 class="display">Home &amp; Admin</h2>
-            <p class="scope">Calendar · inbox · George</p>
+            <p class="scope">Appointments · subscriptions · George</p>
           </div>
           <ul class="agents">
             <li class="agent is-live">
@@ -326,12 +393,20 @@
               <p>Watches for grooming slots for George and emails you when one opens. Your first hire.</p>
             </li>
             <li class="agent">
+              <div class="agent-top"><span class="agent-name">appointment-scheduler</span><span class="cadence">monthly</span></div>
+              <p>Keeps the recurring circuit booked: house cleaning, eyebrows, car detailing, George's grooming cadence — reminds, then books on approval.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">subscription-manager</span><span class="cadence">weekly</span></div>
+              <p>Watches every recurring charge and delivery in Gmail — renewals, trials about to convert, failed payments, unwanted boxes. First audit below.</p>
+            </li>
+            <li class="agent">
               <div class="agent-top"><span class="agent-name">calendar-auditor</span><span class="cadence">daily</span></div>
               <p>Reviews the week ahead, catches conflicts, protects focus time, schedules what you ask.</p>
             </li>
             <li class="agent">
               <div class="agent-top"><span class="agent-name">inbox-triager</span><span class="cadence">daily</span></div>
-              <p>Labels what matters, drafts routine replies, feeds receipts to Finance.</p>
+              <p>Labels what matters, drafts routine replies, feeds receipts to Finance and renewals to subscription-manager.</p>
             </li>
             <li class="agent">
               <div class="agent-top"><span class="agent-name">deal-hunter</span><span class="cadence">on-demand</span></div>
@@ -344,15 +419,56 @@
   </div>
 
   <section class="block">
+    <h2 class="display">Subscription audit — the first deliverable, already done</h2>
+    <p class="sub">I ran the subscription-manager's first pass over your Gmail (last ~6 months). Two things need attention now; the full inventory follows.</p>
+
+    <div class="subs-flags">
+      <div class="flag">
+        <p class="tag">Trial converting soon</p>
+        <h3>Ring Protect trial → paid ~Aug 21</h3>
+        <p>The 30-day free trial started Jul 22. Decide before it converts — you also started (and let lapse) two earlier Ring trials in June.</p>
+      </div>
+      <div class="flag">
+        <p class="tag">Payment repeatedly failing</p>
+        <h3>Chewy Autoship card on file</h3>
+        <p>Four failed-payment warnings in June and one canceled order of George's essentials. The card on the account needs updating.</p>
+      </div>
+    </div>
+
+    <div class="subs-table-wrap">
+      <table class="subs">
+        <thead>
+          <tr><th>Subscription</th><th>Category</th><th>What Gmail shows</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Chewy Autoship</strong></td><td class="cat">George</td><td>Roughly monthly; June payment failures, one canceled order</td></tr>
+          <tr><td><strong>Dermstore — EltaMD SPF + cleanser</strong></td><td class="cat">Skincare</td><td>New subscription live Aug 6; two products on replenish</td></tr>
+          <tr><td><strong>LMNT electrolytes</strong></td><td class="cat">Supplements</td><td>Renews ~every 2 months (May 23, Jul 23)</td></tr>
+          <tr><td><strong>Apple News+</strong></td><td class="cat">Media</td><td>$12.99/month, renewed Aug 8</td></tr>
+          <tr><td><strong>Bloomberg.com</strong></td><td class="cat">Media</td><td>Active digital subscription</td></tr>
+          <tr><td><strong>Marina Run Club</strong></td><td class="cat">Fitness</td><td>$20/month, confirmed Jul 12</td></tr>
+          <tr><td><strong>Ring Protect</strong></td><td class="cat">Home</td><td>Trial started Jul 22; converts ~Aug 21</td></tr>
+          <tr><td><strong>Amazon grocery delivery</strong></td><td class="cat">Home</td><td>"Unlimited Grocery Delivery" active since Feb</td></tr>
+          <tr><td><strong>Hospitable</strong></td><td class="cat">Properties</td><td>STR management software; annual plan would save ~12%</td></tr>
+          <tr><td><strong>Bumble Premium</strong></td><td class="cat">Personal</td><td>On your other address (meredithbledsoesf@)</td></tr>
+          <tr><td><strong>Tractive GPS</strong></td><td class="cat">George</td><td>Cancellation requested in June — worth confirming it ended</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Recently exited: Sephora Same-Day Unlimited (canceled Feb). The weekly subscription-manager keeps this table current and flags anything new before it ships.</p>
+  </section>
+
+  <section class="block">
     <h2 class="display">Why these agents</h2>
-    <p class="sub">Every role maps to work you've already brought into our chats — this is your actual demand, organized.</p>
+    <p class="sub">Every role maps to work you've already brought into our chats or that's visible in your inbox — this is your actual demand, organized.</p>
     <div class="evidence">
       <ul>
-        <li><strong>Properties</strong> — <span class="src">the Tennessee refinance lookup (4325 New Pioneer Trail), the Kentucky house closing, Mom's cabin checklist, blinds and gutter-tool research.</span></li>
-        <li><strong>Finance</strong> — <span class="src">bonus depreciation &amp; §1245/§1250 questions, the refinance math, the hunt for a bedding receipt.</span></li>
-        <li><strong>Career</strong> — <span class="src">the Google compensation "TBD refresher" deep-dive; extend it to a standing watch on companies you'd move for.</span></li>
-        <li><strong>Ventures</strong> — <span class="src">Haven pitch deck &amp; prototype, Penny name check, Etsy auto-posting business, time-tracking app, shoe-sanitizer patent scan.</span></li>
-        <li><strong>Home &amp; Admin</strong> — <span class="src">the grooming watcher for George, calendar scheduling, shopping comparisons.</span></li>
+        <li><strong>Properties</strong> — <span class="src">the Tennessee refinance lookup (4325 New Pioneer Trail), the Kentucky house closing, Mom's cabin checklist, Hospitable in your inbox, blinds and gutter-tool research.</span></li>
+        <li><strong>Finance</strong> — <span class="src">bonus depreciation &amp; §1245/§1250 questions, the refinance math, your goal-watcher ask, the hunt for a bedding receipt.</span></li>
+        <li><strong>Career</strong> — <span class="src">the Google compensation "TBD refresher" deep-dive; extended to a standing watch on companies you'd move for.</span></li>
+        <li><strong>Health</strong> — <span class="src">your ask: effortless daily protein tracking, Oura ring + Apple Watch data in one place, supplements on a real schedule.</span></li>
+        <li><strong>Ventures</strong> — <span class="src">confetti for the Etsy market, Becky's workstream, sellable skills — plus Haven deck &amp; prototype, Penny name check, the Etsy auto-poster, shoe-sanitizer patents.</span></li>
+        <li><strong>Home &amp; Admin</strong> — <span class="src">the grooming watcher for George, your recurring-appointments circuit (cleaning, eyebrows, detailing, grooming), and the subscription audit above.</span></li>
       </ul>
     </div>
   </section>
@@ -364,29 +480,29 @@
       <div class="phase">
         <p class="when">Now · already running</p>
         <h3>Keep what works</h3>
-        <p>The <code>grooming-watcher</code> is live and the Etsy <code>listing-poster</code> is in review. Gmail, Calendar, and Drive connectors are already wired up.</p>
+        <p>The <code>grooming-watcher</code> is live, the Etsy <code>listing-poster</code> is in review, and the first subscription audit is done. Gmail, Calendar, and Drive are wired.</p>
       </div>
       <div class="phase">
         <p class="when">Week 1 · daily rhythm</p>
-        <h3>Hire the chief of staff</h3>
-        <p>Stand up <code>chief-of-staff</code> as a weekday-morning routine, with <code>inbox-triager</code> and <code>calendar-auditor</code> feeding it. One brief a day, not sixteen pings.</p>
+        <h3>Chief of staff + watchers</h3>
+        <p>Stand up <code>chief-of-staff</code> as a weekday-morning routine with <code>inbox-triager</code>, <code>calendar-auditor</code>, and weekly <code>subscription-manager</code> feeding it.</p>
       </div>
       <div class="phase">
-        <p class="when">Week 2–3 · weekly watchers</p>
-        <h3>Money &amp; career on watch</h3>
-        <p>Add <code>refi-watcher</code>, <code>expense-tracker</code>, and <code>job-scout</code> as weekly routines. First deliverables: a property ledger and your target-company list.</p>
+        <p class="when">Week 2–3 · health &amp; money</p>
+        <h3>Protein, goals, career</h3>
+        <p>Launch <code>protein-tracker</code> (simplest thing that works, then wire <code>wearable-sync</code>), plus <code>goal-watcher</code>, <code>refi-watcher</code>, and <code>job-scout</code> as weekly routines.</p>
       </div>
       <div class="phase">
-        <p class="when">Ongoing · on demand</p>
-        <h3>Specialists on call</h3>
-        <p>The rest — <code>tax-strategist</code>, <code>pitch-builder</code>, <code>deal-hunter</code> — stay on the bench and spin up the moment you ask. No idle cost.</p>
+        <p class="when">Ongoing · projects</p>
+        <h3>Ventures on call</h3>
+        <p><code>confetti-studio</code>, <code>becky-ops</code>, and <code>skill-forge</code> run as scoped projects; <code>tax-strategist</code>, <code>pitch-builder</code>, <code>deal-hunter</code> stay on the bench, on demand.</p>
       </div>
     </div>
   </section>
 
   <section class="block">
     <h2 class="display">How it runs</h2>
-    <p class="sub">No new software to buy — each agent is a Claude session with a schedule and a scope.</p>
+    <p class="sub">No new software to buy — each agent is a Claude session with a schedule and a scope, and the folder <code>ai-workforce/</code> in your repo is its shared memory.</p>
     <div class="mechanics">
       <div class="mech">
         <h3>Scheduled agents</h3>
@@ -394,16 +510,16 @@
       </div>
       <div class="mech">
         <h3>Shared memory</h3>
-        <p>Agents read and write a small set of Drive docs — property ledger, target-company list, venture notes — so the chief of staff can brief across departments without re-asking you.</p>
+        <p>This chart plus <code>CONTEXT.md</code> live in the <code>ai-workforce/</code> folder. Every session that touches the workforce updates the context file, so any future chat picks up exactly where we left off.</p>
       </div>
       <div class="mech">
         <h3>You stay the approver</h3>
-        <p>Agents draft, watch, and flag; they don't send money, apply to jobs, or book anything without your sign-off. Escalations arrive through the morning brief.</p>
+        <p>Agents draft, watch, and flag; they don't send money, cancel subscriptions, apply to jobs, or book appointments without your sign-off. Escalations arrive through the morning brief.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    Proposed from your session history through Aug 2026 · agent names are suggestions — rename at will · next step: say "hire the chief of staff" and Week 1 begins.
+    Proposed from your session history + Gmail audit through Aug 2026 · agent names are suggestions — rename at will · next step: say "hire the chief of staff" and Week 1 begins.
   </footer>
 </div>
