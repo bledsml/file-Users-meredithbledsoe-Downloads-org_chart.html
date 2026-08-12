@@ -1,0 +1,409 @@
+<title>Meredith's AI Workforce</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  :root {
+    --ground: #FBF8EE;
+    --panel: #FFFFFF;
+    --panel-soft: #F4EFDF;
+    --ink: #23241D;
+    --muted: #6E6A58;
+    --line: #DDD6BE;
+    --accent: #C98A00;
+    --accent-ink: #8A5F00;
+    --accent-soft: #F7E9C4;
+    --live: #4A7A4E;
+    --live-soft: #E2EEDF;
+    --shadow: 0 1px 2px rgba(35, 36, 29, 0.06), 0 8px 24px rgba(35, 36, 29, 0.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #191813;
+      --panel: #23221B;
+      --panel-soft: #2B2A21;
+      --ink: #ECE7DA;
+      --muted: #A39F8C;
+      --line: #403E30;
+      --accent: #F2B62B;
+      --accent-ink: #F2B62B;
+      --accent-soft: #3A331D;
+      --live: #8FBE8F;
+      --live-soft: #26331F;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #191813;
+    --panel: #23221B;
+    --panel-soft: #2B2A21;
+    --ink: #ECE7DA;
+    --muted: #A39F8C;
+    --line: #403E30;
+    --accent: #F2B62B;
+    --accent-ink: #F2B62B;
+    --accent-soft: #3A331D;
+    --live: #8FBE8F;
+    --live-soft: #26331F;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .display {
+    font-family: "Futura", "Avenir Next", "Century Gothic", "URW Gothic", "Trebuchet MS", sans-serif;
+  }
+  code, .agent-name {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 48px 20px 80px; }
+
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent-ink); font-weight: 700; margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(32px, 5.5vw, 52px); line-height: 1.05; margin: 0 0 14px;
+    letter-spacing: -0.01em; text-wrap: balance;
+  }
+  h1 em { font-style: italic; color: var(--accent-ink); }
+  .lede { color: var(--muted); font-size: 16px; max-width: 62ch; margin: 0 0 8px; }
+
+  .stats { display: flex; gap: 26px; flex-wrap: wrap; margin: 26px 0 0; }
+  .stat .n {
+    font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .stat .l { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ---- org tree ---- */
+  .tree { margin-top: 44px; }
+  .node-you {
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .you-pill {
+    background: var(--ink); color: var(--ground);
+    border-radius: 999px; padding: 12px 34px;
+    font-weight: 700; letter-spacing: 0.12em; font-size: 15px;
+  }
+  .drop { width: 2px; height: 26px; background: var(--line); }
+  .cos-card {
+    background: var(--panel); border: 2px solid var(--ink);
+    border-radius: 12px; padding: 16px 26px; text-align: center;
+    box-shadow: var(--shadow); max-width: 420px;
+  }
+  .cos-card .agent-name { font-weight: 700; font-size: 16px; }
+  .cos-card p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+
+  .depts {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+    margin-top: 0; position: relative; padding-top: 26px;
+  }
+  .depts::before {
+    content: ""; position: absolute; top: 0; height: 2px; background: var(--line);
+    left: 10%; right: 10%;
+  }
+  .dept { position: relative; }
+  .dept::before {
+    content: ""; position: absolute; top: -26px; left: 50%; width: 2px; height: 26px;
+    background: var(--line);
+  }
+  @media (max-width: 900px) {
+    .depts { grid-template-columns: 1fr 1fr; }
+    .depts::before, .dept::before { display: none; }
+    .depts { padding-top: 8px; }
+  }
+  @media (max-width: 560px) { .depts { grid-template-columns: 1fr; } }
+
+  .dept-card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: var(--shadow); height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .dept-head {
+    padding: 12px 14px 10px; border-bottom: 1px solid var(--line);
+  }
+  .dept-head h2 {
+    margin: 0; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .dept-head .scope { margin: 4px 0 0; font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+  .agents { list-style: none; margin: 0; padding: 10px 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+  .agent {
+    background: var(--panel-soft); border: 1px solid var(--line); border-radius: 9px;
+    padding: 9px 10px;
+  }
+  .agent-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .agent-name { font-size: 12.5px; font-weight: 700; }
+  .cadence {
+    font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .agent p { margin: 4px 0 0; font-size: 12px; color: var(--muted); line-height: 1.45; }
+  .agent.is-live { border-color: var(--live); background: var(--live-soft); }
+  .badge-live {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--live); text-transform: uppercase;
+  }
+
+  /* ---- sections below ---- */
+  section.block { margin-top: 64px; }
+  section.block > h2 {
+    font-size: 22px; margin: 0 0 6px; letter-spacing: -0.01em;
+  }
+  section.block > .sub { color: var(--muted); font-size: 14px; margin: 0 0 22px; max-width: 66ch; }
+
+  .phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .phases { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .phases { grid-template-columns: 1fr; } }
+  .phase {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px; box-shadow: var(--shadow);
+  }
+  .phase .when {
+    font-size: 11px; font-weight: 700; color: var(--accent-ink);
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .phase h3 { margin: 6px 0 8px; font-size: 15px; }
+  .phase p { margin: 0; font-size: 13px; color: var(--muted); }
+  .phase code { font-size: 11.5px; background: var(--accent-soft); border-radius: 4px; padding: 1px 5px; color: var(--ink); }
+
+  .evidence { border-left: 3px solid var(--accent); padding: 2px 0 2px 18px; }
+  .evidence li { margin: 0 0 10px; font-size: 13.5px; }
+  .evidence ul { list-style: none; margin: 0; padding: 0; }
+  .evidence .src { color: var(--muted); }
+  .evidence strong { font-weight: 650; }
+
+  .mechanics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .mechanics { grid-template-columns: 1fr; } }
+  .mech { background: var(--panel-soft); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .mech h3 { margin: 0 0 6px; font-size: 14px; }
+  .mech p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  footer { margin-top: 64px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--line); padding-top: 18px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow display">Proposal · drawn from 20 of our past sessions · Aug 2026</p>
+    <h1 class="display">Your AI workforce, <em>already half-hired</em></h1>
+    <p class="lede">
+      One chief of staff routing five departments — Properties, Finance, Career, Ventures, and
+      Home &amp; Admin — each staffed with agents scoped to work you've actually brought to me:
+      the Tennessee cabin refinance, the Kentucky house, depreciation strategy, Google
+      compensation, Haven and the Etsy business, and George's grooming appointments.
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="n">5</div><div class="l">Departments</div></div>
+      <div class="stat"><div class="n">16</div><div class="l">Agents</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Already built</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Connectors wired</div></div>
+    </div>
+  </header>
+
+  <div class="tree">
+    <div class="node-you">
+      <div class="you-pill display">MEREDITH</div>
+      <div class="drop"></div>
+      <div class="cos-card">
+        <span class="agent-name">chief-of-staff</span>
+        <p>Routes everything below. Sends one morning brief — calendar, inbox flags, agent
+        findings — and escalates only what needs your decision.</p>
+      </div>
+      <div class="drop"></div>
+    </div>
+
+    <div class="depts">
+      <div class="dept">
+        <div class="dept-card">
+          <div class="dept-head">
+            <h2 class="display">Properties</h2>
+            <p class="scope">TN cabin · KY house · Mom's cabin stays</p>
+          </div>
+          <ul class="agents">
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">refi-watcher</span><span class="cadence">weekly</span></div>
+              <p>Tracks rates against the New Pioneer Trail refinance; flags when a better rate beats closing costs.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">maintenance-scout</span><span class="cadence">on-demand</span></div>
+              <p>Sources fixtures, tools, and vendors — your blinds and gutter-pole hunts, systematized per property.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">guest-prep</span><span class="cadence">per stay</span></div>
+              <p>Arrival checklists and owner's-closet inventory, like the cabin list we built for your mom.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dept">
+        <div class="dept-card">
+          <div class="dept-head">
+            <h2 class="display">Finance</h2>
+            <p class="scope">Property books · taxes · receipts</p>
+          </div>
+          <ul class="agents">
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">expense-tracker</span><span class="cadence">weekly</span></div>
+              <p>Pulls receipts from Gmail, tags them by property, keeps a running ledger in Drive.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">tax-strategist</span><span class="cadence">quarterly</span></div>
+              <p>Tracks bonus depreciation and §1245/§1250 items; assembles the CPA packet before deadlines.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">receipt-filer</span><span class="cadence">daily</span></div>
+              <p>Files order confirmations as they land — no more digging for the bedding receipt.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dept">
+        <div class="dept-card">
+          <div class="dept-head">
+            <h2 class="display">Career</h2>
+            <p class="scope">Comp intel · target companies</p>
+          </div>
+          <ul class="agents">
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">comp-analyst</span><span class="cadence">quarterly</span></div>
+              <p>Models your Google comp — refresher grants, vest schedule — and benchmarks it against market.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">job-scout</span><span class="cadence">weekly</span></div>
+              <p>Watches openings at your target-company list; surfaces only roles matching your level and comp bar.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">application-drafter</span><span class="cadence">on-demand</span></div>
+              <p>Tailors resume and cover letter per role; preps interview briefs on the team and comp range.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dept">
+        <div class="dept-card">
+          <div class="dept-head">
+            <h2 class="display">Ventures</h2>
+            <p class="scope">Haven · Penny · Etsy · side bets</p>
+          </div>
+          <ul class="agents">
+            <li class="agent is-live">
+              <div class="agent-top"><span class="agent-name">listing-poster</span><span class="badge-live">● built</span></div>
+              <p>The Etsy invite auto-poster — built, in review as PR #22.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">market-researcher</span><span class="cadence">on-demand</span></div>
+              <p>Patent and competitor scans, like the shoe-sanitizer search; validates before you build.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">name-checker</span><span class="cadence">on-demand</span></div>
+              <p>Trademark and name clearance — caught the Penny Finance conflict before it cost you.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">pitch-builder</span><span class="cadence">on-demand</span></div>
+              <p>Decks and prototypes on request — the Haven deck and app prototype came from here.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dept">
+        <div class="dept-card">
+          <div class="dept-head">
+            <h2 class="display">Home &amp; Admin</h2>
+            <p class="scope">Calendar · inbox · George</p>
+          </div>
+          <ul class="agents">
+            <li class="agent is-live">
+              <div class="agent-top"><span class="agent-name">grooming-watcher</span><span class="badge-live">● built</span></div>
+              <p>Watches for grooming slots for George and emails you when one opens. Your first hire.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">calendar-auditor</span><span class="cadence">daily</span></div>
+              <p>Reviews the week ahead, catches conflicts, protects focus time, schedules what you ask.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">inbox-triager</span><span class="cadence">daily</span></div>
+              <p>Labels what matters, drafts routine replies, feeds receipts to Finance.</p>
+            </li>
+            <li class="agent">
+              <div class="agent-top"><span class="agent-name">deal-hunter</span><span class="cadence">on-demand</span></div>
+              <p>Price-compares before you buy — blinds, tools, even rideshares.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2 class="display">Why these agents</h2>
+    <p class="sub">Every role maps to work you've already brought into our chats — this is your actual demand, organized.</p>
+    <div class="evidence">
+      <ul>
+        <li><strong>Properties</strong> — <span class="src">the Tennessee refinance lookup (4325 New Pioneer Trail), the Kentucky house closing, Mom's cabin checklist, blinds and gutter-tool research.</span></li>
+        <li><strong>Finance</strong> — <span class="src">bonus depreciation &amp; §1245/§1250 questions, the refinance math, the hunt for a bedding receipt.</span></li>
+        <li><strong>Career</strong> — <span class="src">the Google compensation "TBD refresher" deep-dive; extend it to a standing watch on companies you'd move for.</span></li>
+        <li><strong>Ventures</strong> — <span class="src">Haven pitch deck &amp; prototype, Penny name check, Etsy auto-posting business, time-tracking app, shoe-sanitizer patent scan.</span></li>
+        <li><strong>Home &amp; Admin</strong> — <span class="src">the grooming watcher for George, calendar scheduling, shopping comparisons.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="display">Rollout plan</h2>
+    <p class="sub">Hire in waves. Each wave is a one-session setup; nothing needs to launch all at once.</p>
+    <div class="phases">
+      <div class="phase">
+        <p class="when">Now · already running</p>
+        <h3>Keep what works</h3>
+        <p>The <code>grooming-watcher</code> is live and the Etsy <code>listing-poster</code> is in review. Gmail, Calendar, and Drive connectors are already wired up.</p>
+      </div>
+      <div class="phase">
+        <p class="when">Week 1 · daily rhythm</p>
+        <h3>Hire the chief of staff</h3>
+        <p>Stand up <code>chief-of-staff</code> as a weekday-morning routine, with <code>inbox-triager</code> and <code>calendar-auditor</code> feeding it. One brief a day, not sixteen pings.</p>
+      </div>
+      <div class="phase">
+        <p class="when">Week 2–3 · weekly watchers</p>
+        <h3>Money &amp; career on watch</h3>
+        <p>Add <code>refi-watcher</code>, <code>expense-tracker</code>, and <code>job-scout</code> as weekly routines. First deliverables: a property ledger and your target-company list.</p>
+      </div>
+      <div class="phase">
+        <p class="when">Ongoing · on demand</p>
+        <h3>Specialists on call</h3>
+        <p>The rest — <code>tax-strategist</code>, <code>pitch-builder</code>, <code>deal-hunter</code> — stay on the bench and spin up the moment you ask. No idle cost.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="display">How it runs</h2>
+    <p class="sub">No new software to buy — each agent is a Claude session with a schedule and a scope.</p>
+    <div class="mechanics">
+      <div class="mech">
+        <h3>Scheduled agents</h3>
+        <p>Daily and weekly roles run as scheduled routines that wake up, do the work, and email or push-notify only when something needs you — exactly how the grooming watcher behaves today.</p>
+      </div>
+      <div class="mech">
+        <h3>Shared memory</h3>
+        <p>Agents read and write a small set of Drive docs — property ledger, target-company list, venture notes — so the chief of staff can brief across departments without re-asking you.</p>
+      </div>
+      <div class="mech">
+        <h3>You stay the approver</h3>
+        <p>Agents draft, watch, and flag; they don't send money, apply to jobs, or book anything without your sign-off. Escalations arrive through the morning brief.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Proposed from your session history through Aug 2026 · agent names are suggestions — rename at will · next step: say "hire the chief of staff" and Week 1 begins.
+  </footer>
+</div>
