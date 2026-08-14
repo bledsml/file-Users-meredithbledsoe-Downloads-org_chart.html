@@ -8,7 +8,8 @@
 
 ## Who / what this serves
 
-- **Meredith Bledsoe** (bledsml@gmail.com; secondary: meredithbledsoesf@gmail.com)
+- **Meredith Bledsoe** (bledsml@gmail.com; secondary: meredithbledsoesf@gmail.com);
+  birthday **Aug 14**. Landlord insurance for the TN cabin: **Obie**.
 - Works at **Google** (compensation/refresher analysis done Aug 2026; open to
   watching roles at target companies — list not yet defined, ask her).
 - **Properties:** Tennessee cabin at 4325 New Pioneer Trail (refinance loan
@@ -106,6 +107,8 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-14:** Jamal's Friday run: noted birthday (Aug 14) and Obie as the
+  cabin's landlord insurer (inspection notice received).
 - **2026-08-12 (v3.1):** Added `ventures/` folder: README.md portfolio naming
   **Confetti Confessions** and **Haven** explicitly, plus `skill-ideas.md` — a
   brainstorm area for skills to sell to companies, seeded with 8 ideas traced
