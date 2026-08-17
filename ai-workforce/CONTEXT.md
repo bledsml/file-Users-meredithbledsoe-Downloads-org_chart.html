@@ -12,10 +12,12 @@
   birthday **Aug 14**. Landlord insurance for the TN cabin: **Obie**.
 - Works at **Google** (compensation/refresher analysis done Aug 2026; open to
   watching roles at target companies — list not yet defined, ask her).
-- **Properties:** Tennessee cabin at 4325 New Pioneer Trail (refinance loan
-  #265502580 researched Jul 2026), a Kentucky house (closed ~May 2026), family
-  stays at "Mom's cabin" (arrival checklist built Jul 2026). Uses **Hospitable**
-  for short-term-rental management.
+- **Properties:** Tennessee cabin "**Firefly Cottage**" at 4325 New Pioneer Trail
+  (refinance loan #265502580 researched Jul 2026), Kentucky house "**The Old
+  Kentucky Estate**" (closed ~May 2026; live on Airbnb as of Aug 2026 — first
+  three bookings landed Aug 16–17 totaling ~$6.7k), family stays at "Mom's
+  cabin" (arrival checklist built Jul 2026). Uses **Hospitable** ($59/mo) for
+  short-term-rental management.
 - **Dog:** George. Grooming-slot watcher already built (`grooming-watcher/` in
   this repo). Chewy Autoship for his supplies.
 - **Health goals:** daily protein target with effortless logging; wants Oura ring
@@ -63,6 +65,9 @@ Aug 6), LMNT (~bimonthly), Apple News+ ($12.99/mo), Bloomberg, Marina Run Club
 Unlimited Grocery Delivery, Hospitable, Bumble Premium (on sf@ address).
 New Aug 12: **ChatGPT Plus** ($20/mo, subscribed overnight — flagged in the
 Aug 12 brief to confirm intentional).
+New Aug 16–17 (Monday watch): **NYT subscription** (welcome email Aug 16),
+**Hospitable invoice $59 "Payment Due"** (verify autopay), **Target Circle 360**
+membership observed. PG&E on autopay ($95.84 due 9/4, no action).
 Canceled/ending: Sephora Same-Day Unlimited (Feb), Tractive (cancel requested
 June — confirm it ended).
 
@@ -107,6 +112,9 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-17 (Monday watch):** Old Kentucky Estate live on Airbnb — 3 bookings
+  (~$6.7k). Subscription inventory: added NYT, Hospitable $59/mo, Target Circle
+  360. Standing flags still open: Ring (converts ~Aug 21), Chewy card.
 - **2026-08-14:** Jamal's Friday run: noted birthday (Aug 14) and Obie as the
   cabin's landlord insurer (inspection notice received).
 - **2026-08-12 (v3.1):** Added `ventures/` folder: README.md portfolio naming
