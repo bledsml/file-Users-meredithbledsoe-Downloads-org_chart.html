@@ -68,6 +68,11 @@ Aug 12 brief to confirm intentional).
 New Aug 16–17 (Monday watch): **NYT subscription** (welcome email Aug 16),
 **Hospitable invoice $59 "Payment Due"** (verify autopay), **Target Circle 360**
 membership observed. PG&E on autopay ($95.84 due 9/4, no action).
+Aug 24 (Monday watch): **Starlink $140/mo** (cabin internet, autopay, renews
+20th). **Ring trial presumed converted Aug 21** — no cancellation seen; verify
+the charge and decide keep/cancel. **Sevier Co-op Electric** (Firefly) has NO
+autopay — bill due Aug 25 unpaid as of this morning. Chewy card fix still
+unconfirmed (order ships Aug 26).
 Canceled/ending: Sephora Same-Day Unlimited (Feb), Tractive (cancel requested
 June — confirm it ended).
 
@@ -112,6 +117,14 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-24 (Monday watch):** Maui trip canceled Aug 23 (minor head injury —
+  Four Seasons refunded; United return A3QEP4 + Hertz still to unwind). KY
+  house's Airbnb listing is titled "The Bourbon Trail"; first KY guests
+  (Melissa) left 5 stars. Becky's Cowork onboarding started organically
+  (expense-reconciliation prompt sent; she's connecting Gmail) — becky-ops is
+  live in practice. Subscriptions: added Starlink $140/mo; Ring presumed
+  converted. Note: a separate "Your Day Ahead" daily-brief email (from
+  meredithbledsoesf+cc@gmail.com) also runs — avoid duplicating it.
 - **2026-08-17 (Monday watch):** Old Kentucky Estate live on Airbnb — 3 bookings
   (~$6.7k). Subscription inventory: added NYT, Hospitable $59/mo, Target Circle
   360. Standing flags still open: Ring (converts ~Aug 21), Chewy card.
