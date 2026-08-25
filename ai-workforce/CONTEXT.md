@@ -70,9 +70,13 @@ New Aug 16–17 (Monday watch): **NYT subscription** (welcome email Aug 16),
 membership observed. PG&E on autopay ($95.84 due 9/4, no action).
 Aug 24 (Monday watch): **Starlink $140/mo** (cabin internet, autopay, renews
 20th). **Ring trial presumed converted Aug 21** — no cancellation seen; verify
-the charge and decide keep/cancel. **Sevier Co-op Electric** (Firefly) has NO
-autopay — bill due Aug 25 unpaid as of this morning. Chewy card fix still
-unconfirmed (order ships Aug 26).
+the charge and decide keep/cancel. Chewy card fix still unconfirmed (order
+ships Aug 26 — watch for ship/fail email).
+Aug 25: Sevier Electric RESOLVED — autopaid $240.09 (it does have autopay).
+Open items: Elite Cabin Care $585 (invoice 3842-2, re-issued, open since
+Aug 12); Goosehead DocuSign unsigned; TN Dept of Revenue correspondence for
+**MGB INVESTMENTS LLC** (her TN entity — sales & use tax, read via TNTAP);
+Maui unwind unconfirmed (UA1750/A3QEP4 + Hertz L680E9885C7).
 Canceled/ending: Sephora Same-Day Unlimited (Feb), Tractive (cancel requested
 June — confirm it ended).
 
