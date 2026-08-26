@@ -80,8 +80,8 @@ Maui unwind unconfirmed (UA1750/A3QEP4 + Hertz L680E9885C7).
 Canceled/ending: Sephora Same-Day Unlimited (Feb), Tractive (cancel requested
 June — confirm it ended).
 
-**Action flags raised:** Ring trial converts ~Aug 21; Chewy card on file failed
-4× in June and canceled one order.
+**Action flags raised:** Ring presumed converted Aug 21 (verify charge/decide).
+Chewy RESOLVED Aug 26 — order shipped, card working.
 
 ## Recurring appointments to systematize
 
@@ -121,6 +121,11 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-26:** CAREER MILESTONE — Anthropic interview scheduled (Hiring
+  Manager Screen, Aug 27 10:30am PT, Daniel Feeney). Allie K. Miller replied to
+  Meredith's InMail. Chewy card issue resolved (order shipped). Tahoe trip
+  Aug 27+ (she's also getting Tahoe/Olympic Valley listing alerts — possible
+  property #3 hunt; ask before assuming).
 - **2026-08-24 (Monday watch):** Maui trip canceled Aug 23 (minor head injury —
   Four Seasons refunded; United return A3QEP4 + Hertz still to unwind). KY
   house's Airbnb listing is titled "The Bourbon Trail"; first KY guests
