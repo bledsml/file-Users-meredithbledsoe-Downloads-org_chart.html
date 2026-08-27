@@ -121,6 +121,10 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-27:** OpenAI intro call scheduled too (Aug 28, 11am, Vanessa King)
+  — two AI labs in two days. A "claude/hackathon-rsi-idea" branch appeared in
+  the repo (from Sunday's RSI hack — she's building something; ask her about
+  it). UCSF Neuro Recovery follow-up Aug 28 9am (concussion care continuing).
 - **2026-08-26:** CAREER MILESTONE — Anthropic interview scheduled (Hiring
   Manager Screen, Aug 27 10:30am PT, Daniel Feeney). Allie K. Miller replied to
   Meredith's InMail. Chewy card issue resolved (order shipped). Tahoe trip
