@@ -52,7 +52,8 @@ node src/run.js
 ```
 
 A generation is ~16s (90 episodes, 12-way concurrency). The full default
-experiment is 27 evaluations plus **18 API calls** — episodes are pure Playwright,
+experiment is 27 evaluations plus **12 API calls** (2 self-editing arms x 3 seeds x 2
+edits; up to 24 if edits are rejected and retried) — episodes are pure Playwright,
 so the model is only ever invoked to *edit the memory*, never to click a button.
 
 ---
