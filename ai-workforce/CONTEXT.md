@@ -121,6 +121,13 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-28:** NEW VENTURE — Etsy shop **"KidsColoringBonanza"** opened
+  overnight ($29 setup fee paid, identity verified, 2FA on; listings not yet
+  live — listing-poster/PR #22 is the natural next tool). George booked at
+  **Pawsitively Groomed Pet Salon**, Sep 1 12pm, 1427 Broadway Burlingame
+  (booking 64XXZE) — new groomer for the roster. **Netflix $19.99/mo via
+  PayPal** spotted — add to subscription inventory Monday. OpenAI call moved
+  30 min earlier (10:30am PT Aug 28).
 - **2026-08-27:** OpenAI intro call scheduled too (Aug 28, 11am, Vanessa King)
   — two AI labs in two days. A "claude/hackathon-rsi-idea" branch appeared in
   the repo (from Sunday's RSI hack — she's building something; ask her about
