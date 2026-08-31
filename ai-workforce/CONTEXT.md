@@ -121,6 +121,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-08-31 (Monday watch):** 🎉 FIRST ETSY SALE — KidsColoringBonanza sold
+  "Friendly Not Scary Halloween" for $4.99 (Aug 29, order 4159407528). Domain
+  **mgbkids** bought on Squarespace (ICANN verification pending — 15-day
+  window). Second LLC surfaced: **MGB INVESTMENTS KENTUCKY LLC** (LegalZoom
+  compliance steps pending) — TN entity is MGB Investments LLC. Career: coach
+  **Elatia Abate** engaged (NDA signed, paid via Stripe; strategy call Aug 31);
+  interview coach Larry Friedberg pending scheduling. Health: Cognitive FX
+  exit packet received (concussion follow-up to book). George's meds reminder
+  is a recurring Tue 9am event ("Give Jorge his heartworm and flea pill").
+  Subscriptions added: Netflix $19.99/mo (PayPal), UCSF payment plan $193.62
+  autopay (Sep 4), Filbert St parking $622/mo (AppFolio autopay), Elatia Abate
+  coaching (recurring Stripe invoices), Squarespace domain (annual).
 - **2026-08-28:** NEW VENTURE — Etsy shop **"KidsColoringBonanza"** opened
   overnight ($29 setup fee paid, identity verified, 2FA on; listings not yet
   live — listing-poster/PR #22 is the natural next tool). George booked at
