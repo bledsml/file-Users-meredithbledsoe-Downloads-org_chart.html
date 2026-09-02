@@ -121,6 +121,14 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-02:** Anthropic passed on the Finance & Strategy Manager role
+  (gracious close; recruiter Lynda wants to keep in touch — comp-analyst should
+  log this). Meredith is on medical leave this week (told Larry Friedberg;
+  Sedgwick office hours booked) — keep briefs gentle, deprioritize work blocks.
+  KY listing watch: Clayton confirmed Nov 12–16 AND Jen pre-approved Nov 13–16
+  at The Bourbon Trail — flagged possible double-book. New subscription via
+  phone: myze/iVIZIA eye care (needs email confirm). Laura booked Firefly
+  Oct 21–23. She's attending "Build Advanced Agents with Claude" Sep 3.
 - **2026-08-31 (Monday watch):** 🎉 FIRST ETSY SALE — KidsColoringBonanza sold
   "Friendly Not Scary Halloween" for $4.99 (Aug 29, order 4159407528). Domain
   **mgbkids** bought on Squarespace (ICANN verification pending — 15-day
