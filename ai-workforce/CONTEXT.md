@@ -121,6 +121,11 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-03:** RESOLVED — TN sales & use tax returns for MGB Investments LLC
+  filed (Jun/Jul/Aug) and processed by TNTAP. Starlink price dropped to
+  $130/mo. Squarespace mgbkids verification still pending (3rd notice —
+  suspends ~Sep 13). Still open: Elite Cabin Care $585, Goosehead DocuSign,
+  KY LLC compliance. Stephen Crosby arrives at The Old Kentucky Estate Sep 4–7.
 - **2026-09-02:** Anthropic passed on the Finance & Strategy Manager role
   (gracious close; recruiter Lynda wants to keep in touch — comp-analyst should
   log this). Meredith is on medical leave this week (told Larry Friedberg;
