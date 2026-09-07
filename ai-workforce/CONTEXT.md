@@ -121,6 +121,14 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-07 (Monday watch):** First Airbnb payout landed in MGB Investments
+  LLC checking (…7904): $1,172.82. KY Certificate of Existence obtained (for
+  Wells Fargo business account — appts Sep 8, conflicting confirmations vs
+  Sep 9, flagged). mgbkids has Google Workspace now (meredith@mgbkids.com) but
+  domain verification STILL pending — 4th notice, suspends ~Sep 13. Goosehead
+  DocuSign still unsigned (re-reminded). Guest trip booked: Vegas Airbnb
+  Dec 28–Jan 2 (11 beds; prior reservation canceled/refunded). Larry Friedberg
+  advisory call Sep 8. No new subscriptions this week.
 - **2026-09-03:** RESOLVED — TN sales & use tax returns for MGB Investments LLC
   filed (Jun/Jul/Aug) and processed by TNTAP. Starlink price dropped to
   $130/mo. Squarespace mgbkids verification still pending (3rd notice —
