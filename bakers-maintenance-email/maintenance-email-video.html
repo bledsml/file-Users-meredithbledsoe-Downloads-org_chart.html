@@ -1,0 +1,787 @@
+<title>The Ten-Minute Maintenance Email</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EFE9DC;
+  --surface:#FBF7EF;
+  --surface-2:#F4EDDF;
+  --ink:#1C2422;
+  --ink-2:#5B665F;
+  --ink-3:#8B958D;
+  --line:#DCD3C1;
+  --line-2:#C6BBA4;
+  --amber:#E0940F;
+  --amber-soft:#F8E6BF;
+  --teal:#124B45;
+  --clay:#BC5230;
+  --sage:#4E7355;
+  --cream:#F7EFDE;
+  --good:#2F7A55;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#141917;
+    --surface:#1B211F;
+    --surface-2:#212927;
+    --ink:#EDE7DA;
+    --ink-2:#9EA8A0;
+    --ink-3:#75807A;
+    --line:#2C3532;
+    --line-2:#3D4844;
+    --amber:#F2B133;
+    --amber-soft:#3A2C0E;
+    --good:#6FBF95;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141917;
+  --surface:#1B211F;
+  --surface-2:#212927;
+  --ink:#EDE7DA;
+  --ink-2:#9EA8A0;
+  --ink-3:#75807A;
+  --line:#2C3532;
+  --line-2:#3D4844;
+  --amber:#F2B133;
+  --amber-soft:#3A2C0E;
+  --good:#6FBF95;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px;margin:0 auto;padding-inline:20px;padding-block:40px 80px}
+h1,h2,h3,.disp{font-family:"Fraunces","Iowan Old Style",Georgia,serif;font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+.masthead{display:flex;flex-direction:column;gap:16px;margin-bottom:26px}
+.hello{display:inline-flex;align-items:center;gap:9px;align-self:flex-start;background:var(--amber-soft);color:var(--ink);border-radius:99px;padding:7px 16px;font-size:14px;font-weight:600}
+.masthead h1{font-size:clamp(36px,6.6vw,58px);line-height:1.02}
+.masthead h1 em{font-style:italic;color:var(--amber)}
+.deck{max-width:58ch;color:var(--ink-2);font-size:18px;margin:0}
+.needs{display:flex;flex-wrap:wrap;gap:10px}
+.need{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:8px 16px 8px 10px;font-size:14.5px;font-weight:500}
+.need i{width:26px;height:26px;border-radius:50%;background:var(--amber);color:#241804;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:13px;flex:none}
+
+/* ---------- player ---------- */
+.player{background:#0E1413;border-radius:16px;overflow:hidden;box-shadow:0 24px 50px -30px rgba(20,30,26,.55)}
+.stage{position:relative;aspect-ratio:16/9;max-width:100%;container-type:inline-size;overflow:hidden;background:var(--teal)}
+.scene{position:absolute;inset:0;padding:6cqi;display:flex;flex-direction:column;justify-content:center;gap:3cqi;background:var(--bg,#124B45);color:var(--fg,#F7EFDE)}
+.scene-anim{animation:pop .45s cubic-bezier(.2,.8,.3,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.985) translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.scene-anim{animation:none}}
+#s1,#s4,#s7{--bg:#124B45;--fg:#F7EFDE}
+#s2{--bg:#BC5230;--fg:#FFF1E4}
+#s3,#s6{--bg:#F7EFDE;--fg:#1C2422}
+#s5,#s10{--bg:#E0940F;--fg:#261904}
+#s8{--bg:#8C3F26;--fg:#FFF1E4}
+#s9{--bg:#4E7355;--fg:#F4F7EE}
+
+.kick{font-size:2.4cqi;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.72}
+.big{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:7cqi;line-height:1.02;letter-spacing:-.02em}
+.mid{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:5cqi;line-height:1.08}
+.say{font-size:2.9cqi;line-height:1.4;max-width:44ch;opacity:.9}
+
+.tiles{display:flex;gap:2.4cqi}
+.tile{flex:1;display:flex;flex-direction:column;gap:1.6cqi}
+.slab{height:17cqi;border-radius:2cqi;position:relative;overflow:hidden;background:#7C7E76}
+.slab.a{background:linear-gradient(118deg,#E8E9E2 0%,#BFC3B8 42%,#9BA096 100%)}
+.slab.b{background:linear-gradient(118deg,#C5C7BE 0%,#A6AAA0 55%,#8B9086 100%)}
+.slab.c{background:linear-gradient(118deg,#9EA199 0%,#8A8E86 60%,#767A73 100%)}
+.slab i{position:absolute;top:-30%;left:-10%;width:34%;height:170%;transform:rotate(18deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0))}
+.slab.b i{opacity:.42;width:24%}
+.slab.c i{opacity:.12;width:16%}
+.tile span{font-size:2.5cqi;font-weight:600}
+.tile em{font-style:normal;font-size:2.2cqi;opacity:.8;display:block}
+
+.trio{display:flex;gap:2.4cqi}
+.trio .box{flex:1;background:rgba(18,75,69,.07);border:.35cqi solid rgba(18,75,69,.16);border-radius:2.4cqi;padding:2.8cqi;display:flex;flex-direction:column;gap:1.4cqi}
+.trio .num{width:6cqi;height:6cqi;border-radius:50%;background:var(--amber);color:#261904;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:3.2cqi}
+.trio b{font-family:"Fraunces",serif;font-size:3.4cqi;line-height:1.1}
+.trio p{margin:0;font-size:2.3cqi;line-height:1.35;opacity:.78}
+
+.piles{display:flex;gap:3cqi}
+.pile{flex:1;display:flex;flex-direction:column;gap:1.2cqi}
+.pile .hdr{font-size:2.7cqi;font-weight:700;display:flex;align-items:center;gap:1.2cqi}
+.pile .hdr u{text-decoration:none;width:3.6cqi;height:3.6cqi;border-radius:50%;background:var(--amber);display:block;flex:none}
+.pile .hdr.alt u{background:#F7EFDE}
+.pile .row{background:rgba(247,239,222,.12);border-radius:1.2cqi;height:4.4cqi;display:flex;align-items:center;padding:0 1.6cqi;font-size:2.1cqi;opacity:.85}
+
+.chat{display:flex;flex-direction:column;gap:2cqi}
+.msg{max-width:78%;border-radius:3cqi;padding:2.4cqi 3cqi;font-size:2.6cqi;line-height:1.35}
+.msg.you{background:#261904;color:#F9EBCD;border-bottom-right-radius:.8cqi;align-self:flex-end}
+.msg.cl{background:rgba(38,25,4,.1);border-bottom-left-radius:.8cqi;align-self:flex-start}
+
+.phonewrap{display:flex;gap:4cqi;align-items:center}
+.phone{width:30cqi;flex:none;background:#1C2422;border-radius:4cqi;padding:1.2cqi;box-shadow:0 3cqi 5cqi -2.4cqi rgba(28,36,34,.5)}
+.phone .screen{background:#fff;border-radius:3cqi;padding:2.4cqi;display:flex;flex-direction:column;gap:1.4cqi;min-height:36cqi}
+.phone .from{font-size:1.8cqi;color:#6B7570}
+.phone .subj{font-family:"Fraunces",serif;font-weight:700;font-size:2.6cqi;line-height:1.15;color:#1C2422}
+.phone .ln{height:1.3cqi;border-radius:99px;background:#E6E3DA}
+.phone .ln.s{width:62%}
+.phone .cta{margin-top:auto;background:var(--amber);color:#261904;border-radius:1.4cqi;text-align:center;padding:1.4cqi;font-size:1.9cqi;font-weight:700}
+.notes{display:flex;flex-direction:column;gap:1.8cqi}
+.note{display:flex;gap:1.6cqi;font-size:2.4cqi;line-height:1.3}
+.note u{text-decoration:none;flex:none;width:3.4cqi;height:3.4cqi;border-radius:50%;background:var(--amber);color:#261904;display:grid;place-items:center;font-size:2cqi;font-weight:700;margin-top:.2cqi}
+
+.plug{display:flex;align-items:center;gap:2cqi}
+.plug .app{flex:1;background:rgba(247,239,222,.1);border:.35cqi solid rgba(247,239,222,.28);border-radius:2.6cqi;padding:3cqi;text-align:center}
+.plug .app b{font-family:"Fraunces",serif;font-size:4cqi;display:block}
+.plug .app span{font-size:2.1cqi;opacity:.75}
+.plug .link{flex:none;font-size:4cqi;color:var(--amber)}
+.draft{align-self:flex-start;background:var(--amber);color:#261904;border-radius:99px;padding:1.2cqi 2.6cqi;font-size:2.4cqi;font-weight:700}
+
+.checks{display:flex;flex-direction:column;gap:1.9cqi}
+.ck{display:flex;gap:2cqi;align-items:center;font-size:2.7cqi;line-height:1.25}
+.ck u{text-decoration:none;flex:none;width:4.6cqi;height:4.6cqi;border-radius:1.4cqi;background:rgba(255,241,228,.16);display:grid;place-items:center;font-size:2.6cqi}
+
+.seasons{display:flex;gap:2cqi}
+.sea{flex:1;background:rgba(244,247,238,.12);border-radius:2cqi;padding:2.2cqi;display:flex;flex-direction:column;gap:.8cqi}
+.sea b{font-family:"Fraunces",serif;font-size:3.2cqi}
+.sea span{font-size:2.05cqi;line-height:1.3;opacity:.85}
+.clock{display:inline-flex;align-items:center;gap:1.4cqi;background:rgba(244,247,238,.16);border-radius:99px;padding:1.2cqi 2.4cqi;font-size:2.5cqi;font-weight:600;align-self:flex-start}
+
+.endrow{display:flex;gap:2.4cqi}
+.endrow div{flex:1;background:rgba(38,25,4,.09);border-radius:2.2cqi;padding:2.6cqi;font-size:2.2cqi;line-height:1.3}
+.endrow b{font-family:"Fraunces",serif;font-size:3.2cqi;display:block;margin-bottom:.6cqi}
+
+.poster{position:absolute;inset:0;display:grid;place-items:center;gap:0;background:rgba(12,20,18,.5);border:0;cursor:pointer;padding:0}
+.poster .btn{display:flex;flex-direction:column;align-items:center;gap:14px}
+.poster .disc{width:82px;height:82px;border-radius:50%;background:var(--amber);color:#261904;display:grid;place-items:center;font-size:26px;padding-left:6px;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+.poster .lbl{color:#F7EFDE;font-weight:600;font-size:15px}
+.poster:focus-visible{outline:3px solid var(--amber);outline-offset:-8px}
+
+.caption{background:#0E1413;padding:18px 22px;min-height:96px;display:flex;align-items:center}
+.caption p{margin:0;color:#F7EFDE;font-size:18px;line-height:1.45;max-width:62ch}
+.transport{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#161D1B;flex-wrap:wrap}
+.tbtn{flex:none;height:42px;min-width:42px;padding:0 14px;border-radius:99px;border:0;background:#222C29;color:#F7EFDE;font:600 14px/1 "Public Sans",sans-serif;cursor:pointer;display:flex;align-items:center;gap:8px}
+.tbtn:hover{background:#2C3733}
+.tbtn.main{background:var(--amber);color:#261904}
+.tbtn[aria-pressed="false"]{opacity:.65}
+.tc{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:#95A09B;font-variant-numeric:tabular-nums;flex:none}
+input[type=range]{flex:1;min-width:90px;-webkit-appearance:none;appearance:none;background:transparent;height:24px;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:5px;border-radius:99px;background:#2C3733}
+input[type=range]::-moz-range-track{height:5px;border-radius:99px;background:#2C3733}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--amber);margin-top:-5px}
+input[type=range]::-moz-range-thumb{width:15px;height:15px;border:0;border-radius:50%;background:var(--amber)}
+input[type=range]:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.voicenote{padding:0 16px 12px;background:#161D1B;color:#8A948F;font-size:12.5px;margin:0}
+
+.chapters{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px}
+.ch{display:flex;gap:12px;align-items:baseline;text-align:left;background:transparent;border:0;border-radius:8px;padding:9px 10px;cursor:pointer;color:var(--ink-2);font:inherit;font-size:15px}
+.ch:hover{background:var(--surface)}
+.ch .ch-t{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:none}
+.ch[aria-current="true"]{background:var(--amber-soft);color:var(--ink);font-weight:600}
+.ch[aria-current="true"] .ch-t{color:var(--amber)}
+
+section{margin-top:56px}
+.s-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.s-head .badge{flex:none;width:38px;height:38px;border-radius:50%;background:var(--amber);color:#261904;display:grid;place-items:center;font-weight:700;font-size:16px}
+.s-head h2{font-size:clamp(23px,3.6vw,30px)}
+.s-note{color:var(--ink-2);max-width:62ch;margin:0 0 18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.card + .card{margin-top:14px}
+pre{margin:0;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:16px}
+.copybar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.copybar h3{font-size:19px}
+.copy{font:600 14px/1 "Public Sans",sans-serif;padding:11px 18px;border-radius:99px;border:0;background:var(--ink);color:var(--surface);cursor:pointer}
+.copy:hover{background:var(--amber);color:#261904}
+.copy[data-done="1"]{background:var(--good);color:#fff}
+.subjects{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:10px}
+.subjects li{display:flex;gap:12px;align-items:baseline;font-size:16px}
+.subjects li span{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);flex:none}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.list li{display:flex;gap:14px;align-items:flex-start}
+.list .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--amber-soft);color:var(--ink);display:grid;place-items:center;font:700 13px/1 "Public Sans",sans-serif;margin-top:2px}
+.list b{display:block}
+.list p{margin:3px 0 0;color:var(--ink-2);font-size:15.5px}
+.plain{background:var(--amber-soft);border-radius:12px;padding:16px 18px;margin-top:16px;font-size:15.5px}
+.plain b{display:block;margin-bottom:4px}
+.transcript{display:flex;flex-direction:column}
+.tline{display:flex;gap:16px;align-items:baseline;padding:8px 10px;border-radius:8px;cursor:pointer}
+.tline:hover{background:var(--surface)}
+.tline .tt{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;font-variant-numeric:tabular-nums;width:44px}
+.tline p{margin:0;font-size:16px}
+.tline.head{cursor:default;margin-top:18px;border-bottom:2px solid var(--line-2);border-radius:0}
+.tline.head:hover{background:transparent}
+.tline.head p{font-family:"Fraunces",serif;font-weight:700;font-size:17px}
+.tline.head .tt{color:var(--amber)}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:20px;color:var(--ink-3);font-size:14px;display:flex;flex-direction:column;gap:10px}
+@media (max-width:600px){
+  body{font-size:16px}
+  .caption{min-height:112px;padding:14px 16px}
+  .caption p{font-size:16px}
+  .chapters{grid-template-columns:1fr}
+  .tbtn span.txt{display:none}
+  .tbtn{padding:0 12px}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="hello">👋 Made for Chris at Baker&rsquo;s Floor &amp; Surface</span>
+    <h1>How to send one email<br>that keeps you <em>top of mind</em></h1>
+    <p class="deck">Claude writes it. Mailchimp sends it. You read it over and hit go. About ten minutes, start to finish &mdash; and it puts your maintenance program back in front of every client you&rsquo;ve already worked for.</p>
+    <div class="needs">
+      <span class="need"><i>1</i>Your client list</span>
+      <span class="need"><i>2</i>A Claude account</span>
+      <span class="need"><i>3</i>A Mailchimp account (free plan is fine)</span>
+    </div>
+  </header>
+
+  <div class="player">
+    <div class="stage" id="stage">
+
+      <div class="scene" id="s1">
+        <p class="kick">A short walkthrough</p>
+        <h2 class="big">Ten minutes.<br>One email.<br>A lot of floors.</h2>
+        <p class="say">Turn the sound on and press play &mdash; or just read along at the bottom.</p>
+      </div>
+
+      <div class="scene" id="s2" hidden>
+        <p class="kick">First, why bother</p>
+        <div class="tiles">
+          <div class="tile"><div class="slab a"><i></i></div><span>Day one<em>Looks perfect</em></span></div>
+          <div class="tile"><div class="slab b"><i></i></div><span>A year in<em>Grit, wrong cleaner, rough pad</em></span></div>
+          <div class="tile"><div class="slab c"><i></i></div><span>Two years<em>Dull. Now it needs restoring</em></span></div>
+        </div>
+        <p class="say">Maintenance would have kept it in the first square.</p>
+      </div>
+
+      <div class="scene" id="s3" hidden>
+        <p class="kick">What you need</p>
+        <div class="trio">
+          <div class="box"><span class="num">1</span><b>Your list</b><p>Past clients and their email addresses</p></div>
+          <div class="box"><span class="num">2</span><b>Claude</b><p>Writes the email for you</p></div>
+          <div class="box"><span class="num">3</span><b>Mailchimp</b><p>Sends it to everyone at once</p></div>
+        </div>
+      </div>
+
+      <div class="scene" id="s4" hidden>
+        <p class="kick">Step one &middot; Your list</p>
+        <div class="piles">
+          <div class="pile">
+            <span class="hdr"><u></u>Builders &amp; GCs</span>
+            <span class="row">Marlow Construction</span><span class="row">Bayline Builders</span><span class="row">Ridgeway GC</span>
+          </div>
+          <div class="pile">
+            <span class="hdr alt"><u></u>Owners &amp; building managers</span>
+            <span class="row">Harborview Properties</span><span class="row">Pier 9 Management</span><span class="row">Elm Court Facilities</span>
+          </div>
+        </div>
+        <p class="say">Two piles. Two slightly different emails. Example names shown.</p>
+      </div>
+
+      <div class="scene" id="s5" hidden>
+        <p class="kick">Step two &middot; Tell Claude who you are</p>
+        <div class="chat">
+          <div class="msg you">We&rsquo;re Baker&rsquo;s Floor &amp; Surface in San Mateo. Concrete, stone, metal and wood, since 1989. Union crews. San Francisco, Oakland, San Jose.</div>
+          <div class="msg cl">Got it. Who&rsquo;s this email going to?</div>
+          <div class="msg you">Past clients. Offer them a free look at the floors we installed.</div>
+        </div>
+      </div>
+
+      <div class="scene" id="s6" hidden>
+        <p class="kick">Step three &middot; Read it like they will</p>
+        <div class="phonewrap">
+          <div class="phone"><div class="screen">
+            <span class="from">Chris Baker</span>
+            <span class="subj">Before your floors start showing it</span>
+            <span class="ln"></span><span class="ln"></span><span class="ln s"></span>
+            <span class="ln"></span><span class="ln s"></span>
+            <span class="cta">650-652-9440</span>
+          </div></div>
+          <div class="notes">
+            <span class="note"><u>✓</u>A subject line that fits on a phone</span>
+            <span class="note"><u>✓</u>Their building named in the first line</span>
+            <span class="note"><u>✓</u>One thing to say yes to</span>
+            <span class="note"><u>✓</u>Your number, for the ones who&rsquo;d rather call</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene" id="s7" hidden>
+        <p class="kick">Step four &middot; Plug them together</p>
+        <div class="plug">
+          <div class="app"><b>Claude</b><span>writes it</span></div>
+          <span class="link">🔌</span>
+          <div class="app"><b>Mailchimp</b><span>sends it</span></div>
+        </div>
+        <p class="say">Settings &rsaquo; Connectors &rsaquo; Mailchimp. Sign in once and you&rsquo;re done.</p>
+        <span class="draft">Always ask for a draft &mdash; never a send</span>
+      </div>
+
+      <div class="scene" id="s8" hidden>
+        <p class="kick">Step five &middot; Before it goes out</p>
+        <div class="checks">
+          <div class="ck"><u>✓</u>It comes from <b>Chris Baker</b>, not the company</div>
+          <div class="ck"><u>✓</u>Replies land where you&rsquo;ll see them today</div>
+          <div class="ck"><u>✓</u>Send yourself a test, open it on your phone</div>
+          <div class="ck"><u>✓</u>No blanks &mdash; nothing that says &ldquo;Hi ,&rdquo;</div>
+          <div class="ck"><u>✓</u>Leave the unsubscribe link alone</div>
+        </div>
+      </div>
+
+      <div class="scene" id="s9" hidden>
+        <p class="kick">Step six &middot; Pick your moment</p>
+        <span class="clock">🕗 Tuesday, 7:45 in the morning</span>
+        <div class="seasons">
+          <div class="sea"><b>Feb</b><span>Before the rain</span></div>
+          <div class="sea"><b>May</b><span>Clean up after it</span></div>
+          <div class="sea"><b>Aug</b><span>Before holiday crowds</span></div>
+          <div class="sea"><b>Oct</b><span>Budget season</span></div>
+        </div>
+      </div>
+
+      <div class="scene" id="s10" hidden>
+        <h2 class="mid">That&rsquo;s the whole thing.</h2>
+        <div class="endrow">
+          <div><b>The words</b>Paste them into Claude</div>
+          <div><b>The email</b>Change two lines</div>
+          <div><b>The checks</b>Then hit send</div>
+        </div>
+        <p class="say">All of it is written out below this video.</p>
+      </div>
+
+      <button class="poster" id="poster" type="button" aria-label="Play the walkthrough with sound">
+        <span class="btn"><span class="disc">&#9654;</span><span class="lbl">Play with sound</span></span>
+      </button>
+    </div>
+
+    <div class="caption"><p id="caption">Hey Chris. This is a short walkthrough on staying in front of the clients you&rsquo;ve already worked for.</p></div>
+
+    <div class="transport">
+      <button class="tbtn main" id="playbtn" type="button" aria-label="Play">&#9654;</button>
+      <button class="tbtn" id="voicebtn" type="button" aria-pressed="true" aria-label="Turn the voice off">🔊 <span class="txt">Voice on</span></button>
+      <span class="tc" id="tcnow">0:00</span>
+      <input type="range" id="seek" min="0" max="100" step="0.1" value="0" aria-label="Move through the walkthrough">
+      <span class="tc" id="tcend">0:00</span>
+    </div>
+    <p class="voicenote" id="voicenote">The voice is your computer&rsquo;s built-in reader, so it sounds a little robotic. Turn it off any time and read the captions instead.</p>
+  </div>
+
+  <div class="chapters" id="chapters"></div>
+
+  <section>
+    <div class="s-head"><span class="badge">1</span><h2>What to paste into Claude</h2></div>
+    <p class="s-note">Open Claude, start a new chat, and paste this in. The only thing you need to change is the line in [brackets] &mdash; that&rsquo;s where you say who the email is going to. Everything else is already filled in about your business.</p>
+    <div class="card">
+      <div class="copybar"><h3>Copy this first</h3><button class="copy" data-copy="p1" type="button">Copy it</button></div>
+      <pre id="p1">Help me write one short email to past clients of my company.
+
+ABOUT US
+Baker's Floor &amp; Surface, San Mateo, California. Family-run, started in 1989.
+We're a commercial surface contractor: concrete grinding, polishing, sealing
+and staining; decorative concrete and micro-toppings; stone restoration,
+maintenance, facade and veneer work, historic stone preservation; metal and
+wood refinishing; graffiti removal. Union-trained crews. We work with general
+contractors, building owners and facility managers in San Francisco, Oakland,
+San Jose and the rest of the Bay Area. Phone: 650-652-9440.
+
+WHAT I'M OFFERING
+Our Preventative Maintenance Program. It's a scheduled maintenance visit for
+surfaces we've already installed or restored, so they keep their finish
+instead of needing a full restoration a few years later.
+
+WHO IT'S GOING TO
+[the general contractors we've worked with in the last three years]
+
+WHAT I WANT BACK
+1. Three subject lines, short enough to read on a phone. No exclamation
+   marks, no "don't miss out", nothing in all caps.
+2. One email under 180 words that sounds like I typed it myself between
+   jobs. Plain and direct, no marketing voice. It should:
+   - open by naming the work we did for them
+   - say what actually goes wrong when a floor isn't maintained: grit
+     tracked in at the doors, the wrong cleaner on stone, a scrubbing pad
+     that's too rough
+   - explain the maintenance program in one sentence
+   - end with ONE thing to say yes to: I'll take a look at what we
+     installed for them and send back a suggested schedule and a price,
+     free, no obligation
+3. A one-line P.S. with our phone number.
+
+Use these fill-in-the-blank tags so Mailchimp can personalize it:
+*|FNAME|*, *|COMPANY|*, *|PROPERTY|*, *|SERVICE|*, *|MONTH_YEAR|*.
+Give me a plain-text version and a simple HTML version.
+
+Then show me the same email rewritten for building owners and property
+managers, who care more about budget and keeping the space open.</pre>
+      <div class="plain"><b>If it comes back sounding too polished</b>Just type: &ldquo;Cut the marketing voice. Make it sound like a contractor wrote it in five minutes.&rdquo; Claude will rewrite it. You can do that as many times as you like.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="badge">2</span><h2>The email itself</h2></div>
+    <p class="s-note">This is what you&rsquo;re aiming for. The bits between the <span class="mono">*| |*</span> marks are blanks that fill themselves in from your list &mdash; the client&rsquo;s first name, their building, and so on.</p>
+    <div class="card">
+      <ul class="subjects">
+        <li><span>OPTION 1</span>Before your floors start showing it</li>
+        <li><span>OPTION 2</span>Quick question about *|PROPERTY|*</li>
+        <li><span>OPTION 3</span>Your *|SERVICE|* is due for a look</li>
+      </ul>
+      <div class="copybar"><h3>The email</h3><button class="copy" data-copy="email" type="button">Copy it</button></div>
+      <pre id="email">Hi *|FNAME|*,
+
+We finished the *|SERVICE|* at *|PROPERTY|* back in *|MONTH_YEAR|*. Hope it's
+still doing its job.
+
+Most of the floors we install don't fail. They just get worn down quietly.
+Grit tracked in at the doors. The wrong cleaner on stone. A scrubbing pad
+that's a grade too rough. Two or three years of that, and a floor that could
+have been maintained needs to be restored instead. That costs a lot more, and
+the space is out of use while we do it.
+
+That's why we run maintenance programs: a scheduled visit on a rhythm that
+matches your foot traffic, so the floor keeps its finish instead of needing
+rescuing.
+
+If it's useful, I'll take a look at what we installed for *|COMPANY|* and send
+back a suggested schedule and a price. No charge, no obligation. Just reply
+and tell me which building.
+
+Chris Baker
+President, Baker's Floor &amp; Surface
+San Francisco, Oakland, San Jose and the Bay Area since 1989
+
+P.S. Easier to talk it through? The shop is 650-652-9440.</pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="badge">3</span><h2>Hooking Claude up to Mailchimp</h2></div>
+    <p class="s-note">A connector is just a link between two accounts. Set it up once, and Claude can build the email inside Mailchimp for you instead of you copying and pasting.</p>
+    <div class="card">
+      <ul class="list">
+        <li><span class="n">1</span><span><b>In Claude, open Settings, then Connectors</b><p>Look through the list for Mailchimp and turn it on.</p></span></li>
+        <li><span class="n">2</span><span><b>Sign in to Mailchimp when it asks, and say yes</b><p>That&rsquo;s the whole setup. You only do it once.</p></span></li>
+        <li><span class="n">3</span><span><b>Ask Claude what lists you have</b><p>Type: &ldquo;What audiences and groups are in my Mailchimp?&rdquo; Now you know the exact names to use.</p></span></li>
+        <li><span class="n">4</span><span><b>Ask for a draft &mdash; never a send</b><p>Claude builds it and stops. You open Mailchimp, look it over yourself, and press send.</p></span></li>
+        <li><span class="n">5</span><span><b>Can&rsquo;t find Mailchimp in the connector list?</b><p>No problem at all. Copy the email out of the chat and paste it into a normal Mailchimp campaign. Same result, one extra step.</p></span></li>
+      </ul>
+      <div class="copybar" style="margin-top:20px"><h3>What to type once it&rsquo;s connected</h3><button class="copy" data-copy="p2" type="button">Copy it</button></div>
+      <pre id="p2">Using my Mailchimp account, please create a DRAFT campaign for me.
+
+Audience: [Past clients]
+Group or segment: [Building managers]
+Subject line: use option 2 above
+Body: use the HTML version above
+From name: Chris Baker
+Reply-to: [chris@bakersfloorandsurface.com]
+
+Save it as a draft. Do not send it. Then tell me what you created and how
+many people are in that group.</pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="badge">4</span><h2>Before you hit send</h2></div>
+    <div class="card">
+      <ul class="list">
+        <li><span class="n">01</span><span><b>Make sure it comes from &ldquo;Chris Baker&rdquo;</b><p>Not &ldquo;Baker&rsquo;s Floor &amp; Surface.&rdquo; People open notes from people they&rsquo;ve met.</p></span></li>
+        <li><span class="n">02</span><span><b>Point replies at an inbox you check</b><p>Replies are the entire point of this. Don&rsquo;t let them land somewhere nobody looks.</p></span></li>
+        <li><span class="n">03</span><span><b>Send yourself a test and read it on your phone</b><p>Mailchimp has a &ldquo;send a test email&rdquo; button. That&rsquo;s where your clients will read it, standing in a hallway.</p></span></li>
+        <li><span class="n">04</span><span><b>Look for blanks</b><p>Use Mailchimp&rsquo;s preview with a real contact. If it opens &ldquo;Hi ,&rdquo; with no name, something didn&rsquo;t fill in.</p></span></li>
+        <li><span class="n">05</span><span><b>Leave the unsubscribe link in</b><p>It has to be there by law, and it protects the email address you send estimates from.</p></span></li>
+        <li><span class="n">06</span><span><b>Only send to people who know you</b><p>Past clients only. Never a bought list.</p></span></li>
+      </ul>
+      <div class="plain"><b>Then set the rhythm</b>Four times a year, each with a real reason: February before the rain, May to clean up after it, August ahead of the holiday crowds, and October when they&rsquo;re setting next year&rsquo;s budget.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-head"><span class="badge">5</span><h2>Every word in the walkthrough</h2></div>
+    <p class="s-note">Click any line to jump the video there. And if you&rsquo;d rather record this in your own voice, this is your script &mdash; read it out at a normal pace and it runs about five minutes.</p>
+    <div class="transcript" id="transcript"></div>
+  </section>
+
+  <footer>
+    <p>Business details &mdash; started in 1989, San Mateo, union crews, concrete / stone / metal / wood, maintenance programs, 650-652-9440 &mdash; come from bakersfloorandsurface.com and public business listings. The client names on the slides are made-up examples.</p>
+    <p>The voice is your browser&rsquo;s built-in speech, so it needs sound turned on and works best in Chrome, Edge or Safari. Keyboard: space plays and pauses, left and right arrows skip between sections.</p>
+  </footer>
+</div>
+
+<script>
+var SCENES = [
+  {id:'s1', title:'Hello', lines:[
+    "Hey Chris. This is a short walkthrough on staying in front of the clients you've already worked for.",
+    "You'll use two things. Claude, to write the email. And Mailchimp, to send it out.",
+    "It takes about ten minutes. Let's go."]},
+  {id:'s2', title:'Why bother', lines:[
+    "Here's the thing about a floor you've just finished. On day one, it looks perfect.",
+    "Then people walk on it. Grit gets tracked in from the sidewalk.",
+    "Somebody cleans it with the wrong stuff, or scrubs it with a pad that's too rough.",
+    "A year or two later it's dull. And now it needs a full restoration instead of a touch-up.",
+    "Your maintenance program is what prevents that. This email reminds people it exists."]},
+  {id:'s3', title:'What you need', lines:[
+    "Before you start, you need three things.",
+    "One. A list of clients you've worked for, with their email addresses.",
+    "Two. A Claude account. That's what writes the email.",
+    "Three. A Mailchimp account. That's what sends it to everybody at once.",
+    "If you don't have Mailchimp yet, the free plan is plenty to start with."]},
+  {id:'s4', title:'Step 1: your list', lines:[
+    "Step one. Get your client list into a spreadsheet.",
+    "One row per client. Their name, their email, the building, what you did there, and roughly when.",
+    "Then split them into two piles.",
+    "Builders and general contractors in one pile. Building owners and property managers in the other.",
+    "The managers are the ones who pay for upkeep, so they get the version that talks about budget and downtime."]},
+  {id:'s5', title:'Step 2: talk to Claude', lines:[
+    "Step two. Open Claude and tell it about your business.",
+    "This part really matters. If Claude doesn't know who you are, you'll get something generic.",
+    "So tell it. Baker's Floor and Surface, San Mateo, doing this since 1989.",
+    "Concrete, stone, metal and wood. Union-trained crews. San Francisco, Oakland and San Jose.",
+    "Then ask for a short email offering a free look at the floors you installed for them.",
+    "I've written the whole thing out below this video. Just copy it and paste it in."]},
+  {id:'s6', title:'Step 3: read it over', lines:[
+    "Step three. Read what Claude gives you, the way your client would read it.",
+    "A short subject line. A first sentence that names their actual building.",
+    "One paragraph on what goes wrong. One on what you offer. Then one simple ask.",
+    "Leave your phone number in there. Plenty of your clients would rather call than type.",
+    "And if it sounds too polished, tell Claude to make it sound like you wrote it between jobs. It will."]},
+  {id:'s7', title:'Step 4: connect Mailchimp', lines:[
+    "Step four. Connect Claude to Mailchimp.",
+    "In Claude, go to Settings, then Connectors. Find Mailchimp and turn it on.",
+    "It'll ask you to sign in to Mailchimp once. Say yes. That's the whole setup.",
+    "Now you can ask Claude to build the email inside your Mailchimp account and save it as a draft.",
+    "Ask for a draft. Never ask it to send. You want to look at it yourself first.",
+    "And if you can't find Mailchimp in that list, no problem. Copy the email and paste it in yourself."]},
+  {id:'s8', title:'Step 5: quick checks', lines:[
+    "Step five. Five quick checks before anything goes out.",
+    "The name it comes from should be Chris Baker. Not the company. People open notes from people.",
+    "Replies should land somewhere you'll actually see them today.",
+    "Send yourself a test first, and open it on your phone.",
+    "Look for blanks. If it says Hi, with nothing after it, something didn't fill in.",
+    "And leave the unsubscribe link alone. It has to be there."]},
+  {id:'s9', title:'Step 6: when to send', lines:[
+    "Step six. Pick your moment.",
+    "Tuesday morning, around a quarter to eight, works well. People read their email before the day gets going.",
+    "Then do it four times a year.",
+    "February, before the rain. May, to clean up after it. August, before the holiday crowds. And October, when they're setting next year's budget.",
+    "Same list every time. Just a different reason to say hello."]},
+  {id:'s10', title:'That’s it', lines:[
+    "So that's the whole thing.",
+    "Claude writes it. Mailchimp sends it. You read it over and hit go.",
+    "Everything you need is written out below. The words to paste into Claude, the email itself, and the checklist.",
+    "Ten minutes, four times a year. And when a floor needs work, yours is the name they remember."]}
+];
+
+(function(){
+  var BEATS = [], t = 0;
+  function estimate(text){
+    var words = text.trim().split(/\s+/).length;
+    return Math.max(2.6, words / 2.5 + 1.0);
+  }
+  SCENES.forEach(function(s, si){
+    s.start = t;
+    s.beats = s.lines.map(function(line){
+      var b = {text:line, start:t, dur:estimate(line), scene:si, i:BEATS.length};
+      t += b.dur; BEATS.push(b); return b;
+    });
+    s.end = t;
+  });
+  var TOTAL = t;
+
+  var stage = document.getElementById('stage');
+  var poster = document.getElementById('poster');
+  var playbtn = document.getElementById('playbtn');
+  var voicebtn = document.getElementById('voicebtn');
+  var voicenote = document.getElementById('voicenote');
+  var seek = document.getElementById('seek');
+  var tcnow = document.getElementById('tcnow');
+  var tcend = document.getElementById('tcend');
+  var caption = document.getElementById('caption');
+  var chapters = document.getElementById('chapters');
+  var transcript = document.getElementById('transcript');
+
+  seek.max = TOTAL;
+  function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+  tcend.textContent = fmt(TOTAL);
+
+  SCENES.forEach(function(s){
+    var b = document.createElement('button');
+    b.className = 'ch'; b.type = 'button';
+    b.innerHTML = '<span class="ch-t">' + fmt(s.start) + '</span><span>' + s.title + '</span>';
+    b.addEventListener('click', function(){ goTo(s.beats[0].i); });
+    chapters.appendChild(b);
+
+    var h = document.createElement('div');
+    h.className = 'tline head';
+    h.innerHTML = '<span class="tt">' + fmt(s.start) + '</span><p></p>';
+    h.querySelector('p').textContent = s.title;
+    transcript.appendChild(h);
+    s.beats.forEach(function(bt){
+      var d = document.createElement('div');
+      d.className = 'tline';
+      d.innerHTML = '<span class="tt">' + fmt(bt.start) + '</span><p></p>';
+      d.querySelector('p').textContent = bt.text;
+      d.addEventListener('click', function(){ goTo(bt.i); stage.scrollIntoView({behavior:'smooth', block:'center'}); });
+      transcript.appendChild(d);
+    });
+  });
+  var chBtns = chapters.querySelectorAll('.ch');
+
+  var synth = window.speechSynthesis || null;
+  var voiceOn = !!synth;
+  var voice = null;
+  var playing = false, idx = 0, now = 0, rafId = null, lastTs = 0, shownScene = -1, shownBeat = -1;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!synth){
+    voicebtn.hidden = true;
+    voicenote.textContent = 'This browser can’t read the narration out loud, so the walkthrough runs with captions only. Chrome, Edge and Safari can do the voice.';
+  } else {
+    var pickVoice = function(){
+      var vs = synth.getVoices() || [];
+      if (!vs.length) return;
+      var wanted = ['Samantha','Google US English','Microsoft Aria','Microsoft Jenny','Microsoft Guy','Alex','Daniel'];
+      for (var w = 0; w < wanted.length; w++){
+        for (var i = 0; i < vs.length; i++){ if (vs[i].name.indexOf(wanted[w]) === 0){ voice = vs[i]; return; } }
+      }
+      for (var j = 0; j < vs.length; j++){ if (/^en[-_]US/i.test(vs[j].lang)){ voice = vs[j]; return; } }
+      for (var k = 0; k < vs.length; k++){ if (/^en/i.test(vs[k].lang)){ voice = vs[k]; return; } }
+    };
+    pickVoice();
+    synth.addEventListener ? synth.addEventListener('voiceschanged', pickVoice) : (synth.onvoiceschanged = pickVoice);
+  }
+
+  function paint(){
+    var b = BEATS[idx];
+    if (b.scene !== shownScene){
+      SCENES.forEach(function(s, k){
+        var el = document.getElementById(s.id);
+        el.hidden = (k !== b.scene);
+        if (k === b.scene && !reduce){ el.classList.remove('scene-anim'); void el.offsetWidth; el.classList.add('scene-anim'); }
+      });
+      for (var k = 0; k < chBtns.length; k++){ chBtns[k].setAttribute('aria-current', k === b.scene ? 'true' : 'false'); }
+      shownScene = b.scene;
+    }
+    if (idx !== shownBeat){ caption.textContent = b.text; shownBeat = idx; }
+    tcnow.textContent = fmt(now);
+    seek.value = now;
+  }
+
+  function frame(ts){
+    if (!playing){ rafId = null; return; }
+    if (!lastTs) lastTs = ts;
+    var dt = (ts - lastTs) / 1000; lastTs = ts;
+    var b = BEATS[idx];
+    if (voiceOn && synth){
+      now = Math.min(b.start + b.dur - 0.05, now + dt);
+      paint();
+    } else {
+      now += dt;
+      if (now >= b.start + b.dur){
+        if (idx >= BEATS.length - 1){ now = TOTAL; paint(); stop(); return; }
+        idx++;
+      }
+      paint();
+    }
+    rafId = requestAnimationFrame(frame);
+  }
+
+  function speakCurrent(){
+    if (!synth) return;
+    synth.cancel();
+    var b = BEATS[idx];
+    var u = new SpeechSynthesisUtterance(b.text);
+    if (voice) u.voice = voice;
+    u.rate = 0.96; u.pitch = 1.0; u.volume = 1;
+    u.onend = function(){
+      if (!playing || !voiceOn) return;
+      if (idx >= BEATS.length - 1){ now = TOTAL; paint(); stop(); return; }
+      idx++; now = BEATS[idx].start; paint(); speakCurrent();
+    };
+    u.onerror = function(){
+      if (!playing || !voiceOn) return;
+      if (idx >= BEATS.length - 1){ stop(); return; }
+      idx++; now = BEATS[idx].start; paint(); speakCurrent();
+    };
+    try { synth.speak(u); } catch (e) {}
+  }
+
+  function start(){
+    if (idx >= BEATS.length - 1 && now >= TOTAL){ idx = 0; now = 0; }
+    playing = true;
+    playbtn.innerHTML = '&#10073;&#10073;';
+    playbtn.setAttribute('aria-label', 'Pause');
+    poster.hidden = true;
+    paint();
+    if (voiceOn) speakCurrent();
+    lastTs = 0;
+    if (!rafId) rafId = requestAnimationFrame(frame);
+  }
+  function stop(){
+    playing = false;
+    if (synth) synth.cancel();
+    playbtn.innerHTML = '&#9654;';
+    playbtn.setAttribute('aria-label', 'Play');
+    if (rafId){ cancelAnimationFrame(rafId); rafId = null; }
+  }
+  function toggle(){ playing ? stop() : start(); }
+
+  function goTo(i){
+    idx = Math.max(0, Math.min(BEATS.length - 1, i));
+    now = BEATS[idx].start;
+    poster.hidden = true;
+    paint();
+    if (playing){ lastTs = 0; if (voiceOn) speakCurrent(); if (!rafId) rafId = requestAnimationFrame(frame); }
+  }
+  function seekSeconds(v){
+    var i = 0;
+    for (var k = 0; k < BEATS.length; k++){ if (v >= BEATS[k].start) i = k; }
+    goTo(i);
+  }
+
+  playbtn.addEventListener('click', toggle);
+  poster.addEventListener('click', start);
+  seek.addEventListener('input', function(){ seekSeconds(parseFloat(seek.value)); });
+
+  voicebtn.addEventListener('click', function(){
+    voiceOn = !voiceOn;
+    voicebtn.setAttribute('aria-pressed', voiceOn ? 'true' : 'false');
+    voicebtn.setAttribute('aria-label', voiceOn ? 'Turn the voice off' : 'Turn the voice on');
+    voicebtn.innerHTML = voiceOn ? '🔊 <span class="txt">Voice on</span>' : '🔇 <span class="txt">Voice off</span>';
+    if (!voiceOn && synth) synth.cancel();
+    if (voiceOn && playing){ now = BEATS[idx].start; speakCurrent(); }
+    if (playing){ lastTs = 0; if (!rafId) rafId = requestAnimationFrame(frame); }
+  });
+
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'button') return;
+    if (e.code === 'Space'){ e.preventDefault(); toggle(); }
+    if (e.code === 'ArrowRight'){ e.preventDefault(); var n = SCENES[Math.min(SCENES.length - 1, BEATS[idx].scene + 1)]; goTo(n.beats[0].i); }
+    if (e.code === 'ArrowLeft'){ e.preventDefault(); var p = SCENES[Math.max(0, BEATS[idx].scene - 1)]; goTo(p.beats[0].i); }
+  });
+  window.addEventListener('pagehide', function(){ if (synth) synth.cancel(); });
+
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = document.getElementById(btn.dataset.copy).textContent;
+      var done = function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.dataset.done = '1';
+        setTimeout(function(){ btn.textContent = old; btn.dataset.done = '0'; }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+      } else { fallback(text, done); }
+    });
+  });
+  function fallback(text, done){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (err) {}
+    document.body.removeChild(ta);
+  }
+
+  paint();
+})();
+</script>
