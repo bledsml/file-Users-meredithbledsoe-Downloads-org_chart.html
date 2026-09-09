@@ -9,14 +9,22 @@ front of them.
 ## Files
 
 - `maintenance-email-video.html` — the walkthrough. A single self-contained page:
-  a 4:30 timed screencast-style player (9 chapters, narration captions, scrub bar,
-  keyboard controls) followed by the copy-paste kit.
+  a ~5-minute spoken player (10 colour-blocked scenes, narration read aloud by the
+  browser's built-in speech synthesis, synced captions, voice on/off toggle, scrub
+  bar, chapter list, keyboard controls) followed by the copy-paste kit.
+
+  The voice uses the Web Speech API — no audio file, no network call. Captions stay
+  in sync because each line advances when its utterance finishes; with the voice
+  muted the page falls back to an estimated timer. Browsers without speech synthesis
+  get captions only, and the page says so.
 
 ## What's in the kit
 
 1. The prompt to paste into Claude, pre-loaded with Baker's real background
    (founded 1989; concrete, stone, metal and wood services; union crews;
    SF / Oakland / San Jose; 650-652-9440) so nothing has to be invented.
+   Written for a non-technical reader — jargon like "merge tags" and "segments"
+   is explained in plain words wherever it appears.
 2. A follow-up prompt for creating a **draft** Mailchimp campaign once the
    connector is authorized.
 3. Three subject lines and the full email body with Mailchimp merge tags.
