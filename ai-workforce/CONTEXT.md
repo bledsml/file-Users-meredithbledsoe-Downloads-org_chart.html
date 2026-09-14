@@ -121,6 +121,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-14 (Monday watch):** DIRECT-BOOKING PUSH — KY property rebranding as
+  **"The Distiller's Estate"** (Lovable site live, first visitor; Bardstown KY
+  P&Z work: garage sq-footage petition, STR permit $100 mailed, pool permit
+  question). **fireflycottagetn.com** registered ($20/yr Squarespace) but
+  hello@ forwarding BOUNCES (MX misconfigured) and its ICANN verification is
+  pending; mgbkids verification apparently never done (deadline passed —
+  check status). Hospitable payout bank flipped to UNVERIFIED. Subscriptions:
+  added **PriceLabs $34.98/mo** (dynamic pricing). TN sales-tax payment
+  processed — TNTAP fully closed. Mortgage servicer SPS account created.
+  Amanda left Firefly 4 stars (first non-5). Elatia weekly Tue/Thu; improv
+  Foundations starts Sep 15.
+
 - **2026-09-07 (Monday watch):** First Airbnb payout landed in MGB Investments
   LLC checking (…7904): $1,172.82. KY Certificate of Existence obtained (for
   Wells Fargo business account — appts Sep 8, conflicting confirmations vs
