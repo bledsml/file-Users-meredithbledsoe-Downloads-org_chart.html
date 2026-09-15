@@ -121,6 +121,16 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-15:** Firefly direct-booking request from Quinn Lovingood
+  (Feb 10–14, 2027) expiring same-morning — flagged urgent. Hospitable payout
+  bank: PROGRESS — Wells Fargo connected via Plaid (twice) and Airbnb sent a
+  $0.01 test deposit to MGB Investments KY Checking …5413, but Hospitable
+  still shows unverified (micro-deposit confirmation likely pending). Airbnb
+  passkey added + payout method changed Sep 14 (flagged for her to confirm it
+  was her). Franchesco (Enrich): Firefly **Vrbo listing appears UNLISTED** —
+  she must verify on Vrbo directly. New UCSF MyChart message. Nelnet student
+  loan statement posted. Cassindy call mixup Mon resolved (rescheduled).
+
 - **2026-09-14 (Monday watch):** DIRECT-BOOKING PUSH — KY property rebranding as
   **"The Distiller's Estate"** (Lovable site live, first visitor; Bardstown KY
   P&Z work: garage sq-footage petition, STR permit $100 mailed, pool permit
