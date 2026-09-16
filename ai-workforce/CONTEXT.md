@@ -121,6 +121,16 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-16:** Quinn Lovingood's Firefly direct-booking request (Feb 10–14,
+  2027) EXPIRED unactioned — booking lost (ResortCleaning auto-cancelled the
+  Feb turnover). Elite Cabin Care sent a SECOND invoice: **$390 (3983-2)** on
+  top of the standing $585 (3842-2). Karen Nanney (Bardstown P&Z) asked for
+  floor plans for the permit application — reply needed. Miles arrives at The
+  Distiller's Estate Thu Sep 17. Spray-tan appt (Sep 15) cancelled by the
+  salon. Google/Sedgwick payroll case open — pay breakdown received, Meredith
+  disputing STD amounts on the Sep 11 paycheck. Capital One: credit score
+  improved. Bank-verification saga continues (third Plaid connection Sep 15).
+
 - **2026-09-15:** Firefly direct-booking request from Quinn Lovingood
   (Feb 10–14, 2027) expiring same-morning — flagged urgent. Hospitable payout
   bank: PROGRESS — Wells Fargo connected via Plaid (twice) and Airbnb sent a
