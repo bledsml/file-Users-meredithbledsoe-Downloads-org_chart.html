@@ -121,6 +121,17 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-17:** WINS — Airbnb payout method now VERIFIED/ready (MGB KY
+  Checking …5413); bank flag mostly resolved (confirm Hospitable side shows
+  verified too). NEW BOOKING: Pat Kinney at The Distiller's Estate
+  **Nov 24–28 (Thanksgiving), $2,993**. Chewy: Autoship order started prepping
+  then order #5217935807 was CANCELED 10 min later — payment issue suspected,
+  George's supply gap continues. Anthem DENIED part of a claim (svc Sep 9,
+  ending E5418). Hospitable $59 monthly invoice due. Elatia sent "Next Steps +
+  Pricing" proposal. Maui Westside pre-arrival email for Konea 1019 (3
+  nights). REI bike ready at Corte Madera. Cost-seg 1245/1250 answer arrived
+  from Chelsea. Miles arrives at Distiller's Estate today.
+
 - **2026-09-16:** Quinn Lovingood's Firefly direct-booking request (Feb 10–14,
   2027) EXPIRED unactioned — booking lost (ResortCleaning auto-cancelled the
   Feb turnover). Elite Cabin Care sent a SECOND invoice: **$390 (3983-2)** on
