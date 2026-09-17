@@ -1,0 +1,784 @@
+<title>RL Scaling Operating Brief</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --ground:#f6f8fa; --surface:#ffffff; --surface-2:#edf1f5; --surface-3:#e3e9f0;
+  --ink:#13171c; --ink-2:#4b545e; --ink-3:#7b858f;
+  --rule:#dce2e9; --rule-strong:#c3ccd6;
+  --accent:#1c5cab; --accent-2:#2a78d6; --accent-soft:#e7eefa;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  --viz-fill:#2a78d6; --viz-track:#dbe6f4;
+  --shadow:0 1px 2px rgba(19,23,28,.06), 0 8px 24px -16px rgba(19,23,28,.28);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#14171a; --surface:#1b1f24; --surface-2:#22272e; --surface-3:#2a313a;
+    --ink:#f1f4f7; --ink-2:#b2bcc6; --ink-3:#838d97;
+    --rule:#2d343c; --rule-strong:#3c444e;
+    --accent:#79aef0; --accent-2:#3987e5; --accent-soft:#1a2942;
+    --viz-fill:#3987e5; --viz-track:#2b323b;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#14171a; --surface:#1b1f24; --surface-2:#22272e; --surface-3:#2a313a;
+  --ink:#f1f4f7; --ink-2:#b2bcc6; --ink-3:#838d97;
+  --rule:#2d343c; --rule-strong:#3c444e;
+  --accent:#79aef0; --accent-2:#3987e5; --accent-soft:#1a2942;
+  --viz-fill:#3987e5; --viz-track:#2b323b;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Serif","Iowan Old Style",Georgia,serif;
+  font-size:16px; line-height:1.62; margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.ui{font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-in{
+  max-width:1060px; margin:0 auto; padding:10px 20px;
+  display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+  font-family:"IBM Plex Sans",sans-serif; font-size:12.5px;
+}
+.nav-mark{font-weight:600; letter-spacing:.02em; color:var(--ink); margin-right:auto}
+.nav a{color:var(--ink-2); text-decoration:none; padding:2px 0; border-bottom:1px solid transparent}
+.nav a:hover{color:var(--accent); border-bottom-color:var(--accent)}
+.nav a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px}
+
+.wrap{max-width:1060px; margin:0 auto; padding-inline:20px; padding-block:0 72px}
+.prose{max-width:68ch}
+
+/* ---------- header ---------- */
+header.top{padding-block:56px 40px; border-bottom:1px solid var(--rule)}
+.eyebrow{
+  font-family:"IBM Plex Sans",sans-serif; font-size:11.5px; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--accent);
+}
+h1{
+  font-size:clamp(30px,5.2vw,46px); line-height:1.08; font-weight:600;
+  letter-spacing:-.02em; margin:14px 0 0; text-wrap:balance; max-width:20ch;
+}
+.standfirst{font-size:19px; line-height:1.55; color:var(--ink-2); margin:18px 0 0; max-width:60ch}
+.meta{
+  margin-top:30px; display:grid; gap:14px 34px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  font-family:"IBM Plex Sans",sans-serif; font-size:13px;
+  border-top:1px solid var(--rule); padding-top:20px; max-width:900px;
+}
+.meta dt{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); font-weight:600}
+.meta dd{margin:3px 0 0; color:var(--ink)}
+
+/* ---------- sections ---------- */
+section{padding-block:52px; border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:0}
+h2{
+  font-size:clamp(21px,3vw,27px); font-weight:600; letter-spacing:-.015em;
+  margin:0; text-wrap:balance;
+}
+.sec-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:8px}
+.sec-tag{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3);
+  letter-spacing:.06em; text-transform:uppercase;
+}
+.lede{color:var(--ink-2); font-size:16.5px; margin:10px 0 30px; max-width:66ch}
+p{margin:0 0 16px}
+a{color:var(--accent)}
+
+/* ---------- fit table ---------- */
+.fit{display:grid; gap:0; border-top:1px solid var(--rule-strong)}
+.fit-row{
+  display:grid; grid-template-columns:minmax(0,0.95fr) minmax(0,1.25fr);
+  gap:8px 36px; padding-block:22px; border-bottom:1px solid var(--rule);
+}
+.jd{
+  font-family:"IBM Plex Serif",serif; font-style:italic; color:var(--ink-2);
+  font-size:15px; line-height:1.55; border-left:2px solid var(--accent-2); padding-left:16px;
+}
+.jd .src{
+  display:block; font-style:normal; font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink-3); margin-top:9px;
+}
+.ev{font-size:15.5px}
+.ev strong{font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:14.5px}
+.ev p{margin:0 0 10px}
+.ev p:last-child{margin-bottom:0}
+mark.ph{
+  background:var(--accent-soft); color:var(--accent); padding:1px 5px; border-radius:3px;
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-style:normal;
+}
+@media (max-width:720px){
+  .fit-row{grid-template-columns:1fr; gap:14px}
+}
+
+/* ---------- ramp / honest gaps ---------- */
+.ramp{
+  margin-top:34px; background:var(--surface); border:1px solid var(--rule);
+  border-radius:4px; padding:24px; box-shadow:var(--shadow);
+}
+.ramp h3{margin:0 0 6px; font-size:16px; font-weight:600}
+.ramp .lede{margin-bottom:18px; font-size:15px}
+.ramp ul{margin:0; padding-left:0; list-style:none; display:grid; gap:16px}
+.ramp li{padding-left:18px; border-left:2px solid var(--serious); font-size:15px}
+.ramp li b{font-family:"IBM Plex Sans",sans-serif; font-size:14.5px; display:block; margin-bottom:2px}
+
+/* ---------- 90 day ---------- */
+.phases{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.phase{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:22px; box-shadow:var(--shadow)}
+.phase-h{display:flex; align-items:baseline; gap:10px; border-bottom:1px solid var(--rule); padding-bottom:12px; margin-bottom:14px}
+.phase-h .d{font-family:"IBM Plex Mono",monospace; font-size:20px; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums}
+.phase-h .t{font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:15px}
+.phase ul{margin:0; padding-left:17px; display:grid; gap:11px; font-size:14.5px; line-height:1.5}
+.phase li::marker{color:var(--ink-3)}
+.phase .out{
+  margin-top:16px; padding-top:13px; border-top:1px dashed var(--rule-strong);
+  font-family:"IBM Plex Sans",sans-serif; font-size:13px; color:var(--ink-2);
+}
+.phase .out b{color:var(--ink); font-weight:600}
+
+/* ---------- synthetic banner ---------- */
+.synthetic{
+  display:flex; gap:12px; align-items:flex-start;
+  background:var(--surface-2); border:1px solid var(--rule-strong);
+  border-left:3px solid var(--warning); border-radius:3px;
+  padding:14px 16px; margin-bottom:28px;
+  font-family:"IBM Plex Sans",sans-serif; font-size:13.5px; line-height:1.5; color:var(--ink-2);
+}
+.synthetic b{color:var(--ink)}
+.synthetic .ico{font-size:15px; line-height:1.3}
+
+/* ---------- board ---------- */
+.panel{background:var(--surface); border:1px solid var(--rule); border-radius:4px; box-shadow:var(--shadow); margin-bottom:26px}
+.panel-h{
+  display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap;
+  padding:18px 20px 14px; border-bottom:1px solid var(--rule);
+}
+.panel-h h3{margin:0; font-size:15.5px; font-weight:600}
+.panel-h .sub{font-family:"IBM Plex Sans",sans-serif; font-size:12.5px; color:var(--ink-3)}
+.filters{display:flex; gap:7px; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--rule)}
+.chip{
+  font-family:"IBM Plex Sans",sans-serif; font-size:12px; font-weight:500;
+  padding:5px 11px; border-radius:999px; border:1px solid var(--rule-strong);
+  background:transparent; color:var(--ink-2); cursor:pointer; transition:.12s;
+}
+.chip:hover{border-color:var(--accent); color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff}
+.tscroll{overflow-x:auto}
+table{border-collapse:collapse; width:100%; min-width:720px; font-family:"IBM Plex Sans",sans-serif; font-size:13.5px}
+th{
+  text-align:left; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:600; padding:12px 14px; border-bottom:1px solid var(--rule-strong); white-space:nowrap;
+}
+td{padding:13px 14px; border-bottom:1px solid var(--rule); vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+td.run{font-family:"IBM Plex Mono",monospace; color:var(--ink-2); white-space:nowrap}
+td.ws{font-weight:500; min-width:170px}
+.pill{display:inline-flex; align-items:center; gap:6px; white-space:nowrap; font-size:12.5px; font-weight:500}
+.dot{width:8px; height:8px; border-radius:50%; flex:none}
+.dot.training{background:var(--viz-fill)}
+.dot.evaluating{background:var(--good)}
+.dot.queued{background:var(--ink-3)}
+.dot.stalled{background:var(--critical)}
+.dot.landed{background:var(--serious)}
+.stale{color:var(--critical); font-weight:600}
+.gate{color:var(--ink-2); font-size:13px; min-width:200px}
+
+/* ---------- chart ---------- */
+.chart{padding:20px}
+.bar-row{display:grid; grid-template-columns:minmax(120px,1.1fr) minmax(0,3fr) auto; gap:8px 14px; align-items:center; padding-block:11px}
+.bar-label{font-family:"IBM Plex Sans",sans-serif; font-size:13.5px; color:var(--ink)}
+.track{position:relative; height:19px; background:var(--viz-track); border-radius:0 4px 4px 0}
+.fill{position:absolute; inset:0 auto 0 0; background:var(--viz-fill); border-radius:0 4px 4px 0; border-right:2px solid var(--surface); background-clip:padding-box}
+.bar-val{font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-variant-numeric:tabular-nums; color:var(--ink-2); white-space:nowrap}
+.axis{
+  display:grid; grid-template-columns:minmax(120px,1.1fr) minmax(0,3fr) auto; gap:0 14px;
+  margin-top:6px;
+  font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3);
+}
+.axis .ticks{
+  display:flex; justify-content:space-between;
+  border-top:1px solid var(--rule); padding-top:6px;
+}
+.legend{
+  display:flex; gap:16px; flex-wrap:wrap; padding:0 20px 16px;
+  font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-2);
+}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.sw{width:13px; height:11px; border-radius:2px; flex:none}
+.readout{
+  margin:0 20px 20px; padding:14px 16px; background:var(--accent-soft); border-radius:3px;
+  font-size:14.5px; line-height:1.55;
+}
+.readout b{font-family:"IBM Plex Sans",sans-serif; font-weight:600}
+@media (max-width:620px){
+  .bar-row{grid-template-columns:1fr; gap:5px}
+  .bar-val{justify-self:start}
+  .axis{grid-template-columns:1fr}
+}
+
+/* ---------- two-up ---------- */
+.two{display:grid; gap:26px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); align-items:start}
+.check{display:grid; gap:0; padding:8px 20px 18px}
+.check label{
+  display:flex; gap:12px; align-items:flex-start; padding-block:11px;
+  border-bottom:1px solid var(--rule); font-size:14.5px; cursor:pointer;
+}
+.check label:last-of-type{border-bottom:0}
+.check input{margin:4px 0 0; accent-color:var(--accent); width:15px; height:15px; flex:none}
+.check .why{display:block; font-size:12.5px; color:var(--ink-3); font-family:"IBM Plex Sans",sans-serif; margin-top:2px}
+.check-foot{
+  padding:13px 20px; border-top:1px solid var(--rule); background:var(--surface-2);
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--ink-2);
+  border-radius:0 0 3px 3px;
+}
+.retro{padding:6px 20px 20px}
+.retro dl{margin:0; display:grid; gap:15px}
+.retro dt{font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:14px}
+.retro dd{margin:2px 0 0; color:var(--ink-2); font-size:14px}
+.rhythm{padding:6px 20px 20px; font-size:14.5px}
+.rhythm ul{margin:0; padding-left:17px; display:grid; gap:10px}
+
+/* ---------- note ---------- */
+.note{
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.note-body{padding:24px; font-size:15.5px; max-width:none}
+.note-body p{margin:0 0 15px}
+.note-body p:last-child{margin-bottom:0}
+.note-foot{
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+  padding:14px 24px; border-top:1px solid var(--rule); background:var(--surface-2);
+}
+.btn{
+  font-family:"IBM Plex Sans",sans-serif; font-size:13px; font-weight:500;
+  padding:7px 15px; border-radius:3px; border:1px solid var(--accent);
+  background:var(--accent); color:#fff; cursor:pointer;
+}
+.btn:hover{filter:brightness(1.08)}
+.note-foot .hint{font-family:"IBM Plex Sans",sans-serif; font-size:12.5px; color:var(--ink-3)}
+
+footer{padding-block:34px 10px; font-family:"IBM Plex Sans",sans-serif; font-size:12.5px; color:var(--ink-3); max-width:68ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<nav class="nav">
+  <div class="nav-in">
+    <span class="nav-mark">RL Scaling &mdash; TPM brief</span>
+    <a href="#fit">Fit</a>
+    <a href="#plan">First 90 days</a>
+    <a href="#rhythm">Operating rhythm</a>
+    <a href="#note">The note</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Prepared for Erica Moreira</div>
+  <h1>Technical Program Manager, RL Scaling</h1>
+  <p class="standfirst">
+    Rather than send a r&eacute;sum&eacute;, I built the thing the fourth responsibility bullet asks for.
+    Section&nbsp;3 is a working prototype of the operating rhythm I&rsquo;d install around RL research
+    workstreams &mdash; status board, allocation view, launch gate, retro. The rest is the short version of why.
+  </p>
+  <dl class="meta">
+    <div><dt>Role</dt><dd>TPM, RL Scaling &mdash; Gemini Mid-Training</dd></div>
+    <div><dt>Level</dt><dd>5 (open to 5&ndash;6)</dd></div>
+    <div><dt>Location</dt><dd>Mountain View</dd></div>
+    <div><dt>From</dt><dd><mark class="ph">[Meredith Bledsoe &middot; current team]</mark></dd></div>
+    <div><dt>Prepared</dt><dd>September 2026</dd></div>
+  </dl>
+</header>
+
+<!-- ===================== FIT ===================== -->
+<section id="fit">
+  <div class="sec-head">
+    <h2>Where the posting and my work already overlap</h2>
+    <span class="sec-tag">&sect;1 &middot; Fit</span>
+  </div>
+  <p class="lede">
+    Left column is your posting, verbatim. Right column is what I&rsquo;d point to.
+    Bracketed items are ones I&rsquo;d fill in live rather than pad here.
+  </p>
+
+  <div class="fit">
+
+    <div class="fit-row">
+      <div class="jd">
+        &ldquo;Partner with engineering and infrastructure leads to manage and track experiments and
+        compute allocations, enabling prioritization, monitoring training efficiency, and unblocking runs.&rdquo;
+        <span class="src">Responsibilities &middot; 2</span>
+      </div>
+      <div class="ev">
+        <p><strong>This is my day job, one layer out.</strong></p>
+        <p>
+          I own capacity strategy for a multibillion-dollar AI compute portfolio spanning Gemini and
+          Cloud AI workloads. The work is exactly this loop &mdash; who gets the chips, what they
+          realized against what they held, and what to reallocate when the answer is ugly &mdash;
+          run at fleet scale instead of per-run scale. <mark class="ph">[Add the sharpest number:
+          utilization gained, or capacity recovered and redeployed.]</mark>
+        </p>
+        <p>
+          The allocation view in &sect;3 is that same lens pointed at RL experiments rather than the fleet.
+        </p>
+      </div>
+    </div>
+
+    <div class="fit-row">
+      <div class="jd">
+        &ldquo;Establish reliable operational rhythms including experiment status dashboards, launch
+        criteria, retrospectives, and milestone reviews, synthesizing complex training dynamics into
+        actionable updates for tech leads and leadership.&rdquo;
+        <span class="src">Responsibilities &middot; 4</span>
+      </div>
+      <div class="ev">
+        <p><strong>&sect;3, rather than a claim about &sect;3.</strong></p>
+        <p>
+          A board that makes stalled runs and idle allocation visible without anyone writing a status
+          update, one 30-minute weekly review with a fixed agenda, a handoff gate with criteria written
+          before the run starts, and a retro template short enough that people actually fill it in.
+        </p>
+        <p>
+          On the synthesis half: I write the bi-weekly compute recommendation that goes to Thomas Kurian
+          and Ruth Porat. Compressing messy technical state into a decision an executive can make in
+          two minutes is the specific skill I&rsquo;d bring to a milestone review.
+        </p>
+      </div>
+    </div>
+
+    <div class="fit-row">
+      <div class="jd">
+        &ldquo;Scope, plan, and lead execution for RL research workstreams in collaboration with tech
+        leads, turning research hypotheses into structured roadmaps, experiment plans, and deliverable
+        model milestones.&rdquo;
+        <span class="src">Responsibilities &middot; 1</span>
+      </div>
+      <div class="ev">
+        <p><strong>Planning where the inputs are hypotheses, not requirements.</strong></p>
+        <p>
+          Capacity planning has the same shape as research planning: you commit to a plan against
+          forecasts you know are wrong, then hold a structure that survives being wrong.
+          <mark class="ph">[Name one program you scoped end-to-end &mdash; what was undefined going in,
+          what shipped, and what you cut.]</mark>
+        </p>
+      </div>
+    </div>
+
+    <div class="fit-row">
+      <div class="jd">
+        &ldquo;Deep familiarity with the AI model development lifecycle; experience with reinforcement
+        learning is a strong plus.&rdquo;
+        <span class="src">Preferred qualifications</span>
+      </div>
+      <div class="ev">
+        <p><strong>Current, and deliberately so.</strong></p>
+        <p>
+          I contribute to <b>1P Bench</b> inside DeepMind as a community contribution, which puts me in
+          how Gemini actually performs on real enterprise workflows &mdash; the eval end of this lifecycle.
+          I spend Sundays at the <b>Sundai RSI</b> hackathons in San Francisco building agents in
+          recursive learning alongside MIT and Harvard researchers, which is what keeps the RL vocabulary
+          current rather than remembered. I guest lectured at <b>Kellogg</b> in February 2025 on agentic
+          AI in the enterprise.
+        </p>
+      </div>
+    </div>
+
+    <div class="fit-row">
+      <div class="jd">
+        &ldquo;Comfortable operating in ambiguity&hellip; Strong communicator who can build trust across
+        research, engineering, and leadership stakeholders, and drive alignment in matrixed organizations.&rdquo;
+        <span class="src">Preferred qualifications</span>
+      </div>
+      <div class="ev">
+        <p><strong>Matrixed is the only environment I&rsquo;ve worked in.</strong></p>
+        <p>
+          A compute portfolio spanning Gemini and Cloud AI has no single owner to escalate to; every
+          allocation decision is a negotiation between teams with legitimate competing claims.
+          My latest GRAD review called out that I come with the attitude that no job is too big or too
+          small &mdash; which matters for a role that runs from scoping a roadmap to unblocking one
+          individual training run.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ramp">
+    <h3>Two places I&rsquo;d be ramping, and how</h3>
+    <p class="lede">Worth saying plainly, because you&rsquo;ll find them in the first interview anyway.</p>
+    <ul>
+      <li>
+        <b>Hands-on production training pipelines.</b>
+        I know the compute layer deeply and the pipeline layer from the outside in.
+        <mark class="ph">[Add any direct exposure &mdash; infra reviews, incident work, pipeline
+        design you sat in on.]</mark> The fix is week 1&ndash;4 in &sect;2: shadow one full scaling run
+        end to end before proposing any process.
+      </li>
+      <li>
+        <b>SFT initialization and RL data workflows specifically.</b>
+        Reading depth today, not operating depth. I&rsquo;d rather tell you that than discover it in
+        month two &mdash; and it&rsquo;s the first thing I&rsquo;d ask a research engineer to walk me through.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== PLAN ===================== -->
+<section id="plan">
+  <div class="sec-head">
+    <h2>First 90 days</h2>
+    <span class="sec-tag">&sect;2 &middot; Ramp</span>
+  </div>
+  <p class="lede">
+    Built on one assumption: a TPM who installs process before understanding the research loses the
+    room permanently. So the first month adds nothing.
+  </p>
+
+  <div class="phases">
+
+    <div class="phase">
+      <div class="phase-h"><span class="d">30</span><span class="t">Learn the loop</span></div>
+      <ul>
+        <li>Shadow one scaling run end to end &mdash; SFT init, data workflow, training, eval, decision.</li>
+        <li>Map the RL workstream graph and where it touches data pipelines, evals, and distributed infra.</li>
+        <li>Meet every partner team the workstreams depend on; write down what each one is waiting for.</li>
+        <li>Find the decisions that are already slow, and ask the tech leads why. Change nothing yet.</li>
+      </ul>
+      <div class="out"><b>Output:</b> a one-page dependency map and a list of the three delays that cost the most compute.</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h"><span class="d">60</span><span class="t">Install the rhythm</span></div>
+      <ul>
+        <li>Stand up the experiment board (&sect;3) against one workstream, not all of them.</li>
+        <li>Start the 30-minute weekly review with a fixed agenda: stalled runs, idle allocation, next gate.</li>
+        <li>Put allocation against realized utilization in front of the leads weekly &mdash; the conversation the numbers force is the point.</li>
+        <li>Kill anything I added that nobody reads by day 60. Process that needs defending is process that failed.</li>
+      </ul>
+      <div class="out"><b>Output:</b> one workstream running on the rhythm, with the leads asking for it rather than tolerating it.</div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-h"><span class="d">90</span><span class="t">Carry a milestone</span></div>
+      <ul>
+        <li>Publish launch criteria for a mid-training handoff into a frontier release &mdash; agreed before the run, not after.</li>
+        <li>Run the first milestone review and the first retro, then fix the format based on what failed.</li>
+        <li>Extend to the remaining workstreams only where the first one proved out.</li>
+        <li>Fold the allocation view into the portfolio picture I already own, so RL Scaling&rsquo;s compute case is argued with evidence.</li>
+      </ul>
+      <div class="out"><b>Output:</b> one milestone delivered on the rhythm, and a compute ask backed by realized-utilization data.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== RHYTHM ===================== -->
+<section id="rhythm">
+  <div class="sec-head">
+    <h2>The operating rhythm, as a working prototype</h2>
+    <span class="sec-tag">&sect;3 &middot; Work sample</span>
+  </div>
+  <p class="lede">
+    Four artifacts, roughly two hours a week of overhead for the team in total.
+    The board is interactive &mdash; filter it, check the gate items.
+  </p>
+
+  <div class="synthetic">
+    <span class="ico" aria-hidden="true">&#9888;</span>
+    <div>
+      <b>Illustrative data &mdash; not Google internal.</b>
+      Every run, workstream name, number, and owner handle below is invented to demonstrate the format.
+      Nothing here reflects real Gemini training state, allocations, or results.
+    </div>
+  </div>
+
+  <!-- board -->
+  <div class="panel">
+    <div class="panel-h">
+      <h3>Experiment status board</h3>
+      <span class="sub">Refreshed from the run metadata, not from status updates</span>
+    </div>
+    <div class="filters" role="group" aria-label="Filter runs by state">
+      <button class="chip" data-f="all" aria-pressed="true">All runs</button>
+      <button class="chip" data-f="training" aria-pressed="false">Training</button>
+      <button class="chip" data-f="evaluating" aria-pressed="false">Evaluating</button>
+      <button class="chip" data-f="queued" aria-pressed="false">Queued</button>
+      <button class="chip" data-f="stalled" aria-pressed="false">Needs a decision</button>
+    </div>
+    <div class="tscroll">
+      <table id="board">
+        <thead>
+          <tr>
+            <th scope="col">Run</th><th scope="col">Workstream</th><th scope="col">State</th>
+            <th scope="col">Owner</th><th scope="col">Chip-hrs</th>
+            <th scope="col">Days since decision</th><th scope="col">Next gate / blocker</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-s="training">
+            <td class="run">rm-sweep-14</td><td class="ws">Reward-model scaling</td>
+            <td><span class="pill"><span class="dot training"></span>Training</span></td>
+            <td class="num">RS-1</td><td class="num">112k</td><td class="num">2</td>
+            <td class="gate">Step 40k checkpoint eval</td>
+          </tr>
+          <tr data-s="stalled">
+            <td class="run">agentic-lh-07</td><td class="ws">Long-horizon agentic RL</td>
+            <td><span class="pill"><span class="dot stalled"></span>Needs a decision</span></td>
+            <td class="num">RS-3</td><td class="num">184k</td><td class="num stale">11</td>
+            <td class="gate">Reward hacking on two eval suites &mdash; continue, reshape reward, or return the allocation</td>
+          </tr>
+          <tr data-s="evaluating">
+            <td class="run">sft-init-ab-03</td><td class="ws">SFT init ablations</td>
+            <td><span class="pill"><span class="dot evaluating"></span>Evaluating</span></td>
+            <td class="num">RE-2</td><td class="num">58k</td><td class="num">1</td>
+            <td class="gate">Ablation readout Thursday</td>
+          </tr>
+          <tr data-s="training">
+            <td class="run">mm-reason-21</td><td class="ws">Multimodal reasoning RL</td>
+            <td><span class="pill"><span class="dot training"></span>Training</span></td>
+            <td class="num">RS-2</td><td class="num">96k</td><td class="num">3</td>
+            <td class="gate">On plan &mdash; no action</td>
+          </tr>
+          <tr data-s="queued">
+            <td class="run">agentic-lh-08</td><td class="ws">Long-horizon agentic RL</td>
+            <td><span class="pill"><span class="dot queued"></span>Queued</span></td>
+            <td class="num">RS-3</td><td class="num">&mdash;</td><td class="num stale">11</td>
+            <td class="gate">Blocked behind agentic-lh-07 &mdash; same decision</td>
+          </tr>
+          <tr data-s="queued">
+            <td class="run">eval-harness-05</td><td class="ws">Eval harness / offline scoring</td>
+            <td><span class="pill"><span class="dot queued"></span>Queued</span></td>
+            <td class="num">RE-4</td><td class="num">&mdash;</td><td class="num">4</td>
+            <td class="gate">Waiting on data-pipeline dep &mdash; partner team, escalation drafted</td>
+          </tr>
+          <tr data-s="landed">
+            <td class="run">rm-sweep-13</td><td class="ws">Reward-model scaling</td>
+            <td><span class="pill"><span class="dot landed"></span>Landed</span></td>
+            <td class="num">RS-1</td><td class="num">104k</td><td class="num">6</td>
+            <td class="gate">Retro scheduled &mdash; template below</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="readout">
+      <b>What the board is for:</b> the &ldquo;days since decision&rdquo; column, not the state column.
+      Runs rarely fail loudly &mdash; they sit. Two runs and 184k chip-hours are parked on one unmade
+      decision about reward shaping, and that is the single item I&rsquo;d walk into the weekly review with.
+    </div>
+  </div>
+
+  <!-- chart -->
+  <div class="panel">
+    <div class="panel-h">
+      <h3>Allocation against realized utilization</h3>
+      <span class="sub">Trailing 14 days &middot; thousands of chip-hours</span>
+    </div>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--viz-fill)"></span>Realized</span>
+      <span><span class="sw" style="background:var(--viz-track)"></span>Allocated, unused</span>
+    </div>
+    <div class="chart" id="chart"></div>
+    <div class="readout">
+      <b>Long-horizon agentic RL is holding 360k chip-hours at 55% realized</b> &mdash; the largest
+      recoverable block on the board, and the same stalled decision from the run board showing up as
+      idle capacity. Recovering it funds the eval-harness backlog without a new compute ask.
+      This is the view I already build for the portfolio; pointing it at workstreams is a one-week job.
+    </div>
+  </div>
+
+  <div class="two">
+
+    <!-- launch criteria -->
+    <div class="panel">
+      <div class="panel-h">
+        <h3>Mid-training handoff gate</h3>
+        <span class="sub">Agreed before the run</span>
+      </div>
+      <div class="check" id="gate">
+        <label><input type="checkbox" id="g1" checked><span>Target metric and the bar it must clear, written down
+          <span class="why">Not &ldquo;better than baseline&rdquo; &mdash; a number, decided before results exist</span></span></label>
+        <label><input type="checkbox" id="g2" checked><span>Eval suite frozen, including the ones we expect to regress
+          <span class="why">The suite chosen after the run is the suite that flatters it</span></span></label>
+        <label><input type="checkbox" id="g3" checked><span>Reward-hacking check on held-out probes
+          <span class="why">Owner named, not &ldquo;the team&rdquo;</span></span></label>
+        <label><input type="checkbox" id="g4"><span>Compute envelope and the kill threshold
+          <span class="why">At what spend does this stop without a new conversation?</span></span></label>
+        <label><input type="checkbox" id="g5"><span>Downstream owner has signed off on the interface
+          <span class="why">The release team should never first hear about it at handoff</span></span></label>
+        <label><input type="checkbox" id="g6"><span>Rollback and the decision if it regresses post-integration
+          <span class="why">Decided while nobody is under pressure</span></span></label>
+      </div>
+      <div class="check-foot" id="gate-count">3 of 6 met &middot; not ready for handoff</div>
+    </div>
+
+    <div style="display:grid; gap:26px">
+      <!-- rhythm -->
+      <div class="panel">
+        <div class="panel-h">
+          <h3>The weekly, in 30 minutes</h3>
+          <span class="sub">Fixed agenda &middot; no status round-robin</span>
+        </div>
+        <div class="rhythm">
+          <ul>
+            <li><b>Stalled runs first</b> &mdash; anything past 7 days without a decision. Decide or kill it in the room.</li>
+            <li><b>Idle allocation</b> &mdash; who is holding chips they aren&rsquo;t realizing, and where it goes instead.</li>
+            <li><b>Next gate</b> &mdash; one workstream, what it needs from whom.</li>
+            <li><b>Nothing else.</b> Progress is on the board; reading it aloud is the tax I&rsquo;m trying to remove.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- retro -->
+      <div class="panel">
+        <div class="panel-h">
+          <h3>Run retro</h3>
+          <span class="sub">Four prompts &middot; 15 minutes &middot; every landed or killed run</span>
+        </div>
+        <div class="retro">
+          <dl>
+            <dt>What did we believe going in?</dt>
+            <dd>The hypothesis as written before results, not as remembered after.</dd>
+            <dt>Where did the signal actually change our mind?</dt>
+            <dd>Which checkpoint, which eval. Often much earlier than we acted on it.</dd>
+            <dt>What did the delay cost in chip-hours?</dt>
+            <dd>The number that makes the next decision faster.</dd>
+            <dt>What do we change in the next run&rsquo;s plan?</dt>
+            <dd>One change. A retro producing six action items produces none.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== NOTE ===================== -->
+<section id="note">
+  <div class="sec-head">
+    <h2>The note</h2>
+    <span class="sec-tag">&sect;4 &middot; Outreach</span>
+  </div>
+  <p class="lede">The version of my email that leads with your problem instead of my r&eacute;sum&eacute;.</p>
+
+  <div class="note">
+    <div class="note-body" id="note-text">
+      <p>Hi Erica,</p>
+      <p>
+        I came across the TPM role on RL Scaling for Gemini Mid-Training. Instead of a pitch, I put
+        together a short brief &mdash; including a working prototype of the operating rhythm I&rsquo;d
+        install around RL research workstreams: the experiment board, the allocation view, a handoff
+        gate, and a retro format. <mark class="ph">[link]</mark>
+      </p>
+      <p>
+        The short version of the fit: I own capacity strategy for a multibillion-dollar AI compute
+        portfolio spanning Gemini and Cloud AI, so allocation, realized utilization, and the tradeoffs
+        of unblocking runs are already my daily lens &mdash; and I write the bi-weekly version of that
+        story for Thomas Kurian and Ruth Porat. On the research side, I contribute to 1P Bench in
+        DeepMind and spend Sundays at the Sundai RSI hackathons building recursive-learning agents,
+        which is what keeps me current on frontier RL rather than adjacent to it.
+      </p>
+      <p>
+        The brief is also honest about where I&rsquo;d be ramping &mdash; hands-on training pipelines
+        and SFT initialization specifically.
+      </p>
+      <p>Could you share where you are in the hiring process for this role?</p>
+      <p>Meredith</p>
+    </div>
+    <div class="note-foot">
+      <button class="btn" id="copy">Copy the note</button>
+      <span class="hint" id="copy-hint">Fill in the link before sending.</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Prepared by <mark class="ph">[Meredith Bledsoe]</mark> for the Gemini Mid-Training RL Scaling team.
+  All figures, run names, and owner handles in &sect;3 are invented for demonstration and contain no
+  Google internal data.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  /* ---- board filter ---- */
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var rows  = Array.prototype.slice.call(document.querySelectorAll('#board tbody tr'));
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(o){ o.setAttribute('aria-pressed', String(o === c)); });
+      var f = c.dataset.f;
+      rows.forEach(function(r){ r.hidden = !(f === 'all' || r.dataset.s === f); });
+    });
+  });
+
+  /* ---- allocation chart ---- */
+  var data = [
+    { name:'Reward-model scaling',      alloc:480, used:442 },
+    { name:'Long-horizon agentic RL',   alloc:360, used:198 },
+    { name:'Multimodal reasoning RL',   alloc:300, used:276 },
+    { name:'SFT init ablations',        alloc:240, used:231 },
+    { name:'Eval harness / scoring',    alloc:120, used:71  }
+  ];
+  var max = 480;
+  var chart = document.getElementById('chart');
+  data.forEach(function(d){
+    var pct = Math.round(d.used / d.alloc * 100);
+    var row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML =
+      '<div class="bar-label">' + d.name + '</div>' +
+      '<div class="track" style="width:' + (d.alloc / max * 100) + '%" ' +
+        'title="' + d.name + ': ' + d.used + 'k of ' + d.alloc + 'k chip-hours realized (' + pct + '%)">' +
+        '<div class="fill" style="width:' + (d.used / d.alloc * 100) + '%"></div>' +
+      '</div>' +
+      '<div class="bar-val">' + d.used + 'k / ' + d.alloc + 'k &middot; ' + pct + '%</div>';
+    chart.appendChild(row);
+  });
+  var axis = document.createElement('div');
+  axis.className = 'axis';
+  axis.innerHTML = '<span></span><span class="ticks"><span>0</span><span>240k</span><span>480k chip-hours</span></span>';
+  chart.appendChild(axis);
+
+  /* ---- gate counter ---- */
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#gate input'));
+  var foot  = document.getElementById('gate-count');
+  function tally(){
+    var n = boxes.filter(function(b){ return b.checked; }).length;
+    foot.textContent = n + ' of ' + boxes.length + ' met · ' +
+      (n === boxes.length ? 'clear for handoff' : 'not ready for handoff');
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', tally); });
+  tally();
+
+  /* ---- copy note ---- */
+  var btn = document.getElementById('copy');
+  var hint = document.getElementById('copy-hint');
+  btn.addEventListener('click', function(){
+    var txt = document.getElementById('note-text').innerText;
+    function done(ok){
+      hint.textContent = ok ? 'Copied — remember to paste the link.' : 'Select the text above to copy.';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function(){ done(true); }, function(){ done(false); });
+    } else { done(false); }
+  });
+})();
+</script>
