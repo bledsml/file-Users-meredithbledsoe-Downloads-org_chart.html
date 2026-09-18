@@ -121,6 +121,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-18:** ANOTHER BOOKING — Alex Schreiber at Firefly **Mar 29–Apr 2,
+  $2,855** (turnover clean auto-scheduled). But a Vrbo reservation Feb 11–14,
+  2027 was "canceled by the host" — likely Quinn retrying via Vrbo and hitting
+  the unlisted/sync issue; verify. TWO United bookings within an hour
+  (IZYPJE + IPST48, eTicket issued for IPST48) — flagged possible duplicate.
+  Larry Friedberg engagement PAUSED at Meredith's request (health first —
+  gracious response). Sedgwick faxed STD medical-documents request to Lartily
+  Mateo (One Medical PA); One Medical video visit with Lartily TODAY 2pm —
+  NOT on her Google Calendar. Costco refunded $1,737.99. Jason Hoopet arrives
+  at Firefly Sat Sep 19. Amazon recruiter InMail (Principal Finance, Amazon
+  Ads). Bank flag CLOSED (Airbnb payout verified Sep 16).
+
 - **2026-09-17:** WINS — Airbnb payout method now VERIFIED/ready (MGB KY
   Checking …5413); bank flag mostly resolved (confirm Hospitable side shows
   verified too). NEW BOOKING: Pat Kinney at The Distiller's Estate
