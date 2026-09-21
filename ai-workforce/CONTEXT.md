@@ -82,6 +82,11 @@ June — confirm it ended).
 
 **Action flags raised:** Ring presumed converted Aug 21 (verify charge/decide).
 Chewy RESOLVED Aug 26 — order shipped, card working.
+Sep 21 (Monday watch): **Elatia Abate LLC 2nd-round coaching** — Stripe invoice
+#D102YKEL-0002, paid in 3 installments (now / by Oct 5 / by Nov 1) + NDA
+DocuSign to sign. **Cymbiotika** supplement order CYM3037382 (check if
+autoship). Hospitable $59 + PriceLabs $34.98 recurring as known. No failed
+payments seen this week; Chewy Autoship still unresolved since Sep 17 cancel.
 
 ## Recurring appointments to systematize
 
@@ -120,6 +125,19 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-09-21 (Monday watch):** DIRECT BOOKING WON — a guest also named
+  Meredith Bledsoe booked Firefly direct **Feb 16–24, 2027, $2,454**
+  (HOST-MBNNGJ, paid) — but Hospitable flagged guest verification for manual
+  review. Miles left 5 STARS at Distiller's; Airbnb payout **$1,637.17** sent
+  (arrives ~Sep 25); Ryan Kotarba arrives Sep 28. Turno: cleaner Lori has NOT
+  started a turnover project — flagged. THIRD United booking (NH0ZG4) in a
+  week. Elatia round 2: NDA DocuSign + Stripe invoice (3 installments),
+  Thursdays 9am recurring. Anthropologie return label issued (concussion
+  accommodation). Pest control serviced the TN cabin. Her Tue Sep 22 is
+  5-appointment medical day + OCWC workshop 6–8pm OVERLAPS Improv 7–9pm.
+  Also observed: a separate "Your Day Ahead" self-email automation
+  (meredithbledsoesf+cc@gmail.com) is now running — not one of ours.
 
 - **2026-09-18:** ANOTHER BOOKING — Alex Schreiber at Firefly **Mar 29–Apr 2,
   $2,855** (turnover clean auto-scheduled). But a Vrbo reservation Feb 11–14,
