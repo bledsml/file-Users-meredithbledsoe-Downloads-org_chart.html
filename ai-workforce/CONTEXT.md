@@ -126,6 +126,19 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-22:** KY PERMIT APPROVED — Karen Nanney issued the change-of-use +
+  interior-alterations permit for 980 Colonel Cox Rd (receipt attached, copy
+  to code enforcement); Lori/Two Bees will sign+file the Local Responsible
+  Contact form (CUP #3328). P&Z flag CLOSED. United refund processed (ticket
+  …5905) — duplicate-booking flag CLOSED. Berkeley binocular-vision clinic
+  replied twice via Virtru ENCRYPTED email (billing codes + waitlist) —
+  Meredith must verify identity to read. Renew PT waitlist slots offered.
+  Wayfair (Chris Bresnahan) calling today re: $795 pink chairs refund +
+  outstanding balance (Becky-related). WEDNESDAY TRIPLE-BOOK: One Medical
+  Danielle Martino 1:30 (Embarcadero) vs Truspine acu re-exam 1:30 (Telegraph
+  Hill) vs Well Woman 1:45 (San Bruno). Shannon's Circle matchmaking intro via
+  Cassindy — Shannon awaiting scheduling reply. Elatia Thu 9am confirmed.
+
 - **2026-09-21 (Monday watch):** DIRECT BOOKING WON — a guest also named
   Meredith Bledsoe booked Firefly direct **Feb 16–24, 2027, $2,454**
   (HOST-MBNNGJ, paid) — but Hospitable flagged guest verification for manual
