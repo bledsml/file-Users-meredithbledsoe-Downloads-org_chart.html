@@ -126,6 +126,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-23:** Wednesday triple-book RESOLVED — Truspine acu canceled,
+  Well Woman + Emma Lutz video off today's calendar; Danielle Martino 1:30
+  (Embarcadero) stands. Elite Cabin Care invoice 3983-2 GREW to **$780**
+  (was $390) — with the standing $585 (3842-2) that's ~$1,365 outstanding.
+  Vision-therapy billing codes received from Rising Star Vision (92066 $260 /
+  92065 $330); Anthem claim-submission draft awaiting completion; VSP benefit
+  details received. Cucalon Ortho reported an email breach — treat mail from
+  info@cucalonortho.com with caution. Subscriptions: Apple News+ expires
+  Oct 8; SF Chronicle CANCELED; new Amazon Subscribe&Save (Rodial concealer);
+  Escitalopram on Amazon Pharmacy auto-refill; LMNT + Cymbiotika orders.
+  Serge (Autolab) replied to her Mo/Shepherd intro. Kindle refund issued.
+
 - **2026-09-22:** KY PERMIT APPROVED — Karen Nanney issued the change-of-use +
   interior-alterations permit for 980 Colonel Cox Rd (receipt attached, copy
   to code enforcement); Lori/Two Bees will sign+file the Local Responsible
