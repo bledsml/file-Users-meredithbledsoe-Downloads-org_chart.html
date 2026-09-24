@@ -126,6 +126,19 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-24:** Elatia round-2 coaching PAUSED at Meredith's request —
+  she's starting **6 weeks of vision physical therapy** (concussion
+  follow-up); Elatia responded graciously; today's 9am session removed.
+  Renew PT BOOKED: 3 appointments, first Oct 1 4:10pm w/ Nicole Sabes (659
+  Commercial St) — waitlist flag closed. Truspine acu re-booked today
+  10:30am. TWO more United refunds processed — United duplicates fully
+  closed. North Nelson Water (KY): autopay + paperless enrolled, invoice
+  paid. Rachel arrives at Firefly Sep 26–28. Enrich: asked Franchesco about
+  dropping Oct/Nov prices to fill two open KY October weekends. Oura
+  sign-in code observed (possibly connecting Oura data — wearable-sync
+  opportunity). Danielle Martino moved to Fri 1:00pm. Friday: Claude
+  Meetup "AI Back Office" at Mox 2–4pm (setup-instructions email received).
+
 - **2026-09-23:** Wednesday triple-book RESOLVED — Truspine acu canceled,
   Well Woman + Emma Lutz video off today's calendar; Danielle Martino 1:30
   (Embarcadero) stands. Elite Cabin Care invoice 3983-2 GREW to **$780**
