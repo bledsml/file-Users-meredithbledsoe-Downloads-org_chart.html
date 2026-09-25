@@ -126,6 +126,17 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-25:** Berkeley itemized receipt received (Virtru encrypted —
+  she got the flow working and replied); with the VT codes she now has
+  everything for the Anthem claim (drafts still pending). Acupuncture
+  rescheduled to today 10:30 w/ Gabi Curbelo (150 Lombard); further changes
+  Sep 29 11am + Oct 1 2:30pm. REI bike PICKED UP (Salsa Journeyer) — flag
+  closed. Anthropologie return processed, refund pending. **Raya+ $49.99/mo
+  expiring ~Sep 27** — renewal decision. Abyssusnet expert-network
+  consultation request re: AI agents (possible paid-expert-call opportunity;
+  vet legitimacy). Vita Brevis Club application link received. Rachel at
+  Firefly Sat–Mon; departure clean scheduled.
+
 - **2026-09-24:** Elatia round-2 coaching PAUSED at Meredith's request —
   she's starting **6 weeks of vision physical therapy** (concussion
   follow-up); Elatia responded graciously; today's 9am session removed.
