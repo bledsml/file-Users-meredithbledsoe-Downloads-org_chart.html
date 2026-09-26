@@ -1,0 +1,716 @@
+<title>Vision Therapy Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+<style>
+:root{
+  --bg:#EEF2F5; --surface:#FFFFFF; --sunk:#F5F8FA; --ink:#15202B; --ink2:#46545F; --muted:#6F7C88; --line:#D8E0E6;
+  --accent:#1F5FAD; --accent-ink:#FFFFFF; --accent-soft:#E2EBF7;
+  --h:#2563B8; --v:#C4561A; --good:#2E7A4E; --good-soft:#E1F1E7; --warn:#A8660F; --warn-soft:#FBEFD9;
+  --bead-r:#C8372D; --bead-y:#D9A514; --bead-g:#2E8B57;
+  --shadow:0 1px 2px rgba(21,32,43,.06),0 4px 14px rgba(21,32,43,.05);
+  --display:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Atkinson Hyperlegible Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#0F1419; --surface:#171E25; --sunk:#131A20; --ink:#E5ECF2; --ink2:#AEBAC5; --muted:#808D99; --line:#2A343E;
+  --accent:#6FA3EC; --accent-ink:#0F1419; --accent-soft:#1B2A3C;
+  --h:#5B92DC; --v:#D8703A; --good:#5CC08A; --good-soft:#16301F; --warn:#E3A04A; --warn-soft:#33260F;
+  --shadow:none;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1419; --surface:#171E25; --sunk:#131A20; --ink:#E5ECF2; --ink2:#AEBAC5; --muted:#808D99; --line:#2A343E;
+  --accent:#6FA3EC; --accent-ink:#0F1419; --accent-soft:#1B2A3C;
+  --h:#5B92DC; --v:#D8703A; --good:#5CC08A; --good-soft:#16301F; --warn:#E3A04A; --warn-soft:#33260F;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;padding:0 16px 48px}
+.wrap{max-width:760px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* header */
+.top{padding-block:20px 8px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.top h1{font-size:28px;line-height:1.1}
+.top p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.string{width:150px;height:28px;flex:none}
+.status{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}
+.status.ok i{background:var(--good)} .status.busy i{background:var(--warn)}
+
+/* tabs */
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px}
+nav.tabs button{border:0;background:transparent;padding:10px 4px;border-radius:10px;font-weight:700;color:var(--ink2);font-size:15px}
+nav.tabs button[aria-selected="true"]{background:var(--surface);color:var(--accent);box-shadow:var(--shadow)}
+
+.banner{background:var(--warn-soft);color:var(--ink);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:12px}
+
+/* day switcher */
+.dayhead{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.dayhead h2{font-size:22px;flex:1;text-align:center}
+.dayhead small{display:block;font-family:var(--body);font-weight:400;color:var(--muted);font-size:13px}
+.iconbtn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;font-size:20px;flex:none}
+.iconbtn:disabled{opacity:.35;cursor:default}
+.progressline{display:flex;gap:6px;margin-bottom:16px}
+.progressline span{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.progressline span.on{background:var(--good)}
+
+/* exercise card */
+details.ex{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+details.ex>summary{list-style:none;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+details.ex>summary::-webkit-details-marker{display:none}
+.exnum{font-family:var(--mono);font-size:13px;color:var(--muted);width:20px;flex:none}
+.extitle{flex:1;min-width:0}
+.extitle h3{font-size:18px;line-height:1.2}
+.extitle p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.pill{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--sunk);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.pill.done{background:var(--good-soft);color:var(--good);border-color:transparent}
+.exbody{padding:0 16px 16px;display:grid;gap:16px;border-top:1px solid var(--line);padding-top:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.field label,.lbl{display:block;font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:4px}
+.lbl .hint{font-weight:400;color:var(--muted)}
+.numin{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--sunk);overflow:hidden}
+.numin input{width:100%;min-width:0;border:0;background:transparent;padding:10px;font-family:var(--mono);font-size:17px}
+.numin span{padding-right:10px;color:var(--muted);font-size:13px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--line);background:var(--sunk);border-radius:10px;padding:8px 12px;font-size:14px;min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.seg.scale button{min-width:44px;font-family:var(--mono)}
+.chips button{border-radius:999px}
+.sevrow{display:flex;align-items:center;gap:10px}
+.sevrow input{flex:1;accent-color:var(--accent)}
+.sevrow output{font-family:var(--mono);width:40px;text-align:right}
+textarea{width:100%;min-height:64px;border:1px solid var(--line);border-radius:10px;background:var(--sunk);padding:10px;resize:vertical}
+.donebtn{justify-self:start;border:1px solid var(--good);color:var(--good);background:transparent;border-radius:10px;padding:10px 16px;font-weight:700}
+.donebtn[aria-pressed="true"]{background:var(--good);color:var(--surface)}
+.subhead{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+.daynote{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+
+/* week */
+.weekhead{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.weekhead h2{flex:1;text-align:center;font-size:20px}
+.weekhead h2 small{display:block;font-family:var(--body);font-weight:400;font-size:13px;color:var(--muted)}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+table.week{width:100%;border-collapse:collapse;min-width:520px}
+table.week th,table.week td{border-bottom:1px solid var(--line);padding:8px;vertical-align:top;text-align:left}
+table.week tr:last-child td{border-bottom:0}
+table.week thead th{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+table.week tbody th{width:78px;font-weight:700;font-size:14px}
+table.week tbody th small{display:block;font-weight:400;color:var(--muted);font-family:var(--mono);font-size:12px}
+td.cell{cursor:pointer;font-size:13px;line-height:1.35}
+td.cell:hover{background:var(--sunk)}
+td.cell.done .m{color:var(--ink)}
+td.cell .ck{display:inline-block;font-weight:700;color:var(--good);font-size:12px}
+td.cell .m{font-family:var(--mono);color:var(--muted);display:block}
+td.cell .d{color:var(--muted);display:block}
+td.cell .s{color:var(--warn);display:block}
+tr.future th,tr.future td{opacity:.4}
+tr.pre td{background:repeating-linear-gradient(135deg,transparent 0 6px,var(--sunk) 6px 12px)}
+tr.today th{color:var(--accent)}
+.weeksum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.tile .k{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.tile .v{font-family:var(--mono);font-size:24px;font-weight:600}
+.tile .v small{font-size:13px;color:var(--muted);font-weight:400}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 14px;font-weight:700;font-size:14px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.toast{font-size:13px;color:var(--good);align-self:center}
+
+/* progress */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 14px 8px;margin-bottom:12px;position:relative}
+.chart h3{font-size:16px}
+.chart .sub{font-size:13px;color:var(--muted);margin:2px 0 6px}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--ink2);flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.chart svg{display:block;width:100%;height:auto;overflow:visible;touch-action:pan-y}
+.chart svg text{fill:var(--muted);font-family:var(--mono);font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 8px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%);font-family:var(--mono)}
+.empty{color:var(--muted);font-size:14px;padding:18px 0;text-align:center}
+details.hist{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+details.hist summary{font-weight:700;cursor:pointer}
+.histwrap{overflow-x:auto;margin-top:10px}
+table.hist{border-collapse:collapse;font-size:13px;min-width:640px;width:100%}
+table.hist th,table.hist td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.hist td.n{font-family:var(--mono)}
+
+/* plan */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.card h3{font-size:18px;margin-bottom:8px}
+.visits{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.visits li{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:start}
+.visits .dt{font-family:var(--mono);font-size:13px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:6px 4px;line-height:1.2}
+.visits .dt b{display:block;font-size:20px}
+.visits .dt.up{border-color:var(--accent);color:var(--accent)}
+.visits p{margin:0;font-size:14px;color:var(--ink2)}
+.visits strong{display:block}
+.linkbtn{border:0;background:none;color:var(--muted);font-size:13px;text-decoration:underline;padding:4px}
+.form{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:12px}
+.form input{border:1px solid var(--line);border-radius:10px;background:var(--sunk);padding:10px;width:100%}
+.plan dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:14px}
+.plan dt{font-weight:700}
+.plan dd{margin:0;color:var(--ink2)}
+.plan h4{margin:14px 0 6px;font-size:15px}
+@media (prefers-reduced-motion:no-preference){nav.tabs button,.seg button{transition:background .15s,color .15s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Vision Therapy Log</h1>
+      <p id="subtitle">VT #1 home program · started Sat, Sep 26, 2026</p>
+    </div>
+    <div style="display:grid;justify-items:end;gap:4px">
+      <svg class="string" viewBox="0 0 150 28" aria-hidden="true">
+        <line x1="2" y1="14" x2="148" y2="14" stroke="var(--muted)" stroke-width="1.2"/>
+        <circle cx="26" cy="14" r="6" fill="var(--bead-r)"/>
+        <circle cx="66" cy="14" r="6" fill="var(--bead-y)"/>
+        <circle cx="130" cy="14" r="6" fill="var(--bead-g)"/>
+      </svg>
+      <div class="status" id="status"><i></i><span>Connecting…</span></div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="log" aria-selected="true">Log</button>
+    <button role="tab" data-tab="week" aria-selected="false">Week</button>
+    <button role="tab" data-tab="progress" aria-selected="false">Progress</button>
+    <button role="tab" data-tab="plan" aria-selected="false">Plan</button>
+  </nav>
+
+  <div id="banner"></div>
+  <main id="view"></main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- dates ---------- */
+const pad = n => String(n).padStart(2,"0");
+const keyOf = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseKey = k => { const [y,m,d] = k.split("-").map(Number); return new Date(y,m-1,d); };
+const addDays = (k,n) => { const d = parseKey(k); d.setDate(d.getDate()+n); return keyOf(d); };
+const todayKey = () => keyOf(new Date());
+const fmt = (k,o) => parseKey(k).toLocaleDateString("en-US",o);
+const daysBetween = (a,b) => Math.round((parseKey(b)-parseKey(a))/86400000);
+const esc = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- program ---------- */
+const DEFAULT_SETTINGS = { startDate:"2026-09-26", weekStart:0, questions:"Saccades: for how long / how many cycles?" };
+const SUPP = ["Never","Rarely","Sometimes","Often"];
+const SYMPTOMS = ["Headache","Eye strain","Dizziness","Nausea","Blurry vision","Double vision","Light sensitivity","Fatigue"];
+const EX = [
+  { id:"hart", short:"Hart chart", name:"Near/Far Hart chart jumps", sub:"Monocular · 2–3 min per eye",
+    fields:[
+      {k:"minR", label:"Right eye", unit:"min", step:0.5, def:2},
+      {k:"minL", label:"Left eye", unit:"min", step:0.5, def:2},
+      {k:"farFt", label:"Far chart", unit:"ft", step:0.5, def:4},
+      {k:"nearIn", label:"Near chart", unit:"in", step:1, def:null},
+      {k:"mode", type:"choice", label:"Reading pattern", opts:["1 line at a time","3 letters at a time"], def:"1 line at a time"} ],
+    metric: e => (e.minR!=null||e.minL!=null) ? `R${e.minR??"–"} L${e.minL??"–"} min` : "" },
+  { id:"brock", short:"Brock string", name:"Brock string 3-bead jumps", sub:"5 min · door handle at eye level",
+    fields:[
+      {k:"min", label:"Time", unit:"min", step:0.5, def:5},
+      {k:"b1", label:"Red bead", unit:"cm", step:1, def:5},
+      {k:"b2", label:"Yellow bead", unit:"cm", step:1, def:10},
+      {k:"b3", label:"Green bead", unit:"cm", step:1, def:20},
+      {k:"x", type:"choice", label:"Saw the X cross at each bead", opts:["Yes","Sometimes","No"]} ],
+    metric: e => (e.b1!=null) ? `${e.b1}/${e.b2??"–"}/${e.b3??"–"} cm` : "" },
+  { id:"pursuits", short:"Pursuits", name:"Pursuits", sub:"Thumb at arm's length · left→right = 1 cycle · goal 120 bpm",
+    fields:[
+      {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:90},
+      {k:"hCyc", label:"Horiz. cycles", unit:"cyc", step:1, def:10},
+      {k:"vBpm", label:"Vertical", unit:"bpm", step:5, def:100},
+      {k:"vCyc", label:"Vert. cycles", unit:"cyc", step:1, def:10},
+      {k:"focus", type:"choice", label:"Kept the thumb in focus", opts:["Yes","Sometimes","No"]} ],
+    metric: e => (e.hBpm!=null||e.vBpm!=null) ? `${e.hBpm??"–"}/${e.vBpm??"–"} bpm` : "" },
+  { id:"saccades", short:"Saccades", name:"Saccades", sub:"Post-its 2 ft apart · sit 3 ft away · goal 120 bpm",
+    fields:[
+      {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:80},
+      {k:"hCyc", label:"Horiz. cycles", unit:"cyc", step:1, def:null},
+      {k:"vBpm", label:"Vertical", unit:"bpm", step:5, def:100},
+      {k:"vCyc", label:"Vert. cycles", unit:"cyc", step:1, def:null},
+      {k:"min", label:"Time", unit:"min", step:0.5, def:null},
+      {k:"acc", type:"multi", label:"Eye landing", opts:["On target","Overshot","Undershot"]} ],
+    metric: e => (e.hBpm!=null||e.vBpm!=null) ? `${e.hBpm??"–"}/${e.vBpm??"–"} bpm` : "" }
+];
+const EXBY = Object.fromEntries(EX.map(e=>[e.id,e]));
+
+/* ---------- state ---------- */
+const S = {
+  tab: "log", day: todayKey(), weekOffset: 0,
+  days: {}, settings: {...DEFAULT_SETTINGS}, visits: [],
+  db: null, mode: "local", open: {}
+};
+const LS = "vt-log-v1";
+function lsLoad(){ try{ const j = JSON.parse(localStorage.getItem(LS)||"null"); if(j){ S.days=j.days||{}; if(j.visits) S.visits=j.visits; if(j.settings) S.settings={...DEFAULT_SETTINGS,...j.settings}; } }catch(e){} }
+function lsSave(){ try{ localStorage.setItem(LS, JSON.stringify({days:S.days,visits:S.visits,settings:S.settings})); }catch(e){} }
+try{ const t = localStorage.getItem("vt-tab"); if(t) S.tab=t; }catch(e){}
+
+function setStatus(kind,text){ const el=document.getElementById("status"); el.className="status "+kind; el.querySelector("span").textContent=text; }
+
+/* ---------- persistence ---------- */
+const chains = {};
+const timers = {};
+function queueWrite(path, bodyFn){
+  clearTimeout(timers[path]);
+  setStatus("busy","Saving…");
+  timers[path] = setTimeout(()=>{
+    lsSave();
+    if(!S.db){ setStatus("ok","Saved on this device"); return; }
+    chains[path] = (chains[path]||Promise.resolve()).then(async()=>{
+      try{ await S.db.doc(path).set(bodyFn()); setStatus("ok","Saved"); }
+      catch(e){
+        if(e && e.code==="unavailable"){ await new Promise(r=>setTimeout(r,800+Math.random()*800)); try{ await S.db.doc(path).set(bodyFn()); setStatus("ok","Saved"); return; }catch(_){} }
+        setStatus("","Not saved — check your connection"); console.error(e);
+      }
+    });
+  }, 600);
+}
+const saveDay = k => queueWrite("days/"+k, ()=>S.days[k]);
+const saveVisits = () => queueWrite("meta/visits", ()=>({list:S.visits}));
+const saveSettings = () => queueWrite("meta/settings", ()=>S.settings);
+
+async function connect(){
+  let db = null;
+  try{ if(window.claude && window.claude.use) db = await window.claude.use("db"); }catch(e){ db = null; }
+  if(!db){
+    S.mode="local"; setStatus("ok","Saved on this device");
+    document.getElementById("banner").innerHTML = `<div class="banner">Cloud saving isn't available in this view, so entries are kept in this browser only. Open the app from your claude.ai link to sync.</div>`;
+    return;
+  }
+  S.db = db; S.mode = "db"; setStatus("ok","Synced");
+  db.collection("days").onSnapshot(snap=>{
+    const next = {};
+    snap.docs.forEach(d=>{ next[d.id] = JSON.parse(JSON.stringify(d.data())); });
+    // keep days with a pending local write
+    Object.keys(timers).forEach(p=>{ if(p.startsWith("days/")){ const k=p.slice(5); if(S.days[k]) next[k]=S.days[k]; } });
+    S.days = next; lsSave(); softRender();
+  }, err=>{ setStatus("","Sync stopped — reload the page"); console.error(err); });
+  db.doc("meta/settings").onSnapshot(s=>{ if(s.exists){ S.settings={...DEFAULT_SETTINGS,...s.data()}; lsSave(); softRender(); } }, ()=>{});
+  db.doc("meta/visits").onSnapshot(s=>{ if(s.exists){ S.visits = JSON.parse(JSON.stringify(s.data().list||[])); lsSave(); softRender(); } }, ()=>{});
+}
+
+/* ---------- day helpers ---------- */
+function getDay(k){ return S.days[k] || null; }
+function ensureDay(k){ if(!S.days[k]) S.days[k] = {date:k, ex:{}, note:""}; if(!S.days[k].ex) S.days[k].ex={}; return S.days[k]; }
+function exEntry(k,id){ const d=getDay(k); return d && d.ex && d.ex[id] || null; }
+function lastBefore(k,id){
+  const keys = Object.keys(S.days).filter(x=>x<k).sort().reverse();
+  for(const x of keys){ const e=exEntry(x,id); if(e && e.done) return e; }
+  return null;
+}
+function valueFor(k,id,f){
+  const e = exEntry(k,id);
+  if(e && e[f.k]!==undefined) return e[f.k];
+  if(f.type) return f.type==="multi" ? [] : (f.def ?? null);
+  const prev = lastBefore(k,id);
+  if(prev && prev[f.k]!=null) return prev[f.k];
+  return f.def;
+}
+function doneCount(k){ return EX.filter(x=>exEntry(k,x.id)?.done).length; }
+function anyDone(k){ return doneCount(k)>0; }
+
+/* write a field; the first edit fills in carried-forward numbers and marks the exercise done */
+function setField(k,id,field,val){
+  const d = ensureDay(k);
+  if(!d.ex[id]){
+    const e = {done:true};
+    EXBY[id].fields.forEach(f=>{ if(!f.type){ const v=valueFor(k,id,f); if(v!=null) e[f.k]=v; } });
+    d.ex[id] = e;
+  }
+  if(field==="done") d.ex[id].done = val; else { d.ex[id][field] = val; if(field!=="note") d.ex[id].done = d.ex[id].done ?? true; }
+  saveDay(k);
+}
+
+/* ---------- rendering ---------- */
+const view = () => document.getElementById("view");
+function render(){
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected", String(b.dataset.tab===S.tab)));
+  document.getElementById("subtitle").textContent = `VT #1 home program · started ${fmt(S.settings.startDate,{weekday:"short",month:"short",day:"numeric",year:"numeric"})}`;
+  ({log:renderLog, week:renderWeek, progress:renderProgress, plan:renderPlan})[S.tab]();
+}
+function softRender(){
+  const a = document.activeElement;
+  if(S.tab==="log" && a && view().contains(a) && /INPUT|TEXTAREA/.test(a.tagName)) return;
+  render();
+}
+
+/* Log tab */
+function renderLog(){
+  const k = S.day, t = todayKey();
+  const dayNum = daysBetween(S.settings.startDate,k)+1;
+  const d = getDay(k);
+  let h = `<div class="dayhead">
+    <button class="iconbtn" data-act="prev" aria-label="Previous day">‹</button>
+    <h2>${k===t?"Today":fmt(k,{weekday:"long"})}<small>${fmt(k,{weekday:k===t?"long":undefined,month:"long",day:"numeric",year:"numeric"})}${dayNum>0?` · Day ${dayNum}`:""}</small></h2>
+    <button class="iconbtn" data-act="next" aria-label="Next day" ${k>=t?"disabled":""}>›</button>
+  </div>
+  <div class="progressline" aria-label="${doneCount(k)} of 4 exercises done">${EX.map(x=>`<span class="${exEntry(k,x.id)?.done?"on":""}"></span>`).join("")}</div>`;
+  EX.forEach((x,i)=>{
+    const e = exEntry(k,x.id) || {};
+    const open = S.open[k+x.id] ?? !e.done;
+    h += `<details class="ex" data-ex="${x.id}" ${open?"open":""}>
+      <summary><span class="exnum">${i+1}</span><div class="extitle"><h3>${x.name}</h3><p>${x.sub}</p></div>
+      <span class="pill ${e.done?"done":""}">${e.done?"Done":"To do"}</span></summary>
+      <div class="exbody">
+        <div class="grid">${x.fields.filter(f=>!f.type).map(f=>{
+          const v = valueFor(k,x.id,f);
+          return `<div class="field"><label for="f-${x.id}-${f.k}">${f.label}</label>
+            <div class="numin"><input id="f-${x.id}-${f.k}" type="number" inputmode="decimal" step="${f.step}" min="0" data-f="${f.k}" value="${v??""}"><span>${f.unit}</span></div></div>`;
+        }).join("")}</div>
+        ${x.fields.filter(f=>f.type).map(f=>{
+          const v = valueFor(k,x.id,f);
+          return `<div><span class="lbl">${f.label}</span><div class="seg" data-${f.type}="${f.k}">${f.opts.map(o=>`<button type="button" data-v="${esc(o)}" aria-pressed="${f.type==="multi"?(v||[]).includes(o):v===o}">${o}</button>`).join("")}</div></div>`;
+        }).join("")}
+        <div><span class="lbl">Difficulty <span class="hint">1 easy · 5 very hard</span></span>
+          <div class="seg scale" data-choice="diff">${[1,2,3,4,5].map(n=>`<button type="button" data-v="${n}" aria-pressed="${e.diff===n}">${n}</button>`).join("")}</div></div>
+        <div><span class="lbl">Suppression <span class="hint">an eye "turning off" — one image or bead disappears</span></span>
+          <div class="seg" data-choice="supp">${SUPP.map(o=>`<button type="button" data-v="${o}" aria-pressed="${e.supp===o}">${o}</button>`).join("")}</div></div>
+        <div><span class="lbl">Symptoms</span>
+          <div class="seg chips" data-multi="sym">${["None",...SYMPTOMS].map(o=>`<button type="button" data-v="${o}" aria-pressed="${(e.sym||[]).includes(o)}">${o}</button>`).join("")}</div></div>
+        <div><label class="lbl" for="sev-${x.id}">Symptom severity</label>
+          <div class="sevrow"><input type="range" id="sev-${x.id}" min="0" max="10" step="1" data-f="sev" value="${e.sev??0}"><output class="num">${e.sev??0}/10</output></div></div>
+        <div><label class="lbl" for="note-${x.id}">Observations</label>
+          <textarea id="note-${x.id}" data-f="note" placeholder="What you noticed: the X, doubling, blur, over/undershooting…">${esc(e.note||"")}</textarea></div>
+        <button type="button" class="donebtn" data-act="done" aria-pressed="${!!e.done}">${e.done?"✓ Done":"Mark done"}</button>
+      </div></details>`;
+  });
+  h += `<div class="daynote"><label class="lbl" for="daynote">Notes for the day</label>
+    <textarea id="daynote" data-daynote placeholder="Sleep, screen time, how your eyes felt overall…">${esc(d?.note||"")}</textarea></div>`;
+  view().innerHTML = h;
+}
+
+function onLogClick(ev){
+  const k = S.day;
+  const act = ev.target.closest("[data-act]")?.dataset.act;
+  if(act==="prev"){ S.day = addDays(k,-1); render(); return; }
+  if(act==="next"){ if(k<todayKey()){ S.day = addDays(k,1); render(); } return; }
+  const card = ev.target.closest("details.ex"); if(!card) return;
+  const id = card.dataset.ex;
+  if(act==="done"){
+    const now = !(exEntry(k,id)?.done);
+    setField(k,id,"done",now);
+    if(now) S.open[k+id]=false;
+    render(); return;
+  }
+  const btn = ev.target.closest(".seg button"); if(!btn) return;
+  const seg = btn.parentElement;
+  let v = btn.dataset.v;
+  if(seg.dataset.choice){
+    const f = seg.dataset.choice;
+    if(f==="diff") v = Number(v);
+    const cur = exEntry(k,id)?.[f];
+    setField(k,id,f, cur===v ? null : v);
+  } else if(seg.dataset.multi){
+    const f = seg.dataset.multi;
+    let cur = [...(exEntry(k,id)?.[f]||[])];
+    if(cur.includes(v)) cur = cur.filter(x=>x!==v);
+    else { if(f==="sym"){ cur = v==="None" ? [] : cur.filter(x=>x!=="None"); } cur.push(v); }
+    setField(k,id,f,cur);
+  }
+  S.open[k+id]=true;
+  render();
+}
+function onLogInput(ev){
+  const k = S.day, t = ev.target;
+  if(t.matches("[data-daynote]")){ ensureDay(k).note = t.value; saveDay(k); return; }
+  const card = t.closest("details.ex"); if(!card || !t.dataset.f) return;
+  const id = card.dataset.ex, f = t.dataset.f;
+  S.open[k+id]=true;
+  if(f==="note"){ setField(k,id,"note",t.value); }
+  else if(f==="sev"){ setField(k,id,"sev",Number(t.value)); t.nextElementSibling.textContent = t.value+"/10"; }
+  else { setField(k,id,f, t.value==="" ? null : Number(t.value)); }
+  const pill = card.querySelector(".pill"); const e = exEntry(k,id);
+  pill.className = "pill"+(e.done?" done":""); pill.textContent = e.done?"Done":"To do";
+  const db = card.querySelector(".donebtn"); db.setAttribute("aria-pressed",String(!!e.done)); db.textContent = e.done?"✓ Done":"Mark done";
+  document.querySelectorAll(".progressline span").forEach((s,i)=>s.className = exEntry(k,EX[i].id)?.done?"on":"");
+}
+
+/* Week tab */
+function weekStartOf(k){
+  const t = parseKey(k);
+  t.setDate(t.getDate() - (t.getDay() - S.settings.weekStart + 7) % 7);
+  return keyOf(t);
+}
+function weekStartKey(offset){ return addDays(weekStartOf(todayKey()), offset*7); }
+function renderWeek(){
+  const ws = weekStartKey(S.weekOffset), t = todayKey(), start = S.settings.startDate;
+  const days = [...Array(7)].map((_,i)=>addDays(ws,i));
+  const firstWeek = weekStartOf(start);
+  const weekNo = Math.floor(daysBetween(firstWeek, ws)/7) + 1;
+  let h = `<div class="weekhead">
+    <button class="iconbtn" data-act="wprev" aria-label="Previous week" ${ws<=firstWeek?"disabled":""}>‹</button>
+    <h2>${fmt(days[0],{month:"short",day:"numeric"})} – ${fmt(days[6],{month:"short",day:"numeric"})}<small>${weekNo>0?`Week ${weekNo} of therapy`:"Before therapy started"}</small></h2>
+    <button class="iconbtn" data-act="wnext" aria-label="Next week" ${S.weekOffset>=0?"disabled":""}>›</button></div>
+  <div class="tablewrap"><table class="week"><thead><tr><th>Day</th>${EX.map((x,i)=>`<th>${i+1}. ${x.short}</th>`).join("")}</tr></thead><tbody>`;
+  days.forEach(k=>{
+    const cls = k>t?"future":(k<start?"pre":(k===t?"today":""));
+    const visit = S.visits.find(v=>v.date===k);
+    h += `<tr class="${cls}"><th>${fmt(k,{weekday:"short"})}<small>${fmt(k,{month:"numeric",day:"numeric"})}</small>${visit?`<small style="color:var(--accent)">visit</small>`:""}</th>`;
+    EX.forEach(x=>{
+      const e = exEntry(k,x.id);
+      if(!e || !e.done){ h += `<td class="cell" data-day="${k}" data-ex="${x.id}"><span class="d">${k<=t&&k>=start?"—":""}</span></td>`; return; }
+      const sym = (e.sym||[]).filter(s=>s!=="None");
+      h += `<td class="cell done" data-day="${k}" data-ex="${x.id}"><span class="ck">✓ Done</span><span class="m">${esc(x.metric(e))}</span>
+        ${e.diff?`<span class="d">Difficulty ${e.diff}/5</span>`:""}
+        ${e.supp&&e.supp!=="Never"?`<span class="d">Supp: ${e.supp.toLowerCase()}</span>`:""}
+        ${sym.length?`<span class="s">${esc(sym.join(", "))}${e.sev?` (${e.sev})`:""}</span>`:""}</td>`;
+    });
+    h += `</tr>`;
+  });
+  h += `</tbody></table></div>`;
+  const inRange = days.filter(k=>k<=t && k>=start);
+  const sessions = days.reduce((n,k)=>n+doneCount(k),0);
+  const fullDays = days.filter(k=>doneCount(k)===4).length;
+  const diffs = days.flatMap(k=>EX.map(x=>exEntry(k,x.id)?.diff).filter(Boolean));
+  const symDays = days.filter(k=>EX.some(x=>(exEntry(k,x.id)?.sym||[]).some(s=>s!=="None"))).length;
+  h += `<div class="weeksum">
+    <div class="tile"><div class="k">All 4 done</div><div class="v">${fullDays}<small> / ${inRange.length||7} days</small></div></div>
+    <div class="tile"><div class="k">Exercises logged</div><div class="v">${sessions}<small> / ${(inRange.length||7)*4}</small></div></div>
+    <div class="tile"><div class="k">Avg difficulty</div><div class="v">${diffs.length?(diffs.reduce((a,b)=>a+b,0)/diffs.length).toFixed(1):"—"}<small> / 5</small></div></div>
+    <div class="tile"><div class="k">Days with symptoms</div><div class="v">${symDays}</div></div>
+  </div>
+  <div class="row"><button class="btn" data-act="copyweek">Copy week summary</button><span class="toast" id="toast"></span></div>
+  <p style="font-size:13px;color:var(--muted)">Tap any box to open that day's log.</p>`;
+  view().innerHTML = h;
+}
+function weekSummaryText(){
+  const ws = weekStartKey(S.weekOffset);
+  const days = [...Array(7)].map((_,i)=>addDays(ws,i));
+  let out = `Vision therapy log, week of ${fmt(ws,{month:"short",day:"numeric",year:"numeric"})}\n`;
+  days.forEach(k=>{
+    const parts = EX.map(x=>{ const e=exEntry(k,x.id); if(!e||!e.done) return null;
+      const sym=(e.sym||[]).filter(s=>s!=="None");
+      return `${x.short}: ${x.metric(e)}${e.diff?`, difficulty ${e.diff}/5`:""}${e.supp?`, suppression ${e.supp.toLowerCase()}`:""}${sym.length?`, symptoms ${sym.join("/")}${e.sev?` (${e.sev}/10)`:""}`:""}${e.note?` — ${e.note}`:""}`; }).filter(Boolean);
+    out += `\n${fmt(k,{weekday:"short",month:"numeric",day:"numeric"})}: ${parts.length?"\n  "+parts.join("\n  "):"no exercises logged"}`;
+    if(getDay(k)?.note) out += `\n  Day note: ${getDay(k).note}`;
+  });
+  return out;
+}
+
+/* Progress tab */
+function doneDays(){ const t=todayKey(); return Object.keys(S.days).filter(k=>k<=t && anyDone(k)).sort(); }
+function streak(){
+  let k = todayKey(); if(!anyDone(k)) k = addDays(k,-1);
+  let n = 0; while(anyDone(k)){ n++; k = addDays(k,-1); } return n;
+}
+function series(id,f){ return doneDays().map(k=>({k, v:exEntry(k,id)?.done ? exEntry(k,id)[f] : null})).filter(p=>typeof p.v==="number"); }
+function daily(fn){ return doneDays().map(k=>({k, v:fn(k)})).filter(p=>typeof p.v==="number"&&!isNaN(p.v)); }
+const avg = a => a.length ? a.reduce((x,y)=>x+y,0)/a.length : null;
+
+function renderProgress(){
+  const dd = doneDays(), start = S.settings.startDate;
+  const weeks = Math.max(1, Math.ceil((daysBetween(start,todayKey())+1)/7));
+  let h = `<div class="kpis">
+    <div class="tile"><div class="k">Current streak</div><div class="v">${streak()}<small> days</small></div></div>
+    <div class="tile"><div class="k">Days practiced</div><div class="v">${dd.length}<small> of ${Math.max(0,daysBetween(start,todayKey())+1)}</small></div></div>
+    <div class="tile"><div class="k">Therapy week</div><div class="v">${weeks}<small> of 12–26</small></div></div>
+    <div class="tile"><div class="k">Next visit</div><div class="v" style="font-size:18px">${(()=>{const n=S.visits.filter(v=>v.date>=todayKey()).sort((a,b)=>a.date<b.date?-1:1)[0]; return n?fmt(n.date,{month:"short",day:"numeric"}):"—";})()}</div></div>
+  </div>`;
+  const charts = [
+    {id:"c1", title:"Pursuits speed", sub:"Metronome bpm · goal 120", unit:"bpm", min:60, max:130, goal:120,
+     s:[{name:"Horizontal",color:"var(--h)",pts:series("pursuits","hBpm")},{name:"Vertical",color:"var(--v)",pts:series("pursuits","vBpm")}]},
+    {id:"c2", title:"Saccades speed", sub:"Metronome bpm · goal 120", unit:"bpm", min:60, max:130, goal:120,
+     s:[{name:"Horizontal",color:"var(--h)",pts:series("saccades","hBpm")},{name:"Vertical",color:"var(--v)",pts:series("saccades","vBpm")}]},
+    {id:"c3", title:"Difficulty", sub:"Average across the exercises you did · lower is easier", unit:"/5", min:1, max:5, ticks:[1,2,3,4,5],
+     s:[{name:"Difficulty",color:"var(--accent)",pts:daily(k=>avg(EX.map(x=>exEntry(k,x.id)).filter(e=>e&&e.done&&e.diff).map(e=>e.diff)))}]},
+    {id:"c4", title:"Symptom severity", sub:"Worst rating of the day · 0–10", unit:"/10", min:0, max:10, ticks:[0,5,10],
+     s:[{name:"Severity",color:"var(--v)",pts:daily(k=>{const v=EX.map(x=>exEntry(k,x.id)).filter(e=>e&&e.done&&typeof e.sev==="number").map(e=>e.sev); return v.length?Math.max(...v):null;})}]},
+    {id:"c5", title:"Suppression", sub:"Average of the day · 0 never, 1 rarely, 2 sometimes, 3 often", unit:"", min:0, max:3, ticks:[0,1,2,3], tickLabel:v=>["Never","Rarely","Sometimes","Often"][v],
+     s:[{name:"Suppression",color:"var(--accent)",pts:daily(k=>avg(EX.map(x=>exEntry(k,x.id)).filter(e=>e&&e.done&&e.supp).map(e=>SUPP.indexOf(e.supp))))}]},
+    {id:"c6", title:"Hart chart distance", sub:"How far you stand from the wall chart", unit:"ft", min:0, max:null,
+     s:[{name:"Far chart",color:"var(--accent)",pts:series("hart","farFt")}]}
+  ];
+  charts.forEach(c=>{
+    h += `<section class="chart" id="${c.id}"><h3>${c.title}</h3><p class="sub">${c.sub}</p>
+      ${c.s.length>1?`<div class="legend">${c.s.map(s=>`<span><i style="background:${s.color}"></i>${s.name}</span>`).join("")}${c.goal?`<span><i style="background:var(--muted);height:1px"></i>Goal</span>`:""}</div>`:""}
+      <div class="plot"></div></section>`;
+  });
+  h += `<details class="hist"><summary>Full history table (${dd.length} days)</summary><div class="histwrap">${historyTable()}</div></details>
+    <div class="row"><button class="btn primary" data-act="csv">Export CSV</button><button class="btn" data-act="copycsv">Copy CSV</button><span class="toast" id="toast"></span></div>`;
+  view().innerHTML = h;
+  S._charts = charts;
+  drawCharts();
+}
+function historyTable(){
+  const rows = doneDays().slice().reverse();
+  if(!rows.length) return `<p class="empty">Nothing logged yet.</p>`;
+  return `<table class="hist"><thead><tr><th>Date</th>${EX.map(x=>`<th>${x.short}</th>`).join("")}</tr></thead><tbody>${rows.map(k=>`<tr><td class="n">${fmt(k,{month:"numeric",day:"numeric"})}</td>${EX.map(x=>{const e=exEntry(k,x.id); return `<td class="n">${e&&e.done?esc(x.metric(e))+(e.diff?` · D${e.diff}`:"")+(e.sev?` · S${e.sev}`:""):"—"}</td>`;}).join("")}</tr>`).join("")}</tbody></table>`;
+}
+
+function drawCharts(){
+  (S._charts||[]).forEach(c=>{
+    const host = document.querySelector(`#${c.id} .plot`); if(!host) return;
+    const all = c.s.flatMap(s=>s.pts);
+    if(!all.length){ host.innerHTML = `<p class="empty">Your trend appears here once you log this.</p>`; return; }
+    const W = Math.max(280, host.clientWidth), H = 190, L = c.tickLabel?66:36, R = 12, T = 12, B = 26;
+    const start = S.settings.startDate;
+    const lastK = [todayKey(), ...all.map(p=>p.k)].sort().pop();
+    const span = Math.max(13, daysBetween(start,lastK));
+    const x = k => L + (daysBetween(start,k)/span)*(W-L-R);
+    let ymax = c.max ?? Math.ceil((Math.max(...all.map(p=>p.v))+1)/2)*2;
+    let ymin = c.min;
+    const lo = Math.min(...all.map(p=>p.v)); if(lo<ymin) ymin = Math.floor(lo/10)*10;
+    const y = v => T + (1-(v-ymin)/(ymax-ymin))*(H-T-B);
+    const ticks = c.ticks || (()=>{ const st = (ymax-ymin)>40?20:((ymax-ymin)>10?5:1); const a=[]; for(let v=Math.ceil(ymin/st)*st; v<=ymax; v+=st) a.push(v); return a; })();
+    let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${c.title} over time">`;
+    ticks.forEach(v=>{ g += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${c.tickLabel?c.tickLabel(v):v}</text>`; });
+    // x ticks: weekly
+    for(let d=0; d<=span; d+= span>60?28:7){ const k=addDays(start,d); g += `<text x="${x(k)}" y="${H-6}" text-anchor="middle">${fmt(k,{month:"numeric",day:"numeric"})}</text>`; }
+    S.visits.forEach(v=>{ if(v.date>=start && daysBetween(start,v.date)<=span){ const X=x(v.date); g += `<line x1="${X}" x2="${X}" y1="${T}" y2="${H-B}" stroke="var(--muted)" stroke-dasharray="3 3"/><text x="${X+4}" y="${T+10}">visit</text>`; }});
+    if(c.goal){ g += `<line x1="${L}" x2="${W-R}" y1="${y(c.goal)}" y2="${y(c.goal)}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="6 4"/><text x="${L+4}" y="${y(c.goal)-5}">goal ${c.goal}</text>`; }
+    c.s.forEach(s=>{
+      if(s.pts.length>1) g += `<polyline fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${s.pts.map(p=>`${x(p.k).toFixed(1)},${y(p.v).toFixed(1)}`).join(" ")}"/>`;
+      s.pts.forEach((p,i)=>{ const last=i===s.pts.length-1; g += `<circle cx="${x(p.k)}" cy="${y(p.v)}" r="${last?4.5:3}" fill="${s.color}" stroke="var(--surface)" stroke-width="2"/>`; });
+      const lp = s.pts[s.pts.length-1];
+      if(c.s.length>1) g += `<text x="${x(lp.k)}" y="${y(lp.v)+(s===c.s[0]?-10:18)}" text-anchor="${x(lp.k)>W/2?"end":"start"}" style="fill:var(--ink2)">${s.name[0]} ${lp.v}</text>`;
+    });
+    g += `<line class="cross" x1="0" x2="0" y1="${T}" y2="${H-B}" stroke="var(--ink2)" stroke-width="1" visibility="hidden"/>`;
+    g += `<rect x="${L}" y="0" width="${W-L-R}" height="${H}" fill="transparent" class="hit"/></svg>`;
+    host.innerHTML = g + `<div class="tip" hidden></div>`;
+    const svg = host.querySelector("svg"), tip = host.querySelector(".tip"), cross = svg.querySelector(".cross");
+    const keys = [...new Set(all.map(p=>p.k))].sort();
+    const move = ev=>{
+      const r = svg.getBoundingClientRect(); const px = (ev.clientX-r.left)*(W/r.width);
+      let best = keys[0]; keys.forEach(k=>{ if(Math.abs(x(k)-px)<Math.abs(x(best)-px)) best=k; });
+      const X = x(best); cross.setAttribute("x1",X); cross.setAttribute("x2",X); cross.setAttribute("visibility","visible");
+      const vals = c.s.map(s=>{ const p=s.pts.find(p=>p.k===best); return p?`${c.s.length>1?s.name+" ":""}${c.tickLabel?SUPP[Math.round(p.v)]:(+p.v.toFixed(1))}${c.tickLabel?"":" "+c.unit}`:null; }).filter(Boolean);
+      tip.hidden = false; tip.innerHTML = `${fmt(best,{month:"short",day:"numeric"})}<br>${vals.join("<br>")}`;
+      tip.style.left = Math.min(Math.max(X*(r.width/W)+14, 60), r.width-40)+"px"; tip.style.top = "40px";
+    };
+    svg.addEventListener("pointermove",move); svg.addEventListener("pointerdown",move);
+    svg.addEventListener("pointerleave",()=>{ tip.hidden=true; cross.setAttribute("visibility","hidden"); });
+  });
+}
+
+function csvText(){
+  const cols = ["date","exercise","done","difficulty","suppression","symptoms","severity"];
+  const fields = [...new Set(EX.flatMap(x=>x.fields.map(f=>f.k)))];
+  const head = [...cols, ...fields, "observations","day_note"];
+  const q = v => { const s = Array.isArray(v)?v.join("; "):(v??""); return /[",\n]/.test(String(s))?`"${String(s).replace(/"/g,'""')}"`:String(s); };
+  const lines = [head.join(",")];
+  Object.keys(S.days).sort().forEach(k=>EX.forEach(x=>{ const e=exEntry(k,x.id); if(!e) return;
+    lines.push([k,x.name,e.done?"yes":"no",e.diff,e.supp,(e.sym||[]),e.sev, ...fields.map(f=>x.fields.some(ff=>ff.k===f)?e[f]:""), e.note, getDay(k)?.note].map(q).join(",")); }));
+  return lines.join("\n");
+}
+async function copyText(text){
+  const toast = document.getElementById("toast");
+  try{ await navigator.clipboard.writeText(text); if(toast) toast.textContent="Copied"; }
+  catch(e){ const ta=document.createElement("textarea"); ta.value=text; ta.style.width="100%"; ta.rows=8; toast.replaceWith(ta); ta.select(); }
+}
+
+/* Plan tab */
+function renderPlan(){
+  const t = todayKey();
+  const vis = S.visits.slice().sort((a,b)=>a.date<b.date?-1:1);
+  view().innerHTML = `
+  <section class="card"><h3>Visits</h3>
+    ${vis.length?`<ul class="visits">${vis.map((v,i)=>`<li><div class="dt ${v.date>=t?"up":""}">${fmt(v.date,{month:"short"})}<b>${fmt(v.date,{day:"numeric"})}</b></div>
+      <div><strong>${esc(v.title)}${v.time?` · ${esc(v.time)}`:""}</strong><p>${esc(v.note||"")}</p></div>
+      <button class="linkbtn" data-act="delvisit" data-i="${S.visits.indexOf(v)}" aria-label="Remove ${esc(v.title)}">Remove</button></li>`).join("")}</ul>`:`<p class="empty">No visits yet.</p>`}
+    <form class="form" id="visitform">
+      <div><label class="lbl" for="vdate">Date</label><input id="vdate" type="date" required></div>
+      <div><label class="lbl" for="vtitle">What</label><input id="vtitle" type="text" placeholder="VT #2" required></div>
+      <div><label class="lbl" for="vnote">Notes</label><input id="vnote" type="text" placeholder="New exercises, bpm changes…"></div>
+      <div style="align-self:end"><button class="btn primary" type="submit" style="width:100%">Add visit</button></div>
+    </form>
+    <p style="font-size:13px;color:var(--muted);margin:10px 0 0">Visits show as dashed lines on your progress charts, so you can see what changed after each one.</p>
+  </section>
+  <section class="card"><h3>Questions for my next visit</h3>
+    <textarea id="questions" data-questions rows="4">${esc(S.settings.questions||"")}</textarea></section>
+  <section class="card plan"><h3>Current program</h3>
+    <dl>
+      <dt>Start date</dt><dd><input type="date" id="startdate" value="${S.settings.startDate}" style="border:1px solid var(--line);border-radius:8px;background:var(--sunk);padding:4px 8px"></dd>
+      <dt>Week starts</dt><dd><div class="seg" data-weekstart>${["Sunday","Monday"].map((d,i)=>`<button type="button" data-v="${i}" aria-pressed="${S.settings.weekStart===i}">${d}</button>`).join("")}</div></dd>
+    </dl>
+    <h4>1. Monocular Near/Far Hart chart jumps · 2–3 min/eye</h4>
+    <dd>Patch one eye. Near chart close, far chart taped on the wall about 4 ft away. Read a line far, then a line near, until both charts are done. Switch eyes. Harder: 3 letters at a time, step farther back, bring the near chart closer.</dd>
+    <h4>2. Brock string 3-bead jumps · 5 min</h4>
+    <dd>String on a door handle at eye level, other end on your nose. Beads at 5, 10 and 20 cm. Look at the far bead: the string makes an X at the bead and the other beads double. Jump to the middle and near beads, making each single. Harder: change the spacing.</dd>
+    <h4>3. Pursuits · 10 cycles each way</h4>
+    <dd>Thumb at arm's length, move left↔right (left to right = 1 cycle), then up↕down. Start 90 bpm horizontal, 100 bpm vertical. Go up 5 bpm at a time. Goal 120 bpm.</dd>
+    <h4>4. Saccades</h4>
+    <dd>Two post-its with 2 X's each, 2 ft apart, sit 3 ft away. Jump between X's on each beat; notice over- or undershooting. Start 80 bpm horizontal, 100 bpm vertical.</dd>
+    <p style="font-size:13px;color:var(--muted);margin:12px 0 0">Backup if the 3-bead Brock string gets too hard: the 2-bead version (beads at 5 and 10 cm).</p>
+  </section>`;
+}
+function onPlanSubmit(ev){
+  if(ev.target.id!=="visitform") return;
+  ev.preventDefault();
+  const date = document.getElementById("vdate").value, title = document.getElementById("vtitle").value.trim();
+  if(!date || !title) return;
+  S.visits.push({date, title, note:document.getElementById("vnote").value.trim()});
+  saveVisits(); render();
+}
+
+/* ---------- events ---------- */
+document.querySelector("nav.tabs").addEventListener("click",ev=>{
+  const b = ev.target.closest("button[data-tab]"); if(!b) return;
+  S.tab = b.dataset.tab; try{ localStorage.setItem("vt-tab",S.tab); }catch(e){}
+  if(S.tab==="log") S.day = S.day || todayKey();
+  render(); window.scrollTo(0,0);
+});
+view().addEventListener("click",ev=>{
+  const act = ev.target.closest("[data-act]")?.dataset.act;
+  if(S.tab==="log") return onLogClick(ev);
+  if(S.tab==="week"){
+    if(act==="wprev"){ S.weekOffset--; render(); return; }
+    if(act==="wnext"){ if(S.weekOffset<0){ S.weekOffset++; render(); } return; }
+    if(act==="copyweek"){ copyText(weekSummaryText()); return; }
+    const cell = ev.target.closest("td.cell");
+    if(cell && cell.dataset.day<=todayKey()){ S.day = cell.dataset.day; S.open[S.day+cell.dataset.ex]=true; S.tab="log"; render(); window.scrollTo(0,0); }
+    return;
+  }
+  if(S.tab==="progress"){
+    if(act==="copycsv") copyText(csvText());
+    if(act==="csv") exportCsv();
+    return;
+  }
+  if(S.tab==="plan"){
+    if(act==="delvisit"){ S.visits.splice(Number(ev.target.dataset.i),1); saveVisits(); render(); return; }
+    const ws = ev.target.closest("[data-weekstart] button");
+    if(ws){ S.settings.weekStart = Number(ws.dataset.v); saveSettings(); render(); }
+  }
+});
+view().addEventListener("input",ev=>{
+  if(S.tab==="log") return onLogInput(ev);
+  if(ev.target.matches("[data-questions]")){ S.settings.questions = ev.target.value; saveSettings(); }
+});
+view().addEventListener("change",ev=>{
+  if(ev.target.id==="startdate" && ev.target.value){ S.settings.startDate = ev.target.value; saveSettings(); render(); }
+});
+view().addEventListener("toggle",ev=>{
+  const d = ev.target; if(d.matches && d.matches("details.ex")) S.open[S.day+d.dataset.ex] = d.open;
+}, true);
+view().addEventListener("submit",onPlanSubmit);
+
+let dl = null;
+async function exportCsv(){
+  const toast = document.getElementById("toast");
+  try{
+    if(dl===null) dl = (window.claude && window.claude.use) ? await window.claude.use("downloads") : false;
+    if(!dl){ copyText(csvText()); if(toast) toast.textContent="Download isn't available here, so the CSV was copied instead"; return; }
+    await dl.save({filename:`vision-therapy-log-${todayKey()}.csv`, data:csvText()});
+    if(toast) toast.textContent="Saved";
+  }catch(e){ if(toast) toast.textContent = "Download cancelled"; }
+}
+
+let rz; window.addEventListener("resize",()=>{ clearTimeout(rz); rz=setTimeout(()=>{ if(S.tab==="progress") drawCharts(); },150); });
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden && S.day<todayKey() && S.tab==="log" && !Object.keys(S.days).includes(S.day)) { S.day=todayKey(); render(); } });
+
+lsLoad();
+render();
+connect();
+})();
+</script>
