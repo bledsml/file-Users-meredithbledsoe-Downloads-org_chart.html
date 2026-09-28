@@ -87,6 +87,11 @@ Sep 21 (Monday watch): **Elatia Abate LLC 2nd-round coaching** — Stripe invoic
 DocuSign to sign. **Cymbiotika** supplement order CYM3037382 (check if
 autoship). Hospitable $59 + PriceLabs $34.98 recurring as known. No failed
 payments seen this week; Chewy Autoship still unresolved since Sep 17 cancel.
+Sep 28 (Monday watch): **Netflix $19.99/mo via PayPal** observed (add to
+inventory). Target Circle 360 monthly renewed; iCloud+ receipt; Bumble
+Premium notice. Apple News+ still expiring Oct 8; Raya decision outcome
+unknown (expired ~Sep 27). SF Chronicle confirmed gone. No failed payments.
+Chewy STILL unresolved — George's supplies gap ~2 weeks now.
 
 ## Recurring appointments to systematize
 
@@ -125,6 +130,20 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-09-28 (Monday watch):** Sharon left 5 STARS; two Airbnb payouts in
+  flight ($1,637.17 + $533.58 → MGB …7904). Elite completed the Firefly
+  turnover; Turno's Lori finished her project — cleaning flags clear. Ryan
+  Kotarba arrives at The Distiller's Estate today; Lauren at Firefly Oct
+  7–9. Meredith built her OWN vision-therapy tracker artifact + daily 7pm
+  "log exercises" calendar block (Hart chart, Brock string, pursuits,
+  saccades) — health dept self-started. Venmo: $164 George allergy shot +
+  $62 camping to Quinn. Escitalopram delayed to Sep 29. Abyssusnet followed
+  up 3x (pushy — vet before engaging). Tue Sep 29 is over-stacked: AI
+  Conference Day Zero (Pier 48) vs 11am acu vs noon Brain Health talk vs
+  2:30 UCSF Indigo Leon vs 7pm improv. Subscription watch: Netflix
+  $19.99/mo via PayPal newly observed; Target 360 renewed; Apple News+
+  expires Oct 8.
 
 - **2026-09-25:** Berkeley itemized receipt received (Virtru encrypted —
   she got the flow working and replied); with the VT codes she now has
