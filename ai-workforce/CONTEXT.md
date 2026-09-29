@@ -131,6 +131,17 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-29:** X/Twitter says account MeredithB26801 SUSPENDED for
+  "inauthentic activity" — advised to verify directly at x.com, not via
+  email links (possible phish). NEW BOOKING: Becky Smith (Berea, KY) at The
+  Distiller's Estate arriving Oct 9. Enrich answered pricing: TN October has
+  only orphan gaps, rates adjusting through Nov, 31-day booking window.
+  Matchmaking double-track: Shannon calls today 4pm; Bonnie Winston call
+  Wed 3pm PT. Brain Health lecture is VIRTUAL (link emailed) — eases today's
+  stack. Escitalopram delayed a 3rd time → Sep 30. Tonight: dinner w/
+  Camille (Sausalito 6:30) CONFLICTS with improv Session 3 (7pm, Sutter).
+  Magnum bike order shipped; West Village 1BR off-market follow-up.
+
 - **2026-09-28 (Monday watch):** Sharon left 5 STARS; two Airbnb payouts in
   flight ($1,637.17 + $533.58 → MGB …7904). Elite completed the Firefly
   turnover; Turno's Lori finished her project — cleaning flags clear. Ryan
