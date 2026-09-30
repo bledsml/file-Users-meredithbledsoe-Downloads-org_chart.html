@@ -90,6 +90,8 @@ details.ex>summary::-webkit-details-marker{display:none}
 textarea{width:100%;min-height:64px;border:1px solid var(--line);border-radius:10px;background:var(--sunk);padding:10px;resize:vertical}
 .donebtn{justify-self:start;border:1px solid var(--good);color:var(--good);background:transparent;border-radius:10px;padding:10px 16px;font-weight:700}
 .donebtn[aria-pressed="true"]{background:var(--good);color:var(--surface)}
+.exhint{margin:0;font-size:14px;color:var(--ink2);background:var(--accent-soft);border-radius:10px;padding:10px 12px}
+td.cell.off{cursor:default;background:var(--sunk)}
 .subhead{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
 .daynote{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
 
@@ -207,8 +209,13 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",
 
 /* ---------- program ---------- */
 const DEFAULT_SETTINGS = { startDate:"2026-09-26", weekStart:0, questions:"Saccades: for how long / how many cycles?" };
+/* each visit can change the home program; a day uses the latest program that started on or before it */
+const PROGRAMS = [
+  { label:"VT #1", from:"2026-09-22", ex:["hart","brock","pursuits","saccades"] },
+  { label:"VT #2", from:"2026-09-28", ex:["hart","pursuits","saccades","trana","annarbor"] }
+];
 const SUPP = ["Never","Rarely","Sometimes","Often"];
-const SYMPTOMS = ["Headache","Eye strain","Dizziness","Nausea","Blurry vision","Double vision","Light sensitivity","Fatigue"];
+const SYMPTOMS = ["Headache","Eye strain","Face tension","Brain fog","Dizziness","Nausea","Blurry vision","Double vision","Light sensitivity","Fatigue"];
 const EX = [
   { id:"hart", short:"Hart chart", name:"Near/Far Hart chart jumps", sub:"Monocular · 2–3 min per eye",
     fields:[
@@ -226,25 +233,42 @@ const EX = [
       {k:"b3", label:"Green bead", unit:"cm", step:1, def:20},
       {k:"x", type:"choice", label:"Saw the X cross at each bead", opts:["Yes","Sometimes","No"]} ],
     metric: e => (e.b1!=null) ? `${e.b1}/${e.b2??"–"}/${e.b3??"–"} cm` : "" },
-  { id:"pursuits", short:"Pursuits", name:"Pursuits", sub:"Thumb at arm's length · left→right = 1 cycle · goal 120 bpm",
+  { id:"pursuits", short:"Pursuits", name:"Pursuits", sub:"Thumb at arm's length · 5–10 cycles each way · +5 bpm steps · goal 120",
     fields:[
-      {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:90},
+      {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:85},
       {k:"hCyc", label:"Horiz. cycles", unit:"cyc", step:1, def:10},
-      {k:"vBpm", label:"Vertical", unit:"bpm", step:5, def:100},
+      {k:"vBpm", label:"Vertical", unit:"bpm", step:5, def:95},
       {k:"vCyc", label:"Vert. cycles", unit:"cyc", step:1, def:10},
       {k:"focus", type:"choice", label:"Kept the thumb in focus", opts:["Yes","Sometimes","No"]} ],
     metric: e => (e.hBpm!=null||e.vBpm!=null) ? `${e.hBpm??"–"}/${e.vBpm??"–"} bpm` : "" },
-  { id:"saccades", short:"Saccades", name:"Saccades", sub:"Post-its 2 ft apart · sit 3 ft away · goal 120 bpm",
+  { id:"saccades", short:"Saccades", name:"Saccades", sub:"Post-its 2 ft apart · sit 3 ft away · start 85–90 bpm",
     fields:[
-      {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:80},
+      {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:85},
       {k:"hCyc", label:"Horiz. cycles", unit:"cyc", step:1, def:null},
-      {k:"vBpm", label:"Vertical", unit:"bpm", step:5, def:100},
+      {k:"vBpm", label:"Vertical", unit:"bpm", step:5, def:85},
       {k:"vCyc", label:"Vert. cycles", unit:"cyc", step:1, def:null},
       {k:"min", label:"Time", unit:"min", step:0.5, def:null},
       {k:"acc", type:"multi", label:"Eye landing", opts:["On target","Overshot","Undershot"]} ],
-    metric: e => (e.hBpm!=null||e.vBpm!=null) ? `${e.hBpm??"–"}/${e.vBpm??"–"} bpm` : "" }
+    metric: e => (e.hBpm!=null||e.vBpm!=null) ? `${e.hBpm??"–"}/${e.vBpm??"–"} bpm` : "" },
+  { id:"trana", short:"Tranaglyph", name:"Red-green sliding tranaglyph", sub:"5 min each side · red lens over right eye",
+    hint:"Double at = the number where it breaks into two and blinking won't pull it back (the break). Single again = the number where it snaps back to one as you slide back (the recovery).",
+    fields:[
+      {k:"min", label:"Time per side", unit:"min", step:0.5, def:5},
+      {k:"brk1", label:"Side 1 double at", unit:"", step:1, def:null},
+      {k:"rec1", label:"Side 1 single again", unit:"", step:1, def:null},
+      {k:"brk2", label:"Side 2 double at", unit:"", step:1, def:null},
+      {k:"rec2", label:"Side 2 single again", unit:"", step:1, def:null} ],
+    metric: e => (e.brk1!=null||e.rec1!=null) ? `${e.brk1??"–"}/${e.rec1??"–"}${e.brk2!=null||e.rec2!=null?` · ${e.brk2??"–"}/${e.rec2??"–"}`:""}` : "" },
+  { id:"annarbor", short:"Ann Arbor", name:"Ann Arbor letter tracking", sub:"1–2 paragraphs a day · goal under 60 s each",
+    fields:[
+      {k:"p1", label:"Paragraph 1", unit:"sec", step:1, def:null},
+      {k:"p2", label:"Paragraph 2", unit:"sec", step:1, def:null},
+      {k:"z", type:"choice", label:"Ended on \"z\"", opts:["Yes","No"]} ],
+    metric: e => { const t=[e.p1,e.p2].filter(v=>v!=null); return t.length ? t.map(v=>v+"s").join(", ") : ""; } }
 ];
 const EXBY = Object.fromEntries(EX.map(e=>[e.id,e]));
+const programFor = k => PROGRAMS.filter(p=>p.from<=k).pop() || PROGRAMS[0];
+const exFor = k => EX.filter(x=>programFor(k).ex.includes(x.id));
 
 /* ---------- state ---------- */
 const S = {
@@ -319,6 +343,7 @@ function valueFor(k,id,f){
   return f.def;
 }
 function doneCount(k){ return EX.filter(x=>exEntry(k,x.id)?.done).length; }
+function allDone(k){ return exFor(k).every(x=>exEntry(k,x.id)?.done); }
 function anyDone(k){ return doneCount(k)>0; }
 
 /* write a field; the first edit fills in carried-forward numbers and marks the exercise done */
@@ -337,7 +362,7 @@ function setField(k,id,field,val){
 const view = () => document.getElementById("view");
 function render(){
   document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected", String(b.dataset.tab===S.tab)));
-  document.getElementById("subtitle").textContent = `VT #1 home program · started ${fmt(S.settings.startDate,{weekday:"short",month:"short",day:"numeric",year:"numeric"})}`;
+  document.getElementById("subtitle").textContent = `${programFor(todayKey()).label} home program · therapy started ${fmt(S.settings.startDate,{weekday:"short",month:"short",day:"numeric",year:"numeric"})}`;
   ({log:renderLog, week:renderWeek, progress:renderProgress, plan:renderPlan})[S.tab]();
 }
 function softRender(){
@@ -350,20 +375,21 @@ function softRender(){
 function renderLog(){
   const k = S.day, t = todayKey();
   const dayNum = daysBetween(S.settings.startDate,k)+1;
-  const d = getDay(k);
+  const d = getDay(k), exs = exFor(k);
   let h = `<div class="dayhead">
     <button class="iconbtn" data-act="prev" aria-label="Previous day">‹</button>
-    <h2>${k===t?"Today":fmt(k,{weekday:"long"})}<small>${fmt(k,{weekday:k===t?"long":undefined,month:"long",day:"numeric",year:"numeric"})}${dayNum>0?` · Day ${dayNum}`:""}</small></h2>
+    <h2>${k===t?"Today":fmt(k,{weekday:"long"})}<small>${fmt(k,{weekday:k===t?"long":undefined,month:"long",day:"numeric",year:"numeric"})}${dayNum>0?` · Day ${dayNum}`:""} · ${programFor(k).label}</small></h2>
     <button class="iconbtn" data-act="next" aria-label="Next day" ${k>=t?"disabled":""}>›</button>
   </div>
-  <div class="progressline" aria-label="${doneCount(k)} of 4 exercises done">${EX.map(x=>`<span class="${exEntry(k,x.id)?.done?"on":""}"></span>`).join("")}</div>`;
-  EX.forEach((x,i)=>{
+  <div class="progressline" aria-label="${exs.filter(x=>exEntry(k,x.id)?.done).length} of ${exs.length} exercises done">${exs.map(x=>`<span class="${exEntry(k,x.id)?.done?"on":""}"></span>`).join("")}</div>`;
+  exs.forEach((x,i)=>{
     const e = exEntry(k,x.id) || {};
     const open = S.open[k+x.id] ?? !e.done;
     h += `<details class="ex" data-ex="${x.id}" ${open?"open":""}>
       <summary><span class="exnum">${i+1}</span><div class="extitle"><h3>${x.name}</h3><p>${x.sub}</p></div>
       <span class="pill ${e.done?"done":""}">${e.done?"Done":"To do"}</span></summary>
       <div class="exbody">
+        ${x.hint?`<p class="exhint">${x.hint}</p>`:""}
         <div class="grid">${x.fields.filter(f=>!f.type).map(f=>{
           const v = valueFor(k,x.id,f);
           return `<div class="field"><label for="f-${x.id}-${f.k}">${f.label}</label>
@@ -434,7 +460,7 @@ function onLogInput(ev){
   const pill = card.querySelector(".pill"); const e = exEntry(k,id);
   pill.className = "pill"+(e.done?" done":""); pill.textContent = e.done?"Done":"To do";
   const db = card.querySelector(".donebtn"); db.setAttribute("aria-pressed",String(!!e.done)); db.textContent = e.done?"✓ Done":"Mark done";
-  document.querySelectorAll(".progressline span").forEach((s,i)=>s.className = exEntry(k,EX[i].id)?.done?"on":"");
+  const exs = exFor(k); document.querySelectorAll(".progressline span").forEach((s,i)=>s.className = exEntry(k,exs[i].id)?.done?"on":"");
 }
 
 /* Week tab */
@@ -448,19 +474,20 @@ function renderWeek(){
   const ws = weekStartKey(S.weekOffset), t = todayKey(), start = S.settings.startDate;
   const days = [...Array(7)].map((_,i)=>addDays(ws,i));
   const firstWeek = weekStartOf(start);
+  const cols = EX.filter(x=>days.some(k=>programFor(k).ex.includes(x.id) || exEntry(k,x.id)));
   const weekNo = Math.floor(daysBetween(firstWeek, ws)/7) + 1;
   let h = `<div class="weekhead">
     <button class="iconbtn" data-act="wprev" aria-label="Previous week" ${ws<=firstWeek?"disabled":""}>‹</button>
     <h2>${fmt(days[0],{month:"short",day:"numeric"})} – ${fmt(days[6],{month:"short",day:"numeric"})}<small>${weekNo>0?`Week ${weekNo} of therapy`:"Before therapy started"}</small></h2>
     <button class="iconbtn" data-act="wnext" aria-label="Next week" ${S.weekOffset>=0?"disabled":""}>›</button></div>
-  <div class="tablewrap"><table class="week"><thead><tr><th>Day</th>${EX.map((x,i)=>`<th>${i+1}. ${x.short}</th>`).join("")}</tr></thead><tbody>`;
+  <div class="tablewrap"><table class="week"><thead><tr><th>Day</th>${cols.map(x=>`<th>${x.short}</th>`).join("")}</tr></thead><tbody>`;
   days.forEach(k=>{
     const cls = k>t?"future":(k<start?"pre":(k===t?"today":""));
     const visit = S.visits.find(v=>v.date===k);
     h += `<tr class="${cls}"><th>${fmt(k,{weekday:"short"})}<small>${fmt(k,{month:"numeric",day:"numeric"})}</small>${visit?`<small style="color:var(--accent)">visit</small>`:""}</th>`;
-    EX.forEach(x=>{
+    cols.forEach(x=>{
       const e = exEntry(k,x.id);
-      if(!e || !e.done){ h += `<td class="cell" data-day="${k}" data-ex="${x.id}"><span class="d">${k<=t&&k>=start?"—":""}</span></td>`; return; }
+      if(!e || !e.done){ const inPlan = programFor(k).ex.includes(x.id); h += `<td class="cell${inPlan?"":" off"}" data-day="${k}" data-ex="${x.id}"><span class="d">${k<=t&&k>=start&&inPlan?"—":""}</span></td>`; return; }
       const sym = (e.sym||[]).filter(s=>s!=="None");
       h += `<td class="cell done" data-day="${k}" data-ex="${x.id}"><span class="ck">✓ Done</span><span class="m">${esc(x.metric(e))}</span>
         ${e.diff?`<span class="d">Difficulty ${e.diff}/5</span>`:""}
@@ -472,12 +499,13 @@ function renderWeek(){
   h += `</tbody></table></div>`;
   const inRange = days.filter(k=>k<=t && k>=start);
   const sessions = days.reduce((n,k)=>n+doneCount(k),0);
-  const fullDays = days.filter(k=>doneCount(k)===4).length;
+  const fullDays = inRange.filter(allDone).length;
+  const planned = inRange.reduce((n,k)=>n+exFor(k).length,0);
   const diffs = days.flatMap(k=>EX.map(x=>exEntry(k,x.id)?.diff).filter(Boolean));
   const symDays = days.filter(k=>EX.some(x=>(exEntry(k,x.id)?.sym||[]).some(s=>s!=="None"))).length;
   h += `<div class="weeksum">
-    <div class="tile"><div class="k">All 4 done</div><div class="v">${fullDays}<small> / ${inRange.length||7} days</small></div></div>
-    <div class="tile"><div class="k">Exercises logged</div><div class="v">${sessions}<small> / ${(inRange.length||7)*4}</small></div></div>
+    <div class="tile"><div class="k">Full program done</div><div class="v">${fullDays}<small> / ${inRange.length||7} days</small></div></div>
+    <div class="tile"><div class="k">Exercises logged</div><div class="v">${sessions}<small> / ${planned||exFor(t).length*7}</small></div></div>
     <div class="tile"><div class="k">Avg difficulty</div><div class="v">${diffs.length?(diffs.reduce((a,b)=>a+b,0)/diffs.length).toFixed(1):"—"}<small> / 5</small></div></div>
     <div class="tile"><div class="k">Days with symptoms</div><div class="v">${symDays}</div></div>
   </div>
@@ -530,7 +558,11 @@ function renderProgress(){
     {id:"c5", title:"Suppression", sub:"Average of the day · 0 never, 1 rarely, 2 sometimes, 3 often", unit:"", min:0, max:3, ticks:[0,1,2,3], tickLabel:v=>["Never","Rarely","Sometimes","Often"][v],
      s:[{name:"Suppression",color:"var(--accent)",pts:daily(k=>avg(EX.map(x=>exEntry(k,x.id)).filter(e=>e&&e.done&&e.supp).map(e=>SUPP.indexOf(e.supp))))}]},
     {id:"c6", title:"Hart chart distance", sub:"How far you stand from the wall chart", unit:"ft", min:0, max:null,
-     s:[{name:"Far chart",color:"var(--accent)",pts:series("hart","farFt")}]}
+     s:[{name:"Far chart",color:"var(--accent)",pts:series("hart","farFt")}]},
+    {id:"c7", title:"Ann Arbor tracking time", sub:"Fastest paragraph of the day · goal under 60 s · lower is better", unit:"s", min:0, max:null, goal:60,
+     s:[{name:"Fastest",color:"var(--accent)",pts:daily(k=>{const e=exEntry(k,"annarbor"); const v=e&&e.done?[e.p1,e.p2].filter(n=>typeof n==="number"):[]; return v.length?Math.min(...v):null;})}]},
+    {id:"c8", title:"Tranaglyph range", sub:"Side 1 scale number · higher means you hold single longer", unit:"", min:0, max:null,
+     s:[{name:"Double at",color:"var(--h)",pts:series("trana","brk1")},{name:"Single again",color:"var(--v)",pts:series("trana","rec1")}]}
   ];
   charts.forEach(c=>{
     h += `<section class="chart" id="${c.id}"><h3>${c.title}</h3><p class="sub">${c.sub}</p>
@@ -546,7 +578,8 @@ function renderProgress(){
 function historyTable(){
   const rows = doneDays().slice().reverse();
   if(!rows.length) return `<p class="empty">Nothing logged yet.</p>`;
-  return `<table class="hist"><thead><tr><th>Date</th>${EX.map(x=>`<th>${x.short}</th>`).join("")}</tr></thead><tbody>${rows.map(k=>`<tr><td class="n">${fmt(k,{month:"numeric",day:"numeric"})}</td>${EX.map(x=>{const e=exEntry(k,x.id); return `<td class="n">${e&&e.done?esc(x.metric(e))+(e.diff?` · D${e.diff}`:"")+(e.sev?` · S${e.sev}`:""):"—"}</td>`;}).join("")}</tr>`).join("")}</tbody></table>`;
+  const cols = EX.filter(x=>rows.some(k=>exEntry(k,x.id)?.done));
+  return `<table class="hist"><thead><tr><th>Date</th>${cols.map(x=>`<th>${x.short}</th>`).join("")}</tr></thead><tbody>${rows.map(k=>`<tr><td class="n">${fmt(k,{month:"numeric",day:"numeric"})}</td>${cols.map(x=>{const e=exEntry(k,x.id); return `<td class="n">${e&&e.done?esc(x.metric(e))+(e.diff?` · D${e.diff}`:"")+(e.sev?` · S${e.sev}`:""):"—"}</td>`;}).join("")}</tr>`).join("")}</tbody></table>`;
 }
 
 function drawCharts(){
@@ -559,7 +592,7 @@ function drawCharts(){
     const lastK = [todayKey(), ...all.map(p=>p.k)].sort().pop();
     const span = Math.max(13, daysBetween(start,lastK));
     const x = k => L + (daysBetween(start,k)/span)*(W-L-R);
-    let ymax = c.max ?? Math.ceil((Math.max(...all.map(p=>p.v))+1)/2)*2;
+    let ymax = c.max ?? Math.ceil((Math.max(c.goal||0,...all.map(p=>p.v))+1)/2)*2;
     let ymin = c.min;
     const lo = Math.min(...all.map(p=>p.v)); if(lo<ymin) ymin = Math.floor(lo/10)*10;
     const y = v => T + (1-(v-ymin)/(ymax-ymin))*(H-T-B);
@@ -571,10 +604,11 @@ function drawCharts(){
     S.visits.forEach(v=>{ if(v.date>=start && daysBetween(start,v.date)<=span){ const X=x(v.date); g += `<line x1="${X}" x2="${X}" y1="${T}" y2="${H-B}" stroke="var(--muted)" stroke-dasharray="3 3"/><text x="${X+4}" y="${T+10}">visit</text>`; }});
     if(c.goal){ g += `<line x1="${L}" x2="${W-R}" y1="${y(c.goal)}" y2="${y(c.goal)}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="6 4"/><text x="${L+4}" y="${y(c.goal)-5}">goal ${c.goal}</text>`; }
     c.s.forEach(s=>{
+      if(!s.pts.length) return;
       if(s.pts.length>1) g += `<polyline fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${s.pts.map(p=>`${x(p.k).toFixed(1)},${y(p.v).toFixed(1)}`).join(" ")}"/>`;
       s.pts.forEach((p,i)=>{ const last=i===s.pts.length-1; g += `<circle cx="${x(p.k)}" cy="${y(p.v)}" r="${last?4.5:3}" fill="${s.color}" stroke="var(--surface)" stroke-width="2"/>`; });
       const lp = s.pts[s.pts.length-1];
-      if(c.s.length>1) g += `<text x="${x(lp.k)}" y="${y(lp.v)+(s===c.s[0]?-10:18)}" text-anchor="${x(lp.k)>W/2?"end":"start"}" style="fill:var(--ink2)">${s.name[0]} ${lp.v}</text>`;
+      if(c.s.length>1) g += `<text x="${x(lp.k)}" y="${y(lp.v)+(s===c.s[0]?-10:18)}" text-anchor="${x(lp.k)>W/2?"end":"start"}" style="fill:var(--ink2)">${s.name.split(" ").map(w=>w[0]).join("")} ${lp.v}</text>`;
     });
     g += `<line class="cross" x1="0" x2="0" y1="${T}" y2="${H-B}" stroke="var(--ink2)" stroke-width="1" visibility="hidden"/>`;
     g += `<rect x="${L}" y="0" width="${W-L-R}" height="${H}" fill="transparent" class="hit"/></svg>`;
@@ -635,14 +669,16 @@ function renderPlan(){
       <dt>Week starts</dt><dd><div class="seg" data-weekstart>${["Sunday","Monday"].map((d,i)=>`<button type="button" data-v="${i}" aria-pressed="${S.settings.weekStart===i}">${d}</button>`).join("")}</div></dd>
     </dl>
     <h4>1. Monocular Near/Far Hart chart jumps · 2–3 min/eye</h4>
-    <dd>Patch one eye. Near chart close, far chart taped on the wall about 4 ft away. Read a line far, then a line near, until both charts are done. Switch eyes. Harder: 3 letters at a time, step farther back, bring the near chart closer.</dd>
-    <h4>2. Brock string 3-bead jumps · 5 min</h4>
-    <dd>String on a door handle at eye level, other end on your nose. Beads at 5, 10 and 20 cm. Look at the far bead: the string makes an X at the bead and the other beads double. Jump to the middle and near beads, making each single. Harder: change the spacing.</dd>
-    <h4>3. Pursuits · 10 cycles each way</h4>
-    <dd>Thumb at arm's length, move left↔right (left to right = 1 cycle), then up↕down. Start 90 bpm horizontal, 100 bpm vertical. Go up 5 bpm at a time. Goal 120 bpm.</dd>
-    <h4>4. Saccades</h4>
-    <dd>Two post-its with 2 X's each, 2 ft apart, sit 3 ft away. Jump between X's on each beat; notice over- or undershooting. Start 80 bpm horizontal, 100 bpm vertical.</dd>
-    <p style="font-size:13px;color:var(--muted);margin:12px 0 0">Backup if the 3-bead Brock string gets too hard: the 2-bead version (beads at 5 and 10 cm).</p>
+    <dd>Patch one eye. Near chart close, far chart taped on the wall about 4 ft away. Read a line far, then a line near, until both charts are done. Switch eyes. Emphasize clarity. Harder: 3 letters at a time, step farther back, bring the near chart closer.</dd>
+    <h4>2. Pursuits · 5–10 cycles each way</h4>
+    <dd>Thumb at arm's length, move left↔right as slowly as you need to keep it in focus, then up↕down. Start 85 bpm horizontal, 95 bpm vertical. Go up 5 bpm at a time. Goal 120 bpm.</dd>
+    <h4>3. Saccades</h4>
+    <dd>Two post-its with 2 X's each, 2 ft apart, sit 3 ft away. Jump between X's on each beat; notice over- or undershooting and try to aim accurately. Monitor symptoms. Repeat with the post-its 2 ft apart vertically. Start 85–90 bpm for both. <em>How long / how many cycles: ask at next visit.</em></dd>
+    <h4>4. Red-green sliding tranaglyph · 5 min each side</h4>
+    <dd>Red-green glasses, red lens over the right eye. Smooth side facing you, notch to the left. Keep the circle, X and square lined up inside the big rings; if a shape goes missing, blink until it's back. Slowly pull the cards apart from the notch, relaxed (slow blinks, feel sleepy, look far off). When it goes double, record the scale number (<strong>break</strong>). Nudge back until it's single again and record that number (<strong>recovery</strong>).</dd>
+    <h4>5. Ann Arbor letter tracking · 1–2 paragraphs/day</h4>
+    <dd>Scan the jumbled words left to right, line by line, circling a, then b, and so on to z. If the last letter isn't z, find the mistake. Time each paragraph. Goal: under one minute.</dd>
+    <p style="font-size:13px;color:var(--muted);margin:12px 0 0">VT #2 (Sep 28, Jennifer Fisher) replaced the Brock string with the tranaglyph and Ann Arbor sheets. Earlier Brock string entries stay in your history.</p>
   </section>`;
 }
 function onPlanSubmit(ev){
