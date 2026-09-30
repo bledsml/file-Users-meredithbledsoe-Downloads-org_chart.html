@@ -131,6 +131,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-09-30:** Global Entry: passport on file EXPIRED — update in TTP
+  (PASSID 984453573). Elite invoice grew AGAIN: 3983-3 now **$975** (+ old
+  $585 = ~$1,560 outstanding). 4th United refund processed. October is
+  filling: Nick (Bourbon Trail Oct 1–4), Lara (Firefly Oct 2–6), Lauren
+  (Oct 7–9), Becky (Distiller's Oct 9–11), Alissa (Firefly Oct 9–16) — all
+  pre-arrival messages auto-sent. Escitalopram DELIVERED; Bupropion +
+  Propranolol being prepared. Matchmaking: Shannon → book Claire Wexler
+  next; Bonnie Winston call today 3pm PT (NOT on calendar — conflicts with
+  3pm recurring block). Filbert parking $622 autopaid (Marian Lim). New
+  session branch observed: claude/exercise-progress-tracker (her vision-PT
+  tracker work) — grooming-watcher CI noise on it is expected.
+
 - **2026-09-29:** X/Twitter says account MeredithB26801 SUSPENDED for
   "inauthentic activity" — advised to verify directly at x.com, not via
   email links (possible phish). NEW BOOKING: Becky Smith (Berea, KY) at The
