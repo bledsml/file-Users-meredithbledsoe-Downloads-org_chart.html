@@ -131,6 +131,17 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-01:** GEORGE'S MEDS SOLVED — Venmo'd Quinn $248 for a 6-month
+  Simparica Trio supply; Chewy Autoship payment still broken but urgency
+  gone (downgrade flag). Bourbon Trail Nov 12–16 reservation HMRM8N2ZPK
+  CANCELED — the Clayton/Jen double-book resolved itself, but those dates
+  are now open inventory. Stephanie (Thanksgiving guest, Nov 24–28) asked a
+  question in Airbnb ("we have 2 little…") — reply needed. Vision: Berkeley
+  test results sent to Rising Star; Dr. Schumacher follow-up Mon Oct 5 11am;
+  acu shuffled (Oct 2 canceled, Oct 8 11:30, Nov 6 added). First Renew PT
+  session today 4:10. GitHub App "Claude" requested updated permissions
+  (her call to approve). AppleCare+ monthly receipt.
+
 - **2026-09-30:** Global Entry: passport on file EXPIRED — update in TTP
   (PASSID 984453573). Elite invoice grew AGAIN: 3983-3 now **$975** (+ old
   $585 = ~$1,560 outstanding). 4th United refund processed. October is
