@@ -131,6 +131,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-02:** Vrbo says the Firefly listing "will be visible to
+  travelers soon" — the unlisted-Vrbo flag is resolving. Openly homeowners
+  insurance application (BQ01-PMADVNP) DocuSign VOIDED — likely the lapsed
+  Goosehead quote; restart if coverage still wanted. Wells Fargo BUSINESS
+  CHECKING appointment today 10:30 (Cow Hollow, bring 2 IDs) — KY LLC
+  banking finally moving. New invoice: Bourbon City Cleaning #2480 (KY).
+  PT home program received from Nicole. Olympic Club FY2027 dues INCREASE
+  letter + statement. Delta flights booked for Leighton Vihrachoff (Nov
+  5 + 8, forwarded to family); Auburn visit registered. Labcorp results
+  ready; Anthem EOB posted. Monday Oct 5 = double vision day: Dr.
+  Schumacher 11am + UC Berkeley Opt 1:30pm.
+
 - **2026-10-01:** GEORGE'S MEDS SOLVED — Venmo'd Quinn $248 for a 6-month
   Simparica Trio supply; Chewy Autoship payment still broken but urgency
   gone (downgrade flag). Bourbon Trail Nov 12–16 reservation HMRM8N2ZPK
