@@ -233,7 +233,7 @@ const EX = [
       {k:"b3", label:"Green bead", unit:"cm", step:1, def:20},
       {k:"x", type:"choice", label:"Saw the X cross at each bead", opts:["Yes","Sometimes","No"]} ],
     metric: e => (e.b1!=null) ? `${e.b1}/${e.b2??"–"}/${e.b3??"–"} cm` : "" },
-  { id:"pursuits", short:"Pursuits", name:"Pursuits", sub:"Thumb at arm's length · 5–10 cycles each way · +5 bpm steps · goal 120",
+  { id:"pursuits", short:"Pursuits", name:"Pursuits", sub:"Thumb at arm's length · 10 cycles each way · +5 bpm steps · goal 120",
     fields:[
       {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:85},
       {k:"hCyc", label:"Horiz. cycles", unit:"cyc", step:1, def:10},
@@ -241,17 +241,17 @@ const EX = [
       {k:"vCyc", label:"Vert. cycles", unit:"cyc", step:1, def:10},
       {k:"focus", type:"choice", label:"Kept the thumb in focus", opts:["Yes","Sometimes","No"]} ],
     metric: e => (e.hBpm!=null||e.vBpm!=null) ? `${e.hBpm??"–"}/${e.vBpm??"–"} bpm` : "" },
-  { id:"saccades", short:"Saccades", name:"Saccades", sub:"Post-its 2 ft apart · sit 3 ft away · start 85–90 bpm",
+  { id:"saccades", short:"Saccades", name:"Saccades", sub:"Post-its 2 ft apart · sit 3 ft away · 10 cycles each way · goal 120",
     fields:[
       {k:"hBpm", label:"Horizontal", unit:"bpm", step:5, def:85},
-      {k:"hCyc", label:"Horiz. cycles", unit:"cyc", step:1, def:null},
+      {k:"hCyc", label:"Horiz. cycles", unit:"cyc", step:1, def:10},
       {k:"vBpm", label:"Vertical", unit:"bpm", step:5, def:85},
-      {k:"vCyc", label:"Vert. cycles", unit:"cyc", step:1, def:null},
+      {k:"vCyc", label:"Vert. cycles", unit:"cyc", step:1, def:10},
       {k:"min", label:"Time", unit:"min", step:0.5, def:null},
       {k:"acc", type:"multi", label:"Eye landing", opts:["On target","Overshot","Undershot"]} ],
     metric: e => (e.hBpm!=null||e.vBpm!=null) ? `${e.hBpm??"–"}/${e.vBpm??"–"} bpm` : "" },
   { id:"trana", short:"Tranaglyph", name:"Red-green sliding tranaglyph", sub:"5 min each side · red lens over right eye",
-    hint:"Double at = the number where it breaks into two and blinking won't pull it back (the break). Single again = the number where it snaps back to one as you slide back (the recovery).",
+    hint:"Double at = the scale number (small arrow) as soon as you see a shadow of a second circle behind the first, i.e. the overlapping circle (the break). Single again = the number when you see one distinct circle with the smaller circle in the center (the recovery). Per Dr. Malik, Sep 30.",
     fields:[
       {k:"min", label:"Time per side", unit:"min", step:0.5, def:5},
       {k:"brk1", label:"Side 1 double at", unit:"", step:1, def:null},
@@ -669,13 +669,14 @@ function renderPlan(){
       <dt>Week starts</dt><dd><div class="seg" data-weekstart>${["Sunday","Monday"].map((d,i)=>`<button type="button" data-v="${i}" aria-pressed="${S.settings.weekStart===i}">${d}</button>`).join("")}</div></dd>
     </dl>
     <h4>1. Monocular Near/Far Hart chart jumps · 2–3 min/eye</h4>
-    <dd>Patch one eye. Near chart close, far chart taped on the wall about 4 ft away. Read a line far, then a line near, until both charts are done. Switch eyes. Emphasize clarity. Harder: 3 letters at a time, step farther back, bring the near chart closer.</dd>
-    <h4>2. Pursuits · 5–10 cycles each way</h4>
-    <dd>Thumb at arm's length, move left↔right as slowly as you need to keep it in focus, then up↕down. Start 85 bpm horizontal, 95 bpm vertical. Go up 5 bpm at a time. Goal 120 bpm.</dd>
-    <h4>3. Saccades</h4>
-    <dd>Two post-its with 2 X's each, 2 ft apart, sit 3 ft away. Jump between X's on each beat; notice over- or undershooting and try to aim accurately. Monitor symptoms. Repeat with the post-its 2 ft apart vertically. Start 85–90 bpm for both. <em>How long / how many cycles: ask at next visit.</em></dd>
+    <dd>Patch one eye. Near chart close, far chart taped on the wall about 4 ft away. Read a line far, then a line near, until both charts are done. Switch eyes. Emphasize clarity. To make it harder (Dr. Malik, Sep 30): bring the small near chart closer and closer to your eyes. Also: 3 letters at a time, or step farther back.</dd>
+    <h4>2. Pursuits · 10 cycles each way</h4>
+    <dd>Thumb at arm's length, move left↔right as slowly as you need to keep it in focus, then up↕down. Start 85 bpm horizontal, 95 bpm vertical. Go up 5 bpm at a time. Goal 120 bpm. One cycle = left→right→back to left (or up→down→back up).</dd>
+    <h4>3. Saccades · 10 cycles each way</h4>
+    <dd>Two post-its with 2 X's each, 2 ft apart, sit 3 ft away. Jump between X's on each beat; notice over- or undershooting and try to aim accurately. Monitor symptoms. Repeat with the post-its 2 ft apart vertically. Start 85–90 bpm for both. One cycle = left→right→back to left (or up→down→back up).</dd>
+    <dd style="margin-top:8px"><strong>Symptom rule for pursuits and saccades</strong> (Dr. Malik, Sep 30): a slight increase in symptoms is expected, including tension on the left side of your face. Use the <strong>two-point rule</strong>: rate your symptoms before you start; if any symptom goes up 2 points from that baseline, stop. If symptoms jump a lot, lower the bpm.</dd>
     <h4>4. Red-green sliding tranaglyph · 5 min each side</h4>
-    <dd>Red-green glasses, red lens over the right eye. Smooth side facing you, notch to the left. Keep the circle, X and square lined up inside the big rings; if a shape goes missing, blink until it's back. Slowly pull the cards apart from the notch, relaxed (slow blinks, feel sleepy, look far off). When it goes double, record the scale number (<strong>break</strong>). Nudge back until it's single again and record that number (<strong>recovery</strong>).</dd>
+    <dd>Red-green glasses, red lens over the right eye. Smooth side facing you, notch to the left. Keep the circle, X and square lined up inside the big rings; if a shape goes missing, blink until it's back. Slowly pull the cards apart from the notch, relaxed (slow blinks, feel sleepy, look far off). As soon as you see a shadow of a second circle behind the first (the overlapping circle), record the scale number the small arrow points to (<strong>break</strong>). Nudge back until you see one distinct circle with the smaller circle in the center, and record that number (<strong>recovery</strong>).</dd>
     <h4>5. Ann Arbor letter tracking · 1–2 paragraphs/day</h4>
     <dd>Scan the jumbled words left to right, line by line, circling a, then b, and so on to z. If the last letter isn't z, find the mistake. Time each paragraph. Goal: under one minute.</dd>
     <p style="font-size:13px;color:var(--muted);margin:12px 0 0">VT #2 (Sep 28, Jennifer Fisher) replaced the Brock string with the tranaglyph and Ann Arbor sheets. Earlier Brock string entries stay in your history.</p>
