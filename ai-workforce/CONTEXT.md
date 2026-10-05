@@ -92,6 +92,10 @@ inventory). Target Circle 360 monthly renewed; iCloud+ receipt; Bumble
 Premium notice. Apple News+ still expiring Oct 8; Raya decision outcome
 unknown (expired ~Sep 27). SF Chronicle confirmed gone. No failed payments.
 Chewy STILL unresolved — George's supplies gap ~2 weeks now.
+Oct 5 (Monday watch): NEW — **Peloton membership** ("You're in!" Oct 4) +
+monthly highlights; **Audible active** (3 unused credits — use or pause);
+**UCSF payment plan $193.62/mo** autopay (Visa …3996); AppleCare+ monthly.
+Apple News+ decision window closes Oct 8. No failed payments this week.
 
 ## Recurring appointments to systematize
 
@@ -130,6 +134,17 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-10-05 (Monday watch):** Turno: Lori REPORTED A PROBLEM at a
+  property Oct 4 (details in Turno) — review. Avis account: password reset
+  → locked → changed within minutes Oct 4, plus a Labcorp password change
+  same day — likely her own cleanup (Avis rental 27712723US3 canceled, no
+  charge), confirm it was her. Nick left 5 STARS at Bourbon Trail. Today =
+  her meticulously planned double vision day (San Rafael 11am → UC Berkeley
+  1:30, drive blocks self-built). Mike Hostetler call Tue 1pm; Catarina
+  dinner Tue 7pm; acu Tue 2:30. Anthropologie 2nd return processed. Home
+  Depot pickup ready (by Oct 12). Subscriptions: Peloton NEW, Audible 3
+  idle credits, UCSF plan $193.62/mo — see watch section.
 
 - **2026-10-02:** Vrbo says the Firefly listing "will be visible to
   travelers soon" — the unlisted-Vrbo flag is resolving. Openly homeowners
