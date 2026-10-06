@@ -135,6 +135,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-06:** She self-organized the Turno problem into a 9am "STR
+  follow-ups" block: Kaitey (NEW TN cleaner), Shawyne (French-fry clean
+  credit), Wes (KY: pink cushion, loose upstairs toilet, AC Freon), Enrich
+  Zoom. NOTE: her task calls the KY house "**White Oak Estate**" — new
+  name observed alongside The Distiller's Estate. Airbnb will charge HER
+  $952.82 in 3 days (guest-side trip). Amazon advance refunds: $119.44 +
+  $32.58 + $9.65; Steve Madden return shipped. proSapient expert-network
+  outreach (2nd network). Tonight TRIPLE-booked: Kate walk/dinner 4–6:30 vs
+  Portugal @ Shack15 5:30–8 vs Catarina dinner 7. Tomorrow: John Mayer
+  Sphere presale 10am, "Dr Colvin 12:15" vs recurring block, Emma Lutz
+  video 1:30, Alison Lacey 3:00, Peter's housewarming RSVP deadline.
+
 - **2026-10-05 (Monday watch):** Turno: Lori REPORTED A PROBLEM at a
   property Oct 4 (details in Turno) — review. Avis account: password reset
   → locked → changed within minutes Oct 4, plus a Labcorp password change
