@@ -135,6 +135,19 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-07:** Elite invoice now 3983-4 = **$1,170** (4th weekly bump;
+  + $585 = ~$1,755 — likely accumulating turnover cleans; reconcile with
+  Shawyne). George receipts: Quinn says Animal Medical Clinic emailed them
+  to Meredith but they never arrived — she must CALL the clinic to fix her
+  email on file (MetLife claims #1562804 in review await receipts). TWO
+  United bookings ticketed this morning (H4KVJQ + H4P45M) + flight credit
+  DQKJY7 — verify intentional. Berkeley wants **$230** to fill out
+  medical-leave paperwork — decide pay vs. ask another provider. PG&E gas
+  smart-meter replacement at 1931 Filbert is TENANT's to schedule (landlord
+  confirmed). VT schedule reshaped (Nov 4→11, Nov 25 dropped; asked about
+  partial prepay). Mammogram screening tonight 7:15 CPMC. Spring Fertility
+  app message waiting. EyeBuyDirect glasses ordered.
+
 - **2026-10-06:** She self-organized the Turno problem into a 9am "STR
   follow-ups" block: Kaitey (NEW TN cleaner), Shawyne (French-fry clean
   credit), Wes (KY: pink cushion, loose upstairs toilet, AC Freon), Enrich
