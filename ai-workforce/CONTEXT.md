@@ -135,6 +135,15 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-08:** SHE ORDERED A TESLA MODEL Y 🚗 (order RN129949153,
+  delivery tasks pending in the app; Tesla passkey added). SUPERHOST
+  renewed for another quarter. Sent Lauren (Firefly Oct 7–9) a $189
+  partial refund via Airbnb — reason unknown. UCSF appt moved to Oct 21
+  2:30. VT backup appt added Feb 17. TODAY'S CONFLICT: One Medical Zoom
+  w/ Lartily 2:00 vs Wafa Malik in Emeryville (arrive 2:30) — can't do
+  both. Keqi booked Firefly Oct 17–20. Google AI Studio spend-capped her
+  idle Gemini project (harmless).
+
 - **2026-10-07:** Elite invoice now 3983-4 = **$1,170** (4th weekly bump;
   + $585 = ~$1,755 — likely accumulating turnover cleans; reconcile with
   Shawyne). George receipts: Quinn says Animal Medical Clinic emailed them
