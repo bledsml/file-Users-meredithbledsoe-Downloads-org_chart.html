@@ -135,6 +135,18 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-09:** NEW ENTITY observed: Wells Fargo account opening is for
+  **MGB INVESTMENTS DELAWARE LLC** (3rd entity after TN + KY LLCs) —
+  DocuSigns signed last night, banker Dyanna Jenkins confirming. Lauren's
+  $189 refund explained: she reported issues at check-in + a loft window
+  left open (thread resolved politely — relay to Kaitey/Shawyne). She
+  booked a **Tahoe City Airbnb Oct 23–26** (guest trip — matches the Tahoe
+  listing alerts; scouting market?). Puppies & Yoga Sat 9am w/ Kate (moved
+  to 633 Vallejo). Self-made to-do today: flu shot, email both
+  matchmakers, Dr. Cook forms → Huron. CPR/AED course Oct 18 1–5:30
+  confirmed. Berkeley encrypted receipt thread continued. Alissa + Becky
+  check in today.
+
 - **2026-10-08:** SHE ORDERED A TESLA MODEL Y 🚗 (order RN129949153,
   delivery tasks pending in the app; Tesla passkey added). SUPERHOST
   renewed for another quarter. Sent Lauren (Firefly Oct 7–9) a $189
