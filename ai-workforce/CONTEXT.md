@@ -96,6 +96,9 @@ Oct 5 (Monday watch): NEW — **Peloton membership** ("You're in!" Oct 4) +
 monthly highlights; **Audible active** (3 unused credits — use or pause);
 **UCSF payment plan $193.62/mo** autopay (Visa …3996); AppleCare+ monthly.
 Apple News+ decision window closes Oct 8. No failed payments this week.
+Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
+Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
+No failed payments this week.
 
 ## Recurring appointments to systematize
 
@@ -134,6 +137,16 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-10-12 (Monday watch):** TUESDAY MATCHMAKER TRIPLE-BOOK: Shannon
+  call 1:00–1:30 vs Bonnie Winston Zoom 1:00–2:00 vs Claire Wexler
+  1:30–2:00 — Bonnie overlaps BOTH; must reshuffle. Tesla: password reset +
+  new passkey + Model Y config UPDATED (2024 LR AWD, Stealth Grey) Oct 11 —
+  presume her, confirm. Becky left 5 STARS at Distiller's (4th straight
+  5-star). Turno: one Lori project completed, another not started. Mercor
+  expert-network pinged (she's already in their network — a 3rd paid-
+  consult channel). Subscriptions: Snapchat+ $5.99/mo NEW; PriceLabs
+  charges Oct 13. Nordstrom pickup by Oct 16; Sephora pickup waiting.
 
 - **2026-10-09:** NEW ENTITY observed: Wells Fargo account opening is for
   **MGB INVESTMENTS DELAWARE LLC** (3rd entity after TN + KY LLCs) —
