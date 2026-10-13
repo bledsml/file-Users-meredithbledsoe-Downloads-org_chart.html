@@ -138,6 +138,21 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-13:** TESLA DELIVERY DAY — Model Y Express Pickup 4:30pm at
+  Tesla Colma (plate BZS2242, bring license). Credit activity matches the
+  purchase: new TransUnion inquiry + Experian new account + she FROZE her
+  TransUnion file Oct 12 (smart). Matchmakers: she shortened Bonnie to
+  1:00–1:30, Claire follows 1:30–2:00 (stale "Shannon" 1:00 placeholder
+  still on calendar). Dr. Cook 3:30 appt PENDING — intake form must go to
+  blesleycook@gmail.com to confirm, and it collides with the 4:30 Colma
+  pickup. iVIZIA dry-eye drops subscription OUT OF STOCK (she depends on
+  these — needs an alternate source). Cognitive FX consult Wed (calendar
+  says 10:00 PT; confirm vs Amanda's "11am" email). NEW: she's now a
+  Google Business Profile manager of "Inn Shop Ski & Board Rentals at
+  Palisades Tahoe" (Tahoe thread: listings watch + Oct 23–26 trip). Jen
+  sent a "JV Logo" (helping Jen's brand?). Anthem denied part of claim
+  O5676. Verizon $117.68 autopaid.
+
 - **2026-10-12 (Monday watch):** TUESDAY MATCHMAKER TRIPLE-BOOK: Shannon
   call 1:00–1:30 vs Bonnie Winston Zoom 1:00–2:00 vs Claire Wexler
   1:30–2:00 — Bonnie overlaps BOTH; must reshuffle. Tesla: password reset +
