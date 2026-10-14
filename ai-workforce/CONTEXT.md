@@ -138,6 +138,24 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-14:** Tesla post-delivery dates: FSD Supervised trial active now,
+  paid FSD subscription starts **Nov 13** (order SBSYHJA0I4CE0I138) and
+  Premium Connectivity trial also ends **Nov 13** — two new charges land the
+  same day unless she cancels; plus a **Tesla Collision San Rafael service
+  appt Nov 3, 12:30** already on the books (VIN 7SAYGDEE9RF051864). STR:
+  **Emmy (Firefly, arrives Oct 16–17) sent a message that's UNANSWERED** —
+  reply before check-in; Lauren left 5 stars despite the refund (write her
+  review back); Laura Moore AND Brandon Grady both arrive Oct 21 (check for
+  double-book vs turnover). Elite Private Search CONFIRMED the Chase date:
+  **Sat Oct 17, 7pm**, reservation under first names. Claire Wexler sent her
+  consultation recap. Anthem: out-of-network notice on claim K9584 + new EOB.
+  Norton flagged a new TransUnion account = Tesla financing (expected, file
+  was frozen after). Propranolol refill due; WSJ renewal reminder. Her own
+  Thu 9:00 block: follow up with Wells Fargo on MGB Delaware LLC (draft
+  saved in Gmail Drafts; Dan 628-237-4642, Dyanna 415-738-1060). Thu 3:30 +
+  3:45 UCSF video visits w/ Lindsay Orbeta are DUPLICATES — delete one.
+  Cognitive FX consult firmed at 10:00 PT today (event updated Oct 13).
+
 - **2026-10-13:** TESLA DELIVERY DAY — Model Y Express Pickup 4:30pm at
   Tesla Colma (plate BZS2242, bring license). Credit activity matches the
   purchase: new TransUnion inquiry + Experian new account + she FROZE her
