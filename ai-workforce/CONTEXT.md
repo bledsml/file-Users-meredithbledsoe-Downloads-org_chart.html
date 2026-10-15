@@ -138,6 +138,27 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-15:** **Sedgwick sent an "[Important] Update to your leave" —
+  attached PDF, "action may be required"** (new: she has a leave on file;
+  keep details minimal, she should read the PDF). Anthem PROGRESS: two
+  claims SUBMITTED Oct 14 (4–6 wk processing) + one draft still open —
+  claim-filing flag largely closing. Elite Cabin Care re-sent invoice
+  3983-4 $1,170 (payment request; running total ~$1,755 — reconcile flag
+  stands). Rising Star sent a Vision Science Labs VT assignment invite
+  (code bpaDb4) and Cognitive FX's Megan sent the post-consult info
+  packet. Innshop: Matt sent Google Ads + Analytics admin invites — accept
+  both (Meta invite earlier). CSSI (Angela Lipsey) followed up on study
+  RESULTS #204857-01 — any questions? UCSF MyChart new message. Amazon
+  Pharmacy auto-refill (syringes) ships ~Oct 19, edit by 4pm today.
+  Calendar: the **duplicate UCSF/Orbeta entry was deleted** (one remains,
+  3:30 join/3:45 appt) and the **9:00 Wells Fargo block is gone** — WF
+  follow-up draft still sits in Gmail Drafts, unresolved. Today's
+  overlaps: acupuncture 1:30–2:30 vs ARK Live 2:00; "Close Out" 3:45 vs
+  UCSF visit; 7pm VT log vs Dominos & Dice 6–8. Firefly: Departure Clean
+  Oct 16 (service 10/17); Keqi stays Oct 17–20 (check-in msg auto-sent);
+  Emmy reply STILL unconfirmed before her Oct 16 arrival. NEW: Peloton
+  TREADMILL — they call Oct 16 to schedule Oct 19 delivery.
+
 - **2026-10-14:** Tesla post-delivery dates: FSD Supervised trial active now,
   paid FSD subscription starts **Nov 13** (order SBSYHJA0I4CE0I138) and
   Premium Connectivity trial also ends **Nov 13** — two new charges land the
