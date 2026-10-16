@@ -138,6 +138,26 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-16:** **Airbnb reservation REQUEST pending — Ethan, Firefly
+  Nov 20–24** ("me and my gf… time alone") — accept/decline before it
+  expires. SF house cleaning (Women's Collective / Mission Action): her
+  requested dates unavailable; they offered **Oct 24 or later, 1 cleaner
+  4 hrs $190** — needs her reply (recurring-appointments goal finally in
+  motion). UCSF: an appointment was RESCHEDULED to **Oct 20 1:15pm
+  (arrive 12:45)** + new After Visit Summary, letter, and MyChart msg.
+  Anthem: ANOTHER out-of-network notice (claim …V3687). Nordstrom pickup
+  expires — last day. Tablesweep: Resy's reseller crackdown restricted
+  some members' accounts; check hers still works before the weekend's
+  reservations (Chase date Sat). Enrich/Cherry weekly update; earlier in
+  thread Franchesco explained Hospitable shows base rate (channel markup
+  + cleaning fee roll into Airbnb's nightly). ResortCleaning: one Turn
+  rescheduled off 10/16. Dental reminder: Marina Tooth Fairy **Oct 22
+  1:30pm**. Chase date now on calendar: Sat 7pm, Indigo, 3321 Steiner,
+  res #10589. Sat also: Nick's bday, MRC Spritz Run (not RSVP'd), WNBA
+  Finals Gm 1 (Valkyries!). GLG + LinkedIn pinged paid data-center
+  consults (3rd/4th expert-network channels). Peloton delivery call today
+  (treadmill lands Oct 19).
+
 - **2026-10-15:** **Sedgwick sent an "[Important] Update to your leave" —
   attached PDF, "action may be required"** (new: she has a leave on file;
   keep details minimal, she should read the PDF). Anthem PROGRESS: two
