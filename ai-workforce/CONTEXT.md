@@ -99,6 +99,12 @@ Apple News+ decision window closes Oct 8. No failed payments this week.
 Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
 Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
 No failed payments this week.
+Oct 19 (Monday watch): NEW — **Facetune $77.99/yr** auto-renews soon (her
+own Day Ahead brief flagged it — decide keep/cancel); **Allie's AI Agent
+Mastermind** enrollment (Wk1 session Oct 20 — likely a paid cohort, add
+price when seen); **Amazon Pharmacy Vevye** (dry-eye Rx; ships Oct 20 —
+likely the iVIZIA substitute); Bay City Paws August invoice paid via
+Venmo ($352, Amber Perez). PG&E $127.97 autopay 11/5. No failed payments.
 
 ## Recurring appointments to systematize
 
@@ -137,6 +143,26 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-10-19 (Monday watch):** **SUPERRADIANT ADVISOR INVITE — Micah sent
+  the advisor agreement for her signature** (Oct 17; new superradiant.ai
+  design she picked is live — she's advising this startup). **TN Sales &
+  Use Tax return DUE Oct 20** (monthly, MGB Investments LLC, TNTAP — the
+  one she fell behind on in Sept). **Dental Oct 22 1:30 still
+  UNCONFIRMED** (Marina Tooth Fairy nudged twice). **Wells Fargo alert:
+  data shared with "JPMorganChase Pay and Transfer"** — verify she
+  initiated it. STR: Keqi's stay went smoothly (❤️ reaction); review
+  requested for Otziel (Oct 16–17 guest); **Stephanie confirmed Firefly
+  Nov 11–15** (the gap got booked); $1,003.40 payout → MGB checking 7904;
+  Ethan's Nov 20–24 request outcome unseen — confirm it didn't expire.
+  Tue Oct 20 is heavy: Mastermind Wk1 10am PT (calendar label says ET but
+  instant is 10:00 PT), UCSF NEW-PATIENT visit w/ Lindsay Orbeta 1:15
+  (arrive 12:45, bring external images — replaced the video visit), Renew
+  PT #2 4:10, squash w/ Rahul 6:00. Her Day Ahead also flagged ServiceMac
+  mortgage-insurance doc resubmission (loan …0053) — ties to the
+  insurance-restart flag. Norton Equifax alert = Tesla financing again
+  (expected). Subscriptions: see Oct 19 Monday watch (Facetune, Mastermind,
+  Vevye).
 
 - **2026-10-16:** **Airbnb reservation REQUEST pending — Ethan, Firefly
   Nov 20–24** ("me and my gf… time alone") — accept/decline before it
