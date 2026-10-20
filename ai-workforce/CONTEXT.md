@@ -144,6 +144,25 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-20:** **Google One upgraded to AI Pro (5 TB, via Google Play,
+  renews Nov 19) — the old Basic 100 GB plan must be CANCELED by Nov 8 or
+  she's double-charged** (Google's own email says so). **MetLife RECEIVED
+  the vet claims on policy #1562804** — the blocked-claims flag moves to
+  "awaiting review" (vet-receipt saga nearly closed). Reliable Pest
+  Control (KY) sent the invoice + offered **$135/mo recurring BNB service,
+  no contract** — decide one-off vs monthly. Blessed Cleaning $170 paid
+  via QuickBooks (new TN cleaner in action); Turno: Lori completed a
+  project (old Turno flag closing). Red Cross CPR/AED certificates issued
+  ✅. ResortCleaning scheduled the Nov 11–15 departure clean (Stephanie's
+  stay). SPS mortgage statement available. Calendar notes: **Renew PT #2
+  (4:10 today) vanished from the calendar** — confirm she canceled by
+  phone (24h policy, $100 fee); Mastermind Wk1 at 10:00 PT; UCSF
+  new-patient 1:15 (arrive 12:45, bring imaging); squash rebooked to
+  6:30–7:30 Court 3. Wed Oct 21: QBR WorkUp 9:15, Rising Star VT 1:30
+  (location STILL unconfirmed SR vs 2369 Ocean Ave), skin check 3:30
+  Greenbrae, **WNBA Gm 3 5:00 vs SHACK15 Live & Unwine'd 5:30 CONFLICT**,
+  and Laura Moore + Brandon Grady BOTH arrive — verify turnover.
+
 - **2026-10-19 (Monday watch):** **SUPERRADIANT ADVISOR INVITE — Micah sent
   the advisor agreement for her signature** (Oct 17; new superradiant.ai
   design she picked is live — she's advising this startup). **TN Sales &
