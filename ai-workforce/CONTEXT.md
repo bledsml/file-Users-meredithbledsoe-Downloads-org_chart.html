@@ -144,6 +144,25 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-21:** **THURSDAY TRIPLE-BOOK: dental 1:30–2:30, UCSF video
+  visit w/ Orbeta 2:15 join/2:30 appt, acupuncture 2:30–3:30** — all
+  three on Oct 22; one must move (UCSF rescheduled to Thu after Tuesday's
+  in-person). TODAY: Micah (Superradiant) call 3:00–3:30 runs into the
+  3:30 skin check in Greenbrae — travel impossible; take the call from
+  the car or move one. Bills landed: **Norwood Heating & Cooling $302**
+  (invoice 1240), **Litwin Kach LLP $748 due in ~15 days**, Sevier
+  Electric due Oct 25 (has autopay — verify), SFPUC water bill. **Liberty
+  Mutual pet policy renewal notice for George** — review (she also holds
+  MetLife; two pet policies?). STR: Keqi AND Neavy both left 5 stars —
+  write reviews back; Women's Collective slipped to Oct 27+. Inn Shop
+  work deepening: WP Engine access requested, Apple Business "Marketing
+  Administrator" invite, Bing Places invite, and she sent a progress
+  update (Google indexing fixed). Superradiant: her site feedback
+  appreciated; Micah intro'd to Jeffrey Drake (Litwin Kach). One Medical:
+  reply from care team + open Action Item. Maven AI PM Bootcamp
+  COMPLETED. Credit score improved (Capital One). Home Depot order lands
+  Sat. Claire confirmed next step w/ Shannon.
+
 - **2026-10-20:** **Google One upgraded to AI Pro (5 TB, via Google Play,
   renews Nov 19) — the old Basic 100 GB plan must be CANCELED by Nov 8 or
   she's double-charged** (Google's own email says so). **MetLife RECEIVED
