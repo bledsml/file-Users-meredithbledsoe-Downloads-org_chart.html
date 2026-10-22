@@ -144,6 +144,22 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-22:** **Elite Cabin Care PARTIALLY PAID — $550 toward invoice
+  3983-4 ($1,170); $620 still outstanding** (plus older 3842-2 $585 if
+  unpaid — flag continues at reduced size). **Superradiant offer now has a
+  deadline: sign by Fri Oct 23, 5pm PT** (Micah extended it). The Thursday
+  triple-book (dental 1:30 / UCSF video 2:30 / acupuncture 2:30) was
+  STILL live this morning. TAHOE WEEKEND is on: Courtyard Reno tonight →
+  Fri: haircut+keratin 10:30 Reno (must end 12:15) → RNO pickup (Kelly
+  12:57, Mary Kate 1:17) → Whole Foods/Target → Everline → check in 271
+  Tahoe Woods 4pm; Camille arrives ~dinner Fri, leaves Mon 8am. All About
+  Bugs completed TN pest service (acct 10389); Zelle to Marleny
+  Salvatierra $120+$15; Clindamycin Rx being prepared; Altais MyChart new
+  test result; WP Engine account must be ACTIVATED within 7 days (Inn
+  Shop). Autolab×Shepherd intro landed — joint event Nov 1, she's
+  attending. Watch: TN tax filing confirmation not yet seen (was due
+  Oct 20); Google One Basic cancel-by-Nov-8 stands.
+
 - **2026-10-21:** **THURSDAY TRIPLE-BOOK: dental 1:30–2:30, UCSF video
   visit w/ Orbeta 2:15 join/2:30 appt, acupuncture 2:30–3:30** — all
   three on Oct 22; one must move (UCSF rescheduled to Thu after Tuesday's
