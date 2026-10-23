@@ -144,6 +144,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-23:** **Superradiant end-game: she sent a revised/redlined
+  agreement Wed night; Micah replied "looks good overall" + offered a call
+  (202-642-5695) — deadline is TODAY 5pm PT.** Dr. Cook finally replied to
+  the intake: "When are you available to meet?" — send availability (old
+  flag nearly closed). Sedgwick: she emailed the leave team AND booked
+  **Sedgwick Office Hours Tue Oct 27 1:45pm** (leave flag in motion).
+  Auburn: niece Leighton's Graphic Design info session confirmed Nov 6
+  1pm CT (she fixed the email on file). STR strong: **Bryan in-house
+  Oct 23–Nov 1 (9 nights), Danielle booked Nov 1–5**; clean scheduled
+  Nov 19→24 turnaround. UCSF: Dec 3 9:15 booked + an EARLIER waitlist
+  slot offered in MyChart. Venmo: $570 to Quinn for "G's teeth" — vet
+  dental; add receipt to MetLife claims. Tesla: first Supercharger
+  congestion fee waived (don't charge past 80% at busy stalls). Tahoe
+  day: Alejandro call 10:00 overlaps the 10:30 Reno haircut; then RNO
+  pickup 12:45 (Kelly/Mary Kate), Everline, 4pm check-in, Camille at
+  dinner. Inn Shop work formally paused until Monday.
+
 - **2026-10-22:** **Elite Cabin Care PARTIALLY PAID — $550 toward invoice
   3983-4 ($1,170); $620 still outstanding** (plus older 3842-2 $585 if
   unpaid — flag continues at reduced size). **Superradiant offer now has a
