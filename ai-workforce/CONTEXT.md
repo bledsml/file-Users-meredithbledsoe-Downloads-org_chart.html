@@ -99,6 +99,11 @@ Apple News+ decision window closes Oct 8. No failed payments this week.
 Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
 Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
 No failed payments this week.
+Oct 26 (Monday watch): NEW — **Anthropic (Claude) subscription receipt**
+#2642-3963-8277 (amount TBD — add to inventory); **Sonic internet** autopay
+scheduled; Google AI Pro active (Basic 100 GB still needs canceling by
+Nov 8). Sevier Electric AUTOPAID $221.67 ✅ (Oct-25 due-date scare closed).
+No failed payments this week.
 Oct 19 (Monday watch): NEW — **Facetune $77.99/yr** auto-renews soon (her
 own Day Ahead brief flagged it — decide keep/cancel); **Allie's AI Agent
 Mastermind** enrollment (Wk1 session Oct 20 — likely a paid cohort, add
@@ -143,6 +148,24 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-10-26 (Monday watch):** **SEDGWICK MEDICAL DOCUMENTATION DUE
+  TODAY (Oct 26) — her own calendar note says the leave claim could be
+  DENIED (no pay) without it; Sedgwick 844-888-9393 opt 2.** Tuesday is
+  TRIPLE-BOOKED: Sedgwick Office Hours 1:45 (Zoom) vs Wafa Malik arrive
+  1:45/appt 2:00 in EMERYVILLE vs **Shannon Lundgren $400 strategy consult
+  2:00–2:45 (Zoom, paid)** — plus PT #3 at 10:50 and Mastermind Wk2 at
+  10:00. Tonight: WNBA **Game 5 (if necessary) at Chase Center 5:00**
+  collides with the 5:30 Kokkari reservation (second Kokkari res also sits
+  on Tue 5:45). Tahoe wrap: checkout 11, Mary Kate dropped in Truckee
+  (2:26 flight), trash to bear hut; Brandon's group checked out at Firefly
+  — write review. "Brandon the Matchmaker" call 11:30 (a 4th matchmaker
+  channel). Superradiant: admin created/reset her **@superradiant.ai
+  Google Workspace account** — advisor role live. Inn Shop: Search
+  Console reports 5xx + noindex + sitemap indexing failures — fix when
+  back. StubHub: Auburn parking pass SOLD — transfer the ticket to the
+  buyer. Subscriptions: see Oct 26 Monday watch (Anthropic, Sonic;
+  Sevier autopaid). TN tax confirmation STILL unseen.
 
 - **2026-10-23:** **Superradiant end-game: she sent a revised/redlined
   agreement Wed night; Micah replied "looks good overall" + offered a call
