@@ -149,6 +149,25 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-27:** Tuesday untangled itself partly: **Shannon's $400
+  consult is OFF today's calendar** (canceled/moved — confirm she
+  rescheduled, it was prepaid) and a new **acupuncture re-exam w/ Gabi
+  Curbelo 12:00 Truspine** was booked. REMAINING conflict: **Sedgwick
+  Office Hours 1:45 (Zoom, 15 min) vs Wafa Malik arrive-by 1:45 in
+  Emeryville** — take the Zoom from the car or move one. NEW: **dinner
+  w/ Micah at Bon Délire 7pm Pier 3** (Superradiant). Amazon return
+  problem: **they received MORE items than expected in the Kindle return
+  and marked part refund-INELIGIBLE** — chase support to recover the
+  extra item/refund. Kokkari deposit refunded (last night's res dropped
+  for Game 5). Blessed Cleaning completed both Firefly cleans ✅ (new
+  cleaner solid). Bryan guest thread handled by Norayne (co-host).
+  Peloton treadmill delivery RESCHEDULED to Wed 8–12 window; Wed also:
+  QBR 9:15, Rising Star VT 5:45 (location STILL unconfirmed), dinner w/
+  Jane & Eleanor 7:00. Amazon Pharmacy requesting syringe Rx renewal from
+  Carlos Quintana MD. Experian alert = Tesla loan balance (expected).
+  Zara refund ✅. Sedgwick docs deadline was yesterday — confirm the APS
+  went in; office hours today is the checkpoint.
+
 - **2026-10-26 (Monday watch):** **SEDGWICK MEDICAL DOCUMENTATION DUE
   TODAY (Oct 26) — her own calendar note says the leave claim could be
   DENIED (no pay) without it; Sedgwick 844-888-9393 opt 2.** Tuesday is
