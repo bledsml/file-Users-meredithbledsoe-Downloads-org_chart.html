@@ -149,6 +149,24 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-28:** Shannon's $400 consult RESOLVED — rescheduled to Thu
+  Oct 29 3:30–4:15 Zoom ("conflict with work"); money safe. Today:
+  Peloton treadmill FINALLY delivers 8–12 (QBR 9:15 overlaps — stay
+  reachable), **Rising Star VT 5:45 with location STILL unconfirmed**
+  (San Rafael vs 2369 Ocean Ave — 4th repeat), dinner w/ Jane & Eleanor
+  7:00. Thursday stacks: TikTok+Claude webinar 9:00 overlaps Mastermind
+  Wk2 10:00 (Allie); One Medical remote visit w/ Lartily 1:30; Shannon
+  3:30; **Asian Art Museum Gala** that evening; WNBA Game 6 9:30am if
+  needed. Inbox: **Elite re-sent invoice 3983-4 (the $620 remainder)**;
+  **Berkeley binocular-vision clinic requests her Oct 19 visit notes** —
+  send Rising Star notes; **Capital One card payment due**; Anthem new
+  EOB; UCSF earlier-slot offer STILL unclaimed; Dental Intelligence
+  class-action notice (maybe file a claim); Epione consultation
+  confirmed (new); Rushmore Servicing scheduled a mortgage payment
+  (autopay OK); x.ai/Grok reminders fired re: health-insurance benefits
+  due — looks like her own Grok reminder for open enrollment, verify.
+  Tahoe stay closed out (Hauserman thank-you).
+
 - **2026-10-27:** Tuesday untangled itself partly: **Shannon's $400
   consult is OFF today's calendar** (canceled/moved — confirm she
   rescheduled, it was prepaid) and a new **acupuncture re-exam w/ Gabi
