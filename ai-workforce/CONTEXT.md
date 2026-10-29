@@ -149,6 +149,22 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-10-29:** **Sedgwick sent another "[Important] Update to your
+  leave"** (day after office hours — read the PDF; leave saga continues).
+  **Travel signals: Breeze Airways "details about your upcoming flight" +
+  Hertz check-in** — an unlogged trip is coming (Breeze serves Provo —
+  possibly the Cognitive FX treatment week; confirm dates & add to
+  calendar). Amazon Pharmacy STILL waiting on Dr. Quintana for the
+  syringe Rx. New advisor-ish call today: **Courtney, Grey Letter
+  Advisory 1:00** (right before One Medical 1:30). Today: TikTok+Claude
+  webinar 9:00 overlaps Mastermind Wk2 10:00; Shannon's $400 consult
+  3:30; **Asian Art Museum Gala tonight**. StubHub sent an event update
+  on the Auburn game (parking-pass sale — check transfer went through).
+  Rushmore payment received ✅. Shopify order #1859776 (unknown store).
+  Tomorrow: Sadie's bday, acupuncture w/ Gabi 1:30. Standing: Rising
+  Star location (did last night's 5:45 visit settle it?), UCSF earlier
+  slot, Google One Basic by Nov 8, Elite $620, Kindle return dispute.
+
 - **2026-10-28:** Shannon's $400 consult RESOLVED — rescheduled to Thu
   Oct 29 3:30–4:15 Zoom ("conflict with work"); money safe. Today:
   Peloton treadmill FINALLY delivers 8–12 (QBR 9:15 overlaps — stay
