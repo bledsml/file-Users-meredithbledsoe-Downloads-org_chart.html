@@ -1,0 +1,724 @@
+# AI Workforce — Living Context
+
+> **Purpose of this file:** persistent memory for Meredith's AI workforce project.
+> Any Claude session working on the workforce should read this first and update it
+> before finishing (add a changelog entry at the bottom). The org chart itself is
+> `org-chart.html` in this folder, published as a private artifact:
+> https://claude.ai/code/artifact/bb683075-62b0-40bb-8872-990d9ca4a0ea
+
+## Who / what this serves
+
+- **Meredith Bledsoe** (bledsml@gmail.com; secondary: meredithbledsoesf@gmail.com);
+  birthday **Aug 14**. Landlord insurance for the TN cabin: **Obie**.
+- Works at **Google** (compensation/refresher analysis done Aug 2026; open to
+  watching roles at target companies — list not yet defined, ask her).
+- **Properties:** Tennessee cabin "**Firefly Cottage**" at 4325 New Pioneer Trail
+  (refinance loan #265502580 researched Jul 2026), Kentucky house "**The Old
+  Kentucky Estate**" (closed ~May 2026; live on Airbnb as of Aug 2026 — first
+  three bookings landed Aug 16–17 totaling ~$6.7k), family stays at "Mom's
+  cabin" (arrival checklist built Jul 2026). Uses **Hospitable** ($59/mo) for
+  short-term-rental management.
+- **Dog:** George. Grooming-slot watcher already built (`grooming-watcher/` in
+  this repo). Chewy Autoship for his supplies.
+- **Health goals:** daily protein target with effortless logging; wants Oura ring
+  + Apple Watch data incorporated; supplements/skincare on an intentional schedule.
+- **Ventures:** full portfolio in `ventures/README.md` — **Confetti Confessions**
+  (the confetti brand for Etsy); **Haven** (pitch deck + app prototype artifacts
+  built); Becky's workstream (mini-workforce for her business, unscoped);
+  **skills to sell to companies** (brainstorm in `ventures/skill-ideas.md`);
+  Etsy invite auto-poster (built, PR #22); Penny name retired (taken; the name
+  conversation resurfaced when naming the CoS — Jamal won); shoe-sanitizer patent
+  scan done; time-tracking app (PR #21).
+
+## The workforce (v2, Aug 12 2026)
+
+Chief-of-staff routes six departments. Full detail in `org-chart.html`.
+
+| Dept | Agents |
+|---|---|
+| Properties | refi-watcher, maintenance-scout, guest-prep |
+| Finance | goal-watcher, expense-tracker, tax-strategist, receipt-filer |
+| Career | comp-analyst, job-scout, application-drafter |
+| Health | protein-tracker, wearable-sync, supplement-planner |
+| Ventures | listing-poster (built), confetti-studio, becky-ops, skill-forge, market-researcher, pitch-builder |
+| Home & Admin | grooming-watcher (built), appointment-scheduler, subscription-manager, calendar-auditor, inbox-triager, deal-hunter |
+
+**Status:** chief of staff is HIRED and named **Jamal** (Meredith's choice,
+Aug 12 2026). Routine `trig_01GiRiodoPt2ExUdXLcFEFh2`, weekdays 12:00 UTC
+(7am Nashville during CDT; shifts to 6am when CST returns — ask Meredith if
+she wants it moved to `0 13 * * 1-5` in November). It fires into session
+"AI workforce setup proposal" (session_01TwEy1519jPm3u89hDAJmoe), which holds
+the Gmail + Google Calendar connectors; the brief folds in inbox-triager,
+calendar-auditor, and a Monday subscription-manager pass. If a fired run finds
+Gmail tools unavailable, tell Meredith to recreate the routine from the
+claude.ai Routines UI with connectors attached (org blocks storing connectors
+on triggers created in-session).
+
+Next hires: protein-tracker + goal-watcher (Week 2–3), then refi-watcher and
+job-scout; ventures run as scoped projects.
+
+## Subscription audit (Gmail, ~6 months, run Aug 12 2026)
+
+Active: Chewy Autoship (monthly, George), Dermstore EltaMD SPF + cleanser (new
+Aug 6), LMNT (~bimonthly), Apple News+ ($12.99/mo), Bloomberg, Marina Run Club
+($20/mo), Ring Protect (trial started Jul 22 → converts ~Aug 21), Amazon
+Unlimited Grocery Delivery, Hospitable, Bumble Premium (on sf@ address).
+New Aug 12: **ChatGPT Plus** ($20/mo, subscribed overnight — flagged in the
+Aug 12 brief to confirm intentional).
+New Aug 16–17 (Monday watch): **NYT subscription** (welcome email Aug 16),
+**Hospitable invoice $59 "Payment Due"** (verify autopay), **Target Circle 360**
+membership observed. PG&E on autopay ($95.84 due 9/4, no action).
+Aug 24 (Monday watch): **Starlink $140/mo** (cabin internet, autopay, renews
+20th). **Ring trial presumed converted Aug 21** — no cancellation seen; verify
+the charge and decide keep/cancel. Chewy card fix still unconfirmed (order
+ships Aug 26 — watch for ship/fail email).
+Aug 25: Sevier Electric RESOLVED — autopaid $240.09 (it does have autopay).
+Open items: Elite Cabin Care $585 (invoice 3842-2, re-issued, open since
+Aug 12); Goosehead DocuSign unsigned; TN Dept of Revenue correspondence for
+**MGB INVESTMENTS LLC** (her TN entity — sales & use tax, read via TNTAP);
+Maui unwind unconfirmed (UA1750/A3QEP4 + Hertz L680E9885C7).
+Canceled/ending: Sephora Same-Day Unlimited (Feb), Tractive (cancel requested
+June — confirm it ended).
+
+**Action flags raised:** Ring presumed converted Aug 21 (verify charge/decide).
+Chewy RESOLVED Aug 26 — order shipped, card working.
+Sep 21 (Monday watch): **Elatia Abate LLC 2nd-round coaching** — Stripe invoice
+#D102YKEL-0002, paid in 3 installments (now / by Oct 5 / by Nov 1) + NDA
+DocuSign to sign. **Cymbiotika** supplement order CYM3037382 (check if
+autoship). Hospitable $59 + PriceLabs $34.98 recurring as known. No failed
+payments seen this week; Chewy Autoship still unresolved since Sep 17 cancel.
+Sep 28 (Monday watch): **Netflix $19.99/mo via PayPal** observed (add to
+inventory). Target Circle 360 monthly renewed; iCloud+ receipt; Bumble
+Premium notice. Apple News+ still expiring Oct 8; Raya decision outcome
+unknown (expired ~Sep 27). SF Chronicle confirmed gone. No failed payments.
+Chewy STILL unresolved — George's supplies gap ~2 weeks now.
+Oct 5 (Monday watch): NEW — **Peloton membership** ("You're in!" Oct 4) +
+monthly highlights; **Audible active** (3 unused credits — use or pause);
+**UCSF payment plan $193.62/mo** autopay (Visa …3996); AppleCare+ monthly.
+Apple News+ decision window closes Oct 8. No failed payments this week.
+Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
+Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
+No failed payments this week.
+Oct 26 (Monday watch): NEW — **Anthropic (Claude) subscription receipt**
+#2642-3963-8277 (amount TBD — add to inventory); **Sonic internet** autopay
+scheduled; Google AI Pro active (Basic 100 GB still needs canceling by
+Nov 8). Sevier Electric AUTOPAID $221.67 ✅ (Oct-25 due-date scare closed).
+No failed payments this week.
+Oct 19 (Monday watch): NEW — **Facetune $77.99/yr** auto-renews soon (her
+own Day Ahead brief flagged it — decide keep/cancel); **Allie's AI Agent
+Mastermind** enrollment (Wk1 session Oct 20 — likely a paid cohort, add
+price when seen); **Amazon Pharmacy Vevye** (dry-eye Rx; ships Oct 20 —
+likely the iVIZIA substitute); Bay City Paws August invoice paid via
+Venmo ($352, Amber Perez). PG&E $127.97 autopay 11/5. No failed payments.
+
+## Recurring appointments to systematize
+
+House cleaning, eyebrows, car detailing, George's grooming cadence. No vendors/
+cadences captured yet — appointment-scheduler's first task is to collect them.
+
+## Constraints & preferences
+
+- Meredith approves anything outward-facing: purchases, cancellations,
+  applications, bookings. Agents draft/watch/flag only.
+- Protein logging must be genuinely easy (message me → I do the math).
+- Oura has a personal-token API; Apple Watch data comes via Apple Health export
+  (no direct connector) — wearable-sync should start with whatever is lowest
+  friction.
+- Claude Code sessions history is visible only as titles/summaries, not full
+  transcripts; claude.ai app chats aren't accessible from here. This file is the
+  substitute — keep it current.
+
+## Where things live
+
+- This repo (`bledsml/file-Users-meredithbledsoe-Downloads-org_chart.html`):
+  grooming-watcher (root `grooming-watcher/`), ride-compare app (`index.html`),
+  this folder.
+- Branches carry past outputs: Etsy auto-poster (PR #22), time tracker (PR #21),
+  Haven deck, cabin checklist, etc.
+- Artifacts: org chart (link above), Haven deck + prototype.
+
+## Notes from Jamal's runs
+
+- **Meredith is San Francisco-based** (calendar TZ America/Los_Angeles; Olympic
+  Club, Marina Run Club). The TN cabin is named **Firefly Cottage** (Elite Cabin
+  Care cleans it; Plumber In A Box services it; guest turnovers appear as
+  "Departure Clean" calendar events). Brief currently fires 12:00 UTC = 5am PT —
+  offered to move to 7am PT (`0 14 * * 1-5`); awaiting her word.
+- GitHub "Run failed: grooming-watcher.yml — No jobs were run" emails on branch
+  pushes are expected noise (cloud cron disabled); ignore.
+
+## Changelog
+
+- **2026-10-30:** **The mystery trip is TOMORROW** — Hertz says "check in
+  for tomorrow's trip" (pairs with the Breeze flight; still not on her
+  calendar — confirm destination/dates, Provo/Cognitive FX suspected).
+  **Shannon sent her private matchmaking PROPOSAL** (post-consult paid
+  engagement — review terms) and a **DocuSign "candidate_agreement 2.pdf"**
+  arrived (via Brandan Rader = "Brandon the Matchmaker"; matchmaker
+  candidate agreement — read before signing). Sedgwick sent ANOTHER
+  leave update. Subscriptions: **Ring 24/7 Continuous Recording add-on
+  SUBSCRIBED + a Ring trial converts TOMORROW** (decide); **Plaid
+  connection to "Stronghold" + WF data-share alert** — verify she
+  initiated. STR: **Imani Hamilton booked, arrives Nov 15**; Bryan
+  checks out Nov 1, Danielle arrives Nov 1. Tenant rent came in via
+  AppFolio (Marian Lim) ✅. UCSF new statement (bill). Do Not Call
+  registration incomplete (click the verify link). Reddit developer
+  account created (her Mastermind tinkering). Today is light: 1:30
+  acupuncture w/ Gabi; Sadie's bday. Sat: possible WNBA GAME 7 at Chase
+  Center 5pm + Halloween.
+
+- **2026-10-29:** **Sedgwick sent another "[Important] Update to your
+  leave"** (day after office hours — read the PDF; leave saga continues).
+  **Travel signals: Breeze Airways "details about your upcoming flight" +
+  Hertz check-in** — an unlogged trip is coming (Breeze serves Provo —
+  possibly the Cognitive FX treatment week; confirm dates & add to
+  calendar). Amazon Pharmacy STILL waiting on Dr. Quintana for the
+  syringe Rx. New advisor-ish call today: **Courtney, Grey Letter
+  Advisory 1:00** (right before One Medical 1:30). Today: TikTok+Claude
+  webinar 9:00 overlaps Mastermind Wk2 10:00; Shannon's $400 consult
+  3:30; **Asian Art Museum Gala tonight**. StubHub sent an event update
+  on the Auburn game (parking-pass sale — check transfer went through).
+  Rushmore payment received ✅. Shopify order #1859776 (unknown store).
+  Tomorrow: Sadie's bday, acupuncture w/ Gabi 1:30. Standing: Rising
+  Star location (did last night's 5:45 visit settle it?), UCSF earlier
+  slot, Google One Basic by Nov 8, Elite $620, Kindle return dispute.
+
+- **2026-10-28:** Shannon's $400 consult RESOLVED — rescheduled to Thu
+  Oct 29 3:30–4:15 Zoom ("conflict with work"); money safe. Today:
+  Peloton treadmill FINALLY delivers 8–12 (QBR 9:15 overlaps — stay
+  reachable), **Rising Star VT 5:45 with location STILL unconfirmed**
+  (San Rafael vs 2369 Ocean Ave — 4th repeat), dinner w/ Jane & Eleanor
+  7:00. Thursday stacks: TikTok+Claude webinar 9:00 overlaps Mastermind
+  Wk2 10:00 (Allie); One Medical remote visit w/ Lartily 1:30; Shannon
+  3:30; **Asian Art Museum Gala** that evening; WNBA Game 6 9:30am if
+  needed. Inbox: **Elite re-sent invoice 3983-4 (the $620 remainder)**;
+  **Berkeley binocular-vision clinic requests her Oct 19 visit notes** —
+  send Rising Star notes; **Capital One card payment due**; Anthem new
+  EOB; UCSF earlier-slot offer STILL unclaimed; Dental Intelligence
+  class-action notice (maybe file a claim); Epione consultation
+  confirmed (new); Rushmore Servicing scheduled a mortgage payment
+  (autopay OK); x.ai/Grok reminders fired re: health-insurance benefits
+  due — looks like her own Grok reminder for open enrollment, verify.
+  Tahoe stay closed out (Hauserman thank-you).
+
+- **2026-10-27:** Tuesday untangled itself partly: **Shannon's $400
+  consult is OFF today's calendar** (canceled/moved — confirm she
+  rescheduled, it was prepaid) and a new **acupuncture re-exam w/ Gabi
+  Curbelo 12:00 Truspine** was booked. REMAINING conflict: **Sedgwick
+  Office Hours 1:45 (Zoom, 15 min) vs Wafa Malik arrive-by 1:45 in
+  Emeryville** — take the Zoom from the car or move one. NEW: **dinner
+  w/ Micah at Bon Délire 7pm Pier 3** (Superradiant). Amazon return
+  problem: **they received MORE items than expected in the Kindle return
+  and marked part refund-INELIGIBLE** — chase support to recover the
+  extra item/refund. Kokkari deposit refunded (last night's res dropped
+  for Game 5). Blessed Cleaning completed both Firefly cleans ✅ (new
+  cleaner solid). Bryan guest thread handled by Norayne (co-host).
+  Peloton treadmill delivery RESCHEDULED to Wed 8–12 window; Wed also:
+  QBR 9:15, Rising Star VT 5:45 (location STILL unconfirmed), dinner w/
+  Jane & Eleanor 7:00. Amazon Pharmacy requesting syringe Rx renewal from
+  Carlos Quintana MD. Experian alert = Tesla loan balance (expected).
+  Zara refund ✅. Sedgwick docs deadline was yesterday — confirm the APS
+  went in; office hours today is the checkpoint.
+
+- **2026-10-26 (Monday watch):** **SEDGWICK MEDICAL DOCUMENTATION DUE
+  TODAY (Oct 26) — her own calendar note says the leave claim could be
+  DENIED (no pay) without it; Sedgwick 844-888-9393 opt 2.** Tuesday is
+  TRIPLE-BOOKED: Sedgwick Office Hours 1:45 (Zoom) vs Wafa Malik arrive
+  1:45/appt 2:00 in EMERYVILLE vs **Shannon Lundgren $400 strategy consult
+  2:00–2:45 (Zoom, paid)** — plus PT #3 at 10:50 and Mastermind Wk2 at
+  10:00. Tonight: WNBA **Game 5 (if necessary) at Chase Center 5:00**
+  collides with the 5:30 Kokkari reservation (second Kokkari res also sits
+  on Tue 5:45). Tahoe wrap: checkout 11, Mary Kate dropped in Truckee
+  (2:26 flight), trash to bear hut; Brandon's group checked out at Firefly
+  — write review. "Brandon the Matchmaker" call 11:30 (a 4th matchmaker
+  channel). Superradiant: admin created/reset her **@superradiant.ai
+  Google Workspace account** — advisor role live. Inn Shop: Search
+  Console reports 5xx + noindex + sitemap indexing failures — fix when
+  back. StubHub: Auburn parking pass SOLD — transfer the ticket to the
+  buyer. Subscriptions: see Oct 26 Monday watch (Anthropic, Sonic;
+  Sevier autopaid). TN tax confirmation STILL unseen.
+
+- **2026-10-23:** **Superradiant end-game: she sent a revised/redlined
+  agreement Wed night; Micah replied "looks good overall" + offered a call
+  (202-642-5695) — deadline is TODAY 5pm PT.** Dr. Cook finally replied to
+  the intake: "When are you available to meet?" — send availability (old
+  flag nearly closed). Sedgwick: she emailed the leave team AND booked
+  **Sedgwick Office Hours Tue Oct 27 1:45pm** (leave flag in motion).
+  Auburn: niece Leighton's Graphic Design info session confirmed Nov 6
+  1pm CT (she fixed the email on file). STR strong: **Bryan in-house
+  Oct 23–Nov 1 (9 nights), Danielle booked Nov 1–5**; clean scheduled
+  Nov 19→24 turnaround. UCSF: Dec 3 9:15 booked + an EARLIER waitlist
+  slot offered in MyChart. Venmo: $570 to Quinn for "G's teeth" — vet
+  dental; add receipt to MetLife claims. Tesla: first Supercharger
+  congestion fee waived (don't charge past 80% at busy stalls). Tahoe
+  day: Alejandro call 10:00 overlaps the 10:30 Reno haircut; then RNO
+  pickup 12:45 (Kelly/Mary Kate), Everline, 4pm check-in, Camille at
+  dinner. Inn Shop work formally paused until Monday.
+
+- **2026-10-22:** **Elite Cabin Care PARTIALLY PAID — $550 toward invoice
+  3983-4 ($1,170); $620 still outstanding** (plus older 3842-2 $585 if
+  unpaid — flag continues at reduced size). **Superradiant offer now has a
+  deadline: sign by Fri Oct 23, 5pm PT** (Micah extended it). The Thursday
+  triple-book (dental 1:30 / UCSF video 2:30 / acupuncture 2:30) was
+  STILL live this morning. TAHOE WEEKEND is on: Courtyard Reno tonight →
+  Fri: haircut+keratin 10:30 Reno (must end 12:15) → RNO pickup (Kelly
+  12:57, Mary Kate 1:17) → Whole Foods/Target → Everline → check in 271
+  Tahoe Woods 4pm; Camille arrives ~dinner Fri, leaves Mon 8am. All About
+  Bugs completed TN pest service (acct 10389); Zelle to Marleny
+  Salvatierra $120+$15; Clindamycin Rx being prepared; Altais MyChart new
+  test result; WP Engine account must be ACTIVATED within 7 days (Inn
+  Shop). Autolab×Shepherd intro landed — joint event Nov 1, she's
+  attending. Watch: TN tax filing confirmation not yet seen (was due
+  Oct 20); Google One Basic cancel-by-Nov-8 stands.
+
+- **2026-10-21:** **THURSDAY TRIPLE-BOOK: dental 1:30–2:30, UCSF video
+  visit w/ Orbeta 2:15 join/2:30 appt, acupuncture 2:30–3:30** — all
+  three on Oct 22; one must move (UCSF rescheduled to Thu after Tuesday's
+  in-person). TODAY: Micah (Superradiant) call 3:00–3:30 runs into the
+  3:30 skin check in Greenbrae — travel impossible; take the call from
+  the car or move one. Bills landed: **Norwood Heating & Cooling $302**
+  (invoice 1240), **Litwin Kach LLP $748 due in ~15 days**, Sevier
+  Electric due Oct 25 (has autopay — verify), SFPUC water bill. **Liberty
+  Mutual pet policy renewal notice for George** — review (she also holds
+  MetLife; two pet policies?). STR: Keqi AND Neavy both left 5 stars —
+  write reviews back; Women's Collective slipped to Oct 27+. Inn Shop
+  work deepening: WP Engine access requested, Apple Business "Marketing
+  Administrator" invite, Bing Places invite, and she sent a progress
+  update (Google indexing fixed). Superradiant: her site feedback
+  appreciated; Micah intro'd to Jeffrey Drake (Litwin Kach). One Medical:
+  reply from care team + open Action Item. Maven AI PM Bootcamp
+  COMPLETED. Credit score improved (Capital One). Home Depot order lands
+  Sat. Claire confirmed next step w/ Shannon.
+
+- **2026-10-20:** **Google One upgraded to AI Pro (5 TB, via Google Play,
+  renews Nov 19) — the old Basic 100 GB plan must be CANCELED by Nov 8 or
+  she's double-charged** (Google's own email says so). **MetLife RECEIVED
+  the vet claims on policy #1562804** — the blocked-claims flag moves to
+  "awaiting review" (vet-receipt saga nearly closed). Reliable Pest
+  Control (KY) sent the invoice + offered **$135/mo recurring BNB service,
+  no contract** — decide one-off vs monthly. Blessed Cleaning $170 paid
+  via QuickBooks (new TN cleaner in action); Turno: Lori completed a
+  project (old Turno flag closing). Red Cross CPR/AED certificates issued
+  ✅. ResortCleaning scheduled the Nov 11–15 departure clean (Stephanie's
+  stay). SPS mortgage statement available. Calendar notes: **Renew PT #2
+  (4:10 today) vanished from the calendar** — confirm she canceled by
+  phone (24h policy, $100 fee); Mastermind Wk1 at 10:00 PT; UCSF
+  new-patient 1:15 (arrive 12:45, bring imaging); squash rebooked to
+  6:30–7:30 Court 3. Wed Oct 21: QBR WorkUp 9:15, Rising Star VT 1:30
+  (location STILL unconfirmed SR vs 2369 Ocean Ave), skin check 3:30
+  Greenbrae, **WNBA Gm 3 5:00 vs SHACK15 Live & Unwine'd 5:30 CONFLICT**,
+  and Laura Moore + Brandon Grady BOTH arrive — verify turnover.
+
+- **2026-10-19 (Monday watch):** **SUPERRADIANT ADVISOR INVITE — Micah sent
+  the advisor agreement for her signature** (Oct 17; new superradiant.ai
+  design she picked is live — she's advising this startup). **TN Sales &
+  Use Tax return DUE Oct 20** (monthly, MGB Investments LLC, TNTAP — the
+  one she fell behind on in Sept). **Dental Oct 22 1:30 still
+  UNCONFIRMED** (Marina Tooth Fairy nudged twice). **Wells Fargo alert:
+  data shared with "JPMorganChase Pay and Transfer"** — verify she
+  initiated it. STR: Keqi's stay went smoothly (❤️ reaction); review
+  requested for Otziel (Oct 16–17 guest); **Stephanie confirmed Firefly
+  Nov 11–15** (the gap got booked); $1,003.40 payout → MGB checking 7904;
+  Ethan's Nov 20–24 request outcome unseen — confirm it didn't expire.
+  Tue Oct 20 is heavy: Mastermind Wk1 10am PT (calendar label says ET but
+  instant is 10:00 PT), UCSF NEW-PATIENT visit w/ Lindsay Orbeta 1:15
+  (arrive 12:45, bring external images — replaced the video visit), Renew
+  PT #2 4:10, squash w/ Rahul 6:00. Her Day Ahead also flagged ServiceMac
+  mortgage-insurance doc resubmission (loan …0053) — ties to the
+  insurance-restart flag. Norton Equifax alert = Tesla financing again
+  (expected). Subscriptions: see Oct 19 Monday watch (Facetune, Mastermind,
+  Vevye).
+
+- **2026-10-16:** **Airbnb reservation REQUEST pending — Ethan, Firefly
+  Nov 20–24** ("me and my gf… time alone") — accept/decline before it
+  expires. SF house cleaning (Women's Collective / Mission Action): her
+  requested dates unavailable; they offered **Oct 24 or later, 1 cleaner
+  4 hrs $190** — needs her reply (recurring-appointments goal finally in
+  motion). UCSF: an appointment was RESCHEDULED to **Oct 20 1:15pm
+  (arrive 12:45)** + new After Visit Summary, letter, and MyChart msg.
+  Anthem: ANOTHER out-of-network notice (claim …V3687). Nordstrom pickup
+  expires — last day. Tablesweep: Resy's reseller crackdown restricted
+  some members' accounts; check hers still works before the weekend's
+  reservations (Chase date Sat). Enrich/Cherry weekly update; earlier in
+  thread Franchesco explained Hospitable shows base rate (channel markup
+  + cleaning fee roll into Airbnb's nightly). ResortCleaning: one Turn
+  rescheduled off 10/16. Dental reminder: Marina Tooth Fairy **Oct 22
+  1:30pm**. Chase date now on calendar: Sat 7pm, Indigo, 3321 Steiner,
+  res #10589. Sat also: Nick's bday, MRC Spritz Run (not RSVP'd), WNBA
+  Finals Gm 1 (Valkyries!). GLG + LinkedIn pinged paid data-center
+  consults (3rd/4th expert-network channels). Peloton delivery call today
+  (treadmill lands Oct 19).
+
+- **2026-10-15:** **Sedgwick sent an "[Important] Update to your leave" —
+  attached PDF, "action may be required"** (new: she has a leave on file;
+  keep details minimal, she should read the PDF). Anthem PROGRESS: two
+  claims SUBMITTED Oct 14 (4–6 wk processing) + one draft still open —
+  claim-filing flag largely closing. Elite Cabin Care re-sent invoice
+  3983-4 $1,170 (payment request; running total ~$1,755 — reconcile flag
+  stands). Rising Star sent a Vision Science Labs VT assignment invite
+  (code bpaDb4) and Cognitive FX's Megan sent the post-consult info
+  packet. Innshop: Matt sent Google Ads + Analytics admin invites — accept
+  both (Meta invite earlier). CSSI (Angela Lipsey) followed up on study
+  RESULTS #204857-01 — any questions? UCSF MyChart new message. Amazon
+  Pharmacy auto-refill (syringes) ships ~Oct 19, edit by 4pm today.
+  Calendar: the **duplicate UCSF/Orbeta entry was deleted** (one remains,
+  3:30 join/3:45 appt) and the **9:00 Wells Fargo block is gone** — WF
+  follow-up draft still sits in Gmail Drafts, unresolved. Today's
+  overlaps: acupuncture 1:30–2:30 vs ARK Live 2:00; "Close Out" 3:45 vs
+  UCSF visit; 7pm VT log vs Dominos & Dice 6–8. Firefly: Departure Clean
+  Oct 16 (service 10/17); Keqi stays Oct 17–20 (check-in msg auto-sent);
+  Emmy reply STILL unconfirmed before her Oct 16 arrival. NEW: Peloton
+  TREADMILL — they call Oct 16 to schedule Oct 19 delivery.
+
+- **2026-10-14:** Tesla post-delivery dates: FSD Supervised trial active now,
+  paid FSD subscription starts **Nov 13** (order SBSYHJA0I4CE0I138) and
+  Premium Connectivity trial also ends **Nov 13** — two new charges land the
+  same day unless she cancels; plus a **Tesla Collision San Rafael service
+  appt Nov 3, 12:30** already on the books (VIN 7SAYGDEE9RF051864). STR:
+  **Emmy (Firefly, arrives Oct 16–17) sent a message that's UNANSWERED** —
+  reply before check-in; Lauren left 5 stars despite the refund (write her
+  review back); Laura Moore AND Brandon Grady both arrive Oct 21 (check for
+  double-book vs turnover). Elite Private Search CONFIRMED the Chase date:
+  **Sat Oct 17, 7pm**, reservation under first names. Claire Wexler sent her
+  consultation recap. Anthem: out-of-network notice on claim K9584 + new EOB.
+  Norton flagged a new TransUnion account = Tesla financing (expected, file
+  was frozen after). Propranolol refill due; WSJ renewal reminder. Her own
+  Thu 9:00 block: follow up with Wells Fargo on MGB Delaware LLC (draft
+  saved in Gmail Drafts; Dan 628-237-4642, Dyanna 415-738-1060). Thu 3:30 +
+  3:45 UCSF video visits w/ Lindsay Orbeta are DUPLICATES — delete one.
+  Cognitive FX consult firmed at 10:00 PT today (event updated Oct 13).
+
+- **2026-10-13:** TESLA DELIVERY DAY — Model Y Express Pickup 4:30pm at
+  Tesla Colma (plate BZS2242, bring license). Credit activity matches the
+  purchase: new TransUnion inquiry + Experian new account + she FROZE her
+  TransUnion file Oct 12 (smart). Matchmakers: she shortened Bonnie to
+  1:00–1:30, Claire follows 1:30–2:00 (stale "Shannon" 1:00 placeholder
+  still on calendar). Dr. Cook 3:30 appt PENDING — intake form must go to
+  blesleycook@gmail.com to confirm, and it collides with the 4:30 Colma
+  pickup. iVIZIA dry-eye drops subscription OUT OF STOCK (she depends on
+  these — needs an alternate source). Cognitive FX consult Wed (calendar
+  says 10:00 PT; confirm vs Amanda's "11am" email). NEW: she's now a
+  Google Business Profile manager of "Inn Shop Ski & Board Rentals at
+  Palisades Tahoe" (Tahoe thread: listings watch + Oct 23–26 trip). Jen
+  sent a "JV Logo" (helping Jen's brand?). Anthem denied part of claim
+  O5676. Verizon $117.68 autopaid.
+
+- **2026-10-12 (Monday watch):** TUESDAY MATCHMAKER TRIPLE-BOOK: Shannon
+  call 1:00–1:30 vs Bonnie Winston Zoom 1:00–2:00 vs Claire Wexler
+  1:30–2:00 — Bonnie overlaps BOTH; must reshuffle. Tesla: password reset +
+  new passkey + Model Y config UPDATED (2024 LR AWD, Stealth Grey) Oct 11 —
+  presume her, confirm. Becky left 5 STARS at Distiller's (4th straight
+  5-star). Turno: one Lori project completed, another not started. Mercor
+  expert-network pinged (she's already in their network — a 3rd paid-
+  consult channel). Subscriptions: Snapchat+ $5.99/mo NEW; PriceLabs
+  charges Oct 13. Nordstrom pickup by Oct 16; Sephora pickup waiting.
+
+- **2026-10-09:** NEW ENTITY observed: Wells Fargo account opening is for
+  **MGB INVESTMENTS DELAWARE LLC** (3rd entity after TN + KY LLCs) —
+  DocuSigns signed last night, banker Dyanna Jenkins confirming. Lauren's
+  $189 refund explained: she reported issues at check-in + a loft window
+  left open (thread resolved politely — relay to Kaitey/Shawyne). She
+  booked a **Tahoe City Airbnb Oct 23–26** (guest trip — matches the Tahoe
+  listing alerts; scouting market?). Puppies & Yoga Sat 9am w/ Kate (moved
+  to 633 Vallejo). Self-made to-do today: flu shot, email both
+  matchmakers, Dr. Cook forms → Huron. CPR/AED course Oct 18 1–5:30
+  confirmed. Berkeley encrypted receipt thread continued. Alissa + Becky
+  check in today.
+
+- **2026-10-08:** SHE ORDERED A TESLA MODEL Y 🚗 (order RN129949153,
+  delivery tasks pending in the app; Tesla passkey added). SUPERHOST
+  renewed for another quarter. Sent Lauren (Firefly Oct 7–9) a $189
+  partial refund via Airbnb — reason unknown. UCSF appt moved to Oct 21
+  2:30. VT backup appt added Feb 17. TODAY'S CONFLICT: One Medical Zoom
+  w/ Lartily 2:00 vs Wafa Malik in Emeryville (arrive 2:30) — can't do
+  both. Keqi booked Firefly Oct 17–20. Google AI Studio spend-capped her
+  idle Gemini project (harmless).
+
+- **2026-10-07:** Elite invoice now 3983-4 = **$1,170** (4th weekly bump;
+  + $585 = ~$1,755 — likely accumulating turnover cleans; reconcile with
+  Shawyne). George receipts: Quinn says Animal Medical Clinic emailed them
+  to Meredith but they never arrived — she must CALL the clinic to fix her
+  email on file (MetLife claims #1562804 in review await receipts). TWO
+  United bookings ticketed this morning (H4KVJQ + H4P45M) + flight credit
+  DQKJY7 — verify intentional. Berkeley wants **$230** to fill out
+  medical-leave paperwork — decide pay vs. ask another provider. PG&E gas
+  smart-meter replacement at 1931 Filbert is TENANT's to schedule (landlord
+  confirmed). VT schedule reshaped (Nov 4→11, Nov 25 dropped; asked about
+  partial prepay). Mammogram screening tonight 7:15 CPMC. Spring Fertility
+  app message waiting. EyeBuyDirect glasses ordered.
+
+- **2026-10-06:** She self-organized the Turno problem into a 9am "STR
+  follow-ups" block: Kaitey (NEW TN cleaner), Shawyne (French-fry clean
+  credit), Wes (KY: pink cushion, loose upstairs toilet, AC Freon), Enrich
+  Zoom. NOTE: her task calls the KY house "**White Oak Estate**" — new
+  name observed alongside The Distiller's Estate. Airbnb will charge HER
+  $952.82 in 3 days (guest-side trip). Amazon advance refunds: $119.44 +
+  $32.58 + $9.65; Steve Madden return shipped. proSapient expert-network
+  outreach (2nd network). Tonight TRIPLE-booked: Kate walk/dinner 4–6:30 vs
+  Portugal @ Shack15 5:30–8 vs Catarina dinner 7. Tomorrow: John Mayer
+  Sphere presale 10am, "Dr Colvin 12:15" vs recurring block, Emma Lutz
+  video 1:30, Alison Lacey 3:00, Peter's housewarming RSVP deadline.
+
+- **2026-10-05 (Monday watch):** Turno: Lori REPORTED A PROBLEM at a
+  property Oct 4 (details in Turno) — review. Avis account: password reset
+  → locked → changed within minutes Oct 4, plus a Labcorp password change
+  same day — likely her own cleanup (Avis rental 27712723US3 canceled, no
+  charge), confirm it was her. Nick left 5 STARS at Bourbon Trail. Today =
+  her meticulously planned double vision day (San Rafael 11am → UC Berkeley
+  1:30, drive blocks self-built). Mike Hostetler call Tue 1pm; Catarina
+  dinner Tue 7pm; acu Tue 2:30. Anthropologie 2nd return processed. Home
+  Depot pickup ready (by Oct 12). Subscriptions: Peloton NEW, Audible 3
+  idle credits, UCSF plan $193.62/mo — see watch section.
+
+- **2026-10-02:** Vrbo says the Firefly listing "will be visible to
+  travelers soon" — the unlisted-Vrbo flag is resolving. Openly homeowners
+  insurance application (BQ01-PMADVNP) DocuSign VOIDED — likely the lapsed
+  Goosehead quote; restart if coverage still wanted. Wells Fargo BUSINESS
+  CHECKING appointment today 10:30 (Cow Hollow, bring 2 IDs) — KY LLC
+  banking finally moving. New invoice: Bourbon City Cleaning #2480 (KY).
+  PT home program received from Nicole. Olympic Club FY2027 dues INCREASE
+  letter + statement. Delta flights booked for Leighton Vihrachoff (Nov
+  5 + 8, forwarded to family); Auburn visit registered. Labcorp results
+  ready; Anthem EOB posted. Monday Oct 5 = double vision day: Dr.
+  Schumacher 11am + UC Berkeley Opt 1:30pm.
+
+- **2026-10-01:** GEORGE'S MEDS SOLVED — Venmo'd Quinn $248 for a 6-month
+  Simparica Trio supply; Chewy Autoship payment still broken but urgency
+  gone (downgrade flag). Bourbon Trail Nov 12–16 reservation HMRM8N2ZPK
+  CANCELED — the Clayton/Jen double-book resolved itself, but those dates
+  are now open inventory. Stephanie (Thanksgiving guest, Nov 24–28) asked a
+  question in Airbnb ("we have 2 little…") — reply needed. Vision: Berkeley
+  test results sent to Rising Star; Dr. Schumacher follow-up Mon Oct 5 11am;
+  acu shuffled (Oct 2 canceled, Oct 8 11:30, Nov 6 added). First Renew PT
+  session today 4:10. GitHub App "Claude" requested updated permissions
+  (her call to approve). AppleCare+ monthly receipt.
+
+- **2026-09-30:** Global Entry: passport on file EXPIRED — update in TTP
+  (PASSID 984453573). Elite invoice grew AGAIN: 3983-3 now **$975** (+ old
+  $585 = ~$1,560 outstanding). 4th United refund processed. October is
+  filling: Nick (Bourbon Trail Oct 1–4), Lara (Firefly Oct 2–6), Lauren
+  (Oct 7–9), Becky (Distiller's Oct 9–11), Alissa (Firefly Oct 9–16) — all
+  pre-arrival messages auto-sent. Escitalopram DELIVERED; Bupropion +
+  Propranolol being prepared. Matchmaking: Shannon → book Claire Wexler
+  next; Bonnie Winston call today 3pm PT (NOT on calendar — conflicts with
+  3pm recurring block). Filbert parking $622 autopaid (Marian Lim). New
+  session branch observed: claude/exercise-progress-tracker (her vision-PT
+  tracker work) — grooming-watcher CI noise on it is expected.
+
+- **2026-09-29:** X/Twitter says account MeredithB26801 SUSPENDED for
+  "inauthentic activity" — advised to verify directly at x.com, not via
+  email links (possible phish). NEW BOOKING: Becky Smith (Berea, KY) at The
+  Distiller's Estate arriving Oct 9. Enrich answered pricing: TN October has
+  only orphan gaps, rates adjusting through Nov, 31-day booking window.
+  Matchmaking double-track: Shannon calls today 4pm; Bonnie Winston call
+  Wed 3pm PT. Brain Health lecture is VIRTUAL (link emailed) — eases today's
+  stack. Escitalopram delayed a 3rd time → Sep 30. Tonight: dinner w/
+  Camille (Sausalito 6:30) CONFLICTS with improv Session 3 (7pm, Sutter).
+  Magnum bike order shipped; West Village 1BR off-market follow-up.
+
+- **2026-09-28 (Monday watch):** Sharon left 5 STARS; two Airbnb payouts in
+  flight ($1,637.17 + $533.58 → MGB …7904). Elite completed the Firefly
+  turnover; Turno's Lori finished her project — cleaning flags clear. Ryan
+  Kotarba arrives at The Distiller's Estate today; Lauren at Firefly Oct
+  7–9. Meredith built her OWN vision-therapy tracker artifact + daily 7pm
+  "log exercises" calendar block (Hart chart, Brock string, pursuits,
+  saccades) — health dept self-started. Venmo: $164 George allergy shot +
+  $62 camping to Quinn. Escitalopram delayed to Sep 29. Abyssusnet followed
+  up 3x (pushy — vet before engaging). Tue Sep 29 is over-stacked: AI
+  Conference Day Zero (Pier 48) vs 11am acu vs noon Brain Health talk vs
+  2:30 UCSF Indigo Leon vs 7pm improv. Subscription watch: Netflix
+  $19.99/mo via PayPal newly observed; Target 360 renewed; Apple News+
+  expires Oct 8.
+
+- **2026-09-25:** Berkeley itemized receipt received (Virtru encrypted —
+  she got the flow working and replied); with the VT codes she now has
+  everything for the Anthem claim (drafts still pending). Acupuncture
+  rescheduled to today 10:30 w/ Gabi Curbelo (150 Lombard); further changes
+  Sep 29 11am + Oct 1 2:30pm. REI bike PICKED UP (Salsa Journeyer) — flag
+  closed. Anthropologie return processed, refund pending. **Raya+ $49.99/mo
+  expiring ~Sep 27** — renewal decision. Abyssusnet expert-network
+  consultation request re: AI agents (possible paid-expert-call opportunity;
+  vet legitimacy). Vita Brevis Club application link received. Rachel at
+  Firefly Sat–Mon; departure clean scheduled.
+
+- **2026-09-24:** Elatia round-2 coaching PAUSED at Meredith's request —
+  she's starting **6 weeks of vision physical therapy** (concussion
+  follow-up); Elatia responded graciously; today's 9am session removed.
+  Renew PT BOOKED: 3 appointments, first Oct 1 4:10pm w/ Nicole Sabes (659
+  Commercial St) — waitlist flag closed. Truspine acu re-booked today
+  10:30am. TWO more United refunds processed — United duplicates fully
+  closed. North Nelson Water (KY): autopay + paperless enrolled, invoice
+  paid. Rachel arrives at Firefly Sep 26–28. Enrich: asked Franchesco about
+  dropping Oct/Nov prices to fill two open KY October weekends. Oura
+  sign-in code observed (possibly connecting Oura data — wearable-sync
+  opportunity). Danielle Martino moved to Fri 1:00pm. Friday: Claude
+  Meetup "AI Back Office" at Mox 2–4pm (setup-instructions email received).
+
+- **2026-09-23:** Wednesday triple-book RESOLVED — Truspine acu canceled,
+  Well Woman + Emma Lutz video off today's calendar; Danielle Martino 1:30
+  (Embarcadero) stands. Elite Cabin Care invoice 3983-2 GREW to **$780**
+  (was $390) — with the standing $585 (3842-2) that's ~$1,365 outstanding.
+  Vision-therapy billing codes received from Rising Star Vision (92066 $260 /
+  92065 $330); Anthem claim-submission draft awaiting completion; VSP benefit
+  details received. Cucalon Ortho reported an email breach — treat mail from
+  info@cucalonortho.com with caution. Subscriptions: Apple News+ expires
+  Oct 8; SF Chronicle CANCELED; new Amazon Subscribe&Save (Rodial concealer);
+  Escitalopram on Amazon Pharmacy auto-refill; LMNT + Cymbiotika orders.
+  Serge (Autolab) replied to her Mo/Shepherd intro. Kindle refund issued.
+
+- **2026-09-22:** KY PERMIT APPROVED — Karen Nanney issued the change-of-use +
+  interior-alterations permit for 980 Colonel Cox Rd (receipt attached, copy
+  to code enforcement); Lori/Two Bees will sign+file the Local Responsible
+  Contact form (CUP #3328). P&Z flag CLOSED. United refund processed (ticket
+  …5905) — duplicate-booking flag CLOSED. Berkeley binocular-vision clinic
+  replied twice via Virtru ENCRYPTED email (billing codes + waitlist) —
+  Meredith must verify identity to read. Renew PT waitlist slots offered.
+  Wayfair (Chris Bresnahan) calling today re: $795 pink chairs refund +
+  outstanding balance (Becky-related). WEDNESDAY TRIPLE-BOOK: One Medical
+  Danielle Martino 1:30 (Embarcadero) vs Truspine acu re-exam 1:30 (Telegraph
+  Hill) vs Well Woman 1:45 (San Bruno). Shannon's Circle matchmaking intro via
+  Cassindy — Shannon awaiting scheduling reply. Elatia Thu 9am confirmed.
+
+- **2026-09-21 (Monday watch):** DIRECT BOOKING WON — a guest also named
+  Meredith Bledsoe booked Firefly direct **Feb 16–24, 2027, $2,454**
+  (HOST-MBNNGJ, paid) — but Hospitable flagged guest verification for manual
+  review. Miles left 5 STARS at Distiller's; Airbnb payout **$1,637.17** sent
+  (arrives ~Sep 25); Ryan Kotarba arrives Sep 28. Turno: cleaner Lori has NOT
+  started a turnover project — flagged. THIRD United booking (NH0ZG4) in a
+  week. Elatia round 2: NDA DocuSign + Stripe invoice (3 installments),
+  Thursdays 9am recurring. Anthropologie return label issued (concussion
+  accommodation). Pest control serviced the TN cabin. Her Tue Sep 22 is
+  5-appointment medical day + OCWC workshop 6–8pm OVERLAPS Improv 7–9pm.
+  Also observed: a separate "Your Day Ahead" self-email automation
+  (meredithbledsoesf+cc@gmail.com) is now running — not one of ours.
+
+- **2026-09-18:** ANOTHER BOOKING — Alex Schreiber at Firefly **Mar 29–Apr 2,
+  $2,855** (turnover clean auto-scheduled). But a Vrbo reservation Feb 11–14,
+  2027 was "canceled by the host" — likely Quinn retrying via Vrbo and hitting
+  the unlisted/sync issue; verify. TWO United bookings within an hour
+  (IZYPJE + IPST48, eTicket issued for IPST48) — flagged possible duplicate.
+  Larry Friedberg engagement PAUSED at Meredith's request (health first —
+  gracious response). Sedgwick faxed STD medical-documents request to Lartily
+  Mateo (One Medical PA); One Medical video visit with Lartily TODAY 2pm —
+  NOT on her Google Calendar. Costco refunded $1,737.99. Jason Hoopet arrives
+  at Firefly Sat Sep 19. Amazon recruiter InMail (Principal Finance, Amazon
+  Ads). Bank flag CLOSED (Airbnb payout verified Sep 16).
+
+- **2026-09-17:** WINS — Airbnb payout method now VERIFIED/ready (MGB KY
+  Checking …5413); bank flag mostly resolved (confirm Hospitable side shows
+  verified too). NEW BOOKING: Pat Kinney at The Distiller's Estate
+  **Nov 24–28 (Thanksgiving), $2,993**. Chewy: Autoship order started prepping
+  then order #5217935807 was CANCELED 10 min later — payment issue suspected,
+  George's supply gap continues. Anthem DENIED part of a claim (svc Sep 9,
+  ending E5418). Hospitable $59 monthly invoice due. Elatia sent "Next Steps +
+  Pricing" proposal. Maui Westside pre-arrival email for Konea 1019 (3
+  nights). REI bike ready at Corte Madera. Cost-seg 1245/1250 answer arrived
+  from Chelsea. Miles arrives at Distiller's Estate today.
+
+- **2026-09-16:** Quinn Lovingood's Firefly direct-booking request (Feb 10–14,
+  2027) EXPIRED unactioned — booking lost (ResortCleaning auto-cancelled the
+  Feb turnover). Elite Cabin Care sent a SECOND invoice: **$390 (3983-2)** on
+  top of the standing $585 (3842-2). Karen Nanney (Bardstown P&Z) asked for
+  floor plans for the permit application — reply needed. Miles arrives at The
+  Distiller's Estate Thu Sep 17. Spray-tan appt (Sep 15) cancelled by the
+  salon. Google/Sedgwick payroll case open — pay breakdown received, Meredith
+  disputing STD amounts on the Sep 11 paycheck. Capital One: credit score
+  improved. Bank-verification saga continues (third Plaid connection Sep 15).
+
+- **2026-09-15:** Firefly direct-booking request from Quinn Lovingood
+  (Feb 10–14, 2027) expiring same-morning — flagged urgent. Hospitable payout
+  bank: PROGRESS — Wells Fargo connected via Plaid (twice) and Airbnb sent a
+  $0.01 test deposit to MGB Investments KY Checking …5413, but Hospitable
+  still shows unverified (micro-deposit confirmation likely pending). Airbnb
+  passkey added + payout method changed Sep 14 (flagged for her to confirm it
+  was her). Franchesco (Enrich): Firefly **Vrbo listing appears UNLISTED** —
+  she must verify on Vrbo directly. New UCSF MyChart message. Nelnet student
+  loan statement posted. Cassindy call mixup Mon resolved (rescheduled).
+
+- **2026-09-14 (Monday watch):** DIRECT-BOOKING PUSH — KY property rebranding as
+  **"The Distiller's Estate"** (Lovable site live, first visitor; Bardstown KY
+  P&Z work: garage sq-footage petition, STR permit $100 mailed, pool permit
+  question). **fireflycottagetn.com** registered ($20/yr Squarespace) but
+  hello@ forwarding BOUNCES (MX misconfigured) and its ICANN verification is
+  pending; mgbkids verification apparently never done (deadline passed —
+  check status). Hospitable payout bank flipped to UNVERIFIED. Subscriptions:
+  added **PriceLabs $34.98/mo** (dynamic pricing). TN sales-tax payment
+  processed — TNTAP fully closed. Mortgage servicer SPS account created.
+  Amanda left Firefly 4 stars (first non-5). Elatia weekly Tue/Thu; improv
+  Foundations starts Sep 15.
+
+- **2026-09-07 (Monday watch):** First Airbnb payout landed in MGB Investments
+  LLC checking (…7904): $1,172.82. KY Certificate of Existence obtained (for
+  Wells Fargo business account — appts Sep 8, conflicting confirmations vs
+  Sep 9, flagged). mgbkids has Google Workspace now (meredith@mgbkids.com) but
+  domain verification STILL pending — 4th notice, suspends ~Sep 13. Goosehead
+  DocuSign still unsigned (re-reminded). Guest trip booked: Vegas Airbnb
+  Dec 28–Jan 2 (11 beds; prior reservation canceled/refunded). Larry Friedberg
+  advisory call Sep 8. No new subscriptions this week.
+- **2026-09-03:** RESOLVED — TN sales & use tax returns for MGB Investments LLC
+  filed (Jun/Jul/Aug) and processed by TNTAP. Starlink price dropped to
+  $130/mo. Squarespace mgbkids verification still pending (3rd notice —
+  suspends ~Sep 13). Still open: Elite Cabin Care $585, Goosehead DocuSign,
+  KY LLC compliance. Stephen Crosby arrives at The Old Kentucky Estate Sep 4–7.
+- **2026-09-02:** Anthropic passed on the Finance & Strategy Manager role
+  (gracious close; recruiter Lynda wants to keep in touch — comp-analyst should
+  log this). Meredith is on medical leave this week (told Larry Friedberg;
+  Sedgwick office hours booked) — keep briefs gentle, deprioritize work blocks.
+  KY listing watch: Clayton confirmed Nov 12–16 AND Jen pre-approved Nov 13–16
+  at The Bourbon Trail — flagged possible double-book. New subscription via
+  phone: myze/iVIZIA eye care (needs email confirm). Laura booked Firefly
+  Oct 21–23. She's attending "Build Advanced Agents with Claude" Sep 3.
+- **2026-08-31 (Monday watch):** 🎉 FIRST ETSY SALE — KidsColoringBonanza sold
+  "Friendly Not Scary Halloween" for $4.99 (Aug 29, order 4159407528). Domain
+  **mgbkids** bought on Squarespace (ICANN verification pending — 15-day
+  window). Second LLC surfaced: **MGB INVESTMENTS KENTUCKY LLC** (LegalZoom
+  compliance steps pending) — TN entity is MGB Investments LLC. Career: coach
+  **Elatia Abate** engaged (NDA signed, paid via Stripe; strategy call Aug 31);
+  interview coach Larry Friedberg pending scheduling. Health: Cognitive FX
+  exit packet received (concussion follow-up to book). George's meds reminder
+  is a recurring Tue 9am event ("Give Jorge his heartworm and flea pill").
+  Subscriptions added: Netflix $19.99/mo (PayPal), UCSF payment plan $193.62
+  autopay (Sep 4), Filbert St parking $622/mo (AppFolio autopay), Elatia Abate
+  coaching (recurring Stripe invoices), Squarespace domain (annual).
+- **2026-08-28:** NEW VENTURE — Etsy shop **"KidsColoringBonanza"** opened
+  overnight ($29 setup fee paid, identity verified, 2FA on; listings not yet
+  live — listing-poster/PR #22 is the natural next tool). George booked at
+  **Pawsitively Groomed Pet Salon**, Sep 1 12pm, 1427 Broadway Burlingame
+  (booking 64XXZE) — new groomer for the roster. **Netflix $19.99/mo via
+  PayPal** spotted — add to subscription inventory Monday. OpenAI call moved
+  30 min earlier (10:30am PT Aug 28).
+- **2026-08-27:** OpenAI intro call scheduled too (Aug 28, 11am, Vanessa King)
+  — two AI labs in two days. A "claude/hackathon-rsi-idea" branch appeared in
+  the repo (from Sunday's RSI hack — she's building something; ask her about
+  it). UCSF Neuro Recovery follow-up Aug 28 9am (concussion care continuing).
+- **2026-08-26:** CAREER MILESTONE — Anthropic interview scheduled (Hiring
+  Manager Screen, Aug 27 10:30am PT, Daniel Feeney). Allie K. Miller replied to
+  Meredith's InMail. Chewy card issue resolved (order shipped). Tahoe trip
+  Aug 27+ (she's also getting Tahoe/Olympic Valley listing alerts — possible
+  property #3 hunt; ask before assuming).
+- **2026-08-24 (Monday watch):** Maui trip canceled Aug 23 (minor head injury —
+  Four Seasons refunded; United return A3QEP4 + Hertz still to unwind). KY
+  house's Airbnb listing is titled "The Bourbon Trail"; first KY guests
+  (Melissa) left 5 stars. Becky's Cowork onboarding started organically
+  (expense-reconciliation prompt sent; she's connecting Gmail) — becky-ops is
+  live in practice. Subscriptions: added Starlink $140/mo; Ring presumed
+  converted. Note: a separate "Your Day Ahead" daily-brief email (from
+  meredithbledsoesf+cc@gmail.com) also runs — avoid duplicating it.
+- **2026-08-17 (Monday watch):** Old Kentucky Estate live on Airbnb — 3 bookings
+  (~$6.7k). Subscription inventory: added NYT, Hospitable $59/mo, Target Circle
+  360. Standing flags still open: Ring (converts ~Aug 21), Chewy card.
+- **2026-08-14:** Jamal's Friday run: noted birthday (Aug 14) and Obie as the
+  cabin's landlord insurer (inspection notice received).
+- **2026-08-12 (v3.1):** Added `ventures/` folder: README.md portfolio naming
+  **Confetti Confessions** and **Haven** explicitly, plus `skill-ideas.md` — a
+  brainstorm area for skills to sell to companies, seeded with 8 ideas traced
+  to things already built.
+- **2026-08-12 (v3):** Meredith hired the chief of staff and named him
+  **Jamal**. Weekday 7am CT morning-brief routine created (self-bound to the
+  workforce session for connector access). Org chart updated to v3.
+
+- **2026-08-12 (v2):** Added Health dept, subscription-manager + first Gmail
+  audit, appointment-scheduler, goal-watcher, confetti-studio, becky-ops,
+  skill-forge. Created `ai-workforce/` folder; moved org chart here; started
+  this context file. (Session: "AI workforce setup proposal", PR #23.)
+- **2026-08-12 (v1):** Initial 5-dept / 16-agent proposal from session history.
