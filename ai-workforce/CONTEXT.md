@@ -99,6 +99,14 @@ Apple News+ decision window closes Oct 8. No failed payments this week.
 Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
 Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
 No failed payments this week.
+Nov 2 (Monday watch): NEW — **Build STR Wealth** paid via Stripe
+(#1661-8529 — course/membership, amount TBD); **Ring 24/7 Continuous
+Recording add-on** active + trial converted ~Oct 31; Fullscript autoship
+charged; Helpmyze recurring order OUT OF STOCK (supplement gap — find
+alternative). **DEADLINES THIS WEEK: Google One Basic cancel by Nov 8;
+Tesla FSD paid sub + Premium Connectivity both bill Nov 13.** No failed
+payments. DST note: brief now lands 4am PT — offer to move cron to
+`0 14 * * 1-5` (6am PT) or `0 15` (7am PT) stands.
 Oct 26 (Monday watch): NEW — **Anthropic (Claude) subscription receipt**
 #2642-3963-8277 (amount TBD — add to inventory); **Sonic internet** autopay
 scheduled; Google AI Pro active (Basic 100 GB still needs canceling by
@@ -148,6 +156,21 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-11-02 (Monday watch):** Mystery trip SOLVED — **she flies to
+  LOUISVILLE today** (Breeze M27MHL, calendar "MX 229" 11:54am SFO) with
+  **Avis pickup 7pm at SDF**; Tue 7am she calls **Vanessa at Bardstown
+  Code Enforcement** re the code inspector — a KY-property work trip,
+  likely rolling into **Leighton's Auburn visit Fri Nov 6**. ⚠️ **Tesla
+  Collision San Rafael appt Nov 3 12:30 conflicts — she's in KY;
+  reschedule it.** Anthropic Virtual Claude Workshop 8:30–10am today
+  butts against the flight. Matchmaker candidate agreement (Brandan
+  Rader) SIGNED via DocuSign ✅. Bryan checked out (write review);
+  Danielle checked in. Sedgwick sent yet another leave update (Oct 30).
+  Quinn requests $134 on Venmo. WF: MGB …7904 statement + new FICO.
+  Subscriptions: see Nov 2 Monday watch (Build STR Wealth NEW, Ring
+  add-on, Helpmyze out-of-stock; **Google One Nov 8 + Tesla Nov 13
+  deadlines this week**).
 
 - **2026-10-30:** **The mystery trip is TOMORROW** — Hertz says "check in
   for tomorrow's trip" (pairs with the Breeze flight; still not on her
