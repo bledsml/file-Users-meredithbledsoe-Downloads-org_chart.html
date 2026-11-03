@@ -157,6 +157,25 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-03:** **NETFLIX CAME CALLING** — recruiter Peter Hughes
+  (Talent Acquisition) re: **Director of Strategy, Cloud & GenAI / Head
+  of Cloud Infrastructure Finance & Strategy**; she accepted the message
+  and penciled a TENTATIVE phone screen **Wed 3:30pm PT** (he calls her;
+  time zone unconfirmed — confirm PT vs ET!). Career dept is live.
+  Medical choreography: UCSF↔Sutter CPMC **breast imaging + bloodwork
+  transfer** requests sent both ways (mammogram follow-up — watch);
+  Berkeley offered **Dr. Malik slots weeks of Nov 15 & Dec 7** (reply);
+  UC Eye Center DRY EYE CLINIC reached out (the iVIZIA/dry-eye thread
+  gets a clinic); Rising Star sent her upcoming-appointments list.
+  Calendar muddle: she flew to Louisville yesterday, yet **Truspine acu
+  sits at noon PT TODAY** and tomorrow is stacked in SF (QBR 9:15,
+  **Direct Booking Bootcamp Day 1 11:00 — her own note says it overlaps
+  the 11:30 Truspine re-exam**, Netflix 3:30) — confirm she flew back or
+  these need moving. Bardstown code-enforcement call 7am today. Blessed
+  Cleaning invoice 26376814; Enrich October report ready; StubHub order
+  655832283 needs a ticket check (delivery type changed). Tesla Mobile
+  Connector delivered. Quinn's $134 paid ✅.
+
 - **2026-11-02 (Monday watch):** Mystery trip SOLVED — **she flies to
   LOUISVILLE today** (Breeze M27MHL, calendar "MX 229" 11:54am SFO) with
   **Avis pickup 7pm at SDF**; Tue 7am she calls **Vanessa at Bardstown
