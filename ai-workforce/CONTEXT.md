@@ -157,6 +157,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-04:** **TN SALES-TAX FLAG CLOSED** — TNTAP confirmed "MGB
+  INVESTMENTS LLC: Return Processed" ✅. **The KY house is now listed as
+  "The Bourbon Trail | Hot Tub | Game Room | Fire Pit"** (explains the
+  Bardstown trip) and already has a **Nov 13–15 booking**. **Netflix
+  phone screen CONFIRMED for TODAY 3:30 PM PT** (Peter calls her).
+  Tomorrow she flies **SFO→ATL (UA 2131, 8:45am)** for Leighton's Auburn
+  weekend (Leighton lands ATL 7:03pm, Nanny Q collects; itinerary doc on
+  file); Bootcamp Day 2 will be replay. Today's known conflict stands:
+  Bootcamp Day 1 11:00 vs Truspine re-exam 11:30. Cognitive FX sent a
+  "checking in one last time" (she went the Rising Star/Berkeley route —
+  politely close it). Berkeley Dry Eye Clinic thread progressing. Turno:
+  someone asked for a customer-service rep (cleaner friction again) +
+  an open Airbnb Support message. Shannon NUDGED on her proposal (2nd
+  send). Smilin Dogs posted holiday hours/deposits — **book George's
+  Thanksgiving boarding before it fills**. UCSF earlier-slot offer again
+  + test-result digest. Alchemy Springs sauna booked (new Stripe charge).
+
 - **2026-11-03:** **NETFLIX CAME CALLING** — recruiter Peter Hughes
   (Talent Acquisition) re: **Director of Strategy, Cloud & GenAI / Head
   of Cloud Infrastructure Finance & Strategy**; she accepted the message
