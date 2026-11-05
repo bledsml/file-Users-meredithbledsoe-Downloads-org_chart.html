@@ -157,6 +157,21 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-05:** **Financial advisors (Team DeJoy — Daniel Nitschke,
+  Luke Lupisella) sent "Kentucky rental: 2026 vs 2027 sale and 1031
+  scenarios"** — she's weighing SELLING the Frankfort KY rental (519 W
+  2nd St, the one Zillow tracks) with 1031 analysis; review on the
+  plane. Travel day: UA 2131 SFO→ATL 8:45am; Mastermind Wk3 "Build
+  Something You Can Sell" + Bootcamp Day 2 both hit mid-flight (replays
+  planned). Leighton lands ATL 7:03pm (Nanny Q pickup, conf HOYN69).
+  Friday: Auburn tour 10:30 CT → CADC Graphic Design 1:00 CT (tight —
+  tour ends ~12:30); Bootcamp Day 3 = replay. Expert-network pipeline
+  keeps growing: Officehours (AI data-center networking) + Arbolus paid
+  advisory pinged. United purchase receipt (today's flight); Delta
+  check-in email. Netflix screen outcome not yet visible in email.
+  Standing: Google One Basic by SUNDAY; Tesla FSD/Connectivity Nov 13;
+  Shannon proposal reply; Elite $620; Smilin Dogs Thanksgiving boarding.
+
 - **2026-11-04:** **TN SALES-TAX FLAG CLOSED** — TNTAP confirmed "MGB
   INVESTMENTS LLC: Return Processed" ✅. **The KY house is now listed as
   "The Bourbon Trail | Hot Tub | Game Room | Fire Pit"** (explains the
