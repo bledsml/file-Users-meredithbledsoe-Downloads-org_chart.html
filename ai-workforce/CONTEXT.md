@@ -157,6 +157,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-06:** Auburn day wrinkle: **Auburn Admissions sent a "Campus
+  Visit Cancellation" confirmation addressed to "Jen"** — someone's
+  registration got canceled; Leighton's 10:30 CT tour + 1:00 CADC session
+  should still stand but VERIFY at check-in (Admissions 334-844-6425).
+  Flights: United L228SG CANCELED → rebooked **EZ03EF, returns SFO Nov 8**
+  ($393.40 + flight credit issued); a Delta ticket for **Ann Bledsoe**
+  (Nov 5) was booked and forwarded to Quinn. **StubHub/Tixr parking-pass
+  sale COMPLETE — transfers accepted ✅ (flag closed)**; AXS account churn
+  (phone/login/verify) matches her ticket activity — expected. **WF
+  Direct Pay payees added/changed — verify she initiated** (likely
+  vendor bill-pay setup). Bourbon City Cleaning re-sent invoice 2480
+  (standing flag). Firefly got a Cabin Inspection scheduled today.
+  Hospitable pre-arrival message went to Imani (Nov 15–17). Tomorrow:
+  **Arkansas @ Auburn, Jordan-Hare** (duplicate calendar entries 9:45 &
+  11:00 PT — kickoff per tickets). **GOOGLE ONE BASIC DEADLINE IS
+  SUNDAY Nov 8** — final reminder before she's home.
+
 - **2026-11-05:** **Financial advisors (Team DeJoy — Daniel Nitschke,
   Luke Lupisella) sent "Kentucky rental: 2026 vs 2027 sale and 1031
   scenarios"** — she's weighing SELLING the Frankfort KY rental (519 W
