@@ -99,6 +99,14 @@ Apple News+ decision window closes Oct 8. No failed payments this week.
 Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
 Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
 No failed payments this week.
+Nov 9 (Monday watch): AppleCare+ monthly renewed; **Zepbound ordered via
+Amazon Pharmacy (NEW recurring med — note cost when visible)**; Vevye +
+Bupropion refills due; Nordic Naturals order shipped (supplement).
+**Google One Basic deadline (Nov 8) PASSED with no cancellation email
+seen — verify she canceled or flag the double-charge.** Tesla FSD +
+Premium Connectivity bill THIS FRIDAY Nov 13. Airbnb: Norway trip booked
+(Sylte, May 3–7 2027) with one canceled res + refund in the same hour
+(rebooking churn, watch the refund lands). No failed payments.
 Nov 2 (Monday watch): NEW — **Build STR Wealth** paid via Stripe
 (#1661-8529 — course/membership, amount TBD); **Ring 24/7 Continuous
 Recording add-on** active + trial converted ~Oct 31; Fullscript autoship
@@ -156,6 +164,22 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
   pushes are expected noise (cloud cron disabled); ignore.
 
 ## Changelog
+
+- **2026-11-09 (Monday watch):** **EMERGENCY DOOR REPAIR needed at the
+  Bourbon Trail / Distiller's Estate for a current guest** (her own Day
+  Ahead flagged coordinating it — confirm a handyman is booked). Tuesday
+  DOUBLE-BOOK: **Wafa Malik 2:00 in Emeryville vs Superradiant visit to
+  Marathon Fusion 2:00 at 150 Mississippi St SF** (fusion-materials
+  meeting w/ Micah, Alejandro remote, Kyle Schiller) — one must move;
+  also Tue: Mastermind office hours 10am, **Dr. Cook FINALLY booked 11am**
+  (old flag closes), Firefly departure clean, dinner w/ Peter 3:15.
+  Stephanie checks in at Firefly Wed Nov 11–15. Katharine checked out of
+  Bourbon Trail — write review; Turno: a Lori project again NOT started.
+  NEW TRIP: **Norway (Sylte) booked for May 3–7, 2027** (one canceled res
+  + refund same hour — rebooking; watch refund). Career: another
+  recruiter ping (US Supply lead, AI cloud GPU capacity + financing).
+  Subscriptions: see Nov 9 Monday watch — **verify Google One Basic got
+  canceled (deadline passed, no confirmation seen); Tesla bills Friday.**
 
 - **2026-11-06:** Auburn day wrinkle: **Auburn Admissions sent a "Campus
   Visit Cancellation" confirmation addressed to "Jen"** — someone's
