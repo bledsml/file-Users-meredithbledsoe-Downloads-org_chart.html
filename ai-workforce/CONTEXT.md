@@ -165,6 +165,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-10:** Tuesday's 2:00 collision SURVIVED the reshuffle:
+  Marathon Fusion moved only to 1:50–2:45, still against **Wafa Malik
+  arrive-1:45 in Emeryville**; and the rebooked **acupuncture (Dr. Drake)
+  landed at 10:00, on top of Mastermind office hours** (her note says
+  she knows — office hours skippable). Dr. Cook 11:00 holds. STR WINS:
+  **Autumn Venable booked Firefly Dec 18–21 ($1,516 — Christmas!)**;
+  Heather confirmed Nov 19–24; Stephanie arrives TOMORROW. Flight churn:
+  **United H4KVJQ + H4P45M both CANCELED + a Chase Travel trip canceled**
+  — verify intentional and watch for credits/refunds (one credit email
+  seen for L228SG earlier). New provider portal: Balance Health. Stripe
+  will hide secret API keys Nov 20 (note for her Etsy/listing tooling).
+  WF delivery-preferences change — hers presumably. Meds arrive today.
+  Tomorrow (Wed): Stephanie check-in, QBR 9:15, **Rising Star w/ Dr.
+  Shumaker 1:30 — location STILL unconfirmed (SR vs Ocean Ave)**. Tesla
+  FSD + Connectivity bill FRIDAY; Google One cancellation still
+  unconfirmed.
+
 - **2026-11-09 (Monday watch):** **EMERGENCY DOOR REPAIR needed at the
   Bourbon Trail / Distiller's Estate for a current guest** (her own Day
   Ahead flagged coordinating it — confirm a handyman is booked). Tuesday
