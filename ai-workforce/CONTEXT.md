@@ -165,6 +165,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-11:** Matchmaker roster hits SIX: she cold-emailed **Linx
+  Dating (Amy Andersen)** — intake form requested — and booked a
+  **Kelleher International intro call (John Berg) Thu 3:30**; Shannon
+  countered her 3:30 ask with **today 11–12 or 2:15–3** (11–12 is the
+  open slot; 2:15 collides with Rising Star) — reply needed. Berkeley
+  dry-eye PROGRESS: **evaluation Nov 30 11am accepted + Dec 14 2:30
+  follow-up held** (flag nearly closed). STR: **Ryan inquiry for Bourbon
+  Trail Nov 20–22 — respond**; Stacy left 5 stars (review back);
+  Stephanie checks in today; Firefly cabin inspection today. Inn Shop:
+  GA + Cloudflare access granted by sdbx (Craig Tran — legit, matches
+  Maja's thread; GTM still pending). Vevye now on AUTO-REFILL (add to
+  inventory). Thu is huge: Cerebral Valley AI Summit (all day), Posh
+  blow-out 1:30 (confirm link!), Kelleher 3:30, **SF Opera Ball Buffet
+  Soirée 7pm ($400, City Hall)**. Tesla FSD + Connectivity bill FRIDAY —
+  last call; Google One cancellation still unconfirmed. Rising Star
+  1:30 today — location StILL unconfirmed (SR vs Ocean Ave).
+
 - **2026-11-10:** Tuesday's 2:00 collision SURVIVED the reshuffle:
   Marathon Fusion moved only to 1:50–2:45, still against **Wafa Malik
   arrive-1:45 in Emeryville**; and the rebooked **acupuncture (Dr. Drake)
