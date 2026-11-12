@@ -165,6 +165,24 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-12:** TODAY IS QUADRUPLE-BOOKED at 8–11:30: **Anthropic
+  Agents Forum (The Aviary, new)** vs Cerebral Valley Summit (all-day) vs
+  "Review Mike's agent" 9:30 vs Mastermind Wk4 10:00 — she's presumably
+  choosing the Anthropic forum; then Posh blow-out 1:30 (**still needs the
+  confirm-link click**), **Dr. Beth Cook Zoom 3–4** (first session — the
+  Oct 13 flag finally closes), SF Opera Ball 7pm. Kelleher call MOVED to
+  Fri 11:00. **TESLA FSD + PREMIUM CONNECTIVITY BILL TOMORROW (Nov 13)**
+  + PriceLabs $34.98 same day. STR: **Heather messaged about bringing
+  children (Nov 19–24) — reply**; **Thomas Karadimas booked, arrives
+  Nov 29** (clean already scheduled Nov 29→Dec 1). Inn Shop access
+  COMPLETE: GTM invite arrived (roisamurai); note a pending request from
+  webmaster@sdbxstudio for access to a GA account she owns — review
+  before granting. Tempur-Pedic mattress DELIVERED (Costco); second
+  mattress hold Fri–Sat. 1931 Filbert: painting/security-light removal,
+  handyman Fri (Robert Hunter thread). Renew PT waitlist offered today
+  4:10 (tight after Cook). Nordstrom pickup by 11/16. Smilin Dogs
+  Thanksgiving boarding still unbooked.
+
 - **2026-11-11:** Matchmaker roster hits SIX: she cold-emailed **Linx
   Dating (Amy Andersen)** — intake form requested — and booked a
   **Kelleher International intro call (John Berg) Thu 3:30**; Shannon
