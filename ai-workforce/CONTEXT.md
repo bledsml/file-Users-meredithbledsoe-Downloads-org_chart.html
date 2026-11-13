@@ -165,6 +165,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-13:** Tesla billing day arrived with NO cancellation emails
+  seen — assume FSD + Premium Connectivity charged (verify on the card);
+  also learned she holds **Tesla Insurance** (policy …9995FPSZ, payment
+  received today — add to inventory). Dr. Cook engagement is ON: sent
+  exercises + weekly yin-yoga homework, next session **Fri Nov 20
+  12:30**. Matchmaker double-header today: **Kelleher (John Berg) 11:00**
+  + **Shannon reconnect 1:00** (duplicate events at 1:00 — hers +
+  Shannon's invite). **Tempur-Pedic delivers TODAY 9:30–11:30** (click
+  the confirm link; driver texts her cell) — overlaps the 11:00 Berg
+  call, phone-friendly. NEW home service: **sf.steamsweep Sat 2pm** —
+  rug/headboard/couch cleaning $304, prepaid, 48-hr no-cancel. Sat also:
+  Atlas Club workout 9:45, Gals Giving dinner at Lisa's 6:00. Verizon
+  $114.82 autopaid. GitHub "Claude app requesting updated permissions"
+  email x2 — her own tooling; review/approve when convenient. Jen's
+  Costco family-cart on her Instacart recurred again (2nd time — confirm
+  intended). Heather reply + Smilin Dogs boarding still open.
+
 - **2026-11-12:** TODAY IS QUADRUPLE-BOOKED at 8–11:30: **Anthropic
   Agents Forum (The Aviary, new)** vs Cerebral Valley Summit (all-day) vs
   "Review Mike's agent" 9:30 vs Mastermind Wk4 10:00 — she's presumably
