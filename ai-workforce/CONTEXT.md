@@ -99,6 +99,14 @@ Apple News+ decision window closes Oct 8. No failed payments this week.
 Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
 Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
 No failed payments this week.
+Nov 16 (Monday watch): TESLA RESOLVED — **Premium Connectivity trial
+EXPIRED uncharged Nov 14, then she re-subscribed deliberately (new cycle
+starts Dec 14)**; no FSD charge email seen (check card once). NEW/renews:
+**Barefaced toning pads $40/3-mo renews Nov 18**; AppleCare+ MacBook
+ANNUAL renewal notice; **Homesite Insurance renewal payment needed**
+(home policy — ties to the insurance-restart flag, act before lapse);
+PG&E $173.88 autopay 12/4; Recology $290.48 was due Nov 15; Chewy
+Autoship review notice (Chewy working again). No failed payments.
 Nov 9 (Monday watch): AppleCare+ monthly renewed; **Zepbound ordered via
 Amazon Pharmacy (NEW recurring med — note cost when visible)**; Vevye +
 Bupropion refills due; Nordic Naturals order shipped (supplement).
@@ -165,6 +173,24 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-16 (Monday watch):** Netflix thread revived — she followed up
+  post-vacation offering Thu 11–1 PT; Peter Hughes: "We'll reach out with
+  an update asap." Tesla Premium Connectivity trial expired UNCHARGED Nov
+  14 and she re-subscribed (starts Dec 14, order SBSVTBVJQBAAK6A3K) — FSD
+  charge still unverified. Airbnb booking REQUEST pending: Villa Belle
+  Époque, Villefranche, France (24h host window). STR: Antonio Carnevale
+  in at Distiller's Estate Nov 16–20 (4 adults); Stephanie checked out Nov
+  15 (review owed); Frontier Research Club #32 approved Nov 18. Monday
+  watch: Barefaced $40/3-mo renews Nov 18; AppleCare+ MacBook annual;
+  **Homesite renewal payment needed**; PG&E $173.88 12/4; Recology
+  $290.48 was due Nov 15; no failed payments; Google One cancellation
+  still unconfirmed. Recruiter Victoria Willis followed up (AI-cloud GPU
+  supply role). Her self-emailed to-dos: vestibular/treadmill PT, call
+  Erin + tax office, tell Andrew re pics, send Mike product feedback.
+  Today: 9:00 UCSF call (reclaim Dec 3 Monika appt) + STR tax true-up
+  block (KY cost-seg, §461(l) cap, Dan/DeJoy grouping Q), steamsweep
+  cleaning 5–7pm. Tue: acupuncture 4pm, dinner w/ Brad at Terzo 7pm.
+  Paperless Post holiday party Dec 12 confirmed.
 - **2026-11-13:** Tesla billing day arrived with NO cancellation emails
   seen — assume FSD + Premium Connectivity charged (verify on the card);
   also learned she holds **Tesla Insurance** (policy …9995FPSZ, payment
