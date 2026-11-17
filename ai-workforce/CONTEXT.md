@@ -173,6 +173,26 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-17:** BIG: **Micah (Frontier Research Fund) invited her to
+  join as FOUNDING GENERAL PARTNER** — letter attached w/ role +
+  economics. Netflix advanced: coordinator Clau Hernandez reached out
+  ("Hello from Netflix!"), she replied warmly (cc Peter Hughes) — next
+  round being scheduled. **Erin Wegrzyn sent 5 dotloop docs to review
+  for 980 Colonel Cox Rd S** (KY). **France: host Flo never responded —
+  Villa Belle Époque request lapsed**, Airbnb suggesting alternates in
+  Nice. NEW booking confirmed: **Los Angeles Jan 27–Feb 1**. UCSF appt
+  scheduled **Dec 10 9:15am** (she'd wanted Dec 3 w/ Monika back).
+  TempurSealy mattress delivery for 1931 Filbert needs scheduling.
+  Flood update (1931 Filbert): garage/outside drain inspected, water
+  under washer <3mm — looks minor. Hospitable $59 paid. TN cabin: turn
+  completed Nov 11; departure clean booked 12/27–12/30 (implies
+  Christmas TN stay). Kristopher Floyd intro'd Chad Cook re 250kW+ colo
+  (Models-vs-Markets reg). Andrew Keller photo expectations form
+  submitted (to-do closed). **Wed Nov 18 is overbooked** — flagged
+  conflicts: 8:45–10a Emeryville optometry vs 9:15a QBR WorkUp; 5:30p
+  Frontier Research Club dinner vs 6p OC Book Club; 7:30a Fort Mason
+  run invite still unaccepted; foot care 4:15 (arrive 3:45) tight after
+  3–3:45 call. Barefaced renews tomorrow.
 - **2026-11-16 (Monday watch):** Netflix thread revived — she followed up
   post-vacation offering Thu 11–1 PT; Peter Hughes: "We'll reach out with
   an update asap." Tesla Premium Connectivity trial expired UNCHARGED Nov
