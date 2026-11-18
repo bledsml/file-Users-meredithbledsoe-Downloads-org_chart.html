@@ -173,6 +173,24 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-18:** NETFLIX: **Clau Hernandez sent her tentative interview
+  schedule — meetings start Fri Nov 20** (agenda in thread "Hello from
+  Netflix!"). **Anthem denied part of claim …V3883** (care Oct 2) —
+  review/appeal. **George's vaccines due: Pawington flags temp test
+  needed, Smilin Dogs DHLPP expires Dec 18** — vet visit needed before
+  Thanksgiving boarding (her own note: "George blood work"). Heather
+  arrives at Firefly Cottage TOMORROW (Nov 19, 4pm ET); mom checks the
+  clean that morning. **Book club tonight moved: 5:30pm social at
+  Lakeside Champions Bar** (not 6pm Game Room) — still head-to-head with
+  Frontier Research Club dinner 5:30 at Array. Hot tub: she replied to
+  Samantha (12-inch footprint limit) — in motion; pics-to-Shannon to-do
+  repeated. Stephanie left a 5-STAR review (hers still owed). Bay City
+  Paws September invoice arrived; no walks Thanksgiving/Xmas. Truspine
+  suggests next acupuncture Nov 24. Tahoe watch: 810 Ward Creek cut to
+  $1.1M. LifeLock: Expedia data breach notice. TN cleans queued 12/3 +
+  12/27 (two future Firefly bookings). Thu Nov 19 overlaps: 1:15
+  Meredith/Meredith vs 1:30 One Medical remote visit; 2:45
+  Meredith/Meredith vs 3:00 Renew PT; Friendsgiving 7pm.
 - **2026-11-17:** BIG: **Micah (Frontier Research Fund) invited her to
   join as FOUNDING GENERAL PARTNER** — letter attached w/ role +
   economics. Netflix advanced: coordinator Clau Hernandez reached out
