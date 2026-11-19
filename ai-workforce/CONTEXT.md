@@ -173,6 +173,26 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-19:** Netflix: she asked Clau to adjust the schedule;
+  calendar now holds **TENTATIVE Tim Anderson meeting Fri Nov 20
+  3:00pm PT** (Clau to confirm + send link; text her 310-590-3157).
+  **George vet booked for TODAY 4pm** — Dr. Kathy Gervais, SFAMC,
+  lump on nose + bloodwork (vaccine flag in motion) — but it collides
+  with the 4:30 Memo Updates call and follows 3:00 Renew PT tightly.
+  Today also stacks: 1:15 M/M call vs 1:30 One Medical video visit.
+  **Apartment inspection TOMORROW Fri 9am–noon** (landlord + PM, smoke
+  alarms + flood follow-up; formal 24-hr notice). **LA trip rebooked:
+  one reservation canceled w/ refund, new receipt RCHZNXFNND Jan 27–
+  Feb 1.** Heather checks into Firefly today 4pm ET; mom inspected
+  clean this morning; Blessed Cleaning paid $680 (QuickBooks);
+  ISOneedphotos #1051 paid; All About Bugs serviced TN. GEICO/Homesite
+  posted new policy docs online (renewal flag — review/pay). Bay Area
+  Foot Care $250 paid. Fri Nov 20 is dense: TN Sales & Use Tax DUE,
+  10:45 Monika P (earlier slot than Dec 10!), 12:30 Beth Cook, 1:30
+  vision therapy, 3:00 Netflix, 5:00 Kellogg/Booth mixer at Gott's.
+  Tahoe watch: Granlibakken #69 → $845K. Nordstrom/Reformation
+  refunds flowing. Her to-dos: John's summit ticket, Mike's stuff,
+  "anthropic resumes."
 - **2026-11-18:** NETFLIX: **Clau Hernandez sent her tentative interview
   schedule — meetings start Fri Nov 20** (agenda in thread "Hello from
   Netflix!"). **Anthem denied part of claim …V3883** (care Oct 2) —
