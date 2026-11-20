@@ -173,6 +173,24 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-20:** **Netflix CONFIRMED for TODAY 3:00pm PT — Tim
+  Anderson, Head of Cloud Infra Finance & Strategy role** (Meet link on
+  calendar; Clau's morning reminder asks her to click "Confirm agenda"
+  and accept claudiah@netflix.com's invite; Peter had offered to
+  reschedule, she kept it). **Second Anthem denial: claim …M6691 (Oct
+  27) partly not approved** + new EOB posted — two denials open (w/
+  …V3883). George: vet visit done, bloodwork drawn; NEW follow-up appt
+  confirmed w/ Dr. Jonah Pyo, SFAMC. One Medical: labs reviewed,
+  provider note added. Rising Star: consult for HER MOM w/ Dr.
+  Shumaker offered at 30% off ($385 eval). **John Summit ticket listed
+  on Ticketmaster** (P5C1EB03) — to-do closed. Lowe's pickup order
+  auto-canceled (not picked up, no charge) — check if items still
+  needed. GEICO quote transaction saved (policy 4323460461) — insurance
+  restart in motion. Starlink $140 autopays today. Enrich Revenue
+  Management (STR rev-mgmt vendor) replied to her inquiry. Apartment
+  inspection window today 9–noon (overlaps 10:45 Monika appt — entry
+  notice doesn't need her present). Apple Business case open. Muse app
+  granted Google-account access (watch if unexpected).
 - **2026-11-19:** Netflix: she asked Clau to adjust the schedule;
   calendar now holds **TENTATIVE Tim Anderson meeting Fri Nov 20
   3:00pm PT** (Clau to confirm + send link; text her 310-590-3157).
