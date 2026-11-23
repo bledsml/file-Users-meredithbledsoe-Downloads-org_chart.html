@@ -99,6 +99,14 @@ Apple News+ decision window closes Oct 8. No failed payments this week.
 Oct 12 (Monday watch): NEW — **Snapchat+ Lens+ $5.99/mo** (confirmed
 Oct 10, trial converts monthly). PriceLabs $34.98 charges Oct 13 (normal).
 No failed payments this week.
+Nov 23 (Monday watch): NEW charge: **AirDNA LLC subscription** (Stripe
+receipt #2911-3677) — add to inventory (STR data tool). Starlink
+$140.00 autopaid Nov 20 (TN cabin). Hospitable $59 paid Nov 17.
+Barefaced $40/3-mo renewal date (Nov 18) passed — assume charged.
+**Sevier Electric "Due Date Alert"** — bill due, check autopay went
+through. No failed payments seen. Still unverified: Google One
+cancellation (deadline passed Nov 8) and Tesla FSD charge — one card
+check clears both.
 Nov 16 (Monday watch): TESLA RESOLVED — **Premium Connectivity trial
 EXPIRED uncharged Nov 14, then she re-subscribed deliberately (new cycle
 starts Dec 14)**; no FSD charge email seen (check card once). NEW/renews:
@@ -173,6 +181,27 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-23 (Monday watch):** **Netflix meeting with Tim Anderson
+  was RESCHEDULED** (Clau's "Rescheduled: please confirm" Nov 20 +
+  reminder since) — she must confirm the new slot. **She flies to
+  Jacksonville TODAY (UA 1485, conf L228SG**, calendar shows 3:10pm
+  leg via Denver; Hertz rental was CANCELED — ground transport open;
+  Hertz also wants email verification). Today before the flight: 10am
+  Jeff Seagraves (Movement Mortgage) call — new appraisal on KY house
+  post-renovation w/ added bathroom; 12–12:50 Superradiant in person
+  at 630 8th St (First Amendment to her advisor agreement also sent —
+  review/sign). **Tomorrow BOTH properties turn over: Pat Kinney →
+  Distiller's Estate Nov 24–28 ($2,529.08) and Alex Lafley → Firefly
+  Nov 24–29 ($2,641.86)** — send check-in info; Firefly departure
+  clean booked. **Truspine acupuncture Nov 24 3:30 conflicts with the
+  trip — cancel today to beat the 24h fee.** Kelleher sent an
+  INTRODUCTION (Emily H, cc Jen) — first candidate from John Berg's
+  firm. New Sedgwick "[Important]" leave update. Sevier Electric due
+  alert. AirDNA subscription charge (new). Amazon 31-item furniture/
+  lighting order (KY furnishing?). Her notes: confirm Beth Cook next
+  week, call dry-eye clinic, Home Depot dryer water barrier (flood
+  fix). TN tax: all-day reminder today — confirm Friday's filing went
+  through. Monday-watch appendix updated.
 - **2026-11-20:** **Netflix CONFIRMED for TODAY 3:00pm PT — Tim
   Anderson, Head of Cloud Infra Finance & Strategy role** (Meet link on
   calendar; Clau's morning reminder asks her to click "Confirm agenda"
