@@ -181,6 +181,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-24:** Travel wake: she's in Jacksonville (flew yesterday;
+  Breeze Airways "important details about your upcoming flight" =
+  likely the return leg). **Rising Star sent "URGENT — vision therapy
+  appt for Monday Nov 23"** (missed/needs response) and **Berkeley Dry
+  Eye Clinic urgently asks to RESCHEDULE the Nov 30 appointment** —
+  both need replies; Wed 1:30 Rising Star (Natalie) session likely
+  also conflicts with travel. **Leland coaching intro call booked:
+  Andrew Quillen, Wed 7:30am PT** — she's prepping offer negotiation
+  (self-emailed Maven negotiation courses; Kathryn Valentine
+  "Thank you" note). Capital One flagged a recurring charge — identify
+  it (pairs w/ Google One/FSD card check). Today: CRAB FEED signup
+  10am; Superradiant 12–12:50 (Meet available; she's remote); BOTH
+  guests check in 4pm ET (Pat Kinney/Distiller's, Alex Lafley/
+  Firefly); Firefly departure clean runs today. Truspine waitlist slot
+  opened (she canceled Nov 24 session). Heavy emergency-supply orders
+  (glow sticks, lighting, portable power) — storm prep, likely fine.
+  Netflix new time still unconfirmed in inbox — keep watching.
 - **2026-11-23 (Monday watch):** **Netflix meeting with Tim Anderson
   was RESCHEDULED** (Clau's "Rescheduled: please confirm" Nov 20 +
   reminder since) — she must confirm the new slot. **She flies to
