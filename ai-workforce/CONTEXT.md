@@ -181,6 +181,21 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-25:** **Wayfair escalation live: "Urgent Safety Concern —
+  Game Room Chairs Keep Breaking and Pose a Fall Risk"** (her complaint
+  re: Firefly game-loft chairs; Wayfair's C. Bresnahan replied, cc
+  Rebecca Jones photo) — follow through, guests in-house. **Peter
+  Hughes replied on the Netflix thread** — rescheduled Tim Anderson
+  slot still needs her confirmation. **865 Lawn Barber invoice #3306**
+  payment request (TN lawn). Leland: intro call w/ Andrew Quillen
+  TODAY 7:30am PT + Robert/Leland "AI coaching" outreach. Superradiant
+  meeting moved to TODAY 12–12:50 ("per Joel"). **1:30 double-book:
+  Email Close Out vs Rising Star vision therapy (Natalie)** — and the
+  session presumes she's back in SF; verify travel. Tenex Claude Code
+  event Dec 9 confirmed. Tahoe: new listing at $585K. Costco shipment
+  delayed; emergency radios/supplies still arriving. Thanksgiving
+  tomorrow: Smilin Dogs boarding/dinner still unbooked (flag stands);
+  Bay City Paws no walks Thu/Fri.
 - **2026-11-24:** Travel wake: she's in Jacksonville (flew yesterday;
   Breeze Airways "important details about your upcoming flight" =
   likely the return leg). **Rising Star sent "URGENT — vision therapy
