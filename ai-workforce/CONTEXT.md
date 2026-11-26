@@ -181,6 +181,21 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-26 (Thanksgiving):** Heavy travel day: **JAX → Denver (UA
+  671) early am, then Denver → Reno (UA 2167) 10:15am–12:40pm PT** —
+  Tahoe for the holiday. **Negotiation intro call booked w/ Valued
+  (Pierre Taylor-Deschamps) TODAY 1:00pm PT** — form says she expects a
+  Netflix offer "very soon" (role: Head of Cloud Infra Finance &
+  Strategy); call lands 20 min after her Reno flight — tight, and
+  1:15 M/M overlaps. **Tomorrow Fri: Breeze flight SFO → Louisville
+  (MX 229) 11:54am** — KY trip right after Tahoe; routing (Reno today,
+  SFO departure tomorrow) worth double-checking. Rising Star sent a
+  Doxy telehealth link (vision therapy moved online — travel conflict
+  solved). Andrew Quillen (andmaverick.com) sent "Our Next Steps"
+  post-Leland-intro. Airbnb payout $2,641.86 received (Lafley/
+  Firefly). PG&E tree-safety work notice for 1931 Filbert. George
+  boarding: no Smilin Dogs confirmation ever seen — presumably with
+  her or family (flag fades unless something arrives).
 - **2026-11-25:** **Wayfair escalation live: "Urgent Safety Concern —
   Game Room Chairs Keep Breaking and Pose a Fall Risk"** (her complaint
   re: Firefly game-loft chairs; Wayfair's C. Bresnahan replied, cc
