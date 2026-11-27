@@ -181,6 +181,23 @@ cadences captured yet — appointment-scheduler's first task is to collect them.
 
 ## Changelog
 
+- **2026-11-27:** Travel plan RESOLVED: the UA Jacksonville/Denver/Reno
+  itinerary was refunded (United refund email) — actual plan is
+  **Breeze MX 229 SFO → Louisville today 11:54am (conf Z4MJHV, check-in
+  open), Avis pickup at Louisville airport 7pm ET (Chase Travel ID
+  1032699838), Fairfield Inn Bardstown Nov 27–29, return flight Sun
+  3:24pm ET** — KY property weekend. Her 8am packing event lists both
+  computers, Radda, supplements, NyQuil, exercise bands, back brace +
+  "move the Tesla clear of trash cans" and "text Emma dates."
+  **Valued negotiation call: Pierre's Thanksgiving slot CANCELED,
+  rebooked w/ Andrew Smith Mon Nov 30 2–2:30pm PT.** Heather left a
+  5-STAR Firefly review. Bryce reviewed Inn Shop on Google — read it.
+  **Norton dark-web alert** — review which credential leaked. Wayfair
+  FedEx return pickup Mon Nov 30 (breaking game-room chairs going
+  back). Target Louisville Jefferson Pavilion pickups ready (2 orders
+  staged for the KY trip). 8:30/9:00 M/M calls vs airport run — tight.
+  Netflix Tim Anderson slot STILL unconfirmed. Rising Star + Berkeley
+  dry-eye reschedules still open.
 - **2026-11-26 (Thanksgiving):** Heavy travel day: **JAX → Denver (UA
   671) early am, then Denver → Reno (UA 2167) 10:15am–12:40pm PT** —
   Tahoe for the holiday. **Negotiation intro call booked w/ Valued
